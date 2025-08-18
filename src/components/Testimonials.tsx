@@ -17,8 +17,8 @@ const Testimonials = () => {
     },
     {
       name: "Socket",
-      logo: "https://cdn-1.webcatalog.io/catalog/viasocket/viasocket-icon-filled-256.png?v=1714777446463",
-      color: "from-gray-800 to-black",
+      logo: "https://stuff.thingsofbrand.com/viasocket.com/images/img7_viasocket_logo.png",
+      color: "from-gray-100",
       link: "https://viasocket.com/faq",
     },
     {
