@@ -1,13 +1,15 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Shield, Palette, ArrowRight, BadgeCheck } from "lucide-react";
+import { Shield, BadgeCheck, Frame, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+
 const Features = () => {
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
   });
   const navigate = useNavigate();
+
   const features = [
     {
       icon: Shield,
@@ -19,15 +21,15 @@ const Features = () => {
     {
       icon: BadgeCheck,
       title: "White Labelling",
-      description:
-        "Allows you the flexibility to use various web addresses for your Techdoc",
+      description: "Make it yours—custom domains and branding for your docs.",
       link: "/white-labelling",
     },
-    // {
-    //   icon: Palette,
-    //   title: 'Themes',
-    //   description: 'Update frill with your own brand colours',
-    // },
+    {
+      icon: Frame,
+      title: "Hassle-Free Editor Integration",
+      description: "Enable editor functionality in any site or application with minimal configuration.",
+      link: "/embed-editor",
+    },
   ];
 
   return (
@@ -61,7 +63,7 @@ const Features = () => {
 
         <motion.div
           ref={ref}
-          className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-4xl mx-auto"
+          className="grid md:grid-cols-3 gap-8 lg:gap-12 max-w-6xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -77,8 +79,6 @@ const Features = () => {
                 <div className="w-16 h-16 bg-black rounded-2xl flex items-center justify-center mr-4">
                   <feature.icon className="h-8 w-8 text-white" />
                 </div>
-
-                <span className="text-3xl">{feature.emoji}</span>
               </div>
 
               <h3 className="text-2xl font-bold text-black mb-4">
