@@ -19,6 +19,8 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import { ContactUs } from "./components/ContactUs";
 import NotFound from "./pages/NotFound";
 import ExternalRedirect from "./components/ExternalRedirect";
+import Editor from "./pages/Editor";
+import EmbedEditorPage from "./pages/embed-editor";
 function App() {
   return (
     <div className="min-h-screen bg-white">
@@ -49,6 +51,8 @@ function App() {
         <Route path="/sso-authentication" element={<SsoAuthentication />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/support" element={<ContactUs />} />
+        <Route path="/editor" element={<Editor />} />
+        <Route path="/embed-editor" element={<EmbedEditorPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
