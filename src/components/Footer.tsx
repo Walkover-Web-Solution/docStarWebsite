@@ -36,6 +36,10 @@ const Footer = () => {
           name: "Contact us",
           href: "/support",
         },
+        {
+          name: "Sitemap",
+          href: "/sitemap",
+        },
 
         // { name: "Blogs", href: "#" },
         // { name: "Publish Docs", href: "https://app.docstar.io/p/getting-started?collectionId=fLMgydvRdvN7" },
@@ -117,7 +121,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerSections[0].links.map((link, linkIndex) => (
                 <li key={linkIndex}>
-                  {link.name === "Pricing" || link.name === "Contact us"  ? (
+                  {link.name === "Pricing" || link.name === "Contact us" || link.name === "Sitemap" ? (
                     <button
                       onClick={() => navigate(link.href)}
                       className="text-left w-full text-gray-400 hover:text-white transition-colors duration-300 text-sm"

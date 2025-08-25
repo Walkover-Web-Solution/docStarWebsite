@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://docstar.io/sitemap.xml
+
+# Important pages
+Allow: /
+Allow: /pricing
+Allow: /api-documentation
+Allow: /blogging
+Allow: /documentation-with-ai
+Allow: /simple-website
+Allow: /white-labelling
+Allow: /sso-authentication
+Allow: /support
+Allow: /editor
+Allow: /embed-editor
+Allow: /sitemap
+
+# Disallow admin or sensitive areas (if any)
+# Disallow: /admin/
+# Disallow: /private/
