@@ -21,6 +21,7 @@ import NotFound from "./pages/NotFound";
 import ExternalRedirect from "./components/ExternalRedirect";
 import Editor from "./pages/Editor";
 import EmbedEditorPage from "./pages/embed-editor";
+import Sitemap from "./pages/Sitemap";
 function App() {
   return (
     <div className="min-h-screen bg-white">
@@ -53,6 +54,7 @@ function App() {
         <Route path="/support" element={<ContactUs />} />
         <Route path="/editor" element={<Editor />} />
         <Route path="/embed-editor" element={<EmbedEditorPage />} />
+        <Route path="/sitemap" element={<Sitemap />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
