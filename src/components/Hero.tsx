@@ -38,7 +38,7 @@ const Hero = () => {
 
           {/* Main Heading */}
           <motion.div
-            className="text-5xl md:text-7xl font-bold text-black mb-8 leading-tight"
+            className="font-bold text-black mb-8 leading-tight mt-20 md:mt-0 text-xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -69,7 +69,7 @@ const Hero = () => {
 
           {/* Subtitle */}
           <motion.p
-            className="text-xl md:text-2xl text-black mb-12 max-w-4xl mx-auto leading-relaxed"
+            className="text-base md:text-2xl text-black mb-12 max-w-4xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
