@@ -5,6 +5,7 @@ declare global {
     sendDataToDocstar: (data: {
       parentId: string;
       page_id: string;
+      defaultOpen:boolean;
       content?: string;
     }) => void;
     sendUpdateToDocstar: (data: {
@@ -18,6 +19,7 @@ export default function DocStarEmbed() {
   useEffect(() => {
     const script = document.createElement("script");
     script.id = "docstar-main-script";
+    script.setAttribute("defaultOpen", "true");
     script.src = "https://techdoc.walkover.in/scriptProd.js";
     script.setAttribute("embedToken", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdfaWQiOiIyMDcwOSIsImNvbGxlY3Rpb25faWQiOiI4MWt0bGNYTUkyZFUiLCJ1c2VyX2lkIjoiVXNlcklkIn0.kt7l7TI4BvRP76mXmW-VnJwJhPGqU9HgYcu_a1puT4g");
 
@@ -26,6 +28,7 @@ export default function DocStarEmbed() {
         window.sendDataToDocstar({
           parentId: "parentId",
           page_id: "website",
+          defaultOpen: true,
           content: "<h2>Hello from DocStar</h2>",
         });
       }

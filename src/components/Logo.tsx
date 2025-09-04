@@ -16,7 +16,7 @@ const Logo: React.FC<LogoProps> = ({ className = '', size = 'md', animated = tru
 
   const LogoImage = () => (
     <img
-      src="https://i.postimg.cc/sxV2XW5W/image.png"
+      src="https://stuff.thingsofbrand.com/docstar.io/images/imgd_docstar.png"
       alt="DocStar Logo"
       className={`${sizeClasses[size]} object-contain ${className}`}
     />

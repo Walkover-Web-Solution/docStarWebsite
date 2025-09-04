@@ -89,7 +89,7 @@ const plans: Plan[] = [
 
 export const Pricing: React.FC = () => {
   return (
-    <div className="bg-white  pt-24 pb-16 px-4 sm:px-6 lg:px-16">
+    <div className="pricing-page bg-white pt-24 pb-16 px-4 sm:px-6 lg:px-16">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-extrabold text-gray-800 mb-2">
           Choose the plan that’s right for you

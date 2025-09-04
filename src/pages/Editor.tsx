@@ -29,6 +29,7 @@ import {
   Star,
   Pencil, // Added Pencil icon import
 } from "lucide-react"
+import DocStarEmbed from "../components/DocstarEmbed"
 // import DocStarEmbed from "../components/DocstarEmbed"
 
 const formatTools = [

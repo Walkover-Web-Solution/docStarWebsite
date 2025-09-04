@@ -13,7 +13,7 @@ import Blogging from './pages/Blogging';
 import DocumentationWithAI from './pages/DocumentationWithAI';
 import SimpleWebsite from './pages/SimpleWebsite';
 import { Pricing } from "./components/Pricing";
-import { WhiteLabelling } from "./pages/WhiteLabelling";
+import { WhiteLabelling } from "./pages/CustomDomain";
 import { SsoAuthentication } from "./pages/SsoAuthentication";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import { ContactUs } from "./components/ContactUs";
@@ -21,9 +21,10 @@ import NotFound from "./pages/NotFound";
 import ExternalRedirect from "./components/ExternalRedirect";
 import Editor from "./pages/Editor";
 import EmbedEditorPage from "./pages/embed-editor";
+import FeatureCards from "./components/ExtraFeatures";
 function App() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="">
       <Navbar />
       <ScrollToTop />
       <Routes>
@@ -35,7 +36,8 @@ function App() {
           element={
             <>
               <Hero />
-              <Features />
+              <Features autoCycle={false}/>
+              <FeatureCards />
               <Testimonials />
               <CTA />
             </>
@@ -47,7 +49,7 @@ function App() {
         <Route path="/documentation-with-ai" element={<DocumentationWithAI />} />
         <Route path="/simple-website" element={<SimpleWebsite />} />
         <Route path="/pricing" element={<Pricing />} />
-        <Route path="/white-labelling" element={<WhiteLabelling />} />
+        <Route path="/custom-domain" element={<WhiteLabelling />} />
         <Route path="/sso-authentication" element={<SsoAuthentication />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/support" element={<ContactUs />} />

@@ -1,111 +1,170 @@
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import { Shield, BadgeCheck, Frame, ArrowRight } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react"
+import { AnimatePresence, motion } from "framer-motion"
 
-const Features = () => {
-  const [ref, inView] = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
-  const navigate = useNavigate();
+type FeatureItem = {
+  id: number
+  text: string
+  barClass: string 
+  image: { src: string; alt: string }
+  link: string
+}
 
-  const features = [
-    {
-      icon: Shield,
-      title: "SSO Authentication",
-      description:
-        "Integrate directly with your platform for a seamless user experience",
-      link: "/sso-authentication",
+type Props = {
+  autoCycle?: boolean
+  cycleMs?: number
+}
+
+
+const items : FeatureItem[]= [
+  {
+    id: 1,
+    text: "SSO Authentication",
+    barClass: "bg-amber-300/70",
+    image: {
+      src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/3nuyRKlog-IP/89fbb090-74db-4221-bcc4-02b8197d2592_ChatGPT Image Sep 3, 2025, 03_32_07 PM_compressed.png",
+      alt: "Automated reminders dashboard",
     },
-    {
-      icon: BadgeCheck,
-      title: "White Labelling",
-      description: "Make it yours—custom domains and branding for your docs.",
-      link: "/white-labelling",
+    link: "/sso-authentication",
+  },
+  {
+    id: 2,
+    text: "Custom Domain",
+    barClass: "bg-rose-300/60",
+    image: {
+      src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/3nuyRKlog-IP/a184d852-4271-4a48-bd0e-9cc9cc1213a1_ChatGPT%20Image%20Sep%203,%202025,%2003_36_00%20PM_compressed.png",
+      alt: "Knowledge base with tags",
     },
-    {
-      icon: Frame,
-      title: "Hassle-Free Editor Integration",
-      description: "Enable editor functionality in any site or application with minimal configuration.",
-      link: "/embed-editor",
+    link: "/custom-domain",
+  },
+  {
+    id: 3,
+    text: "Hassle-Free Editor Integration",
+    barClass: "bg-rose-300/80",
+    image: {
+      src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/3nuyRKlog-IP/c88036a6-4b09-439d-8fe4-41bb81e3645c_ChatGPT Image Sep 3, 2025, 03_38_51 PM_compressed.png",
+      alt: "AI suggestions panel",
     },
-  ];
+    link: "/embed-editor",
+  },
+  {
+    id: 4,
+    text: "Multi Language support",
+    barClass: "bg-amber-300/80",
+    image: {
+      src: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop",
+      alt: "Ownership transfer flow",
+    },
+    link: "/embed-editor",
+  },
+]
+export default function Feature({
+  autoCycle = false,
+  cycleMs = 4500,
+}: Props) {
+  const [active, setActive] = useState(0)
+
+  // Optional: auto‑cycle through items
+  useEffect(() => {
+    if (!autoCycle || items.length <= 1) return
+    const id = setInterval(
+      () => setActive((i) => (i + 1) % items.length),
+      cycleMs
+    )
+    return () => clearInterval(id)
+  }, [autoCycle, cycleMs, items.length])
+
+  const progressPct = ((active + 1) / items.length) * 100
 
   return (
-    <section id="features" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          <motion.h2
-            className="text-4xl md:text-5xl font-bold text-black mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Everything you need to create
-            <span className="text-gray-600"> amazing content</span>
-          </motion.h2>
-          <motion.p
-            className="text-xl text-gray-700 max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            Powerful tools designed to help you create, collaborate, and publish
-            content that makes an impact.
-          </motion.p>
-        </motion.div>
+    <section className="w-full ">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-16 md:grid-cols-2 md:gap-16 md:py-24 lg:px-12">
+        {/* Left: Title + Features */}
+        <div className="max-w-2xl flex flex-col">
+          <h2 className="text-pretty text-3xl font-semibold leading-tight text-slate-900 md:text-4xl">
+          Minimal Documentation platform.
+          </h2>
+          
+          {/* <h3 className="text-xl text-rose-400 font-normal">Replace Notion, readme, by one App
+Low cost, Team first, AI driven.</h3> */}
 
-        <motion.div
-          ref={ref}
-          className="grid md:grid-cols-3 gap-8 lg:gap-12 max-w-6xl mx-auto"
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              className="bg-white rounded-3xl p-8 shadow-lg border flex flex-col justify-between border-gray-200 cursor-pointer"
-              whileHover={{ y: -5 }}
-              transition={{ duration: 0.2 }}
-            >
-              <div className="flex items-center mb-6">
-                <div className="w-16 h-16 bg-black rounded-2xl flex items-center justify-center mr-4">
-                  <feature.icon className="h-8 w-8 text-white" />
-                </div>
-              </div>
+          <ul className="mt-8 space-y-3">
+            {items.map((item, i) => {
+              const isActive = i === active
+              return (
 
-              <h3 className="text-2xl font-bold text-black mb-4">
-                {feature.title}
-              </h3>
+                <li key={item.id}>
+                  <button
+                    type="button"
+                    onMouseEnter={() => setActive(i)}
+                    onFocus={() => setActive(i)}
+                    onClick={() => {
+                      setActive(i)
+                      window.location.href = item.link
+                    }}
+                    aria-selected={isActive}
+                    className={[
+                      "group flex w-full items-start gap-3 rounded-md p-2 text-left transition-colors",
+                      isActive ? "bg-white/50" : "hover:bg-white/40",
+                    ].join(" ")}
+                  >
+                    <span
+                      aria-hidden
+                      className={[
+                        "mt-1 h-6 w-1.5 rounded-full transition-opacity",
+                        item.barClass,
+                        isActive ? "opacity-100" : "opacity-80",
+                      ].join(" ")}
+                    />
+                    <span
+                      className={[
+                        "leading-relaxed text-2xl",
+                        isActive ? "text-slate-800" : "text-slate-600",
+                      ].join(" ")}
+                    >
+                      {item.text}
+                    </span>
+                  </button>
+                </li>
 
-              <p className="text-gray-700 mb-6 leading-relaxed">
-                {feature.description}
-              </p>
+              )
+            })}
+          </ul>
+        </div>
 
-              <div className="mt-auto">
-                <button
-                  onClick={() => {
-                    if (feature.link) navigate(feature.link);
-                  }}
-                  className="inline-flex items-center text-black hover:text-gray-600 font-semibold transition-colors duration-200"
-                >
-                  Learn more
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </button>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* Right: Images + progress pill */}
+        <div className="flex items-center">
+          <div className="w-full space-y-6">
+            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl bg-rose-100 shadow-sm" style={{ height: "340px" }}>
+              <AnimatePresence initial={false} mode="wait">
+                <motion.img
+                  key={items[active].image.src}
+                  src={items[active].image.src}
+                  alt={items[active].image.alt}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.01 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                />
+              </AnimatePresence>
+            </div>
+
+            {/* Decorative progress pill */}
+            <div className="h-4 w-full rounded-full bg-rose-100">
+              <motion.div
+                className="h-4 rounded-full bg-rose-300"
+                style={{ width: `${progressPct}%` }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <span className="sr-only">
+                Showing feature {active + 1} of {items.length}
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-  );
-};
-
-export default Features;
+  )
+}
