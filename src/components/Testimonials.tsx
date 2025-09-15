@@ -60,14 +60,14 @@ export default function Testimonials () {
             href={customer.link}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex flex-col items-center justify-center rounded-2xl bg-gradient-to-b ${customer.color} p-4 shadow-md hover:shadow-lg transition`}
+            className={`flex flex-col items-center justify-center rounded-2xl border border-gray-200 hover:border-gray-400 hover:shadow-xl  p-4 shadow-md hover:shadow-lg transition`}
           >
             <img
               src={customer.logo}
               alt={customer.name}
               className="h-12 w-12 object-contain mb-3"
             />
-            <span className="text-white text-sm font-medium">{customer.name}</span>
+            <span className="text-black text-sm font-medium">{customer.name}</span>
           </a>
         ))}
       </div>

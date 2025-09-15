@@ -38,16 +38,22 @@ const Hero = () => {
 
           {/* Main Heading */}
           <motion.div
-            className="font-bold text-black mb-8 leading-tight mt-20 md:mt-0 text-xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
+            className="font-bold text-black mb-8  mt-20 md:mt-0 text-xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="mb-2 pt-10 text-white">
-              One workspace
-              Infinite possibilities.
-            </h1>
-            <h1 className="mb-4 md:gap-4 text-white grid grid-cols-1 md:grid-cols-2">
+            <h1 className="pt-10 text-white leading-[1.3]">
+                The platform{" "}
+                <span className="leading-[1.3]">
+                  that
+                </span>
+                <br />
+                turns <span className="italic italic bg-black/50 text-rose-200 px-3 rounded-md">documentation</span> into
+                <br />
+                <span className="italic font-bold">team culture</span>
+              </h1>
+            {/* <h1 className="mb-4 md:gap-4 my-8 text-white grid grid-cols-1 md:grid-cols-2">
               <span className="md:text-end">  Built for{" "}</span>
               <AnimatePresence mode="wait">
                 <motion.span
@@ -64,7 +70,7 @@ const Hero = () => {
                   {headlineWords[index]}
                 </motion.span>
               </AnimatePresence>
-            </h1>
+            </h1> */}
           </motion.div>
 
           {/* Subtitle */}
@@ -76,11 +82,11 @@ const Hero = () => {
           >
             {/* bg-gradient-to-r from-slate-400 to-slate-700 bg-clip-text text-transparent */}
             <p className="text-black mb-3 font-medium bg-gradient-to-b from-neutral-100 to-zinc-400 bg-clip-text text-transparent">
-              Stop juggling tools, your single hub for knowledge. Write blogs, craft FAQs, and deliver API docs — faster, smarter, together.
+            Write blogs, craft FAQs, and build internal knowledgebase <br></br> faster, smarter, together.
             </p>
           </motion.p>
 
-          <div className="flex items-center ml-auto justify-center gap-2 mb-12 px-4 py-2 rounded-full">
+          <div className="flex items-center bg-black/40 justify-center gap-2 mb-12 px-4 py-2 rounded-full">
                 <Sparkles className="w-5 h-5 text-white/60" />
                 <p className="text-xl font-extrabold font-mono -mt-1 text-white md:text-start">
                     AI-Powered Documentation Platform
@@ -172,7 +178,7 @@ const Hero = () => {
     href="https://app.docstar.io/login"
     target="_blank"
     rel="noopener noreferrer"
-    className="text-lg rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm border flex items-center  border-white/20 font-semibold px-6 py-3 text-rose-300"
+    className="text-lg rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm border flex items-center border border-white/40 font-semibold px-6 py-3 text-rose-200"
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
     data-cursor-hover

@@ -1,74 +1,71 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Shield, Users, Lock, Zap, CheckCircle, Building, Globe, Key } from "lucide-react"
+import { Search, Users, FileText, Shield, Zap, Edit3, Clock, Lock } from "lucide-react"
 
-export const SsoAuthentication = () => {
+const FAQLandingPage = () => {
   const benefits = [
     {
+      icon: <Search className="w-6 h-6" />,
+      title: "Easy to Find",
+      description: "AI-powered search makes every answer instantly accessible.",
+    },
+    {
       icon: <Users className="w-6 h-6" />,
-      title: "Effortless Onboarding",
-      description:
-        "Users can log in instantly using their existing MSG91 identity—no need to create new accounts or remember additional passwords.",
+      title: "Easy to Contribute",
+      description: "Your whole team can add FAQs or articles without training.",
+    },
+    {
+      icon: <FileText className="w-6 h-6" />,
+      title: "Easy to Organize",
+      description: "Group by product, category, or workflow — no clutter.",
     },
     {
       icon: <Shield className="w-6 h-6" />,
-      title: "Enhanced Security You Can Trust",
-      description: "Built on DocStar's advanced authentication backend, ensuring robust, enterprise-grade security.",
-    },
-    {
-      icon: <Globe className="w-6 h-6" />,
-      title: "Unified Access Across Systems",
-      description:
-        "Eliminate the hassle of juggling multiple credentials across platforms. One identity, unlimited access.",
-    },
-    {
-      icon: <CheckCircle className="w-6 h-6" />,
-      title: "Trusted by MSG91",
-      description:
-        "Actively implemented within MSG91, DocStar's SSO helps streamline internal workflows while ensuring secure user experience.",
+      title: "Easy to Share",
+      description: "Public FAQs for customers, private knowledge bases for teams.",
     },
   ]
 
-  const whyChoose = [
+  const teams = [
     {
-      title: "Strengthen cybersecurity posture",
-      description: "Against phishing and credential-based attacks.",
+      team: "Support Teams",
+      benefit: "Reduce repetitive tickets, give customers self-service answers.",
     },
     {
-      title: "Simplify IT administration",
-      description: "Reducing manual account provisioning and password resets.",
+      team: "Marketing",
+      benefit: "Publish product guides, tutorials, and how-to blogs.",
     },
     {
-      title: "Boost workforce efficiency",
-      description: "With faster access to tools and resources.",
+      team: "Engineering",
+      benefit: "Document processes, APIs, and onboarding guides.",
     },
     {
-      title: "Ensure compliance",
-      description: "With data privacy regulations through centralized authentication.",
+      team: "Everyone",
+      benefit: "One trusted place where knowledge lives.",
     },
   ]
 
   const features = [
     {
-      icon: <Key className="w-6 h-6" />,
-      title: "Token-Based Security",
-      description: "Encrypted authentication systems.",
+      icon: <Zap className="w-6 h-6" />,
+      title: "AI-Powered Search",
+      description: "Answers in seconds.",
+    },
+    {
+      icon: <Edit3 className="w-6 h-6" />,
+      title: "Rich Editor",
+      description: "Write in plain text, markdown, or embed media.",
+    },
+    {
+      icon: <Clock className="w-6 h-6" />,
+      title: "Version History",
+      description: "Always up to date, never lose context.",
     },
     {
       icon: <Lock className="w-6 h-6" />,
-      title: "Central Access Control",
-      description: "Manage permissions from one place.",
-    },
-    {
-      icon: <Zap className="w-6 h-6" />,
-      title: "Instant Login",
-      description: "Zero friction, maximum security.",
-    },
-    {
-      icon: <Building className="w-6 h-6" />,
-      title: "Enterprise Scale",
-      description: "Proven reliability at scale.",
+      title: "Access Control",
+      description: "Choose what's public and what's internal.",
     },
   ]
 
@@ -110,11 +107,11 @@ export const SsoAuthentication = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Instant Login,{" "}
+            The smarter way to{" "}
             <span className="text-black/70">
-              Zero Hassle
-            </span>
-            : SSO by DocStar
+              Manage FAQs
+            </span>{" "}
+            and team knowledge with AI.
           </motion.h1>
 
           <motion.p
@@ -123,16 +120,17 @@ export const SsoAuthentication = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            DocStar's Single Sign-On authentication solution makes digital access both secure and effortless. One set of
-            credentials, instant secure access across all connected services.
+            From customer FAQs to internal guides, organize answers once and let AI make them easy to find for everyone.
           </motion.p>
 
           <motion.button
             className="text-lg rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm border border border-white/40 font-semibold px-6 py-3"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            data-cursor-hover
+            onClick={()=>{window.open('https://faq.docstar.io')}}
           >
-            Enable SSO for Your Organization
+            Get Started with AI-powered Knowledge Base
           </motion.button>
         </div>
       </motion.section>
@@ -147,17 +145,15 @@ export const SsoAuthentication = () => {
       >
         <div className="max-w-6xl mx-auto px-6">
           <motion.h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900" variants={itemVariants}>
-            Why SSO is Essential
+            Why You Need This
           </motion.h2>
 
           <div className="grid md:grid-cols-3 gap-8">
             <motion.div className="text-center p-6 rounded-2xl bg-red-50 border border-red-100" variants={itemVariants}>
               <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Lock className="w-8 h-8 text-red-600" />
+                <Users className="w-8 h-8 text-black/80" />
               </div>
-              <p className="text-gray-700 text-lg">
-                Multiple passwords create security vulnerabilities and user frustration.
-              </p>
+              <p className="text-gray-700 text-lg">Support teams keep answering the same questions.</p>
             </motion.div>
 
             <motion.div
@@ -165,11 +161,9 @@ export const SsoAuthentication = () => {
               variants={itemVariants}
             >
               <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="w-8 h-8 text-orange-600" />
+                <FileText className="w-8 h-8 text-black/80" />
               </div>
-              <p className="text-gray-700 text-lg">
-                IT teams spend countless hours on password resets and account management.
-              </p>
+              <p className="text-gray-700 text-lg">Internal knowledge is scattered across chats and docs.</p>
             </motion.div>
 
             <motion.div
@@ -177,11 +171,9 @@ export const SsoAuthentication = () => {
               variants={itemVariants}
             >
               <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Zap className="w-8 h-8 text-yellow-600" />
+                <Search className="w-8 h-8 text-black/80" />
               </div>
-              <p className="text-gray-700 text-lg">
-                Employees lose productivity switching between multiple login systems.
-              </p>
+              <p className="text-gray-700 text-lg">Employees and customers waste time searching for answers.</p>
             </motion.div>
           </div>
 
@@ -189,9 +181,9 @@ export const SsoAuthentication = () => {
             className="mt-16 text-center bg-gradient-to-r from-purple-50 to-pink-50 p-8 rounded-2xl border border-purple-100"
             variants={itemVariants}
           >
-            <p className="text-xl text-gray-800 font-medium">
-              <strong>DocStar's solution:</strong> Single Sign-On that eliminates password fatigue while strengthening
-              security through centralized, encrypted authentication.
+            <p className="text-xl text-gray-800 font-medium text-black/60">
+              <strong>Your solution:</strong> A single AI-powered knowledge base that serves both your customers (FAQs,
+              help articles) and your team (internal documentation).
             </p>
           </motion.div>
         </div>
@@ -207,10 +199,10 @@ export const SsoAuthentication = () => {
       >
         <div className="max-w-6xl mx-auto px-6">
           <motion.h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900" variants={itemVariants}>
-            Key Benefits of DocStar's SSO
+            Key Benefits
           </motion.h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefits.map((benefit, index) => (
               <motion.div
                 key={index}
@@ -229,7 +221,7 @@ export const SsoAuthentication = () => {
         </div>
       </motion.section>
 
-      {/* Why Choose DocStar SSO Section */}
+      {/* For Different Teams Section */}
       <motion.section
         className="py-20 bg-white"
         variants={containerVariants}
@@ -239,25 +231,20 @@ export const SsoAuthentication = () => {
       >
         <div className="max-w-6xl mx-auto px-6">
           <motion.h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900" variants={itemVariants}>
-            Why Choose DocStar SSO for Your Organization?
+            For Different Teams
           </motion.h2>
 
-          <motion.p className="text-xl text-center mb-12 text-gray-700 max-w-4xl mx-auto" variants={itemVariants}>
-            DocStar SSO isn't just a login tool—it's a strategic security solution. By combining user convenience with
-            strong identity management, it helps organizations:
-          </motion.p>
-
           <div className="grid md:grid-cols-2 gap-8">
-            {whyChoose.map((item, index) => (
+            {teams.map((team, index) => (
               <motion.div
                 key={index}
                 className="flex items-start space-x-4 p-6 rounded-2xl bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-100"
                 variants={itemVariants}
               >
-                <div className="w-2 h-2 bg-purple-500 rounded-full mt-3 flex-shrink-0"></div>
+                <div className="w-2 h-2 bg-black/80 rounded-full mt-3 flex-shrink-0"></div>
                 <div>
-                  <h3 className="text-xl font-semibold text-purple-900 mb-2">{item.title}</h3>
-                  <p className="text-gray-700">{item.description}</p>
+                  <h3 className="text-normal font-semibold text-black/70 mb-2">For {team.team}</h3>
+                  <p className="text-gray-700 text-sm">{team.benefit}</p>
                 </div>
               </motion.div>
             ))}
@@ -266,7 +253,7 @@ export const SsoAuthentication = () => {
       </motion.section>
 
       {/* Feature Highlights Section */}
-      {/* <motion.section
+      <motion.section
         className="py-20 bg-gray-50"
         variants={containerVariants}
         initial="hidden"
@@ -275,7 +262,7 @@ export const SsoAuthentication = () => {
       >
         <div className="max-w-6xl mx-auto px-6">
           <motion.h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900" variants={itemVariants}>
-            Enterprise-Grade Features
+            Feature Highlights
           </motion.h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -286,7 +273,7 @@ export const SsoAuthentication = () => {
                 variants={itemVariants}
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="w-16 h-16 bg-gradient-to-tr from-rose-100 to-pink-500  rounded-2xl flex items-center justify-center mx-auto mb-4 text-white">
+                <div className="w-16 h-16 bg-gradient-to-tr from-rose-100 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4 text-white">
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-semibold mb-2 text-gray-900">{feature.title}</h3>
@@ -295,7 +282,7 @@ export const SsoAuthentication = () => {
             ))}
           </div>
         </div>
-      </motion.section> */}
+      </motion.section>
 
       {/* Final CTA Section */}
       <motion.section
@@ -313,21 +300,20 @@ export const SsoAuthentication = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            How to Enable SSO for Your Business
+            Let AI handle the busywork of FAQs and Knowledgebase
           </motion.h2>
 
           <motion.p
-            className="text-xl mb-8"
+            className="text-xl mb-8 text-black/40"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            To unlock the benefits of DocStar's Single Sign-On authentication, an Enterprise plan is required. Once
-            activated, your team can enjoy secure, frictionless access across platforms.
+            — so your team can focus on what matters.
           </motion.p>
 
-          <motion.button
+          {/* <motion.button
             className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-purple-50 transition-colors duration-300 shadow-lg"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -336,10 +322,12 @@ export const SsoAuthentication = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Upgrade to Enterprise Plan
-          </motion.button>
+            Get Started with AI-powered Knowledge Base
+          </motion.button> */}
         </div>
       </motion.section>
     </div>
   )
 }
+
+export default FAQLandingPage

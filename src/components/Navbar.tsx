@@ -251,7 +251,6 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -259,14 +258,18 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const dynamicNavItems = [
-    isHomePage
-      ? { name: "Features", href: "#features", isInternal: true }
-      : { name: "Home", href: "/", isInternal: true },
-    { name: "Blogs", href: "https://blogs.docstar.io", isInternal: false },
-    { name: "Pricing", href: "/pricing", isInternal: true },
-    { name: "Contact us", href: "/support", isInternal: true },
-  ];
+  const homeLikePaths = ["/", "/sso-authentication", "/faq", "/api-documentation-platform", "/publish-page"];
+
+const isHomePage = homeLikePaths.includes(location.pathname);
+
+const dynamicNavItems = [
+  isHomePage
+    ? { name: "Features", href: "#features", isInternal: true }
+    : { name: "Home", href: "/", isInternal: true },
+  { name: "Blogs", href: "https://blogs.docstar.io", isInternal: false },
+  { name: "Pricing", href: "/pricing", isInternal: true },
+  { name: "Contact us", href: "/support", isInternal: true },
+];
 
   const handleNavClick = (href: string) => {
     setIsMobileMenuOpen(false);

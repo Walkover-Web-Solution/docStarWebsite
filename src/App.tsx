@@ -22,6 +22,15 @@ import ExternalRedirect from "./components/ExternalRedirect";
 import Editor from "./pages/Editor";
 import EmbedEditorPage from "./pages/embed-editor";
 import FeatureCards from "./components/ExtraFeatures";
+import FAQLandingPage from "./pages/FAQ";
+import ApiDocumentationPage from "./pages/APIDocumentationPlatfrom";
+import PublishPage from "./pages/PublishPage";
+import CollaboratePage from "./pages/CollaborateInRealTime";
+import { MultiLanguage } from "./pages/MultiLanguage";
+import { AIPoweredSearchPage } from "./pages/AIPoweredSearch";
+import { CustomizeLayoutsPage } from "./pages/Themes";
+import { IdeasWithAIPage } from "./pages/IdeasWithAI";
+
 function App() {
   return (
     <div className="">
@@ -55,6 +64,14 @@ function App() {
         <Route path="/support" element={<ContactUs />} />
         <Route path="/editor" element={<Editor />} />
         <Route path="/embed-editor" element={<EmbedEditorPage />} />
+        <Route path="/faq" element={<FAQLandingPage />} />
+        <Route path="/api-documentation-platform" element= {<ApiDocumentationPage />} />
+        <Route path="/publish-page" element= {<PublishPage />} />
+        <Route path="/collaborate-in-real-time" element={<CollaboratePage />} />
+        <Route path="/multi-language" element={<MultiLanguage />} />
+        <Route path="/ai-powered-search" element={<AIPoweredSearchPage />} />
+        <Route path="/themes" element={<CustomizeLayoutsPage />} />
+        <Route path="/ideas-with-ai" element={<IdeasWithAIPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

@@ -18,43 +18,33 @@ type Props = {
 const items : FeatureItem[]= [
   {
     id: 1,
-    text: "SSO Authentication",
-    barClass: "bg-amber-300/70",
+    text: "Centralized Knowledge Base",
+    barClass: "bg-rose-300/60",
     image: {
-      src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/3nuyRKlog-IP/89fbb090-74db-4221-bcc4-02b8197d2592_ChatGPT Image Sep 3, 2025, 03_32_07 PM_compressed.png",
-      alt: "Automated reminders dashboard",
+      src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/nJnoRrQ__W6d/793987ab-3a39-46bb-84ac-00b323d4f742_ChatGPT%20Image%20Sep%206,%202025,%2004_16_38%20PM_compressed.png",
+      alt: "Knowledge base with tags",
     },
-    link: "/sso-authentication",
+    link: "/faq",
   },
   {
     id: 2,
-    text: "Custom Domain",
-    barClass: "bg-rose-300/60",
+    text: "Create API Documentation Easily",
+    barClass: "bg-amber-300/70",
     image: {
-      src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/3nuyRKlog-IP/a184d852-4271-4a48-bd0e-9cc9cc1213a1_ChatGPT%20Image%20Sep%203,%202025,%2003_36_00%20PM_compressed.png",
-      alt: "Knowledge base with tags",
+      src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/nJnoRrQ__W6d/983e3386-8d33-4f0f-8f0c-1253245613a7_ChatGPT%20Image%20Sep%206,%202025,%2003_12_17%20PM_compressed.png",
+      alt: "Automated reminders dashboard",
     },
-    link: "/custom-domain",
+    link: "/api-documentation-platform",
   },
   {
     id: 3,
-    text: "Hassle-Free Editor Integration",
+    text: "Publish Engaging Blogs to Grow Your Presence",
     barClass: "bg-rose-300/80",
     image: {
-      src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/3nuyRKlog-IP/c88036a6-4b09-439d-8fe4-41bb81e3645c_ChatGPT Image Sep 3, 2025, 03_38_51 PM_compressed.png",
+      src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/nJnoRrQ__W6d/b9bc61b1-92bf-43d7-92cb-8076ac20bb45_ChatGPT%20Image%20Sep%206,%202025,%2003_09_27%20PM_compressed.png",
       alt: "AI suggestions panel",
     },
-    link: "/embed-editor",
-  },
-  {
-    id: 4,
-    text: "Multi Language support",
-    barClass: "bg-amber-300/80",
-    image: {
-      src: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop",
-      alt: "Ownership transfer flow",
-    },
-    link: "/embed-editor",
+    link: "/publish-page",
   },
 ]
 export default function Feature({
