@@ -166,8 +166,7 @@ export const IdeasWithAIPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Creating clear, well-structured documentation no longer needs to be time-consuming. With DocStar's
-            AI-powered documentation platform, you can transform raw ideas, notes, or outlines into professional
+            With DocStar's AI-powered documentation platform, you can transform raw ideas, notes, or outlines into professional
             documents in a matter of minutes.
           </motion.p>
 
@@ -175,6 +174,7 @@ export const IdeasWithAIPage = () => {
             className="text-lg rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm border border-white/40 font-semibold px-6 py-3"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={()=>{window.open('https://app.doctsar.io/login')}}
           >
             Get Started with DocStar
           </motion.button>
@@ -353,7 +353,7 @@ export const IdeasWithAIPage = () => {
           </motion.p>
 
           <motion.button
-            className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-purple-50 transition-colors duration-300 shadow-lg"
+            className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-black/70 hover:text-white transition-colors duration-300 shadow-lg"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

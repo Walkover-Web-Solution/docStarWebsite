@@ -117,7 +117,7 @@ const CollaboratePage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Great documentation is rarely created in isolation. With DocStar's real-time collaboration features, your
+            Your
             entire team can contribute, edit, and refine documentation together—no delays, no version conflicts, and no
             scattered feedback.
           </motion.p>
@@ -126,6 +126,7 @@ const CollaboratePage = () => {
             className="text-lg rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm border border border-white/40 font-semibold px-6 py-3"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={()=>{window.open('https://app.docstar.io/login')}}
           >
             Start Collaborating Today
           </motion.button>
@@ -265,7 +266,7 @@ const CollaboratePage = () => {
           </motion.p>
 
           <motion.button
-            className="bg-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-rose-200 transition-colors duration-300 shadow-lg"
+            className="bg-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-black/70 hover:text-white transition-colors duration-300 shadow-lg"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

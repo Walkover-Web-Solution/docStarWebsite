@@ -127,15 +127,14 @@ export const MultiLanguage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Reach and engage a worldwide audience with DocStar's multi-language documentation support. Create, publish,
-            and maintain documentation in multiple languages—ensuring clarity, accessibility, and inclusivity across
-            borders.
+            Deliver clear and accessible documentation in every language your audience speaks. Your docs, any language, everywhere.
           </motion.p>
 
           <motion.button
             className="text-lg rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm border border-white/40 font-semibold px-6 py-3"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={()=>{window.open('https://app.docstar.io/login')}}
           >
             Get Started with DocStar
           </motion.button>
@@ -274,7 +273,7 @@ export const MultiLanguage = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <div className="max-w-4xl mx-auto px-6 text-black/70">
+        <div className="max-w-6xl mx-auto px-6 text-black/70">
           <motion.h2
             className="text-4xl md:text-5xl font-bold mb-6 text-balance"
             initial={{ opacity: 0, y: 30 }}
@@ -292,19 +291,15 @@ export const MultiLanguage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            With DocStar's multi-language support, your documentation isn't limited by geography. From Europe to Asia,
-            the Middle East to Latin America, you can provide clear, localized, and professional documentation that
-            speaks directly to your users—wherever they are.
+            With DocStar's multi-language support, your documentation isn't limited by geography.
           </motion.p>
 
           <motion.button
-            className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-purple-50 transition-colors duration-300 shadow-lg"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-black/70 hover:text-white transition-colors duration-300 shadow-lg"
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.6 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={()=>{window.open('https://app.docstar.io/login')}}
           >
             Get Started with DocStar
           </motion.button>

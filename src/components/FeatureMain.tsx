@@ -166,10 +166,10 @@ export default function DocsTemplatesSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.25 }}
             className={[
-              "inline-flex items-center gap-1 rounded-full border border-stone-200 bg-white/70 px-3 py-1 text-xs transition",
+              "inline-flex items-center gap-1 rounded-full border border-stone-200  px-3 py-1 text-xs transition",
               activeTag?.label === tag.label 
-                ? "bg-orange-200 text-slate-900 border-orange-300"   // highlight active
-                : "text-slate-600 hover:bg-slate-100"
+                ? "bg-orange-200 text-slate-900 border-orange-300"
+                : "text-slate-600 hover:bg-slate-100 bg-white/60"
             ].join(" ")}
           >
             <Tag className="h-3.5 w-3.5" />
