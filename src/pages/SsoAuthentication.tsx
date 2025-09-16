@@ -131,6 +131,7 @@ export const SsoAuthentication = () => {
             className="text-lg rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm border border border-white/40 font-semibold px-6 py-3"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={()=>{window.open('https://app.docstar.io/login')}}
           >
             Enable SSO for Your Organization
           </motion.button>
@@ -328,15 +329,12 @@ export const SsoAuthentication = () => {
           </motion.p>
 
           <motion.button
-            className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-purple-50 transition-colors duration-300 shadow-lg"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-black/70 hover:text-white transition-colors duration-300 shadow-lg"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={()=>{window.open('https://app.docstar.io/login')}}
           >
-            Upgrade to Enterprise Plan
+            Start with SSO Now
           </motion.button>
         </div>
       </motion.section>

@@ -145,7 +145,7 @@ export const CustomizeLayoutsPage = () => {
             className="text-lg rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm border border-white/40 font-semibold px-6 py-3"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={()=>{window.open('https://app.doctsar.io/login')}}
+            onClick={()=>{window.open('https://app.docstar.io/login')}}
           >
             Get Started with DocStar
           </motion.button>

@@ -68,8 +68,8 @@ const TABS: Tab[] = [
     
     tags: [
       { label: "Internal Docs", src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/ZQ1q4ZkUHCiV/94e2d630-486e-4a28-b98d-4a83698e0d51_Screenshot 2025-09-11 160614_compressed.png" },
-      { label: "Policies", src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/ZQ1q4ZkUHCiV/94e2d630-486e-4a28-b98d-4a83698e0d51_Screenshot 2025-09-11 160614_compressed.png" },
-      { label: "Team Resources", src: "/public/buisness2.png" },
+      // { label: "Policies", src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/ZQ1q4ZkUHCiV/94e2d630-486e-4a28-b98d-4a83698e0d51_Screenshot 2025-09-11 160614_compressed.png" },
+      // { label: "Team Resources", src: "/public/buisness2.png" },
     ],
   },
 ]
