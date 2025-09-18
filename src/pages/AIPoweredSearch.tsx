@@ -287,6 +287,7 @@ export const AIPoweredSearchPage = () => {
             className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-black/70 hover:text-white transition-colors duration-300 shadow-lg"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={()=>{window.open('https://app.docstar.io/login')}}
           >
             Get Started with DocStar
           </motion.button>
