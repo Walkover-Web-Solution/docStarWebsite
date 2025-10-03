@@ -86,7 +86,7 @@ const Footer = () => {
             </p>
 
             {/* Social Links */}
-            <div className="flex space-x-3">
+            {/* <div className="flex space-x-3">
               {[
                 {
                   icon: Github,
@@ -110,7 +110,7 @@ const Footer = () => {
                   <social.icon className="h-4 w-4" />
                 </a>
               ))}
-            </div>
+            </div> */}
           </div>
 
           {/* Footer Links */}
