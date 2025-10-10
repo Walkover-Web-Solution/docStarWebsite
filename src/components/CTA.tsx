@@ -1,19 +1,21 @@
-// import React from "react";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import { ArrowRight, Sparkles } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+"use client"
+
+import { motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
+import { ArrowRight, Sparkles } from "lucide-react"
+import { useRouter } from "next/navigation"
+import MotionWrapper from "./motion/MotionDivWrapper"
 
 const CTA = () => {
-  const navigate = useNavigate();
+  const router = useRouter()
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
-  });
+  })
 
   return (
     <section className="py-20 bg-black relative overflow-hidden">
-      <motion.div
+      <MotionWrapper
         ref={ref}
         className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
         initial={{ opacity: 0, y: 50 }}
@@ -35,11 +37,12 @@ const CTA = () => {
 
         <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
           Join thousands of teams who've already streamlined their documentation
-          process with DocStar's AI-powered platform.
+          process with DocStar&apos;s AI-powered platform.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <motion.a
+          <MotionWrapper
+            as="a"
             href="https://app.docstar.io/login"
             target="_blank"
             rel="noopener noreferrer"
@@ -49,22 +52,23 @@ const CTA = () => {
           >
             Get Started for Free
             <ArrowRight className="h-5 w-5 ml-2" />
-          </motion.a>
+          </MotionWrapper>
 
-          {/* <motion.button
-            onClick={() =>
-              (window.location.href = "https://cal.com/docstar-team")
-            }
+          {/* If you want internal navigation */}
+          {/* 
+          <MotionWrapper
+            onClick={() => router.push("/demo")}
             className="text-white hover:text-gray-300 font-semibold text-lg px-8 py-4 rounded-xl border-2 border-white/30 hover:border-gray-300 transition-all duration-300"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
             Schedule Demo
-          </motion.button> */}
+          </MotionWrapper> 
+          */}
         </div>
-      </motion.div>
+      </MotionWrapper>
     </section>
-  );
-};
+  )
+}
 
-export default CTA;
+export default CTA

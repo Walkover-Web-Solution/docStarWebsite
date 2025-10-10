@@ -1,72 +1,45 @@
-// import React from 'react';
+"use client"
+
 import {
   Mail,
-  Twitter,
   Github,
-  Linkedin,
   Smartphone,
   ArrowRight,
-} from "lucide-react";
-import Logo from "./Logo";
-import { useNavigate } from "react-router-dom";
+} from "lucide-react"
+import Logo from "./Logo"
+import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 const Footer = () => {
-  const navigate = useNavigate();
+  const router = useRouter()
+
   const footerSections = [
     {
       title: "Build with DocStar",
       links: [
         {
-          name: "Help Documentation",
-          href: "https://docstar.io/help",
-        },
-        {
           name: "Blogs",
           href: "https://docstar.io/blogs",
         },
         {
-          name: "API Docs",
-          href: "https://developers.docstar.io",
+          name: "Help Doc",
+          href: "https://faq.docstar.io/",
+        },
+        {
+          name: "API Doc",
+          href: "https://apidoc.docstar.io",
         },
         {
           name: "Pricing",
-          href: "/pricing",
+          href: "/pricing", // internal
         },
         {
           name: "Contact us",
-          href: "/support",
+          href: "/support", // internal
         },
-        {
-          name: "Sitemap",
-          href: "/sitemap",
-        },
-
-        // { name: "Blogs", href: "#" },
-        // { name: "Publish Docs", href: "https://app.docstar.io/p/getting-started?collectionId=fLMgydvRdvN7" },
-        // { name: "AI Assist", href: "#" },
       ],
     },
-    // {
-    //   title: "Company",
-    //   links: [
-    //     { name: "About Us", href: "https://app.docstar.io/p/getting-started?collectionId=fLMgydvRdvN7" },
-    //     // { name: "Terms of Service", href: "#" },
-    //     // { name: "Privacy Policy", href: "#" },
-    //     // { name: "Careers", href: "#" },
-    //     // { name: "Blog", href: "#" },
-    //   ],
-    // },
-    // {
-    //   title: "Support",
-    //   links: [
-    //     { name: "Help Center", href: "https://cal.com/docstar-team" },
-    //     // { name: "Contact Us", href: "#" },
-    //     // { name: "Status", href: "#" },
-    //     // { name: "Community", href: "#" },
-    //     // { name: "Documentation", href: "#" },
-    //   ],
-    // },
-  ];
+  ]
 
   return (
     <footer className="bg-black text-white relative">
@@ -76,7 +49,7 @@ const Footer = () => {
           {/* Logo + Description Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
-              <Logo size="md" className="text-white" animated={true} />
+              <Logo size="md" className="text-white" animated />
               <span className="text-2xl font-bold text-white">DocStar</span>
             </div>
 
@@ -86,7 +59,7 @@ const Footer = () => {
             </p>
 
             {/* Social Links */}
-            {/* <div className="flex space-x-3">
+            <div className="flex space-x-3">
               {[
                 {
                   icon: Github,
@@ -110,7 +83,7 @@ const Footer = () => {
                   <social.icon className="h-4 w-4" />
                 </a>
               ))}
-            </div> */}
+            </div>
           </div>
 
           {/* Footer Links */}
@@ -121,14 +94,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerSections[0].links.map((link, linkIndex) => (
                 <li key={linkIndex}>
-                  {link.name === "Pricing" || link.name === "Contact us" || link.name === "Sitemap" ? (
-                    <button
-                      onClick={() => navigate(link.href)}
-                      className="text-left w-full text-gray-400 hover:text-white transition-colors duration-300 text-sm"
-                    >
-                      {link.name}
-                    </button>
-                  ) : (
+                  {link.href.startsWith("http") ? (
                     <a
                       href={link.href}
                       target="_blank"
@@ -137,6 +103,13 @@ const Footer = () => {
                     >
                       {link.name}
                     </a>
+                  ) : (
+                    <button
+                      onClick={() => router.push(link.href)}
+                      className="text-left w-full text-gray-400 hover:text-white transition-colors duration-300 text-sm"
+                    >
+                      {link.name}
+                    </button>
                   )}
                 </li>
               ))}
@@ -178,7 +151,7 @@ const Footer = () => {
               <div className="text-gray-400 text-sm flex flex-col sm:flex-row sm:items-center gap-2">
                 <span>© 2025 DocStar. All rights reserved</span>
                 <button
-                  onClick={() => navigate("/privacy-policy")}
+                  onClick={() => router.push("/privacy-policy")}
                   className="text-white hover:text-blue-400 transition-colors duration-300 "
                 >
                   Privacy Policy
@@ -210,7 +183,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
