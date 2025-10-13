@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import DocsTemplatesSection from "./FeatureMain";
 
-import bg3 from '../../public/bg4.jpg'
+import bg3 from "../../public/bg4.jpg";
 import MotionWrapper from "./motion/MotionDivWrapper";
 
 const Hero = () => {
@@ -31,6 +31,9 @@ const Hero = () => {
         ref={ref}
         className="relative flex flex-col items-center justify-center overflow-hidden"
       >
+        {/* Gradient fallback so the hero never flashes white */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
+
         {/* Optimized background image */}
         <div className="absolute inset-0">
           <Image
@@ -38,6 +41,9 @@ const Hero = () => {
             alt="Background"
             fill
             priority
+            placeholder="blur"
+            sizes="100vw"
+            quality={60}
             className="object-cover blur-sm"
           />
         </div>

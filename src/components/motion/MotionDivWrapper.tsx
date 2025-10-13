@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { createElement, ReactNode } from "react";
 import { motion, MotionProps } from "framer-motion";
 
 type MotionElement =
@@ -29,32 +29,72 @@ type MotionWrapperProps = MotionProps & {
   [key: string]: any;
 };
 
-const MotionWrapper = ({ as = "div", children, ...props }: MotionWrapperProps) => {
-  if (typeof window === "undefined") return <>{children}</>; // SSR fallback
+const motionComponentMap: Record<MotionElement, any> = {
+  div: motion.div,
+  section: motion.section,
+  span: motion.span,
+  h1: motion.h1,
+  h2: motion.h2,
+  h3: motion.h3,
+  p: motion.p,
+  a: motion.a,
+  button: motion.button,
+  img: motion.img,
+};
 
-  switch (as) {
-    case "a":
-      return <motion.a {...props}>{children}</motion.a>;
-    case "span":
-      return <motion.span {...props}>{children}</motion.span>;
-    case "section":
-      return <motion.section {...props}>{children}</motion.section>;
-    case "h1":
-      return <motion.h1 {...props}>{children}</motion.h1>;
-    case "h2":
-      return <motion.h2 {...props}>{children}</motion.h2>;
-    case "h3":
-      return <motion.h3 {...props}>{children}</motion.h3>;
-    case "p":
-      return <motion.p {...props}>{children}</motion.p>;
-    case "button":
-      return <motion.button {...props}>{children}</motion.button>;
-    case "img":
-      return <motion.img {...props} />; // self-closing, no children
-    case "div":
-    default:
-      return <motion.div {...props}>{children}</motion.div>;
+const MotionWrapper = ({
+  as = "div",
+  children,
+  ...props
+}: MotionWrapperProps) => {
+  if (typeof window === "undefined") {
+    const {
+      animate,
+      initial,
+      exit,
+      transition,
+      whileHover,
+      whileTap,
+      whileFocus,
+      whileDrag,
+      whileInView,
+      viewport,
+      variants,
+      drag,
+      dragControls,
+      dragConstraints,
+      dragElastic,
+      dragMomentum,
+      dragTransition,
+      layout,
+      layoutId,
+      custom,
+      inherit,
+      onDrag,
+      onDragStart,
+      onDragEnd,
+      onDragTransitionEnd,
+      onAnimationStart,
+      onAnimationComplete,
+      onUpdate,
+      ...domProps
+    } = props;
+
+    return createElement(
+      as,
+      domProps,
+      as === "img" ? undefined : children
+    );
   }
+
+  const MotionComponent =
+    motionComponentMap[as] ?? motionComponentMap["div"];
+
+  if (as === "img") {
+    return <MotionComponent {...props} />;
+  }
+
+  return <MotionComponent {...props}>{children}</MotionComponent>;
 };
 
 export default MotionWrapper;

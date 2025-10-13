@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
+import FAQSection from "@/components/FAQSection";
 
 const freePlanFeatures: string[] = [
   "Block-based editor with integrations",
@@ -179,6 +180,13 @@ export default function PricingPage() {
           ))}
         </div>
       </div>
+      <FAQSection
+        tableId="tbloc09z7"
+        variant="light"
+        eyebrow="Pricing FAQs"
+        heading="Answers for teams evaluating DocStar plans"
+        description="From billing to seat management, here are the most common questions we hear from teams upgrading to Pro or Enterprise."
+      />
     </div>
   );
 }
