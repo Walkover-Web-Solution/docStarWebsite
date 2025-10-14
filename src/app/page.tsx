@@ -10,14 +10,13 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <Feature autoCycle={true} cycleMs={4000} />
+      <Feature />
       <ExtraFeatures />
       <FAQSection
         tableId="tblx2m11t"
         id="faqs"
         eyebrow="Frequently Asked Questions"
-        heading="Answers for teams getting started with DocStar"
-        description="Everything you need to know about creating, publishing, and scaling your knowledge base with our platform."
+        eyebrowClassName="text-neutral-900"
       />
       <Testimonials />
       <CTA />

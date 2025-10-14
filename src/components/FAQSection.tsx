@@ -6,8 +6,9 @@ import { useFaqs } from "@/hooks/useFaqs"
 
 type FAQSectionProps = {
   tableId: string
-  heading: string
+  heading?: string
   eyebrow?: string
+  eyebrowClassName?: string
   description?: string
   variant?: "light" | "dark"
   id?: string
@@ -17,6 +18,7 @@ export default function FAQSection({
   tableId,
   heading,
   eyebrow = "FAQs",
+  eyebrowClassName,
   description,
   variant = "light",
   id,
@@ -32,7 +34,7 @@ export default function FAQSection({
 
   const sectionClass = [
     "relative py-10 transition-colors duration-300",
-    isDark ? "bg-transparent text-neutral-50" : "bg-white text-neutral-900",
+    isDark ? "bg-neutral-950 text-neutral-50" : "bg-white text-neutral-900",
   ].join(" ")
 
   const containerClass = "mx-auto max-w-5xl px-4 sm:px-6 lg:px-8"
@@ -68,19 +70,21 @@ export default function FAQSection({
           <p
             className={[
               "text-sm font-semibold uppercase tracking-wider",
-              isDark ? "text-amber-300" : "text-neutral-500",
+              eyebrowClassName ? eyebrowClassName : isDark ? "text-amber-300" : "text-neutral-500",
             ].join(" ")}
           >
             {eyebrow}
           </p>
-          <h2
-            className={[
-              "mt-3 text-3xl font-semibold sm:text-4xl",
-              isDark ? "text-neutral-50" : "text-neutral-900",
-            ].join(" ")}
-          >
-            {heading}
-          </h2>
+          {heading && (
+            <h2
+              className={[
+                "mt-3 text-3xl font-semibold sm:text-4xl",
+                isDark ? "text-neutral-50" : "text-neutral-900",
+              ].join(" ")}
+            >
+              {heading}
+            </h2>
+          )}
           {description && (
             <p
               className={[

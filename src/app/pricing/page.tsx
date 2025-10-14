@@ -184,8 +184,7 @@ export default function PricingPage() {
         tableId="tbloc09z7"
         variant="light"
         eyebrow="Pricing FAQs"
-        heading="Answers for teams evaluating DocStar plans"
-        description="From billing to seat management, here are the most common questions we hear from teams upgrading to Pro or Enterprise."
+        eyebrowClassName="text-neutral-900"
       />
     </div>
   );

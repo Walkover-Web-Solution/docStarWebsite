@@ -107,11 +107,20 @@ export default function Feature({ autoCycle = false, cycleMs = 4500 }: Props) {
                         isActive ? "opacity-100" : "opacity-80",
                       ].join(" ")}
                     />
-                    <div className="flex flex-1 items-center justify-between gap-3">
-                      <span className="leading-relaxed text-lg sm:text-xl">{item.text}</span>
+                    <div className="flex flex-1 items-center gap-3">
+                      <span className="flex-1 leading-relaxed text-lg sm:text-xl">{item.text}</span>
+                      {/* <div className="relative hidden h-12 w-16 overflow-hidden rounded-lg border border-rose-100 bg-white/70 opacity-0 transition duration-200 group-hover:opacity-100 group-hover:translate-x-1 sm:block">
+                        <Image
+                          src={item.image.src}
+                          alt={item.image.alt}
+                          fill
+                          sizes="64px"
+                          className="object-cover"
+                        />
+                      </div> */}
                       <span
                         className={[
-                          "flex h-8 w-8 items-center justify-center rounded-full border transition-colors",
+                          "ml-auto flex h-8 w-8 items-center justify-center rounded-full border transition-colors",
                           isActive
                             ? "border-rose-300 bg-rose-100 text-rose-600"
                             : "border-slate-200 text-slate-400 group-hover:border-rose-200 group-hover:text-rose-500",

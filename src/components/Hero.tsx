@@ -156,7 +156,7 @@ const Hero = () => {
               <X className="h-5 w-5" />
             </button>
             <iframe
-              src="https://cal.com/docstar-team/30min?embed=1"
+              src="https://cal.com/docstar-team/30min?embed=1&hide_event_type_details=1"
               className="h-[75vh] w-full"
               loading="lazy"
               allow="camera; microphone; autoplay; encrypted-media"
