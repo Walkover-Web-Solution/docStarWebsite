@@ -1,11 +1,6 @@
 "use client"
 
-import {
-  Mail,
-  Github,
-  Smartphone,
-  ArrowRight,
-} from "lucide-react"
+import { Mail, Smartphone, ArrowRight } from "lucide-react"
 import Logo from "./Logo"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
@@ -28,6 +23,10 @@ const Footer = () => {
         {
           name: "API Doc",
           href: "https://apidoc.docstar.io",
+        },
+        {
+          name: "Embed Editor",
+          href: "/embed-editor", // internal
         },
         {
           name: "Pricing",
@@ -60,29 +59,15 @@ const Footer = () => {
 
             {/* Social Links */}
             <div className="flex space-x-3">
-              {[
-                {
-                  icon: Github,
-                  href: "https://github.com/Walkover-Web-Solution/hitman-ui",
-                  label: "GitHub",
-                },
-                {
-                  icon: Mail,
-                  href: "mailto:support@docstar.io",
-                  label: "Email",
-                },
-              ].map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  title={social.label}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-all duration-300 p-2.5 rounded-lg hover:bg-white/5 border border-gray-800 hover:border-gray-600"
-                >
-                  <social.icon className="h-4 w-4" />
-                </a>
-              ))}
+              <a
+                href="mailto:support@docstar.io"
+                title="Email"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-all duration-300 p-2.5 rounded-lg hover:bg-white/5 border border-gray-800 hover:border-gray-600"
+              >
+                <Mail className="h-4 w-4" />
+              </a>
             </div>
           </div>
 
@@ -99,14 +84,14 @@ const Footer = () => {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
+                      className="cursor-pointer text-gray-400 hover:text-white transition-colors duration-300 text-sm"
                     >
                       {link.name}
                     </a>
                   ) : (
                     <button
                       onClick={() => router.push(link.href)}
-                      className="text-left w-full text-gray-400 hover:text-white transition-colors duration-300 text-sm"
+                      className="cursor-pointer text-left w-full text-gray-400 hover:text-white transition-colors duration-300 text-sm"
                     >
                       {link.name}
                     </button>

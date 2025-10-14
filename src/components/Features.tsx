@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
+import { ArrowUpRight } from "lucide-react"
 import MotionWrapper from "./motion/MotionDivWrapper"
 
 type FeatureItem = {
@@ -54,13 +55,21 @@ const items: FeatureItem[] = [
 
 export default function Feature({ autoCycle = false, cycleMs = 4500 }: Props) {
   const [active, setActive] = useState(0)
+  const [hasUserInteracted, setHasUserInteracted] = useState(false)
 
   // Auto-cycle images
   useEffect(() => {
-    if (!autoCycle || items.length <= 1) return
+    if (!autoCycle || items.length <= 1 || hasUserInteracted) return
     const id = setInterval(() => setActive((i) => (i + 1) % items.length), cycleMs)
     return () => clearInterval(id)
-  }, [autoCycle, cycleMs])
+  }, [autoCycle, cycleMs, hasUserInteracted])
+
+  const activateItem = (index: number) => {
+    setActive(index)
+    if (autoCycle && !hasUserInteracted) {
+      setHasUserInteracted(true)
+    }
+  }
 
   const progressPct = ((active + 1) / items.length) * 100
 
@@ -79,34 +88,39 @@ export default function Feature({ autoCycle = false, cycleMs = 4500 }: Props) {
               const isActive = i === active
               return (
                 <li key={item.id}>
-                  <Link href={item.link}>
-                    <button
-                      type="button"
-                      onMouseEnter={() => setActive(i)}
-                      onFocus={() => setActive(i)}
-                      aria-selected={isActive}
+                  <Link
+                    href={item.link}
+                    onMouseEnter={() => activateItem(i)}
+                    onFocus={() => activateItem(i)}
+                    className={[
+                      "group flex w-full items-center gap-3 rounded-xl border px-4 py-3 text-left transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/70",
+                      isActive
+                        ? "bg-white/70 border-rose-200 shadow-sm text-slate-900"
+                        : "border-transparent text-slate-600 hover:text-slate-900 hover:bg-white/60 hover:border-rose-100 hover:shadow-sm",
+                    ].join(" ")}
+                  >
+                    <span
+                      aria-hidden
                       className={[
-                        "group flex w-full items-start gap-3 rounded-md p-2 text-left transition-colors cursor-pointer hover:text-black",
-                        isActive ? "bg-white/50" : "hover:bg-white/40",
+                        "h-8 w-1.5 rounded-full transition-opacity",
+                        item.barClass,
+                        isActive ? "opacity-100" : "opacity-80",
                       ].join(" ")}
-                    >
+                    />
+                    <div className="flex flex-1 items-center justify-between gap-3">
+                      <span className="leading-relaxed text-lg sm:text-xl">{item.text}</span>
                       <span
+                        className={[
+                          "flex h-8 w-8 items-center justify-center rounded-full border transition-colors",
+                          isActive
+                            ? "border-rose-300 bg-rose-100 text-rose-600"
+                            : "border-slate-200 text-slate-400 group-hover:border-rose-200 group-hover:text-rose-500",
+                        ].join(" ")}
                         aria-hidden
-                        className={[
-                          "mt-1 h-8 w-1.5 rounded-full transition-opacity",
-                          item.barClass,
-                          isActive ? "opacity-100" : "opacity-80",
-                        ].join(" ")}
-                      />
-                      <span
-                        className={[
-                          "leading-relaxed text-2xl",
-                          isActive ? "text-slate-800" : "text-slate-600",
-                        ].join(" ")}
                       >
-                        {item.text}
+                        <ArrowUpRight className="h-4 w-4" />
                       </span>
-                    </button>
+                    </div>
                   </Link>
                 </li>
               )

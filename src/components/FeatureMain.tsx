@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
-import { Cog, Users, Wrench, Handshake, LifeBuoy, LayoutGrid, SunMedium, SlidersHorizontal, CalendarDays, FileText, Tag, Code, Layout, Briefcase } from 'lucide-react'
+import Image from "next/image"
+import { Cog, Users, Wrench, Handshake, LifeBuoy, LayoutGrid, SunMedium, SlidersHorizontal, CalendarDays, FileText, Tag, Code, Layout, Briefcase } from "lucide-react"
 import MotionWrapper from "./motion/MotionDivWrapper"
 
 type Tab = {
@@ -9,9 +10,10 @@ type Tab = {
   icon: React.ComponentType<{ className?: string }>
   // Per-tab preview image and tags
   preview: { src: string; alt: string }
-  tags: { label: string; src: string }[] 
+  tags: { label: string; src: string; alt: string }[]
 }
 
+const MotionImage = motion(Image)
 
 const TABS: Tab[] = [
   {
@@ -23,10 +25,16 @@ const TABS: Tab[] = [
       alt: "API documentation preview",
     },
     tags: [
-      { label: "API Docs", src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/2qC4fST_EYL5/a9537e81-20d2-456a-af21-cba31dc520a8_Screenshot%202025-09-08%20160442_compressed.png" },
-      { label: "SDK Guides", src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/2qC4fST_EYL5/3d9b4eac-1eab-4893-982b-2f5f83029683_ChatGPT%20Image%20Sep%208,%202025,%2004_25_57%20PM_compressed.png" },
-      { label: "Technical Specs", src: "https://storage.googleapis.com/techdoc.walkover.in/28x7GRsoCySu/4RKxVjenwvtW/SgaauNR54ijb/0e4d3c2d-c6cc-4c46-a90a-e5bd9305f5bf_technical%20specs_compressed.png" },
-      { label: "Integration Docs", src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/2qC4fST_EYL5/e05bac47-9af6-40d2-ad2f-ca5cade41b7b_ChatGPT%20Image%20Sep%208,%202025,%2006_09_18%20PM_compressed.png" },
+      {
+        label: "API Docs",
+        src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/2qC4fST_EYL5/a9537e81-20d2-456a-af21-cba31dc520a8_Screenshot%202025-09-08%20160442_compressed.png",
+        alt: "API documentation listing",
+      },
+      {
+        label: "Technical Specs",
+        src: "https://storage.googleapis.com/techdoc.walkover.in/28x7GRsoCySu/4RKxVjenwvtW/SgaauNR54ijb/0e4d3c2d-c6cc-4c46-a90a-e5bd9305f5bf_technical%20specs_compressed.png",
+        alt: "Technical specification library",
+      },
     ],
   },
   {
@@ -38,9 +46,21 @@ const TABS: Tab[] = [
       alt: "Product documentation preview",
     },
     tags: [
-      { label: "Blogs", src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/jxLTn3oKu6pi/5ecf945f-223c-46e5-8b12-a4e853ba1257_Screenshot%202025-09-11%20110733_compressed.png" },
-      { label: "Guides", src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/jxLTn3oKu6pi/6c0f1630-654f-45f0-98a0-35646c880c53_ChatGPT%20Image%20Sep%2011,%202025,%2011_36_14%20AM_compressed.png" },
-      { label: "Feature Docs", src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/jxLTn3oKu6pi/cae875a1-1d8b-42f8-8709-fb024d5e55a0_Screenshot%202025-09-11%20112606_compressed.png" },
+      {
+        label: "Blogs",
+        src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/jxLTn3oKu6pi/5ecf945f-223c-46e5-8b12-a4e853ba1257_Screenshot%202025-09-11%20110733_compressed.png",
+        alt: "Knowledge blog layout",
+      },
+      {
+        label: "Guides",
+        src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/jxLTn3oKu6pi/6c0f1630-654f-45f0-98a0-35646c880c53_ChatGPT%20Image%20Sep%2011,%202025,%2011_36_14%20AM_compressed.png",
+        alt: "Step-by-step guide preview",
+      },
+      {
+        label: "Feature Docs",
+        src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/jxLTn3oKu6pi/cae875a1-1d8b-42f8-8709-fb024d5e55a0_Screenshot%202025-09-11%20112606_compressed.png",
+        alt: "Product feature documentation",
+      },
     ],
   },
   {
@@ -52,10 +72,11 @@ const TABS: Tab[] = [
       alt: "Support documentation preview",
     },
     tags: [
-      { label: "FAQs", src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/D16vizahFsSn/e8b76310-bac0-447e-9544-ccc44968802a_Screenshot 2025-09-11 120328_compressed.png" },
-      { label: "Help Centers", src: "https://storage.googleapis.com/techdoc.walkover.in/28x7GRsoCySu/4RKxVjenwvtW/SgaauNR54ijb/78a46c5b-a643-41e1-a27e-935b42301034_help centre_compressed.png" },
-      { label: "Troubleshooting", src: "https://storage.googleapis.com/techdoc.walkover.in/28x7GRsoCySu/4RKxVjenwvtW/SgaauNR54ijb/a82d9cf4-cb80-412b-a62a-4a960f3534ce_troubleshooting_compressed.png" },
-      { label: "Escalation Guides", src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/D16vizahFsSn/5b1a65ee-2456-4aec-b6c8-4ca49d199ddf_Screenshot 2025-09-11 154025_compressed.png" },
+      {
+        label: "FAQs",
+        src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/D16vizahFsSn/e8b76310-bac0-447e-9544-ccc44968802a_Screenshot 2025-09-11 120328_compressed.png",
+        alt: "Support FAQ experience",
+      },
     ],
   },
   {
@@ -68,7 +89,11 @@ const TABS: Tab[] = [
     },
     
     tags: [
-      { label: "Internal Docs", src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/ZQ1q4ZkUHCiV/94e2d630-486e-4a28-b98d-4a83698e0d51_Screenshot 2025-09-11 160614_compressed.png" },
+      {
+        label: "Internal Docs",
+        src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/ZQ1q4ZkUHCiV/94e2d630-486e-4a28-b98d-4a83698e0d51_Screenshot 2025-09-11 160614_compressed.png",
+        alt: "Internal documentation hub",
+      },
       // { label: "Policies", src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/ZQ1q4ZkUHCiV/94e2d630-486e-4a28-b98d-4a83698e0d51_Screenshot 2025-09-11 160614_compressed.png" },
       // { label: "Team Resources", src: "/public/buisness2.png" },
     ],
@@ -78,7 +103,7 @@ const TABS: Tab[] = [
 export default function DocsTemplatesSection() {
   const [active, setActive] = useState(0)
   const listRef = useRef<HTMLDivElement>(null)
-  const [activeTag, setActiveTag] = useState<{ label: string; src: string } | null>(null) // ⬅️ added
+  const [activeTag, setActiveTag] = useState<Tab["tags"][number] | null>(null)
 
   // Keyboard arrow navigation for tabs
   const onKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>, i: number) => {
@@ -187,15 +212,21 @@ export default function DocsTemplatesSection() {
             <div className="mb-6 overflow-hidden rounded-xl bg-stone-200">
               <div className="relative aspect-[16/9] w-full">
                 <AnimatePresence mode="wait" initial={false}>
-                  <motion.img
+                  <MotionImage
                     key={currentImage.src}
                     src={currentImage.src}
-                    // alt={currentImage.alt}
-                    className="absolute inset-0 h-full w-full object-cover"
+                    alt={currentImage.alt ?? `${tab.label} preview`}
+                    fill
+                    sizes="(min-width: 1536px) 1100px, (min-width: 1280px) 1000px, (min-width: 1024px) 900px, (min-width: 768px) 80vw, 95vw"
+                    className="absolute inset-0 h-full w-full object-fill"
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 1.01 }}
                     transition={{ duration: 0.45, ease: "easeOut" }}
+                    loading={active === 0 && !activeTag ? "eager" : "lazy"}
+                    priority={active === 0 && !activeTag}
+                    quality={90}
+                    unoptimized
                   />
                 </AnimatePresence>
               </div>

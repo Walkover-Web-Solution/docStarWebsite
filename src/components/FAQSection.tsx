@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { ChevronDown } from "lucide-react"
 import { useFaqs } from "@/hooks/useFaqs"
 
 type FAQSectionProps = {
@@ -21,55 +22,49 @@ export default function FAQSection({
   id,
 }: FAQSectionProps) {
   const { faqs, isLoading, error } = useFaqs(tableId)
-  const [activeIndex, setActiveIndex] = useState<number | null>(null)
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   useEffect(() => {
-    if (!isLoading && faqs.length > 0) {
-      setActiveIndex(0)
-    } else if (!isLoading && faqs.length === 0) {
-      setActiveIndex(null)
-    }
-  }, [faqs, isLoading])
+    setOpenIndex(null)
+  }, [faqs])
 
   const isDark = variant === "dark"
 
   const sectionClass = [
-    "relative py-20 transition-colors duration-300",
-    isDark ? "bg-neutral-950 text-neutral-50" : "bg-white text-neutral-900",
+    "relative py-10 transition-colors duration-300",
+    isDark ? "bg-transparent text-neutral-50" : "bg-white text-neutral-900",
   ].join(" ")
 
   const containerClass = "mx-auto max-w-5xl px-4 sm:px-6 lg:px-8"
 
+  const faqGridClass = "mt-8 flex flex-col gap-3 sm:gap-4"
+
   const cardClass = [
-    "rounded-2xl border px-6 py-5 shadow-sm transition-all duration-200",
+    "flex h-full flex-col overflow-hidden rounded-lg border transition-all duration-200",
     isDark
-      ? "border-white/10 bg-neutral-900/80 hover:border-amber-400 hover:bg-amber-400/10"
+      ? "border-white/10 bg-transparent hover:border-amber-400"
       : "border-neutral-200 bg-white hover:border-amber-300 hover:bg-amber-50",
   ].join(" ")
 
-  const buttonClass = "group flex w-full items-center justify-between gap-4 text-left cursor-pointer"
-
-  const questionClass = [
-    "text-base sm:text-lg font-semibold transition-colors duration-200",
-    isDark ? "text-neutral-50 group-hover:text-amber-300" : "text-neutral-900 group-hover:text-amber-600",
+  const buttonClass = [
+    "group flex w-full items-center justify-between text-left cursor-pointer px-5 py-5 min-h-[4.25rem]",
+    isDark ? "text-neutral-50" : "text-neutral-900",
   ].join(" ")
 
-  const iconClass = [
-    "flex h-9 w-9 shrink-0 items-center justify-center rounded-full border text-sm transition-all duration-200",
-    isDark
-      ? "border-white/10 bg-neutral-900 text-neutral-300 group-hover:border-amber-400 group-hover:bg-amber-500/10 group-hover:text-amber-300"
-      : "border-neutral-200 bg-neutral-50 text-neutral-500 group-hover:border-amber-300 group-hover:bg-amber-100 group-hover:text-amber-600",
+  const questionClass = [
+    "text-sm sm:text-base font-semibold leading-snug transition-colors duration-200",
+    isDark ? "group-hover:text-amber-300" : "group-hover:text-amber-600",
   ].join(" ")
 
   const answerWrapperClass = [
-    "grid overflow-hidden transition-all duration-300 ease-out",
+    "grid transition-all duration-300 ease-out",
     isDark ? "text-neutral-300" : "text-neutral-600",
   ].join(" ")
 
   return (
     <section id={id} className={sectionClass}>
       <div className={containerClass}>
-        <div className="text-center max-w-3xl mx-auto">
+        <div className="mx-auto max-w-3xl text-center">
           <p
             className={[
               "text-sm font-semibold uppercase tracking-wider",
@@ -80,7 +75,7 @@ export default function FAQSection({
           </p>
           <h2
             className={[
-              "mt-3 text-3xl sm:text-4xl font-semibold",
+              "mt-3 text-3xl font-semibold sm:text-4xl",
               isDark ? "text-neutral-50" : "text-neutral-900",
             ].join(" ")}
           >
@@ -98,23 +93,21 @@ export default function FAQSection({
           )}
         </div>
 
-        <div className="mt-12 space-y-4">
+        <div className={faqGridClass}>
           {isLoading ? (
-            <div className="space-y-4">
-              {[0, 1, 2].map((i) => (
-                <div
-                  key={i}
-                  className={[
-                    "animate-pulse rounded-2xl border px-6 py-5",
-                    isDark ? "border-white/5 bg-neutral-900/60" : "border-neutral-200 bg-neutral-50",
-                  ].join(" ")}
-                >
-                  <div className={isDark ? "h-5 w-3/4 rounded bg-neutral-800" : "h-5 w-3/4 rounded bg-neutral-200"} />
-                  <div className={isDark ? "mt-3 h-4 w-full rounded bg-neutral-800" : "mt-3 h-4 w-full rounded bg-neutral-200"} />
-                  <div className={isDark ? "mt-2 h-4 w-1/2 rounded bg-neutral-800" : "mt-2 h-4 w-1/2 rounded bg-neutral-200"} />
-                </div>
-              ))}
-            </div>
+            [0, 1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className={[
+                  "flex h-full flex-col justify-center gap-3 rounded-lg border px-4 py-6 animate-pulse",
+                  isDark ? "border-white/10 bg-neutral-900/20" : "border-neutral-200 bg-neutral-50",
+                ].join(" ")}
+              >
+                <div className={isDark ? "h-5 w-3/4 rounded bg-neutral-800" : "h-5 w-3/4 rounded bg-neutral-200"} />
+                <div className={isDark ? "h-4 w-full rounded bg-neutral-800" : "h-4 w-full rounded bg-neutral-200"} />
+                <div className={isDark ? "h-4 w-1/2 rounded bg-neutral-800" : "h-4 w-1/2 rounded bg-neutral-200"} />
+              </div>
+            ))
           ) : faqs.length === 0 ? (
             <div
               className={[
@@ -128,27 +121,38 @@ export default function FAQSection({
             </div>
           ) : (
             faqs.map((faq, index) => {
-              const isOpen = activeIndex === index
+              const isOpen = openIndex === index
+              const openStyles = isOpen
+                ? isDark
+                  ? "border-amber-400/60 bg-neutral-900/40"
+                  : "border-amber-300 bg-amber-50/60"
+                : ""
 
               return (
-                <div key={faq.question} className={cardClass}>
+                <div key={faq.question} className={`${cardClass} ${openStyles}`}>
                   <button
                     type="button"
                     className={buttonClass}
-                    onClick={() => setActiveIndex((current) => (current === index ? null : index))}
+                    onClick={() => setOpenIndex((current) => (current === index ? null : index))}
                     aria-expanded={isOpen}
                     aria-controls={`faq-panel-${index}`}
                   >
                     <span className={questionClass}>{faq.question}</span>
-                    <span className={iconClass}>
-                      {isOpen ? "-" : "+"}
-                    </span>
+                    <ChevronDown
+                      className={`h-5 w-5 shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""} ${
+                        isDark
+                          ? "text-neutral-200 group-hover:text-amber-300"
+                          : "text-neutral-500 group-hover:text-amber-600"
+                      }`}
+                    />
                   </button>
                   <div
                     id={`faq-panel-${index}`}
-                    className={`${answerWrapperClass} ${isOpen ? "grid-rows-[1fr] pt-4 opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+                    className={`${answerWrapperClass} ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
                   >
-                    <p className="text-sm sm:text-base leading-relaxed">{faq.answer}</p>
+                    <div className={`${isOpen ? "px-4 pb-3 pt-1" : "px-4 pb-0"} overflow-hidden`}>
+                      <p className="text-sm leading-relaxed">{faq.answer}</p>
+                    </div>
                   </div>
                 </div>
               )

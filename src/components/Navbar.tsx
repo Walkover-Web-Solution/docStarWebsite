@@ -93,12 +93,17 @@ const Navbar = () => {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
-            {dynamicNavItems.map((item, index) =>
-              item.isInternal ? (
+            {dynamicNavItems.map((item, index) => {
+              const isAnchorLink = item.href.startsWith("#");
+              const isActiveLink =
+                item.isInternal && !isAnchorLink && pathname === item.href;
+
+              return item.isInternal ? (
                 <MotionWrapper
-                as="button"
+                  as="button"
                   key={item.name}
                   onClick={() => handleNavClick(item.href)}
+                  aria-current={isActiveLink ? "page" : undefined}
                   className={`relative min-w-fit group font-bold cursor-pointer ${textColor} ${hoverColor} bg-transparent border-0 p-0`}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -107,13 +112,14 @@ const Navbar = () => {
                 >
                   {item.name}
                   <MotionWrapper
-                    className={`absolute -bottom-1 left-0 w-0 h-0.5 ${underlineColor} group-hover:w-full transition-all duration-300`}
+                    className={`absolute -bottom-1 left-0 h-0.5 ${underlineColor} transition-all duration-300 ${isActiveLink ? "w-full" : "w-0 group-hover:w-full"}`}
+                    animate={{ width: isActiveLink ? "100%" : "0%" }}
                     whileHover={{ width: "100%" }}
                   />
                 </MotionWrapper>
               ) : (
                 <MotionWrapper
-                as="a"
+                  as="a"
                   key={item.name}
                   href={item.href}
                   target="_blank"
@@ -126,17 +132,18 @@ const Navbar = () => {
                 >
                   {item.name}
                   <MotionWrapper
-                    className={`absolute -bottom-1 left-0 w-0 h-0.5 ${underlineColor} group-hover:w-full transition-all duration-300`}
+                    className={`absolute -bottom-1 left-0 h-0.5 ${underlineColor} transition-all duration-300 w-0 group-hover:w-full`}
                     whileHover={{ width: "100%" }}
                   />
                 </MotionWrapper>
-              )
-            )}
+              );
+            })}
           </div>
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center space-x-4">
             <MotionWrapper
+              as="a"
               href="https://app.docstar.io/login"
               target="_blank"
               rel="noopener noreferrer"
@@ -146,6 +153,7 @@ const Navbar = () => {
               Sign In
             </MotionWrapper>
             <MotionWrapper
+              as="a"
               href="https://app.docstar.io/login"
               target="_blank"
               rel="noopener noreferrer"
@@ -209,13 +217,19 @@ const Navbar = () => {
               transition={{ duration: 0.3 }}
             >
               <div className="px-2 pt-2 pb-3 space-y-1 bg-black/95 backdrop-blur-md rounded-lg mt-2">
-                {dynamicNavItems.map((item, index) =>
-                  item.isInternal ? (
+                {dynamicNavItems.map((item, index) => {
+                  const isAnchorLink = item.href.startsWith("#");
+                  const isActiveLink =
+                    item.isInternal && !isAnchorLink && pathname === item.href;
+
+                  return item.isInternal ? (
                     <MotionWrapper
-                    as="button"
+                      as="button"
                       key={item.name}
                       onClick={() => handleNavClick(item.href)}
-                      className="block px-3 py-2 text-white hover:text-gray-300 font-medium w-full text-left"
+                      className={`block px-3 py-2 font-medium w-full text-left ${
+                        isActiveLink ? "text-white" : "text-white hover:text-gray-300"
+                      }`}
                       initial={{ x: -20, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: index * 0.1 }}
@@ -236,11 +250,12 @@ const Navbar = () => {
                     >
                       {item.name}
                     </MotionWrapper>
-                  )
-                )}
+                  );
+                })}
 
                 <div className="px-3 py-2 space-y-2">
                   <MotionWrapper
+                    as="a"
                     href="https://app.docstar.io/login"
                     className="block text-white hover:text-gray-300 font-medium"
                     initial={{ x: -20, opacity: 0 }}
@@ -250,6 +265,7 @@ const Navbar = () => {
                     Sign In
                   </MotionWrapper>
                   <MotionWrapper
+                    as="a"
                     href="https://app.docstar.io/login"
                     className="block bg-white text-black px-6 py-2 rounded-lg font-medium shadow-lg text-center"
                     initial={{ x: -20, opacity: 0 }}

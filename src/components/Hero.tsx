@@ -1,7 +1,7 @@
 "use client";
 
 import { useInView } from "react-intersection-observer";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import DocsTemplatesSection from "./FeatureMain";
@@ -17,6 +17,7 @@ const Hero = () => {
 
   const headlineWords = ["creators", "developers", "teams"];
   const [index, setIndex] = useState(0);
+  const [showScheduler, setShowScheduler] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -24,6 +25,19 @@ const Hero = () => {
     }, 2000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (showScheduler) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [showScheduler]);
+
+  const openScheduler = () => setShowScheduler(true);
+  const closeScheduler = () => setShowScheduler(false);
 
   return (
     <>
@@ -83,12 +97,11 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex items-center border border-white/40 bg-black/60 justify-center gap-2 px-4 py-2 rounded-full"
+            className="relative inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.4em] text-white/85"
           >
-            <Sparkles className="w-5 h-5 text-white font-black" />
-            <p className="text-sm sm:text-2xl font-black -mt-1 text-white md:text-start sm:text-xs">
-              AI-Powered Documentation Platform
-            </p>
+            <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-transparent via-white/70 to-transparent" aria-hidden />
+            <Sparkles className="h-3.5 w-3.5 text-amber-200 drop-shadow" />
+            <span className="pl-3">AI-Powered Documentation Platform</span>
           </MotionWrapper>
 
           {/* CTA Buttons */}
@@ -112,11 +125,10 @@ const Hero = () => {
             </MotionWrapper>
 
             <MotionWrapper
-              as="a"
-              href="https://cal.com/docstar-team"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 rounded-2xl font-semibold text-lg text-white bg-white/10 backdrop-blur-xl border border-white/20 shadow-lg hover:bg-white/20 hover:shadow-xl transition-all duration-300 flex items-center"
+              as="button"
+              type="button"
+              onClick={openScheduler}
+              className="px-6 py-3 rounded-2xl font-semibold text-lg text-white bg-white/10 backdrop-blur-xl border border-white/20 shadow-lg hover:bg-white/20 hover:shadow-xl transition-all duration-300 flex items-center cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -125,6 +137,33 @@ const Hero = () => {
           </MotionWrapper>
         </div>
       </section>
+
+      {showScheduler && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm px-4"
+          onClick={closeScheduler}
+        >
+          <div
+            className="relative w-full max-w-4xl overflow-hidden rounded-2xl bg-black shadow-2xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={closeScheduler}
+              className="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              aria-label="Close scheduler"
+            >
+              <X className="h-5 w-5" />
+            </button>
+            <iframe
+              src="https://cal.com/docstar-team/30min?embed=1"
+              className="h-[75vh] w-full"
+              loading="lazy"
+              allow="camera; microphone; autoplay; encrypted-media"
+            />
+          </div>
+        </div>
+      )}
 
       {/* Lazy load heavy section */}
       <DocsTemplatesSection />

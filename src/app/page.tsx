@@ -15,7 +15,6 @@ export default function HomePage() {
       <FAQSection
         tableId="tblx2m11t"
         id="faqs"
-        variant="dark"
         eyebrow="Frequently Asked Questions"
         heading="Answers for teams getting started with DocStar"
         description="Everything you need to know about creating, publishing, and scaling your knowledge base with our platform."

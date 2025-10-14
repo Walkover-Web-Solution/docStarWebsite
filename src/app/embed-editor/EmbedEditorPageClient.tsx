@@ -205,7 +205,7 @@ const EmbedEditorPageClient: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-4 border-2 border-stone-300 text-stone-700 rounded-xl font-semibold text-lg hover:border-emerald-600 hover:text-emerald-600 transition-colors cursor-pointer"
-              onClick={() => window.open("https://app.docstar.io/p/api-documentation-and-integration/embed-editor?collectionId=fLMgydvRdvN7", "_blank")}
+              onClick={() => window.open("https://app.docstar.io/p/embed-docstar-editor?collectionId=fLMgydvRdvN7", "_blank")}
             >
               View Documentation
             </MotionWrapper>
@@ -236,12 +236,12 @@ const EmbedEditorPageClient: React.FC = () => {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="text-emerald-700 font-mono text-sm md:text-base overflow-x-auto"
           >
-            {`<script src="https://embed-editor.com/v1/editor.js"></script>
-<div id="my-editor"></div>
-<script>
-  EmbedEditor.init('#my-editor', {
-    theme: 'your-brand-colors'
-  });
+            {`<script
+  id="docstar-main-script"
+  defaultOpen="true"
+  page_id="your page id"
+  embedToken="Enter Embed Token here"
+  src="https://techdoc.walkover.in/scriptProd.js">
 </script>`}
           </MotionWrapper>
         </div>
