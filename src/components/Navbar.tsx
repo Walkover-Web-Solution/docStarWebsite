@@ -124,7 +124,7 @@ const Navbar = () => {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`relative min-w-fit group font-bold cursor-pointer ${textColor} ${hoverColor}`}
+                  className={`relative min-w-fit group font-bold cursor-pointer ${textColor} ${hoverColor} no-underline`}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
@@ -191,12 +191,12 @@ const Navbar = () => {
                     <X className="h-6 w-6" />
                   </MotionWrapper>
                 ) : (
-                  <MotionWrapper
-                    key="menu"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
+                    <MotionWrapper
+                      key="menu"
+                      initial={{ rotate: 90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: -90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
                   >
                     <Menu className="h-6 w-6" />
                   </MotionWrapper>
@@ -243,7 +243,7 @@ const Navbar = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block px-3 py-2 text-white hover:text-gray-300 font-medium"
+                      className="block px-3 py-2 text-white hover:text-gray-300 font-medium no-underline"
                       initial={{ x: -20, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: index * 0.1 }}

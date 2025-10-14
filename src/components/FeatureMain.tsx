@@ -30,11 +30,6 @@ const TABS: Tab[] = [
         src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/2qC4fST_EYL5/a9537e81-20d2-456a-af21-cba31dc520a8_Screenshot%202025-09-08%20160442_compressed.png",
         alt: "API documentation listing",
       },
-      {
-        label: "Technical Specs",
-        src: "https://storage.googleapis.com/techdoc.walkover.in/28x7GRsoCySu/4RKxVjenwvtW/SgaauNR54ijb/0e4d3c2d-c6cc-4c46-a90a-e5bd9305f5bf_technical%20specs_compressed.png",
-        alt: "Technical specification library",
-      },
     ],
   },
   {
@@ -50,16 +45,6 @@ const TABS: Tab[] = [
         label: "Blogs",
         src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/jxLTn3oKu6pi/5ecf945f-223c-46e5-8b12-a4e853ba1257_Screenshot%202025-09-11%20110733_compressed.png",
         alt: "Knowledge blog layout",
-      },
-      {
-        label: "Guides",
-        src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/jxLTn3oKu6pi/6c0f1630-654f-45f0-98a0-35646c880c53_ChatGPT%20Image%20Sep%2011,%202025,%2011_36_14%20AM_compressed.png",
-        alt: "Step-by-step guide preview",
-      },
-      {
-        label: "Feature Docs",
-        src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/jxLTn3oKu6pi/cae875a1-1d8b-42f8-8709-fb024d5e55a0_Screenshot%202025-09-11%20112606_compressed.png",
-        alt: "Product feature documentation",
       },
     ],
   },

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import DocsTemplatesSection from "./FeatureMain";
 
-import bg3 from "../../public/bg4.jpg";
+import heroBackground from "../../public/bg4-optimized.jpg";
 import MotionWrapper from "./motion/MotionDivWrapper";
 
 const Hero = () => {
@@ -48,14 +48,23 @@ const Hero = () => {
         {/* Gradient fallback so the hero never flashes white */}
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
 
-        {/* Optimized background image */}
+        {/* Optimized background image with instant fallback */}
         <div className="absolute inset-0">
+          <div
+            className="absolute inset-0 scale-105 blur-lg bg-center bg-cover"
+            style={{
+              backgroundImage: `url(${heroBackground.blurDataURL ?? heroBackground.src})`,
+            }}
+            aria-hidden
+          />
           <Image
-            src={bg3}
+            src={heroBackground}
             alt="Background"
             fill
             priority
             placeholder="blur"
+            blurDataURL={heroBackground.blurDataURL}
+            fetchPriority="high"
             sizes="100vw"
             quality={60}
             className="object-cover blur-sm"

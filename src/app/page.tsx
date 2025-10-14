@@ -11,7 +11,7 @@ export default function HomePage() {
     <>
       <Hero />
       <Feature />
-      <ExtraFeatures />
+      <ExtraFeatures limit={4} showViewAllLink excludeIds={[1]} />
       <FAQSection
         tableId="tblx2m11t"
         id="faqs"
