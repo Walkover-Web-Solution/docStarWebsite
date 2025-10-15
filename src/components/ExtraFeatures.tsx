@@ -7,7 +7,7 @@ import Image from "next/image"
 import Link from "next/link"
 import React from "react"
 import MotionWrapper from "./motion/MotionDivWrapper"
-import { features as allFeatures, type FeatureItem } from "@/data/features"
+import { defaultFeatureBlurDataURL, features as allFeatures, type FeatureItem } from "@/data/features"
 
 const FeatureCard = React.memo(({ feature }: { feature: FeatureItem }) => {
   const router = useRouter()
@@ -35,8 +35,9 @@ const FeatureCard = React.memo(({ feature }: { feature: FeatureItem }) => {
             className="object-cover transition-transform duration-300 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             loading="lazy"
+            quality={70}
             placeholder="blur"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAQIAAxEhkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyEkisfqNYVWjqrA7zNZiSnnnoJvhus6/8AQBOGUYtTgb4A6lfzZRldJiuNDYt7Wh9W6JHwZYOXr/p/DYH3Kq+c2w8Z2grtLYBU4z5hG8MbY4sW2dRD8Oa0FEQgMJhvEhO0VhpBLOr0wjtMBrWMFuI4wQQcjqpxz9fW6zWnUyNaobh3oiCJsYfSe3eFJMX8v8oqjwh0JVtOaMI6gKRfkrRdOMmAZwpv7gv7jqV9qhSowPzIOfD8u43vq2VYFfO/gE/Ek/v2v2VlUZgpONXLM5xV5EhmVtF8pOWeFwk8SBhKhRZQqrwYQiOJ3bMBgR1t6UQRJZpqhQUPFhXvkTLkWvxP9V8WEH8wI5PfkWwSBsW5Ak9M7W3FGWZRJHJkgK8IUWjPbC+3rtXMFYvFUPa3XfHQlsHRWR/0TgS//9k="
+            blurDataURL={feature.image.blurDataURL ?? defaultFeatureBlurDataURL}
           />
         )}
         

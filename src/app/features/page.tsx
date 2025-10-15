@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import MotionWrapper from "@/components/motion/MotionDivWrapper"
-import { features } from "@/data/features"
+import { defaultFeatureBlurDataURL, features } from "@/data/features"
 import {
   LucideIcon,
   Sparkles,
@@ -94,6 +94,7 @@ export default function FeaturesPage() {
             {features.map((feature, index) => {
               const Icon = iconByFeatureId[feature.id] ?? iconCycle[index % iconCycle.length]
               const accent = gradientCycle[index % gradientCycle.length]
+              const isFeaturedCard = index === 0
               return (
                 <Link
                   key={feature.id}
@@ -117,7 +118,12 @@ export default function FeaturesPage() {
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                        priority={index === 0}
+                        quality={70}
+                        priority={isFeaturedCard}
+                        fetchPriority={isFeaturedCard ? "high" : "auto"}
+                        loading={isFeaturedCard ? undefined : "lazy"}
+                        placeholder="blur"
+                        blurDataURL={feature.image.blurDataURL ?? defaultFeatureBlurDataURL}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
                     </div>
