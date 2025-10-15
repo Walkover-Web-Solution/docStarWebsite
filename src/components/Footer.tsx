@@ -18,7 +18,7 @@ const Footer = () => {
         },
         {
           name: "Help Doc",
-          href: "https://faq.docstar.io/",
+          href: "https://docstar.io/help",
         },
         {
           name: "API Doc",
