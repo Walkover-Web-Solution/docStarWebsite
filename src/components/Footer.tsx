@@ -135,12 +135,20 @@ const Footer = () => {
             <div className="flex flex-col items-center sm:items-start sm:space-x-1">
               <div className="text-gray-400 text-sm flex flex-col sm:flex-row sm:items-center gap-2">
                 <span>© 2025 DocStar. All rights reserved</span>
-                <button
-                  onClick={() => router.push("/privacy-policy")}
-                  className="text-white hover:text-blue-400 transition-colors duration-300 "
-                >
-                  Privacy Policy
-                </button>
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <button
+                    onClick={() => router.push("/privacy-policy")}
+                    className="text-white hover:text-blue-400 transition-colors duration-300 "
+                  >
+                    Privacy Policy
+                  </button>
+                  <button
+                    onClick={() => router.push("/data-retention-policy")}
+                    className="text-white hover:text-blue-400 transition-colors duration-300 "
+                  >
+                    Data Retention Policy
+                  </button>
+                </div>
               </div>
               <p className="text-gray-400 text-sm">
                 A product by{" "}
