@@ -1,3 +1,7 @@
+/**
+ * Renders the marketing call-to-action section with animation and a primary link to start using DocStar.
+ * The section is only visible on the client because it relies on intersection observers and motion variants.
+ */
 "use client"
 
 import { motion } from "framer-motion"
@@ -6,12 +10,17 @@ import { ArrowRight, Sparkles } from "lucide-react"
 import { useRouter } from "next/navigation"
 import MotionWrapper from "./motion/MotionDivWrapper"
 
+/**
+ * Displays the CTA block with animated entrance once it enters the viewport,
+ * highlighting the free trial entry point.
+ */
 const CTA = () => {
   const router = useRouter()
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
   })
+  // Reveal the CTA once at least 10% of the section is visible to achieve a subtle entrance animation.
 
   return (
     <section className="py-20 bg-black relative overflow-hidden">

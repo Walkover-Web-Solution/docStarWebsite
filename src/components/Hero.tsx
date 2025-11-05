@@ -1,3 +1,7 @@
+/**
+ * Hero section featuring animated background imagery, motion-enhanced copy, and a modal demo scheduler.
+ * Client-side hooks drive scroll-based reveals and overlay toggling.
+ */
 "use client";
 
 import { useInView } from "react-intersection-observer";
@@ -9,17 +13,22 @@ import DocsTemplatesSection from "./FeatureMain";
 import heroBackground from "../../public/bg4-optimized.jpg";
 import MotionWrapper from "./motion/MotionDivWrapper";
 
+/**
+ * Landing hero that introduces DocStar, showcases key value props, and provides CTAs for signup or demos.
+ */
 const Hero = () => {
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
   });
+  // The intersection observer ensures entrance animations only play after the hero enters view.
 
   const headlineWords = ["creators", "developers", "teams"];
   const [index, setIndex] = useState(0);
   const [showScheduler, setShowScheduler] = useState(false);
 
   useEffect(() => {
+    // Rotate the highlighted persona in the headline to keep the message dynamic.
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % headlineWords.length);
     }, 2000);
@@ -28,6 +37,7 @@ const Hero = () => {
 
   useEffect(() => {
     if (showScheduler) {
+      // Prevent the background from scrolling while the scheduling modal is open.
       const originalOverflow = document.body.style.overflow;
       document.body.style.overflow = "hidden";
       return () => {

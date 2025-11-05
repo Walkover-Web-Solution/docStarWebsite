@@ -1,6 +1,11 @@
+/**
+ * Injects the DocStar Knowledge Base widget into the page by loading the remote embed script
+ * and seeding it with default content. The component is intentionally client-only due to DOM usage.
+ */
 import { useEffect } from "react";
 
 declare global {
+  // Extend the window interface with helpers exposed by the DocStar embed script.
   interface Window {
     sendDataToDocstar: (data: {
       parentId: string;
@@ -15,8 +20,13 @@ declare global {
   }
 }
 
+/**
+ * Mounts the DocStar embed script and configures the widget to open with sample content.
+ * Returns the container element that the script hydrates after it loads.
+ */
 export default function DocStarEmbed() {
   useEffect(() => {
+    // Dynamically create the embed script so it only loads in browsers and avoids double-injection.
     const script = document.createElement("script");
     script.id = "docstar-main-script";
     script.setAttribute("defaultOpen", "true");
@@ -25,6 +35,7 @@ export default function DocStarEmbed() {
 
     script.onload = () => {
       if (window.sendDataToDocstar) {
+        // Seed the widget with a default welcome message once the script is ready.
         window.sendDataToDocstar({
           parentId: "parentId",
           page_id: "website",
@@ -59,6 +70,7 @@ export default function DocStarEmbed() {
     <div
       id="parentId"
       style={{ height: "600px", border: "1px solid #ddd" }}
+      // The embed script targets this element by ID and fills it with the hosted documentation UI.
     ></div>
   );
 }

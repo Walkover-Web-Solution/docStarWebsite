@@ -1,3 +1,7 @@
+/**
+ * Provides the interactive "Docs Templates" section featuring audience tabs, chip filters,
+ * and animated screenshots that highlight different DocStar use cases.
+ */
 import { useEffect, useMemo, useRef, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
@@ -13,8 +17,10 @@ type Tab = {
   tags: { label: string; src: string; alt: string }[]
 }
 
+// Animate Presence-friendly wrapper around Next's Image component.
 const MotionImage = motion(Image)
 
+// Tab definitions outline the target audience, hero preview, and supporting tag examples.
 const TABS: Tab[] = [
   {
     id: "dev",
@@ -85,12 +91,17 @@ const TABS: Tab[] = [
   },
 ]
 
+/**
+ * Renders the feature templates section with animated tabs, filter chips, and screenshot transitions.
+ */
 export default function DocsTemplatesSection() {
+  // Track which audience tab is active so we can update the preview and chips.
   const [active, setActive] = useState(0)
   const listRef = useRef<HTMLDivElement>(null)
+  // Optional chip selection overrides the default tab preview with a contextual screenshot.
   const [activeTag, setActiveTag] = useState<Tab["tags"][number] | null>(null)
 
-  // Keyboard arrow navigation for tabs
+  // Keyboard arrow navigation for tabs to keep the control accessible.
   const onKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>, i: number) => {
     if (e.key === "ArrowRight") {
       e.preventDefault()
@@ -109,10 +120,12 @@ export default function DocsTemplatesSection() {
 
   // Derive active tab data
   useEffect(() => {
+    // Clear any selected chip when the user switches tabs so previews stay in sync.
     setActiveTag(null)
   }, [active])
   
   const tab = useMemo(() => TABS[active], [active])
+  // Default to the tab's hero image unless a chip overrides it.
   const currentImage = activeTag ?? tab.preview
 
   return (
@@ -153,6 +166,7 @@ export default function DocsTemplatesSection() {
                 {/* Active backdrop */}
                 <AnimatePresence>
                   {isActive && (
+                    // Use a shared layout ID to animate the highlight pill between tabs.
                     <MotionWrapper
                       layoutId="tab-pill"
                       className="absolute inset-0 rounded-full bg-orange-400/30 border border-black"
@@ -169,6 +183,7 @@ export default function DocsTemplatesSection() {
 
         {/* Chips */}
         <div className="mx-auto mt-6 flex max-w-4xl flex-wrap items-center justify-center gap-2">
+        {/* Present supporting examples that can swap the hero screenshot for deeper context. */}
         {tab.tags.map((tag) => (
           <MotionWrapper
           as="button"
@@ -196,6 +211,7 @@ export default function DocsTemplatesSection() {
           <div className="relative overflow-hidden rounded-xl bg-slate-900 p-4">
             <div className="mb-6 overflow-hidden rounded-xl bg-stone-200">
               <div className="relative aspect-[16/9] w-full">
+                {/* Cross-fade between hero images as the active selection changes. */}
                 <AnimatePresence mode="wait" initial={false}>
                   <MotionImage
                     key={currentImage.src}
@@ -208,9 +224,11 @@ export default function DocsTemplatesSection() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 1.01 }}
                     transition={{ duration: 0.45, ease: "easeOut" }}
+                    // Eagerly load the default hero for instant paint, lazily load subsequent swaps.
                     loading={active === 0 && !activeTag ? "eager" : "lazy"}
                     priority={active === 0 && !activeTag}
                     quality={90}
+                    // Skip Next.js optimization to preserve animated transitions for these remote assets.
                     unoptimized
                   />
                 </AnimatePresence>

@@ -1,3 +1,7 @@
+/**
+ * Displays a responsive grid of feature highlight cards with subtle motion effects and image placeholders.
+ * The component is client-rendered to leverage intersection animations and user interactions.
+ */
 "use client"
 
 import { LazyMotion, domAnimation } from "framer-motion"
@@ -9,10 +13,14 @@ import React from "react"
 import MotionWrapper from "./motion/MotionDivWrapper"
 import { defaultFeatureBlurDataURL, features as allFeatures, type FeatureItem } from "@/data/features"
 
+/**
+ * Single feature card rendered inside the grid, memoized to avoid unnecessary rerenders when parent props change.
+ */
 const FeatureCard = React.memo(({ feature }: { feature: FeatureItem }) => {
   const router = useRouter()
 
   const handleClick = () => {
+    // Use client-side navigation for internal feature detail links.
     router.push(feature.link)
   }
 
@@ -72,17 +80,25 @@ const FeatureCard = React.memo(({ feature }: { feature: FeatureItem }) => {
   )
 })
 
+// Preserve a helpful display name for React DevTools.
 FeatureCard.displayName = 'FeatureCard'
 
 type ExtraFeaturesProps = {
+  /** Maximum number of features to render. If undefined, all features are shown. */
   limit?: number
+  /** Whether to show the "View all features" link when the list is truncated. */
   showViewAllLink?: boolean
+  /** Feature identifiers that should be excluded from the listing. */
   excludeIds?: number[]
 }
 
+/**
+ * Renders an animated feature grid, optionally limited in size, with a call-to-action to view the entire catalog.
+ */
 export default function ExtraFeatures({ limit, showViewAllLink = false, excludeIds = [] }: ExtraFeaturesProps) {
   const baseFeatures =
     excludeIds.length > 0 ? allFeatures.filter((feature) => !excludeIds.includes(feature.id)) : allFeatures
+  // Respect the optional limit so pages can surface a curated subset of the features.
   const features = typeof limit === "number" ? baseFeatures.slice(0, limit) : baseFeatures
   const shouldShowViewAll = showViewAllLink && typeof limit === "number" && limit < baseFeatures.length
 
@@ -91,6 +107,7 @@ export default function ExtraFeatures({ limit, showViewAllLink = false, excludeI
       <LazyMotion features={domAnimation}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {/* Stagger card entrance to create a smooth cascade effect as the section scrolls into view. */}
             {features.map((feature, index) => (
               <MotionWrapper
                 key={feature.id}

@@ -1,3 +1,7 @@
+/**
+ * Fetches and renders an accordion-style FAQ section with optional theming and loading skeletons.
+ * Uses client-side interactions to animate expand/collapse behavior and skeleton states.
+ */
 "use client"
 
 import { useEffect, useState } from "react"
@@ -5,15 +9,23 @@ import { ChevronDown } from "lucide-react"
 import { useFaqs } from "@/hooks/useFaqs"
 
 type FAQSectionProps = {
+  /** Identifies which FAQ table to fetch from the backend. */
   tableId: string
+  /** Optional heading text displayed above the accordion. */
   heading?: string
   eyebrow?: string
   eyebrowClassName?: string
+  /** Supporting copy that appears below the heading. */
   description?: string
+  /** Switches between light and dark presentation variants. */
   variant?: "light" | "dark"
+  /** HTML id used for skip links or in-page anchors. */
   id?: string
 }
 
+/**
+ * Renders a themed FAQ list that retrieves questions via the `useFaqs` hook and supports dark/light variants.
+ */
 export default function FAQSection({
   tableId,
   heading,
@@ -23,10 +35,12 @@ export default function FAQSection({
   variant = "light",
   id,
 }: FAQSectionProps) {
+  // Fetch the FAQs for this section and expose request state for skeletons or fallbacks.
   const { faqs, isLoading, error } = useFaqs(tableId)
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   useEffect(() => {
+    // Reset the open panel when the FAQ data changes to avoid stale selections.
     setOpenIndex(null)
   }, [faqs])
 
@@ -99,6 +113,7 @@ export default function FAQSection({
 
         <div className={faqGridClass}>
           {isLoading ? (
+            // Show a four-card skeleton grid while the FAQs load to maintain layout stability.
             [0, 1, 2, 3].map((i) => (
               <div
                 key={i}
@@ -113,6 +128,7 @@ export default function FAQSection({
               </div>
             ))
           ) : faqs.length === 0 ? (
+            // Provide an informative fallback when there is no FAQ data or the fetch failed.
             <div
               className={[
                 "rounded-2xl border px-6 py-8 text-center text-sm",
@@ -137,6 +153,7 @@ export default function FAQSection({
                   <button
                     type="button"
                     className={buttonClass}
+                    // Toggle the accordion item, closing it if it was already open.
                     onClick={() => setOpenIndex((current) => (current === index ? null : index))}
                     aria-expanded={isOpen}
                     aria-controls={`faq-panel-${index}`}

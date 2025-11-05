@@ -1,4 +1,9 @@
-// import React from 'react';
+/**
+ * Provides static contact information for the DocStar support team, including email, phone, WhatsApp,
+ * and a link to schedule a live demo. The component relies on semantic markup to improve accessibility.
+ */
+
+// Centralized reference for the various contact endpoints rendered in the support card.
 const CONTACT = {
   EMAIL: "support@docstar.io",
   PHONE: "+91 7724884259",
@@ -6,6 +11,10 @@ const CONTACT = {
   DEMO_LINK: "https://cal.com/docstar-team",
 };
 
+/**
+ * Renders the support page content with direct contact options and a call-to-action
+ * for booking a one-on-one product demo.
+ */
 export const ContactUs = () => {
   return (
     <div className="max-w-7xl mx-auto px-6 py-16 text-gray-800 mt-10">
@@ -29,6 +38,7 @@ export const ContactUs = () => {
           <p className="mb-6 text-gray-700">
             Our support team typically replies within 24 hours on business days.
           </p>
+          {/* Key contact methods are separated into a list for screen-reader clarity and quick scanning. */}
           <ul className="space-y-5 text-base leading-relaxed">
             <li className="flex gap-2 items-center">
               <span className="sr-only">Email:</span>
@@ -75,6 +85,7 @@ export const ContactUs = () => {
             Want a guided tour? Book a demo with our product specialist—we’ll
             show you the features and answer any questions.
           </p>
+          {/* External link opens in a new tab to preserve the current browsing session. */}
           <a
             href={CONTACT.DEMO_LINK}
             target="_blank"

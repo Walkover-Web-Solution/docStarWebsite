@@ -1,3 +1,7 @@
+/**
+ * Renders the site footer with navigation shortcuts, mobile app links, and contact details.
+ * The component is client-side only because it leverages Next.js routing for internal link handling.
+ */
 "use client"
 
 import { Mail, Smartphone, ArrowRight } from "lucide-react"
@@ -5,9 +9,14 @@ import Logo from "./Logo"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 
+/**
+ * Site-wide footer component exposing quick access links, socials, and legal information.
+ */
 const Footer = () => {
   const router = useRouter()
+  // Router is required for button-based navigation to internal Next.js routes.
 
+  // Primary footer navigation sections with a mix of internal and external destinations.
   const footerSections = [
     {
       title: "Build with DocStar",
@@ -90,6 +99,7 @@ const Footer = () => {
                     </a>
                   ) : (
                     <button
+                      // Use the Next.js router for internal destinations to avoid a full page refresh.
                       onClick={() => router.push(link.href)}
                       className="cursor-pointer text-left w-full text-gray-400 hover:text-white transition-colors duration-300 text-sm"
                     >
@@ -137,6 +147,7 @@ const Footer = () => {
                 <span>© 2025 DocStar. All rights reserved</span>
                 <div className="flex flex-col sm:flex-row gap-2">
                   <button
+                   // Internal policy link goes through the router so it respects locale/routing settings.
                     onClick={() => router.push("/privacy-policy")}
                     className="text-white hover:text-blue-400 transition-colors duration-300 "
                   >
@@ -167,6 +178,7 @@ const Footer = () => {
               <span className="text-gray-400 text-sm">Contact:</span>
               <a
                 href="mailto:support@docstar.io"
+                // Provide a direct mail link for quick support contact.
                 className="text-white hover:text-blue-400 transition-colors duration-300 text-sm"
               >
                 support@docstar.io

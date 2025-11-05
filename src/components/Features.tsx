@@ -1,3 +1,7 @@
+/**
+ * Showcases flagship DocStar capabilities with an animated list that swaps supporting imagery as users interact.
+ * The interaction relies on client-side state to drive hover and autoplay behaviors.
+ */
 "use client"
 
 import { useEffect, useState } from "react"
@@ -20,6 +24,7 @@ type Props = {
   cycleMs?: number
 }
 
+// Ordered list of feature highlights displayed in the left rail and mirrored in the hero image.
 const items: FeatureItem[] = [
   {
     id: 1,
@@ -53,13 +58,19 @@ const items: FeatureItem[] = [
   },
 ]
 
+/**
+ * Renders the interactive feature highlight module with optional auto-cycling behavior.
+ */
 export default function Feature({ autoCycle = false, cycleMs = 4500 }: Props) {
+  // Index of the feature currently highlighted both in text and imagery.
   const [active, setActive] = useState(0)
+  // Flag that disables auto-play once the user manually chooses a feature.
   const [hasUserInteracted, setHasUserInteracted] = useState(false)
 
   // Auto-cycle images
   useEffect(() => {
     if (!autoCycle || items.length <= 1 || hasUserInteracted) return
+    // Step through the feature list on an interval to keep the hero animated when enabled.
     const id = setInterval(() => setActive((i) => (i + 1) % items.length), cycleMs)
     return () => clearInterval(id)
   }, [autoCycle, cycleMs, hasUserInteracted])
@@ -67,10 +78,12 @@ export default function Feature({ autoCycle = false, cycleMs = 4500 }: Props) {
   const activateItem = (index: number) => {
     setActive(index)
     if (autoCycle && !hasUserInteracted) {
+      // Halt automated cycling after the first user interaction to prioritize manual control.
       setHasUserInteracted(true)
     }
   }
 
+  // Represent the current position in the list for the animated progress bar.
   const progressPct = ((active + 1) / items.length) * 100
 
   return (
@@ -141,6 +154,7 @@ export default function Feature({ autoCycle = false, cycleMs = 4500 }: Props) {
         <div className="flex items-center">
           <div className="w-full space-y-6">
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl bg-rose-100 shadow-sm" style={{ height: "340px" }}>
+              {/* Smoothly transition between screenshots as the active feature changes. */}
               <AnimatePresence initial={false} mode="wait">
                 <MotionWrapper
                   key={items[active].image.src}
@@ -168,6 +182,7 @@ export default function Feature({ autoCycle = false, cycleMs = 4500 }: Props) {
                 style={{ width: `${progressPct}%` }}
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               />
+              {/* Hide the textual progress indicator visually but keep it for screen readers. */}
               <span className="sr-only">
                 Showing feature {active + 1} of {items.length}
               </span>
