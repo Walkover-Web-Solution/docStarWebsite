@@ -19,9 +19,9 @@ export const metadata: Metadata = {
   title: "Docstar: AI-Powered Documentation Platform",
   description: "The platform that turns documentation into team culture",
   icons: {
-    icon: "/favIcon.ico",
-    shortcut: "/favIcon.ico",
-    apple: "/favIcon.ico",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
   },
 };
 
