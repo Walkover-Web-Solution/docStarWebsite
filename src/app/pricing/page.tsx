@@ -138,11 +138,6 @@ export default function PricingPage() {
               <div>
                 <div className="flex items-center gap-3">
                   <h3 className="text-2xl font-semibold text-neutral-900">{plan.title}</h3>
-                  {plan.highlight && (
-                    <span className="rounded-full bg-neutral-900 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
-                      Most popular
-                    </span>
-                  )}
                 </div>
                 <div className="mt-4 flex items-baseline gap-2">
                   <span className="text-4xl font-bold text-neutral-900">{plan.price}</span>

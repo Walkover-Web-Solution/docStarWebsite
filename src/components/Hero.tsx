@@ -7,10 +7,7 @@
 import { useInView } from "react-intersection-observer";
 import { ArrowRight, Sparkles, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import DocsTemplatesSection from "./FeatureMain";
-
-import heroBackground from "../../public/bg4-optimized.jpg";
 import MotionWrapper from "./motion/MotionDivWrapper";
 
 /**
@@ -53,43 +50,23 @@ const Hero = () => {
     <>
       <section
         ref={ref}
-        className="relative flex flex-col items-center justify-center overflow-hidden"
+        className="relative flex flex-col items-center justify-center overflow-hidden bg-white"
       >
-        {/* Gradient fallback so the hero never flashes white */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
-
-        {/* Optimized background image with instant fallback */}
-        <div className="absolute inset-0">
-          <div
-            className="absolute inset-0 scale-105 blur-lg bg-center bg-cover"
-            style={{
-              backgroundImage: `url(${heroBackground.blurDataURL ?? heroBackground.src})`,
-            }}
-            aria-hidden
-          />
-          <Image
-            src={heroBackground}
-            alt="Background"
-            fill
-            priority
-            placeholder="blur"
-            blurDataURL={heroBackground.blurDataURL}
-            fetchPriority="high"
-            sizes="100vw"
-            quality={60}
-            className="object-cover blur-sm"
-          />
-        </div>
-
-        <div className="relative min-h-screen md:mt-12 gap-8 flex flex-col items-center justify-center z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative min-h-screen md:mt-12 gap-8 flex flex-col items-center justify-center z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-black">
           {/* Heading */}
           <MotionWrapper
-            className="font-bold text-black mt-20 md:mt-0 text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
+            className="font-bold text-black mt-20 md:mt-0 text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl space-y-4"
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h1 className="pt-10 text-white leading-[1.3]">
+            <p className="text-xs sm:text-sm md:text-base uppercase tracking-[0.4em] text-black">
+              <span className="inline-flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1 text-neutral-900 shadow-sm">
+                <Sparkles className="h-4 w-4 text-amber-600" aria-hidden />
+                AI-Powered Documentation Platform
+              </span>
+            </p>
+            <h1 className="leading-[1.3] text-black">
               Turn{" "}
               <span className="bg-white/60 text-black px-3 rounded-md">
                 documentations
@@ -102,25 +79,13 @@ const Hero = () => {
 
           {/* Subtitle */}
           <MotionWrapper
-            className="md:text-2xl max-w-3xl mx-auto leading-relaxed text-white font-semibold"
+            className="md:text-2xl max-w-3xl mx-auto leading-relaxed font-semibold text-black"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             Write blogs, craft FAQs, and build internal knowledgebase — faster,
             smarter, together.
-          </MotionWrapper>
-
-          {/* Badge */}
-          <MotionWrapper
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.4em] text-white/85"
-          >
-            <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-transparent via-white/70 to-transparent" aria-hidden />
-            <Sparkles className="h-3.5 w-3.5 text-amber-200 drop-shadow" />
-            <span className="pl-3">AI-Powered Documentation Platform</span>
           </MotionWrapper>
 
           {/* CTA Buttons */}
@@ -135,7 +100,7 @@ const Hero = () => {
               href="https://app.docstar.io/login"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-lg rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm border border-white/40 font-bold px-6 py-3 text-white flex items-center"
+              className="group text-lg rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.05)] border border-black font-bold px-6 py-3 text-black flex items-center bg-white hover:bg-neutral-100 transition-all duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -147,7 +112,7 @@ const Hero = () => {
               as="button"
               type="button"
               onClick={openScheduler}
-              className="px-6 py-3 rounded-2xl font-semibold text-lg text-white bg-white/10 backdrop-blur-xl border border-white/20 shadow-lg hover:bg-white/20 hover:shadow-xl transition-all duration-300 flex items-center cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+              className="px-6 py-3 rounded-2xl font-semibold text-lg text-black bg-white border border-black shadow-md hover:bg-neutral-100 hover:shadow-lg transition-all duration-300 flex items-center cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

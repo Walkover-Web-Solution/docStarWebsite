@@ -31,9 +31,12 @@ const Navbar = () => {
   const isHomePage = homeLikePaths.includes(pathname);
 
   const dynamicNavItems = [
-    isHomePage
-      ? { name: "Features", href: "#features", isInternal: true }
-      : { name: "Home", href: "/", isInternal: true },
+    { name: "Home", href: "/", isInternal: true },
+    {
+      name: "Features",
+      href: "/features",
+      isInternal: true,
+    },
     { name: "Blogs", href: "https://docstar.io/blogs", isInternal: false },
     { name: "Pricing", href: "/pricing", isInternal: true },
     { name: "Contact us", href: "/support", isInternal: true },
@@ -53,30 +56,18 @@ const Navbar = () => {
     }
   };
 
-  // Updated color logic
-  const textColor = isHomePage
-    ? isScrolled
-      ? "text-black"
-      : "text-white"
-    : "text-black";
-
-  const hoverColor = isHomePage
-    ? isScrolled
-      ? "hover:text-gray-600"
-      : "hover:text-gray-300"
-    : "hover:text-gray-600";
-
-  const underlineColor = isHomePage
-    ? isScrolled
-      ? "bg-black"
-      : "bg-white"
-    : "bg-black";
+  // Always use dark navigation elements so they remain visible on light hero
+  const textColor = "text-neutral-900";
+  const hoverColor = "hover:text-neutral-600";
+  const underlineColor = "bg-neutral-900";
 
   return (
     <motion.nav
-      className={`fixed w-full top-0 z-50 ${
-        isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg" : "bg-transparent"
-      } transition-all duration-300`}
+      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-neutral-200"
+          : "bg-white/90 backdrop-blur-md border-b border-transparent"
+      }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
@@ -157,13 +148,7 @@ const Navbar = () => {
               href="https://app.docstar.io/login"
               target="_blank"
               rel="noopener noreferrer"
-              className={`group min-w-fit relative px-6 py-3 rounded-2xl font-semibold text-lg transition-all duration-300 flex items-center cursor-pointer ${
-                isHomePage
-                  ? isScrolled
-                    ? "bg-black text-white hover:bg-gray-800"
-                    : "bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20"
-                  : "bg-black text-white hover:bg-gray-800"
-              } shadow-lg hover:shadow-xl`}
+              className="group min-w-fit relative px-6 py-3 rounded-2xl font-semibold text-lg transition-all duration-300 flex items-center cursor-pointer bg-neutral-900 text-white hover:bg-neutral-800 shadow-lg hover:shadow-xl"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -216,7 +201,7 @@ const Navbar = () => {
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="px-2 pt-2 pb-3 space-y-1 bg-black/95 backdrop-blur-md rounded-lg mt-2">
+              <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-md rounded-lg mt-2 border border-neutral-200 shadow-lg">
                 {dynamicNavItems.map((item, index) => {
                   const isAnchorLink = item.href.startsWith("#");
                   const isActiveLink =
@@ -228,7 +213,9 @@ const Navbar = () => {
                       key={item.name}
                       onClick={() => handleNavClick(item.href)}
                       className={`block px-3 py-2 font-medium w-full text-left ${
-                        isActiveLink ? "text-white" : "text-white hover:text-gray-300"
+                        isActiveLink
+                          ? "text-neutral-900"
+                          : "text-neutral-700 hover:text-neutral-900"
                       }`}
                       initial={{ x: -20, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
@@ -243,7 +230,7 @@ const Navbar = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block px-3 py-2 text-white hover:text-gray-300 font-medium no-underline"
+                      className="block px-3 py-2 text-neutral-700 hover:text-neutral-900 font-medium no-underline"
                       initial={{ x: -20, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: index * 0.1 }}
@@ -257,7 +244,7 @@ const Navbar = () => {
                   <MotionWrapper
                     as="a"
                     href="https://app.docstar.io/login"
-                    className="block text-white hover:text-gray-300 font-medium"
+                    className="block text-neutral-700 hover:text-neutral-900 font-medium"
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: dynamicNavItems.length * 0.1 }}
@@ -267,7 +254,7 @@ const Navbar = () => {
                   <MotionWrapper
                     as="a"
                     href="https://app.docstar.io/login"
-                    className="block bg-white text-black px-6 py-2 rounded-lg font-medium shadow-lg text-center"
+                    className="block bg-neutral-900 text-white px-6 py-2 rounded-lg font-medium shadow-lg text-center hover:bg-neutral-800 transition-colors duration-200"
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: (dynamicNavItems.length + 1) * 0.1 }}

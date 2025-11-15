@@ -208,8 +208,8 @@ export default function DocsTemplatesSection() {
         {/* Preview Card */}
 
         <div className="mx-auto mt-8 max-w-5xl">
-          <div className="relative overflow-hidden rounded-xl bg-slate-900 p-4">
-            <div className="mb-6 overflow-hidden rounded-xl bg-stone-200">
+          <div className="relative overflow-hidden rounded-2xl p-4 border border-black ">
+            <div className="mb-6 overflow-hidden rounded-xl ">
               <div className="relative aspect-[16/9] w-full">
                 {/* Cross-fade between hero images as the active selection changes. */}
                 <AnimatePresence mode="wait" initial={false}>
