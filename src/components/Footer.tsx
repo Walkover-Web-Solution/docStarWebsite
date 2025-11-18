@@ -1,72 +1,53 @@
-// import React from 'react';
-import {
-  Mail,
-  Twitter,
-  Github,
-  Linkedin,
-  Smartphone,
-  ArrowRight,
-} from "lucide-react";
-import Logo from "./Logo";
-import { useNavigate } from "react-router-dom";
+/**
+ * Renders the site footer with navigation shortcuts, mobile app links, and contact details.
+ * The component is client-side only because it leverages Next.js routing for internal link handling.
+ */
+"use client"
 
+import { Mail, Smartphone, ArrowRight } from "lucide-react"
+import Logo from "./Logo"
+import { useRouter } from "next/navigation"
+import Link from "next/link"
+
+/**
+ * Site-wide footer component exposing quick access links, socials, and legal information.
+ */
 const Footer = () => {
-  const navigate = useNavigate();
+  const router = useRouter()
+  // Router is required for button-based navigation to internal Next.js routes.
+
+  // Primary footer navigation sections with a mix of internal and external destinations.
   const footerSections = [
     {
       title: "Build with DocStar",
       links: [
         {
-          name: "Help Documentation",
-          href: "https://docstar.io/help",
-        },
-        {
           name: "Blogs",
           href: "https://docstar.io/blogs",
         },
         {
-          name: "API Docs",
-          href: "https://developers.docstar.io",
+          name: "Help Doc",
+          href: "https://docstar.io/help",
+        },
+        {
+          name: "API Doc",
+          href: "https://apidoc.docstar.io",
+        },
+        {
+          name: "Embed Editor",
+          href: "/embed-editor", // internal
         },
         {
           name: "Pricing",
-          href: "/pricing",
+          href: "/pricing", // internal
         },
         {
           name: "Contact us",
-          href: "/support",
+          href: "/support", // internal
         },
-        {
-          name: "Sitemap",
-          href: "/sitemap",
-        },
-
-        // { name: "Blogs", href: "#" },
-        // { name: "Publish Docs", href: "https://app.docstar.io/p/getting-started?collectionId=fLMgydvRdvN7" },
-        // { name: "AI Assist", href: "#" },
       ],
     },
-    // {
-    //   title: "Company",
-    //   links: [
-    //     { name: "About Us", href: "https://app.docstar.io/p/getting-started?collectionId=fLMgydvRdvN7" },
-    //     // { name: "Terms of Service", href: "#" },
-    //     // { name: "Privacy Policy", href: "#" },
-    //     // { name: "Careers", href: "#" },
-    //     // { name: "Blog", href: "#" },
-    //   ],
-    // },
-    // {
-    //   title: "Support",
-    //   links: [
-    //     { name: "Help Center", href: "https://cal.com/docstar-team" },
-    //     // { name: "Contact Us", href: "#" },
-    //     // { name: "Status", href: "#" },
-    //     // { name: "Community", href: "#" },
-    //     // { name: "Documentation", href: "#" },
-    //   ],
-    // },
-  ];
+  ]
 
   return (
     <footer className="bg-black text-white relative">
@@ -76,7 +57,7 @@ const Footer = () => {
           {/* Logo + Description Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
-              <Logo size="md" className="text-white" animated={true} />
+              <Logo size="md" className="text-white" animated />
               <span className="text-2xl font-bold text-white">DocStar</span>
             </div>
 
@@ -86,31 +67,17 @@ const Footer = () => {
             </p>
 
             {/* Social Links */}
-            {/* <div className="flex space-x-3">
-              {[
-                {
-                  icon: Github,
-                  href: "https://github.com/Walkover-Web-Solution/hitman-ui",
-                  label: "GitHub",
-                },
-                {
-                  icon: Mail,
-                  href: "mailto:support@docstar.io",
-                  label: "Email",
-                },
-              ].map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  title={social.label}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-all duration-300 p-2.5 rounded-lg hover:bg-white/5 border border-gray-800 hover:border-gray-600"
-                >
-                  <social.icon className="h-4 w-4" />
-                </a>
-              ))}
-            </div> */}
+            <div className="flex space-x-3">
+              <a
+                href="mailto:support@docstar.io"
+                title="Email"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-all duration-300 p-2.5 rounded-lg hover:bg-white/5 border border-gray-800 hover:border-gray-600"
+              >
+                <Mail className="h-4 w-4" />
+              </a>
+            </div>
           </div>
 
           {/* Footer Links */}
@@ -121,22 +88,23 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerSections[0].links.map((link, linkIndex) => (
                 <li key={linkIndex}>
-                  {link.name === "Pricing" || link.name === "Contact us" || link.name === "Sitemap" ? (
-                    <button
-                      onClick={() => navigate(link.href)}
-                      className="text-left w-full text-gray-400 hover:text-white transition-colors duration-300 text-sm"
-                    >
-                      {link.name}
-                    </button>
-                  ) : (
+                  {link.href.startsWith("http") ? (
                     <a
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
+                      className="cursor-pointer text-gray-400 hover:text-white transition-colors duration-300 text-sm"
                     >
                       {link.name}
                     </a>
+                  ) : (
+                    <button
+                      // Use the Next.js router for internal destinations to avoid a full page refresh.
+                      onClick={() => router.push(link.href)}
+                      className="cursor-pointer text-left w-full text-gray-400 hover:text-white transition-colors duration-300 text-sm"
+                    >
+                      {link.name}
+                    </button>
                   )}
                 </li>
               ))}
@@ -177,12 +145,21 @@ const Footer = () => {
             <div className="flex flex-col items-center sm:items-start sm:space-x-1">
               <div className="text-gray-400 text-sm flex flex-col sm:flex-row sm:items-center gap-2">
                 <span>© 2025 DocStar. All rights reserved</span>
-                <button
-                  onClick={() => navigate("/privacy-policy")}
-                  className="text-white hover:text-blue-400 transition-colors duration-300 "
-                >
-                  Privacy Policy
-                </button>
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <button
+                   // Internal policy link goes through the router so it respects locale/routing settings.
+                    onClick={() => router.push("/privacy-policy")}
+                    className="text-white hover:text-blue-400 transition-colors duration-300 "
+                  >
+                    Privacy Policy
+                  </button>
+                  <button
+                    onClick={() => router.push("/data-retention-policy")}
+                    className="text-white hover:text-blue-400 transition-colors duration-300 "
+                  >
+                    Data Retention Policy
+                  </button>
+                </div>
               </div>
               <p className="text-gray-400 text-sm">
                 A product by{" "}
@@ -201,6 +178,7 @@ const Footer = () => {
               <span className="text-gray-400 text-sm">Contact:</span>
               <a
                 href="mailto:support@docstar.io"
+                // Provide a direct mail link for quick support contact.
                 className="text-white hover:text-blue-400 transition-colors duration-300 text-sm"
               >
                 support@docstar.io
@@ -210,7 +188,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
