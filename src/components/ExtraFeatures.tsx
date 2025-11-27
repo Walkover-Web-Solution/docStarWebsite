@@ -41,7 +41,7 @@ const iconByFeatureId: Record<number, LucideIcon> = {
   7: Palette,
   8: Sparkles,
 }
-
+//testing
 type ExtraFeaturesProps = {
   /** Maximum number of features to render. If undefined, all features are shown. */
   limit?: number
