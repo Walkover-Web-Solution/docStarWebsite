@@ -36,6 +36,8 @@ const iconByFeatureId: Record<number, LucideIcon> = {
   8: Sparkles,
 }
 
+export const runtime = "edge"
+
 export default async function FeaturesPage() {
   let features: FeatureItem[] = []
 

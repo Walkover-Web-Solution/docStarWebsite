@@ -4,6 +4,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 
+export const runtime = "edge";
+
 export const metadata: Metadata = {
   title: "Docstar: AI-Powered Documentation Platform",
   description: "The platform that turns documentation into team culture",

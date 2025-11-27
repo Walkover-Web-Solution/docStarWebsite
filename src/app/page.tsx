@@ -6,6 +6,8 @@ import Hero from "@/components/Hero"
 import Testimonials from "@/components/Testimonials"
 import { fetchFeatures, type FeatureItem } from "@/data/features"
 
+export const runtime = "edge"
+
 export default async function HomePage() {
   let features: FeatureItem[] = []
 
