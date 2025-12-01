@@ -13,7 +13,7 @@ export default async function HomePage() {
 
   try {
     const apiFeatures = await fetchFeatures()
-    features = apiFeatures.slice(0, 4)
+    features = apiFeatures.slice(0, 3)
   } catch (error) {
     console.error("[HomePage] Unable to load features from API:", error)
   }
