@@ -134,11 +134,13 @@ const FEATURE_ASSETS: FeatureAsset[] = [
 const FEATURE_ASSET_MAP = new Map(FEATURE_ASSETS.map((asset) => [asset.key, asset]))
 
 const TABLE_BASE_URL = "https://table-api.viasocket.com/68e89f851e8b7c70f10b866a"
+const TABLE_FALLBACK_AUTH_KEY = "keydU5xiLDXEbbX"
 const FEATURE_TABLE_ID = "tbl6txdq1"
 
 const normalizeKey = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, "")
 
-const getAuthKey = () => process.env.TABLE_AUTH_KEY ?? process.env.NEXT_PUBLIC_TABLE_AUTH_KEY ?? ""
+const getAuthKey = () =>
+  process.env.TABLE_AUTH_KEY ?? process.env.NEXT_PUBLIC_TABLE_AUTH_KEY ?? TABLE_FALLBACK_AUTH_KEY
 
 type TableRow = {
   autonumber?: number

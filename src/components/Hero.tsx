@@ -61,7 +61,7 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <p className="text-xs sm:text-sm md:text-base uppercase tracking-[0.4em] text-black">
-              <span className="inline-flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1 text-neutral-900 shadow-sm">
+              <span className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-neutral-900">
                 <Sparkles className="h-4 w-4 text-amber-600" aria-hidden />
                 AI-Powered Documentation Platform
               </span>

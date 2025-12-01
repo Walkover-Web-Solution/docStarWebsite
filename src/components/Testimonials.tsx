@@ -40,7 +40,7 @@ const customers: Customer[] = [
   },
   {
     name: "GTWY AI",
-    logo: "https://stuff.thingsofbrand.com/gtwy.ai/images/img2_gtwy.ico",
+    logo: "https://stuff.thingsofbrand.com/gtwy.ai/images/img8_favicon.png",
     color: "from-gray-700 to-black",
     link: "https://gtwy.ai/blogs",
   },

@@ -50,18 +50,18 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="bg-black text-white relative">
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"></div>
+    <footer className="bg-white text-black relative">
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-start">
           {/* Logo + Description Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
-              <Logo size="md" className="text-white" animated />
-              <span className="text-2xl font-bold text-white">DocStar</span>
+              <Logo size="md" className="text-black" animated />
+              <span className="text-2xl font-bold text-black">DocStar</span>
             </div>
 
-            <p className="text-gray-400 mb-6 leading-relaxed max-w-sm">
+            <p className="text-gray-600 mb-6 leading-relaxed max-w-sm">
               Beautiful, fast, and reliable API Docs & FAQs built for teams.
               Transform your documentation workflow with AI.
             </p>
@@ -73,7 +73,7 @@ const Footer = () => {
                 title="Email"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-all duration-300 p-2.5 rounded-lg hover:bg-white/5 border border-gray-800 hover:border-gray-600"
+                className="text-gray-600 hover:text-black transition-all duration-300 p-2.5 rounded-lg hover:bg-black/5 border border-gray-200 hover:border-gray-400"
               >
                 <Mail className="h-4 w-4" />
               </a>
@@ -82,7 +82,7 @@ const Footer = () => {
 
           {/* Footer Links */}
           <div>
-            <h3 className="text-white font-semibold mb-4">
+            <h3 className="text-black font-semibold mb-4">
               Build with DocStar
             </h3>
             <ul className="space-y-2">
@@ -93,7 +93,7 @@ const Footer = () => {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="cursor-pointer text-gray-400 hover:text-white transition-colors duration-300 text-sm"
+                      className="cursor-pointer text-gray-600 hover:text-black transition-colors duration-300 text-sm"
                     >
                       {link.name}
                     </a>
@@ -101,7 +101,7 @@ const Footer = () => {
                     <button
                       // Use the Next.js router for internal destinations to avoid a full page refresh.
                       onClick={() => router.push(link.href)}
-                      className="cursor-pointer text-left w-full text-gray-400 hover:text-white transition-colors duration-300 text-sm"
+                      className="cursor-pointer text-left w-full text-gray-600 hover:text-black transition-colors duration-300 text-sm"
                     >
                       {link.name}
                     </button>
@@ -113,14 +113,14 @@ const Footer = () => {
 
           {/* Mobile App Section */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Mobile App</h3>
+            <h3 className="text-black font-semibold mb-4">Mobile App</h3>
 
             {/* Android Button */}
             <a
               href="https://play.google.com/store/apps/details?id=com.tech_doc_mobile"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center text-gray-400 hover:text-white transition-all duration-300 p-2.5 rounded-lg hover:bg-white/5 border border-gray-800 hover:border-gray-600 mb-3"
+              className="group inline-flex items-center text-gray-600 hover:text-black transition-all duration-300 p-2.5 rounded-lg hover:bg-black/5 border border-gray-200 hover:border-gray-400 mb-3"
             >
               <span className="text-sm">Get it on Android</span>
               <Smartphone className="h-4 w-4 ml-2" />
@@ -131,7 +131,7 @@ const Footer = () => {
               href="https://app.docstar.io/login"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center text-black bg-white hover:text-white transition-all duration-300 p-2.5 rounded-lg hover:bg-white/5 border border-gray-800 hover:border-gray-600"
+              className="group inline-flex items-center justify-center text-white bg-black hover:bg-black/90 transition-all duration-300 p-2.5 rounded-lg border border-gray-900"
             >
               <span className="text-sm">Get Started Free</span>
               <ArrowRight className="h-5 w-5 ml-2" />
@@ -140,34 +140,34 @@ const Footer = () => {
         </div>
 
         {/* Footer Bottom */}
-        <div className="border-t border-gray-800 mt-8 pt-6">
+        <div className="border-t border-gray-200 mt-8 pt-6">
           <div className="flex flex-col sm:flex-row justify-between items-center sm:items-start space-y-3 sm:space-y-0">
             <div className="flex flex-col items-center sm:items-start sm:space-x-1">
-              <div className="text-gray-400 text-sm flex flex-col sm:flex-row sm:items-center gap-2">
+              <div className="text-gray-600 text-sm flex flex-col sm:flex-row sm:items-center gap-2">
                 <span>© 2025 DocStar. All rights reserved</span>
                 <div className="flex flex-col sm:flex-row gap-2">
                   <button
                    // Internal policy link goes through the router so it respects locale/routing settings.
                     onClick={() => router.push("/privacy-policy")}
-                    className="text-white hover:text-blue-400 transition-colors duration-300 "
+                    className="text-black hover:text-blue-600 transition-colors duration-300 "
                   >
                     Privacy Policy
                   </button>
                   <button
                     onClick={() => router.push("/data-retention-policy")}
-                    className="text-white hover:text-blue-400 transition-colors duration-300 "
+                    className="text-black hover:text-blue-600 transition-colors duration-300 "
                   >
                     Data Retention Policy
                   </button>
                 </div>
               </div>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-600 text-sm">
                 A product by{" "}
                 <a
                   href="https://walkover.in/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-blue-400 transition-colors duration-300"
+                  className="text-black hover:text-blue-600 transition-colors duration-300"
                 >
                   Walkover
                 </a>
@@ -175,11 +175,11 @@ const Footer = () => {
             </div>
 
             <div className="flex items-center space-x-2">
-              <span className="text-gray-400 text-sm">Contact:</span>
+              <span className="text-gray-600 text-sm">Contact:</span>
               <a
                 href="mailto:support@docstar.io"
                 // Provide a direct mail link for quick support contact.
-                className="text-white hover:text-blue-400 transition-colors duration-300 text-sm"
+                className="text-black hover:text-blue-600 transition-colors duration-300 text-sm"
               >
                 support@docstar.io
               </a>
