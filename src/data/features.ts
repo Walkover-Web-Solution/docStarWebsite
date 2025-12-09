@@ -138,9 +138,21 @@ const TABLE_FALLBACK_AUTH_KEY = "keydU5xiLDXEbbX"
 const FEATURE_TABLE_ID = "tbl6txdq1"
 
 const normalizeKey = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, "")
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
 
 const getAuthKey = () =>
   process.env.TABLE_AUTH_KEY ?? process.env.NEXT_PUBLIC_TABLE_AUTH_KEY ?? TABLE_FALLBACK_AUTH_KEY
+
+const FALLBACK_FEATURE_IMAGE: FeatureImage = {
+  src: "/bg4.jpg",
+  alt: "DocStar feature background",
+  blurDataURL: defaultFeatureBlurDataURL,
+}
 
 type TableRow = {
   autonumber?: number
@@ -160,41 +172,39 @@ export async function fetchFeatures(): Promise<FeatureItem[]> {
     const authKey = getAuthKey()
     if (!authKey) {
       console.warn("[features] Missing TABLE_AUTH_KEY/NEXT_PUBLIC_TABLE_AUTH_KEY environment variable.")
-  }
+    }
 
-  const response = await fetch(`${TABLE_BASE_URL}/${FEATURE_TABLE_ID}`, {
-    headers: { "auth-key": authKey },
-    cache: "no-store",
-  })
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch features: ${response.status} ${response.statusText}`)
-  }
-
-  const payload = (await response.json()) as TableResponse
-  const rows = payload?.data?.rows ?? []
-
-  const features = rows
-    .map((row): FeatureItem | null => {
-      const name = row.name?.trim()
-      if (!name) return null
-
-      const asset = FEATURE_ASSET_MAP.get(normalizeKey(name))
-      if (!asset) {
-        console.warn(`[features] No asset mapping found for feature "${name}"`)
-        return null
-      }
-
-      return {
-        id: row.autonumber ?? asset.id,
-        text: name || asset.fallbackName,
-        description: row.content?.trim() || asset.fallbackDescription,
-        link: asset.link,
-        image: asset.image,
-      }
+    const response = await fetch(`${TABLE_BASE_URL}/${FEATURE_TABLE_ID}`, {
+      headers: { "auth-key": authKey },
+      cache: "no-store",
     })
-    .filter((item): item is FeatureItem => Boolean(item))
-    .sort((a, b) => a.id - b.id || a.text.localeCompare(b.text))
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch features: ${response.status} ${response.statusText}`)
+    }
+
+    const payload = (await response.json()) as TableResponse
+    const rows = payload?.data?.rows ?? []
+
+    const features = rows
+      .map((row): FeatureItem | null => {
+        const name = row.name?.trim()
+        if (!name) return null
+
+        const asset = FEATURE_ASSET_MAP.get(normalizeKey(name))
+        const description = row.content?.trim() || asset?.fallbackDescription || ""
+        const slug = slugify(name)
+
+        return {
+          id: row.autonumber ?? asset?.id ?? Number.MAX_SAFE_INTEGER,
+          text: name || asset?.fallbackName || "DocStar feature",
+          description,
+          link: asset?.link ?? (slug ? `/${slug}` : "/features"),
+          image: asset?.image ?? { ...FALLBACK_FEATURE_IMAGE, alt: `${name} illustration` },
+        }
+      })
+      .filter((item): item is FeatureItem => Boolean(item))
+      .sort((a, b) => a.id - b.id || a.text.localeCompare(b.text))
 
     return features
   } catch (error) {
