@@ -1,6 +1,10 @@
 import { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import FAQSection from "@/components/FAQSection";
+import { fetchFaqs } from "@/services/faqs.api";
+import { type Faq } from "@/types/data-types";
+
+export const revalidate = 3600
 
 const freePlanFeatures: string[] = [
   "Block-based editor with integrations",
@@ -72,7 +76,20 @@ export const metadata: Metadata = {
     "Documentation without barriers. Publish knowledge bases, blogs, and API docs freely with Docstar pricing.",
 };
 
-export default function PricingPage() {
+export default async function PricingPage() {
+  let allFaqs = [];
+  try {
+    allFaqs = await fetchFaqs();
+  } catch (error) {
+    console.error("[HomePage] Unable to load faqs from API:", error);
+  }
+
+  let faqs = [];
+  try {
+    faqs = allFaqs.filter((faq: Faq) => faq.name === "/pricing");
+  } catch (error) {
+    console.error("[HomePage] Unable to load faqs from API:", error);
+  }
   return (
     <div className="pricing-page bg-white pt-32 pb-20 px-4 sm:px-6 lg:px-10">
       <div className="mx-auto max-w-5xl">
@@ -86,7 +103,7 @@ export default function PricingPage() {
           </p>
         </div>
 
-        <div className="mt-14 rounded-3xl border border-neutral-900 bg-white p-6 sm:p-10 shadow-sm">
+        <div className="mt-14 rounded border border-neutral-900 bg-white p-6 sm:p-10 shadow-sm">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-2xl font-semibold text-neutral-900">
               Everything you need in the Free plan
@@ -131,9 +148,8 @@ export default function PricingPage() {
           {paidPlans.map((plan) => (
             <article
               key={plan.title}
-              className={`flex h-full flex-col justify-between rounded-3xl border bg-white p-8 shadow-sm transition-shadow duration-200 hover:shadow-lg ${
-                plan.highlight ? "border-neutral-900" : "border-neutral-200"
-              }`}
+              className={`flex h-full flex-col justify-between rounded border bg-white p-8 shadow-sm transition-shadow duration-200 hover:shadow-lg ${plan.highlight ? "border-neutral-900" : "border-neutral-200"
+                }`}
             >
               <div>
                 <div className="flex items-center gap-3">
@@ -162,11 +178,10 @@ export default function PricingPage() {
               <div className="mt-8">
                 <a
                   href={plan.ctaHref}
-                  className={`flex w-full items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold transition-colors duration-150 ${
-                    plan.highlight
-                      ? "bg-neutral-900 text-white hover:bg-neutral-800"
-                      : "border border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white"
-                  }`}
+                  className={`flex w-full items-center justify-center btn ${plan.highlight
+                    ? "btn-primary"
+                    : "btn-outline"
+                    }`}
                 >
                   {plan.ctaLabel}
                 </a>
@@ -175,12 +190,7 @@ export default function PricingPage() {
           ))}
         </div>
       </div>
-      <FAQSection
-        tableId="tbloc09z7"
-        variant="light"
-        eyebrow="Pricing FAQs"
-        eyebrowClassName="text-neutral-900"
-      />
+      <FAQSection faqs={faqs} />
     </div>
   );
 }
