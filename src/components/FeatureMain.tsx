@@ -129,14 +129,8 @@ export default function DocsTemplatesSection() {
   const currentImage = activeTag ?? tab.preview
 
   return (
-    <section className="w-full bg-rose-50" id="feature-main">
+    <section className="w-full bg-gray-100" id="feature-main">
       <div className="mx-auto max-w-6xl px-6 py-16 md:py-24 lg:px-12">
-        {/* <header className="mb-8 text-center md:mb-10">
-          <h2 className="lg:text-6xl font-semibold leading-tight text-slate-900 md:text-4xl">
-          The Single Platform That Brings Every Team Together
-          </h2>
-        </header> */}
-
         {/* Tabs */}
         <div
           ref={listRef}
