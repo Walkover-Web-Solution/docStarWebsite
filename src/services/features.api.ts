@@ -7,5 +7,6 @@ export async function fetchFeatures() {
     }
     
     const data = await res.json();
+    console.log('Features data: ', data);
     return data;
 }

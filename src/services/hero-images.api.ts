@@ -7,5 +7,6 @@ export async function fetchHeroImages() {
     }
     
     const data = await res.json();
+    console.log('Hero images data: ', data);
     return data;
 }
