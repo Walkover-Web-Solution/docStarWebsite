@@ -23,6 +23,26 @@ const nextConfig = {
         hostname: "images.unsplash.com",
         pathname: "/**", // allow all Unsplash paths
       },
+      {
+        protocol: "https",
+        hostname: "encrypted-tbn0.gstatic.com",
+        pathname: "/**", // allow all Google image CDN paths
+      },
+      {
+        protocol: "https",
+        hostname: "cdn-1.webcatalog.io",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.shopify.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "thingsofbrand.com",
+        pathname: "/**",
+      }
     ],
   },
 };
