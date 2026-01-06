@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+export const runtime = 'edge';
+
 export async function GET(req: NextRequest) {
     const table = req.nextUrl.searchParams.get('table');
     const apiUrl = `${process.env.DB_BASE_URL}/68e89f851e8b7c70f10b866a/${table}`;
