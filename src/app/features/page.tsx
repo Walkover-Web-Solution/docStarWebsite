@@ -2,7 +2,6 @@ import MotionWrapper from "@/components/motion/MotionDivWrapper"
 import { fetchFeatures } from "@/services/features.api"
 import { FeatureItem } from "@/types/data-types"
 import FeaturesList from "./FeaturesList"
-export const revalidate = 3600
 
 export const runtime = "edge"
 

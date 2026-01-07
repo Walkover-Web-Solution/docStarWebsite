@@ -8,8 +8,10 @@ import { fetchHeroImages } from "@/services/hero-images.api"
 import { fetchFaqs } from "@/services/faqs.api"
 import { type Faq } from "@/types/data-types"
 import { type FeatureItem } from "@/types/data-types"
+import { type HeroImage } from "@/types/data-types"
 
-export const revalidate = 3600 // Revalidate every 1 hour
+// Force dynamic rendering to ensure API calls happen at runtime
+export const dynamic = 'force-dynamic'
 
 export const runtime = "edge"
 
@@ -23,7 +25,7 @@ export default async function HomePage() {
     console.error("[HomePage] Unable to load features from API:", error)
   }
 
-  let heroImages = [];
+  let heroImages: HeroImage[] = [];
   try {
     heroImages = await fetchHeroImages();
   } catch (error) {
@@ -31,14 +33,14 @@ export default async function HomePage() {
   }
 
 
-  let allFaqs = [];
+  let allFaqs: Faq[] = [];
   try {
     allFaqs = await fetchFaqs();
   } catch (error) {
     console.error("[HomePage] Unable to load faqs from API:", error);
   }
 
-  let faqs = [];
+  let faqs: Faq[] = [];
   try {
     faqs = allFaqs.filter((faq: Faq) => faq.name === "/");
   } catch (error) {
