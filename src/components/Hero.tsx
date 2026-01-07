@@ -62,13 +62,13 @@ const Hero = ({ heroImages }: HeroProps) => {
         <div className="relative mt-12 py-20 pb-2 gap-8 flex flex-col items-center justify-center z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-black">
           {/* Heading */}
           <MotionWrapper
-            className="font-bold text-black mt-20 md:mt-0 text-2xl sm:text-4xl md:text-5xl space-y-4"
+            className="text-black mt-20 md:mt-0 text-3xl sm:text-5xl md:text-6xl space-y-4"
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h1 className="text-black">
-              Turn documentations into
+              Turn Documentations Into
               <br />
               Team Culture
             </h1>
@@ -76,7 +76,7 @@ const Hero = ({ heroImages }: HeroProps) => {
 
           {/* Subtitle */}
           <MotionWrapper
-            className="md:text-xl max-w-4xl mx-auto font-semibold text-black"
+            className="md:text-xl max-w-4xl mx-auto text-black"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.3 }}
