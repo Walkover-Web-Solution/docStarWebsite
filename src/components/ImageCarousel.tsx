@@ -21,7 +21,8 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
     const container = containerRef.current;
     if (!container) return;
 
-    const slide = container.children[index] as HTMLElement;
+    // Account for the spacer element at index 0, so actual image is at index + 1
+    const slide = container.children[index + 1] as HTMLElement;
     if (!slide) return;
 
     // Calculate the scroll position to center the slide
@@ -46,7 +47,10 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
     let closestIndex = 0;
     let closestDistance = Infinity;
 
-    Array.from(container.children).forEach((child, index) => {
+    // Skip the first spacer element (index 0) and last spacer element
+    const imageElements = Array.from(container.children).slice(1, -1);
+    
+    imageElements.forEach((child, index) => {
       const el = child as HTMLElement;
       const elCenter = el.offsetLeft + el.offsetWidth / 2;
       const distance = Math.abs(center - elCenter);
@@ -88,6 +92,9 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
           scrollbar-hide
         "
       >
+        {/* Spacer element before first image */}
+        <div className="flex-shrink-0 w-[50vw] sm:w-[45vw]" />
+        
         {images.map((img, index) => (
           <div
             key={index}
@@ -128,6 +135,9 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
             </div>
           </div>
         ))}
+        
+        {/* Spacer element after last image */}
+        <div className="flex-shrink-0 w-[50vw] sm:w-[45vw]" />
       </div>
 
       {/* Dots */}
