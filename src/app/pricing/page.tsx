@@ -4,6 +4,8 @@ import FAQSection from "@/components/FAQSection";
 import { fetchFaqs } from "@/services/faqs.api";
 import { type Faq } from "@/types/data-types";
 
+export const runtime = 'edge';
+
 const freePlanFeatures: string[] = [
   "Block-based editor with integrations",
   "Spaces & Collection: Unlimited",

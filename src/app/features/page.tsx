@@ -3,7 +3,7 @@ import { fetchFeatures } from "@/services/features.api"
 import { FeatureItem } from "@/types/data-types"
 import FeaturesList from "./FeaturesList"
 
-export const runtime = "edge"
+export const runtime = 'edge'
 
 export default async function FeaturesPage() {
   let features: FeatureItem[] = []
