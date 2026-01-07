@@ -12,6 +12,7 @@ import { type HeroImage } from "@/types/data-types"
 
 // Force dynamic rendering to ensure API calls happen at runtime
 export const dynamic = 'force-dynamic'
+export const runtime = 'edge'
 
 export default async function HomePage() {
   let features: FeatureItem[] = []
