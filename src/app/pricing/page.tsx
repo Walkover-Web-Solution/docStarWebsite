@@ -4,8 +4,6 @@ import FAQSection from "@/components/FAQSection";
 import { fetchFaqs } from "@/services/faqs.api";
 import { type Faq } from "@/types/data-types";
 
-export const revalidate = 3600
-
 const freePlanFeatures: string[] = [
   "Block-based editor with integrations",
   "Spaces & Collection: Unlimited",
@@ -77,14 +75,14 @@ export const metadata: Metadata = {
 };
 
 export default async function PricingPage() {
-  let allFaqs = [];
+  let allFaqs: Faq[] = [];
   try {
     allFaqs = await fetchFaqs();
   } catch (error) {
     console.error("[HomePage] Unable to load faqs from API:", error);
   }
 
-  let faqs = [];
+  let faqs: Faq[] = [];
   try {
     faqs = allFaqs.filter((faq: Faq) => faq.name === "/pricing");
   } catch (error) {

@@ -7,6 +7,5 @@ export async function fetchFaqs() {
     }
     
     const data = await res.json();
-    console.log('FAQs data: ', data);
     return data;
 }
