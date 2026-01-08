@@ -14,8 +14,6 @@ import { type HeroImage } from "@/types/data-types"
 export const dynamic = 'force-dynamic'
 export const runtime = 'edge'
 
-export const runtime = "edge"
-
 export default async function HomePage() {
   let features: FeatureItem[] = []
 
