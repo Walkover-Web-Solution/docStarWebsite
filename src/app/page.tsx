@@ -3,10 +3,16 @@ import ExtraFeatures from "@/components/ExtraFeatures"
 import FAQSection from "@/components/FAQSection"
 import Feature from "@/components/Features"
 import Hero from "@/components/Hero"
-import Testimonials from "@/components/Testimonials"
-import { fetchFeatures, type FeatureItem } from "@/data/features"
+import { fetchFeatures } from "@/services/features.api"
+import { fetchHeroImages } from "@/services/hero-images.api"
+import { fetchFaqs } from "@/services/faqs.api"
+import { type Faq } from "@/types/data-types"
+import { type FeatureItem } from "@/types/data-types"
+import { type HeroImage } from "@/types/data-types"
 
-export const runtime = "edge"
+// Force dynamic rendering to ensure API calls happen at runtime
+export const dynamic = 'force-dynamic'
+export const runtime = 'edge'
 
 export default async function HomePage() {
   let features: FeatureItem[] = []
@@ -18,18 +24,34 @@ export default async function HomePage() {
     console.error("[HomePage] Unable to load features from API:", error)
   }
 
+  let heroImages: HeroImage[] = [];
+  try {
+    heroImages = await fetchHeroImages();
+  } catch (error) {
+    console.error("[HomePage] Unable to load hero images from API:", error);
+  }
+
+
+  let allFaqs: Faq[] = [];
+  try {
+    allFaqs = await fetchFaqs();
+  } catch (error) {
+    console.error("[HomePage] Unable to load faqs from API:", error);
+  }
+
+  let faqs: Faq[] = [];
+  try {
+    faqs = allFaqs.filter((faq: Faq) => faq.name === "/");
+  } catch (error) {
+    console.error("[HomePage] Unable to load faqs from API:", error);
+  }
+
   return (
     <>
-      <Hero />
+      <Hero heroImages={heroImages} />
       <Feature />
       {features.length > 0 && <ExtraFeatures features={features} showViewAllLink />}
-      <FAQSection
-        tableId="tblx2m11t"
-        id="faqs"
-        eyebrow="Frequently Asked Questions"
-        eyebrowClassName="text-neutral-900"
-      />
-      <Testimonials />
+      <FAQSection faqs={faqs} />
       <CTA />
     </>
   )
