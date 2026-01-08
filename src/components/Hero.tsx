@@ -9,11 +9,17 @@ import { ArrowRight, Sparkles, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import DocsTemplatesSection from "./FeatureMain";
 import MotionWrapper from "./motion/MotionDivWrapper";
+import ImageCarousel from "./ImageCarousel";
+import { HeroImage } from "@/types/data-types";
+import AppsMarquee from "./AppsMarquee";
 
+interface HeroProps {
+  heroImages: HeroImage[];
+}
 /**
  * Landing hero that introduces DocStar, showcases key value props, and provides CTAs for signup or demos.
  */
-const Hero = () => {
+const Hero = ({ heroImages }: HeroProps) => {
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
@@ -50,36 +56,27 @@ const Hero = () => {
     <>
       <section
         ref={ref}
-        className="relative flex flex-col items-center justify-center overflow-hidden bg-white"
+        className="relative flex flex-col items-center justify-center"
       >
-        <div className="relative min-h-screen md:mt-12 gap-8 flex flex-col items-center justify-center z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-black">
+        {/* <div className="absolute inset-0 bg-[url('/bg-images/hero-svg2.svg')] bg-cover bg-center bg-no-repeat opacity-60"></div> */}
+        <div className="relative mt-12 py-20 pb-2 gap-8 flex flex-col items-center justify-center z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-black">
           {/* Heading */}
           <MotionWrapper
-            className="font-bold text-black mt-20 md:mt-0 text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl space-y-4"
+            className="text-black mt-20 md:mt-0 text-3xl sm:text-5xl md:text-6xl space-y-4"
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <p className="text-xs sm:text-sm md:text-base uppercase tracking-[0.4em] text-black">
-              <span className="inline-flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1 text-neutral-900 shadow-sm">
-                <Sparkles className="h-4 w-4 text-amber-600" aria-hidden />
-                AI-Powered Documentation Platform
-              </span>
-            </p>
-            <h1 className="leading-[1.3] text-black">
-              Turn{" "}
-              <span className="bg-white/60 text-black px-3 rounded-md">
-                documentations
-              </span>{" "}
-              into
+            <h1 className="text-black">
+              Turn Documentations Into
               <br />
-              <span className="italic font-bold">Team Culture</span>
+              Team Culture
             </h1>
           </MotionWrapper>
 
           {/* Subtitle */}
           <MotionWrapper
-            className="md:text-2xl max-w-3xl mx-auto leading-relaxed font-semibold text-black"
+            className="md:text-xl max-w-4xl mx-auto text-black"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.3 }}
@@ -90,7 +87,7 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <MotionWrapper
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.4 }}
@@ -100,7 +97,7 @@ const Hero = () => {
               href="https://app.docstar.io/login"
               target="_blank"
               rel="noopener noreferrer"
-              className="group text-lg rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.05)] border border-black font-bold px-6 py-3 text-black flex items-center bg-white hover:bg-neutral-100 transition-all duration-300"
+              className="btn btn-primary"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -112,7 +109,7 @@ const Hero = () => {
               as="button"
               type="button"
               onClick={openScheduler}
-              className="px-6 py-3 rounded-2xl font-semibold text-lg text-black bg-white border border-black shadow-md hover:bg-neutral-100 hover:shadow-lg transition-all duration-300 flex items-center cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
+              className="btn btn-outline"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -120,6 +117,9 @@ const Hero = () => {
             </MotionWrapper>
           </MotionWrapper>
         </div>
+
+        <ImageCarousel heroImages={heroImages} />
+
       </section>
 
       {showScheduler && (
@@ -128,13 +128,13 @@ const Hero = () => {
           onClick={closeScheduler}
         >
           <div
-            className="relative w-full max-w-4xl overflow-hidden rounded-2xl bg-black shadow-2xl"
+            className="relative w-full max-w-4xl overflow-hidden rounded bg-black shadow-2xl"
             onClick={(event) => event.stopPropagation()}
           >
             <button
               type="button"
               onClick={closeScheduler}
-              className="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              className="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded bg-white/10 text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
               aria-label="Close scheduler"
             >
               <X className="h-5 w-5" />
@@ -148,6 +148,8 @@ const Hero = () => {
           </div>
         </div>
       )}
+
+      <AppsMarquee />
 
       {/* Lazy load heavy section */}
       <DocsTemplatesSection />
