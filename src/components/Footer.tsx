@@ -2,18 +2,18 @@
  * Renders the site footer with navigation shortcuts, mobile app links, and contact details.
  * The component is client-side only because it leverages Next.js routing for internal link handling.
  */
-"use client"
+"use client";
 
-import { Mail, Smartphone, ArrowRight } from "lucide-react"
-import Logo from "./Logo"
-import { useRouter } from "next/navigation"
-import Link from "next/link"
+import { Mail, Smartphone, ArrowRight } from "lucide-react";
+import Logo from "./Logo";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 /**
  * Site-wide footer component exposing quick access links, socials, and legal information.
  */
 const Footer = () => {
-  const router = useRouter()
+  const router = useRouter();
   // Router is required for button-based navigation to internal Next.js routes.
 
   // Primary footer navigation sections with a mix of internal and external destinations.
@@ -47,12 +47,12 @@ const Footer = () => {
         },
       ],
     },
-  ]
+  ];
 
   return (
     <footer className="bg-white text-black relative">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-start">
           {/* Logo + Description Section */}
           <div className="lg:col-span-2">
@@ -112,30 +112,32 @@ const Footer = () => {
           </div>
 
           {/* Mobile App Section */}
-          <div>
+          <div className="flex flex-col">
             <h3 className="text-black font-semibold mb-4">Mobile App</h3>
 
-            {/* Android Button */}
-            <a
-              href="https://play.google.com/store/apps/details?id=com.tech_doc_mobile"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center text-gray-600 hover:text-black transition-all duration-300 p-2.5 rounded-lg hover:bg-black/5 border border-gray-200 hover:border-gray-400 mb-3"
-            >
-              <span className="text-sm">Get it on Android</span>
-              <Smartphone className="h-4 w-4 ml-2" />
-            </a>
+            <div className="flex items-center gap-2">
+              {/* Android Button */}
+              <a
+                href="https://play.google.com/store/apps/details?id=com.tech_doc_mobile"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center text-gray-600 hover:text-black transition-all duration-300 p-2.5 rounded-lg hover:bg-black/5 border border-gray-200 hover:border-gray-400"
+              >
+                <span className="text-sm">Get it on Android</span>
+                <Smartphone className="h-4 w-4 ml-2" />
+              </a>
 
-            {/* Get Started Button */}
-            <a
-              href="https://app.docstar.io/login"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center text-white bg-black hover:bg-black/90 transition-all duration-300 p-2.5 rounded-lg border border-gray-900"
-            >
-              <span className="text-sm">Get Started Free</span>
-              <ArrowRight className="h-5 w-5 ml-2" />
-            </a>
+              {/* Get Started Button */}
+              <a
+                href="https://app.docstar.io/login"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center text-white bg-black hover:bg-black/90 transition-all duration-300 p-2.5 rounded-lg border border-gray-900"
+              >
+                <span className="text-sm">Get Started Free</span>
+                <ArrowRight className="h-5 w-5 ml-2" />
+              </a>
+            </div>
           </div>
         </div>
 
@@ -147,7 +149,7 @@ const Footer = () => {
                 <span>© 2025 DocStar. All rights reserved</span>
                 <div className="flex flex-col sm:flex-row gap-2">
                   <button
-                   // Internal policy link goes through the router so it respects locale/routing settings.
+                    // Internal policy link goes through the router so it respects locale/routing settings.
                     onClick={() => router.push("/privacy-policy")}
                     className="text-black hover:text-blue-600 transition-colors duration-300 "
                   >
@@ -188,7 +190,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

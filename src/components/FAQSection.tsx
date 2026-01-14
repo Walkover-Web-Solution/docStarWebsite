@@ -17,9 +17,9 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
 
   return (
     <section className="py-20 text-black">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto flex flex-col gap-12 bg-white p-6">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="h2 mt-3 text-3xl font-semibold sm:text-4xl">Frequently Asked Questions</h2>
+          <h2 className="h2">Frequently Asked Questions</h2>
         </div>
         <div className="mt-8 flex flex-col gap-3 sm:gap-4">
           {faqs?.map((faq, index) => (

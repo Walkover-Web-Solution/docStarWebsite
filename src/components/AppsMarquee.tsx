@@ -51,7 +51,7 @@ const customers: Customer[] = [
 
 const AppsMarquee = () => {
     return (
-        <section className="pt-2 pb-20 max-w-7xl mx-auto relative overflow-hidden">
+        <section className="pt-2 pb-20 container mx-auto relative overflow-hidden">
             <Marquee
                 direction="left"
                 speed={40}
