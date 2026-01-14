@@ -67,7 +67,7 @@ const Navbar = () => {
           : "bg-transparent backdrop-blur-md "
       }`}
     >
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto container px-2">
         <div className="flex justify-between gap-8 items-center h-20">
           {/* Logo */}
           <div className="flex items-center ">
