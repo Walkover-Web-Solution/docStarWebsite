@@ -1,4 +1,4 @@
-import { FileText, Globe, Smile } from "lucide-react";
+import { PlayCircle, Key, Palette, FileCode } from "lucide-react";
 import Link from "next/link";
 
 export default function APITemplateSection() {
@@ -13,7 +13,7 @@ export default function APITemplateSection() {
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded border border-gray-200">
               <div className="w-6 h-6 bg-black rounded flex items-center justify-center">
-                <FileText className="w-4 h-4 text-white" />
+                <FileCode className="w-4 h-4 text-white" />
               </div>
               <span className="font-semibold text-gray-900">API Doc</span>
             </div>
@@ -29,7 +29,11 @@ export default function APITemplateSection() {
               </p>
             </div>
 
-            <Link href="/features" target="_blank" className="btn btn-primary flex items-center justify-center gap-2 w-fit">
+            <Link
+              href="/features"
+              target="_blank"
+              className="btn btn-primary flex items-center justify-center gap-2 w-fit"
+            >
               Explore more
               <svg
                 className="w-4 h-4"
@@ -48,7 +52,7 @@ export default function APITemplateSection() {
 
             <div className="grid md:grid-cols-2 gap-4">
               <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
-                <FileText className="w-8 h-8 text-gray-700 mb-4" />
+                <PlayCircle className="w-8 h-8 text-gray-700 mb-4" />
                 <h4 className="h4">Interactive API playground</h4>
                 <p className="line-clamp-3 text-sm">
                   Test endpoints, tweak parameters, and copy ready-to-run code
@@ -57,7 +61,7 @@ export default function APITemplateSection() {
               </div>
 
               <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
-                <Globe className="w-8 h-8 text-gray-700 mb-4" />
+                <Key className="w-8 h-8 text-gray-700 mb-4" />
                 <h4 className="h4">API token management</h4>
                 <p className="line-clamp-3 text-sm">
                   Allows users to securely create, manage, and control the API
@@ -69,7 +73,7 @@ export default function APITemplateSection() {
                 className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow"
                 style={{ gridColumn: "span 2" }}
               >
-                <Smile className="w-8 h-8 text-gray-700 mb-4" />
+                <Palette className="w-8 h-8 text-gray-700 mb-4" />
                 <h4 className="h4">Themes</h4>
                 <p className="line-clamp-3 text-sm">
                   Lets you personalize the look and structure of your workspace,

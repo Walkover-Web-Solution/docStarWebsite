@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { ChevronDown } from "lucide-react"
 import { Faq } from "@/types/data-types"
+import Link from "next/link"
 
 type FAQSectionProps = {
   faqs: Faq[]
@@ -16,23 +17,41 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
   }
 
   return (
-    <section className="py-20 text-black">
-      <div className="container mx-auto flex flex-col gap-12 bg-white p-6">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="h2">Frequently Asked Questions</h2>
-        </div>
-        <div className="mt-8 flex flex-col gap-3 sm:gap-4">
-          {faqs?.map((faq, index) => (
-            <div key={index} className="hover:bg-neutral-50 flex h-full flex-col overflow-hidden rounded border border-neutral-200 transition-all duration-200">
-              <button type="button" className="flex w-full items-center justify-between cursor-pointer px-4 py-4 min-h-[4.25rem]" onClick={() => handleToggle(index)}>
-                <span className="font-semibold leading-snug transition-colors duration-200">{faq.question}</span>
-                <ChevronDown className={`h-5 w-5 shrink-0 transition-transform duration-200 ${openIndex === index ? "rotate-180" : ""}`} />
-              </button>
-              <div className="px-4 transition-all duration-300 ease-out" style={{ height: openIndex === index ? "auto" : "0", paddingBottom: openIndex === index ? "1rem" : "0" }}>
-                <p className="leading-relaxed">{faq.answer}</p>
+    <section className="py-20 bg-white">
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          <div className="lg:pr-8 py-4">
+            <h2 className="text-4xl md:text-5xl font-medium text-black mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-lg">
+              Find quick answers to the most asked questions about <Link className="underline" target="_blank" href="https://docstar.io">DocStar.io</Link>
+            </p>
+          </div>
+          
+          <div className="flex flex-col">
+            {faqs?.map((faq, index) => (
+              <div key={index} className="border-b border-gray-200">
+                <button 
+                  type="button" 
+                  className="flex w-full items-start justify-between gap-4 py-4 text-left cursor-pointer group" 
+                  onClick={() => handleToggle(index)}
+                >
+                  <span className="font-medium text-black leading-relaxed pr-4">{faq.question}</span>
+                  <ChevronDown className={`h-5 w-5 shrink-0 text-gray-400 transition-transform duration-200 mt-1 ${openIndex === index ? "rotate-180" : "rotate-0"}`} />
+                </button>
+                <div 
+                  className="overflow-hidden transition-all duration-300 ease-in-out" 
+                  style={{ 
+                    maxHeight: openIndex === index ? "500px" : "0",
+                    opacity: openIndex === index ? "1" : "0"
+                  }}
+                >
+                  <p className="text-gray-600 leading-relaxed pb-6">{faq.answer}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

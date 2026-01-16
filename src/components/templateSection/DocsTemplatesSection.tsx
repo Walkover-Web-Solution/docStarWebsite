@@ -1,4 +1,4 @@
-import { FileText, Globe, Smile, GitBranch, Users } from "lucide-react";
+import { FileText, BarChart, List, Link as LinkIcon } from "lucide-react";
 import Link from "next/link";
 
 export default function DocsTemplatesSection() {
@@ -51,7 +51,7 @@ export default function DocsTemplatesSection() {
 
             <div className="grid md:grid-cols-2 gap-4">
               <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
-                <FileText className="w-8 h-8 text-gray-700 mb-4" />
+                <BarChart className="w-8 h-8 text-gray-700 mb-4" />
                 <h4 className="h4">Page Analytics</h4>
                 <p className="text-sm line-clamp-3">
                   Helps you understand how your documentation is performing. It
@@ -62,7 +62,7 @@ export default function DocsTemplatesSection() {
               </div>
 
               <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
-                <Globe className="w-8 h-8 text-gray-700 mb-4" />
+                <List className="w-8 h-8 text-gray-700 mb-4" />
                 <h4 className="h4">Table of content in public view</h4>
                 <p className="text-sm line-clamp-3">
                   Generates a structured outline for every public page. It helps
@@ -76,7 +76,7 @@ export default function DocsTemplatesSection() {
                 className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow"
                 style={{ gridColumn: "span 2" }}
               >
-                <Smile className="w-8 h-8 text-gray-700 mb-4" />
+                <LinkIcon className="w-8 h-8 text-gray-700 mb-4" />
                 <h4 className="h4">Edit via link</h4>
                 <p className="text-sm line-clamp-3">
                   Allows you to open a document directly in edit mode using a
