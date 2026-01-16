@@ -1,4 +1,4 @@
-import { FileText, Globe, Smile } from "lucide-react";
+import { BookOpen, Sparkles, Languages, Tag } from "lucide-react";
 import Link from "next/link";
 
 export default function BlogTemplateSection() {
@@ -13,7 +13,7 @@ export default function BlogTemplateSection() {
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded border border-gray-200">
               <div className="w-6 h-6 bg-black rounded flex items-center justify-center">
-                <FileText className="w-4 h-4 text-white" />
+                <BookOpen className="w-4 h-4 text-white" />
               </div>
               <span className="font-semibold text-gray-900">Blogs</span>
             </div>
@@ -46,7 +46,7 @@ export default function BlogTemplateSection() {
 
             <div className="grid md:grid-cols-2 gap-4">
               <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
-                <FileText className="w-8 h-8 text-gray-700 mb-4" />
+                <Sparkles className="w-8 h-8 text-gray-700 mb-4" />
                 <h4 className="h4">Turn Ideas Easily with AI</h4>
                 <p className="text-sm line-clamp-3">
                   Helps you generate well-structured, professional documents in
@@ -56,7 +56,7 @@ export default function BlogTemplateSection() {
               </div>
 
               <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
-                <Globe className="w-8 h-8 text-gray-700 mb-4" />
+                <Languages className="w-8 h-8 text-gray-700 mb-4" />
                 <h4 className="h4">Multi-Language Support</h4>
                 <p className="text-sm line-clamp-3">
                   Allows your platform to be used in different languages, making
@@ -68,7 +68,7 @@ export default function BlogTemplateSection() {
                 className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow"
                 style={{ gridColumn: "span 2" }}
               >
-                <Smile className="w-8 h-8 text-gray-700 mb-4" />
+                <Tag className="w-8 h-8 text-gray-700 mb-4" />
                 <h4 className="h4">Meta tags</h4>
                 <p className="text-sm line-clamp-3">
                   Meta Tags let you add SEO-friendly title, description, and
