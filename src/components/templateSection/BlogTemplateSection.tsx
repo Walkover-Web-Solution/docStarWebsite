@@ -83,7 +83,7 @@ export default function BlogTemplateSection() {
           {/* Right Content - Documentation Preview */}
           <div className="relative w-full h-full overflow-hidden">
             <img
-              src="/template-section-images/docstar-blogs.webp"
+              src="/template-section-images/blogs-img.png"
               alt="Documentation Interface Preview"
               className="w-full h-full object-cover object-left"
             />
