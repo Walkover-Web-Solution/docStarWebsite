@@ -15,3 +15,10 @@ export type HeroImage = {
     name: string;
     images: string[];
 };
+
+export type MetaItem = {
+  title: string;
+  description: string;
+  keywords: string[];
+  name: string;
+};

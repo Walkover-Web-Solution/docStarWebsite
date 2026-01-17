@@ -11,11 +11,11 @@ const Footer = () => {
         <div className="flex justify-between lg:flex-row flex-col gap-8 items-start">
           <div>
             <div className="flex items-center mb-2">
-              <Logo size="md" className="text-black" animated />
-              <span className="text-2xl font-bold text-black">DocStar</span>
+              <Logo size="md" className="text-black -ml-2" animated />
+              <span className="text-2xl -ml-2 font-bold text-black">DocStar</span>
             </div>
             <p className="text-gray-600 text-[#5e5e5e] mb-6 leading-relaxed max-w-[500px]">
-              © 2026 DocStar. All rights reserved. - Beautiful, fast, and reliable API Docs & FAQs built for teams.
+              © {new Date().getFullYear()} DocStar. All rights reserved. - Beautiful, fast, and reliable API Docs & FAQs built for teams.
               Transform your documentation with AI.<br />
               A product by{" "}
               <a
@@ -52,17 +52,29 @@ const Footer = () => {
             <div>
               <ul className="space-y-3">
                 <li className="font-semibold">Build with DocStar</li>
-                <li><Link href="https://developers.docstar.io/" target="_blank">API Doc</Link></li>
-                <li><Link href="https://docstar.io/help" target="_blank">Help Doc</Link></li>
-                <li><Link href="https://docstar.io/blogs" target="_blank">Blogs</Link></li>
+                <li><Link href="https://developers.docstar.io/" target="_blank" className="group relative inline-block">API Doc<div
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-neutral-900 transition-all duration-300 w-0 group-hover:w-full`}
+                  /></Link></li>
+                <li><Link href="https://docstar.io/help" target="_blank" className="group relative inline-block">Help Doc<div
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-neutral-900 transition-all duration-300 w-0 group-hover:w-full`}
+                  /></Link></li>
+                <li><Link href="https://docstar.io/blogs" target="_blank" className="group relative inline-block">Blogs<div
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-neutral-900 transition-all duration-300 w-0 group-hover:w-full`}
+                  /></Link></li>
               </ul>
             </div>
             <div>
               <ul className="space-y-3">
                 <li className="font-semibold">Company</li>
-                <li><Link href="/support" target="_blank">Contact Us</Link></li>
-                <li><Link href="/privacy-policy" target="_blank">Privacy Policy</Link></li>
-                <li><Link href="/data-retention-policy" target="_blank">Data Retention Policy</Link></li>
+                <li><Link href="/support" target="_blank" className="group relative inline-block">Contact Us<div
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-neutral-900 transition-all duration-300 w-0 group-hover:w-full`}
+                  /></Link></li>
+                <li><Link href="/privacy-policy" target="_blank" className="group relative inline-block">Privacy Policy<div
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-neutral-900 transition-all duration-300 w-0 group-hover:w-full`}
+                  /></Link></li>
+                <li><Link href="/data-retention-policy" target="_blank" className="group relative inline-block">Data Retention Policy<div
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-neutral-900 transition-all duration-300 w-0 group-hover:w-full`}
+                  /></Link></li>
               </ul>
             </div>
           </div>
@@ -72,16 +84,16 @@ const Footer = () => {
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 180">
             <defs>
               <linearGradient id="bottomFade" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#000" stop-opacity="0.1" />
-                <stop offset="65%" stop-color="#000" stop-opacity="0.1" />
-                <stop offset="100%" stop-color="#000" stop-opacity="0" />
+                <stop offset="0%" stopColor="#000" stopOpacity="0.2" />
+                <stop offset="65%" stopColor="#000" stopOpacity="0.2" />
+                <stop offset="100%" stopColor="#000" stopOpacity="0.1" />
               </linearGradient>
             </defs>
             <text x="50%" y="170"
-              text-anchor="middle"
-              font-family="Poppins, Arial, sans-serif"
-              font-weight="900"
-              font-size="120"
+              textAnchor="middle"
+              fontFamily="Poppins, Arial, sans-serif"
+              fontWeight="900"
+              fontSize="120"
               fill="url(#bottomFade)">
               DocStar.io
             </text>

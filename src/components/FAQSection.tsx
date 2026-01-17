@@ -41,13 +41,15 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
                   <ChevronDown className={`h-5 w-5 shrink-0 text-gray-400 transition-transform duration-200 mt-1 ${openIndex === index ? "rotate-180" : "rotate-0"}`} />
                 </button>
                 <div 
-                  className="overflow-hidden transition-all duration-300 ease-in-out" 
-                  style={{ 
-                    maxHeight: openIndex === index ? "500px" : "0",
-                    opacity: openIndex === index ? "1" : "0"
-                  }}
+                  className={`grid overflow-hidden transition-all duration-500 ease-in-out ${
+                    openIndex === index 
+                      ? "grid-rows-[1fr] opacity-100" 
+                      : "grid-rows-[0fr] opacity-0"
+                  }`}
                 >
-                  <p className="text-gray-600 leading-relaxed pb-6">{faq.answer}</p>
+                  <div className="min-h-0">
+                    <p className="text-gray-600 leading-relaxed pb-6">{faq.answer}</p>
+                  </div>
                 </div>
               </div>
             ))}
