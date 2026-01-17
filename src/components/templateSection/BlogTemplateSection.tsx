@@ -87,7 +87,7 @@ export default function BlogTemplateSection() {
               alt="Documentation Interface Preview"
               className="w-full h-full object-cover object-left"
             />
-            {/* <div className="absolute inset-0 bg-gradient-to-l from-white/60 via-white/30 via-40% to-transparent to-70% pointer-events-none"></div> */}
+            <div className="absolute inset-0 bg-gradient-to-l from-white/60 via-white/30 via-40% to-transparent to-70% pointer-events-none"></div>
           </div>
         </div>
       </div>

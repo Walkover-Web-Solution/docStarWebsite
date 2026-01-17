@@ -1,15 +1,29 @@
-import CTA from "@/components/CTA";
 import FAQSection from "@/components/FAQSection";
 import Hero from "@/components/homeSection/Hero";
 import { fetchFeatures } from "@/services/features.api";
 import { fetchHeroImages } from "@/services/hero-images.api";
 import { fetchFaqs } from "@/services/faqs.api";
-import { type Faq } from "@/types/data-types";
-import { type FeatureItem } from "@/types/data-types";
-import { type HeroImage } from "@/types/data-types";
+import { type FeatureItem, type MetaItem, type HeroImage, type Faq } from "@/types/data-types";
+import { fetchMeta } from "@/services/meta.api";
+import { generateSEOMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 export const runtime = "edge";
+
+export async function generateMetadata() {
+  let meta: MetaItem | null = null;
+
+  try {
+    meta = await fetchMeta("/");
+  } catch (error) {
+    console.error("[HomePage] Unable to load meta from API:", error);
+  }
+
+  return generateSEOMetadata({
+    meta,
+    pathname: "/",
+  });
+}
 
 export default async function HomePage() {
   let features: FeatureItem[] = [];
