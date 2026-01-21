@@ -5,16 +5,12 @@
 "use client";
 
 import { useInView } from "react-intersection-observer";
-import { ArrowRight, Sparkles, X } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import DocsTemplatesSection from "@/components/templateSection/DocsTemplatesSection";
-import BlogTemplateSection from "@/components/templateSection/BlogTemplateSection";
-import ApiTemplateSection from "@/components/templateSection/ApiTemplateSection";
 import MotionWrapper from "../motion/MotionDivWrapper";
 import ImageCarousel from "./ImageCarousel";
 import { HeroImage } from "@/types/data-types";
-import AppsMarquee from "../AppsMarquee";
-import APITemplateSection from "@/components/templateSection/ApiTemplateSection";
+import ContentSection from "../contentSection/ContentSection";
 
 interface HeroProps {
   heroImages: HeroImage[];
@@ -149,13 +145,7 @@ const Hero = ({ heroImages }: HeroProps) => {
           </div>
         </div>
       )}
-
-      <AppsMarquee />
-
-      {/* Lazy load heavy section */}
-      <DocsTemplatesSection />
-      <BlogTemplateSection />
-      <APITemplateSection />
+      <ContentSection />
     </>
   );
 };
