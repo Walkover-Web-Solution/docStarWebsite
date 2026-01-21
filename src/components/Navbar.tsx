@@ -149,7 +149,7 @@ const Navbar = () => {
         {/* Mobile Nav */}
         {isMobileMenuOpen && (
           <div className="md:hidden overflow-hidden">
-              <div className="px-2 pt-2 pb-3 space-y-1 backdrop-blur-md rounded-lg mt-2 shadow-lg theme-border" style={{ backgroundColor: 'rgba(255, 255, 255, 0.95)' }}>
+              <div className="px-2 pt-2 pb-3 space-y-1 backdrop-blur-md rounded-lg mt-2 shadow-lg theme-border theme-bg" style={{ opacity: 0.95 }}>
                 {dynamicNavItems.map((item, index) => {
                   const isAnchorLink = item.href.startsWith("#");
                   const isActiveLink =
@@ -186,7 +186,7 @@ const Navbar = () => {
                   </a>
                   <a
                     href="https://app.docstar.io/login"
-                    className="block px-6 py-2 rounded-lg font-medium shadow-lg text-center transition-colors duration-200 theme-badge"
+                    className="btn btn-primary block text-center"
                   >
                     Get Started Free
                   </a>

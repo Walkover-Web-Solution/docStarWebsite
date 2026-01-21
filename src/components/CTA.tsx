@@ -55,7 +55,7 @@ const CTA = () => {
             href="https://app.docstar.io/login"
             target="_blank"
             rel="noopener noreferrer"
-            className="group px-8 py-4 rounded-xl font-semibold text-lg shadow-2xl flex items-center theme-bg theme-text"
+            className="btn btn-primary flex items-center"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >

@@ -8,13 +8,13 @@ export const metadata = {
 }
 export default function WhiteLabelling() {
   return (
-    <div className='bg-white py-10'>
+    <div className='py-10'>
     <section
-      className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 mt-16 text-gray-800 scroll-mt-16 bg-white"
+      className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 mt-16 scroll-mt-16"
       id="white-labelling"
     >
       <article className="prose prose-sm sm:prose-base md:prose-lg lg:prose-xl prose-slate max-w-none">
-        <h1 className="text-4xl font-extrabold text-gray-900 mb-8 leading-tight">
+        <h1 className="text-4xl font-extrabold mb-8 leading-tight">
           How to white label your Techdoc Documentation for branding?
         </h1>
 
@@ -24,11 +24,11 @@ export default function WhiteLabelling() {
             addresses for your Techdoc.
           </p>
 
-          <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
+          <div className="border-l-4 p-4 rounded-r-lg theme-bg-secondary" style={{ borderColor: 'var(--app-border)' }}>
             <p className="mb-3">
               For example: Your DocStar documentation will be available on{" "}
               <a
-                className="text-blue-600 hover:underline font-medium break-all"
+                className="hover:underline font-medium break-all opacity-80"
                 href="https://docstar.io/{{folder_slug}}/{{article_slug}}"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -40,7 +40,7 @@ export default function WhiteLabelling() {
             <p>
               But if you want it to be present on your own domain like{" "}
               <a
-                className="text-blue-600 hover:underline font-medium"
+                className="hover:underline font-medium opacity-80"
                 href="http://thingsofbrand.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -53,7 +53,7 @@ export default function WhiteLabelling() {
         </div>
 
         <div className="mt-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 pb-3 border-b-2 border-blue-200">
+          <h2 className="text-3xl font-bold mb-8 pb-3 border-b-2" style={{ borderColor: 'var(--app-border)' }}>
             For Cloudflare:
           </h2>
 
@@ -71,20 +71,20 @@ export default function WhiteLabelling() {
 
           <div className="space-y-12">
             {/* Option A */}
-            <div className="bg-gray-50 rounded-lg p-8 border border-gray-200">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium mr-3">
+            <div className="rounded-lg p-8 theme-bg-secondary theme-border">
+              <h3 className="text-2xl font-bold mb-6 flex items-center">
+                <span className="px-3 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
                   Option A
                 </span>
                 Configure using subdomain
               </h3>
 
-              <div className="bg-white p-4 rounded-lg border border-gray-200 mb-6">
+              <div className="p-4 rounded-lg theme-border mb-6">
                 <p className="text-lg">
                   A subdomain is like a separate neighborhood on the internet.
                   Example:{" "}
                   <a
-                    className="text-blue-600 hover:underline font-medium"
+                    className="hover:underline font-medium opacity-80"
                     href="http://help.thingsofbrand.com"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -92,21 +92,21 @@ export default function WhiteLabelling() {
                     help.thingsofbrand.com
                   </a>{" "}
                   — here,{" "}
-                  <em className="bg-yellow-100 px-2 py-1 rounded">help</em> is
+                  <em className="px-2 py-1 rounded theme-bg-secondary">help</em> is
                   the subdomain.
                 </p>
               </div>
 
               <div className="space-y-8">
                 {/* Step 1 */}
-                <div className="border-l-4 border-green-400 pl-6">
-                  <h4 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm font-medium mr-3">
+                <div className="border-l-4 pl-6" style={{ borderColor: 'var(--app-border)' }}>
+                  <h4 className="text-xl font-semibold mb-4 flex items-center">
+                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
                       Step 1
                     </span>
                     Add domain in Techdoc settings
                   </h4>
-                  <p className="text-gray-700 mb-4">
+                  <p className="mb-4 opacity-80">
                     Add your full custom domain (including subdomain or
                     endpoint).
                   </p>
@@ -118,7 +118,7 @@ export default function WhiteLabelling() {
                         alt="Settings 1"
                         className="rounded-lg border-2 border-gray-200 shadow-md hover:shadow-lg transition-shadow duration-300"
                       />
-                      <p className="text-sm text-gray-600 text-center">
+                      <p className="text-sm text-center opacity-70">
                         Settings Configuration
                       </p>
                     </div>
@@ -128,7 +128,7 @@ export default function WhiteLabelling() {
                         alt="Settings 2"
                         className="rounded-lg border-2 border-gray-200 shadow-md hover:shadow-lg transition-shadow duration-300"
                       />
-                      <p className="text-sm text-gray-600 text-center">
+                      <p className="text-sm text-center opacity-70">
                         Domain Setup
                       </p>
                     </div>
@@ -136,16 +136,16 @@ export default function WhiteLabelling() {
                 </div>
 
                 {/* Step 2 */}
-                <div className="border-l-4 border-green-400 pl-6">
-                  <h4 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm font-medium mr-3">
+                <div className="border-l-4 pl-6" style={{ borderColor: 'var(--app-border)' }}>
+                  <h4 className="text-xl font-semibold mb-4 flex items-center">
+                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
                       Step 2
                     </span>
                     Create a CNAME record
                   </h4>
-                  <p className="text-gray-700 mb-4">
+                  <p className="mb-4 opacity-80">
                     In Cloudflare:{" "}
-                    <span className="bg-gray-100 px-2 py-1 rounded font-mono text-sm">
+                    <span className="px-2 py-1 rounded font-mono text-sm theme-bg-secondary">
                       DNS → Records → Add record
                     </span>
                   </p>
@@ -160,38 +160,38 @@ export default function WhiteLabelling() {
                 </div>
 
                 {/* Step 3 */}
-                <div className="border-l-4 border-green-400 pl-6">
-                  <h4 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm font-medium mr-3">
+                <div className="border-l-4 pl-6" style={{ borderColor: 'var(--app-border)' }}>
+                  <h4 className="text-xl font-semibold mb-4 flex items-center">
+                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
                       Step 3
                     </span>
                     Fill details
                   </h4>
 
-                  <div className="bg-white p-4 rounded-lg border border-gray-200 mb-4">
+                  <div className="p-4 rounded-lg theme-border mb-4">
                     <ul className="space-y-3">
                       <li className="flex items-start">
-                        <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-medium mr-3 mt-0.5">
+                        <span className="px-2 py-1 rounded text-sm font-medium mr-3 mt-0.5 theme-bg-secondary" style={{ opacity: 0.8 }}>
                           Type:
                         </span>
-                        <span className="font-mono bg-gray-100 px-2 py-1 rounded">
+                        <span className="font-mono px-2 py-1 rounded theme-bg-secondary">
                           CNAME
                         </span>
                       </li>
                       <li className="flex items-start">
-                        <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-medium mr-3 mt-0.5">
+                        <span className="px-2 py-1 rounded text-sm font-medium mr-3 mt-0.5 theme-bg-secondary" style={{ opacity: 0.8 }}>
                           Name:
                         </span>
                         <span>
                           your subdomain (e.g.,{" "}
-                          <code className="bg-gray-100 px-2 py-1 rounded">
+                          <code className="px-2 py-1 rounded theme-bg-secondary">
                             help
                           </code>
                           )
                         </span>
                       </li>
                       <li className="flex items-start">
-                        <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-medium mr-3 mt-0.5">
+                        <span className="px-2 py-1 rounded text-sm font-medium mr-3 mt-0.5 theme-bg-secondary" style={{ opacity: 0.8 }}>
                           Target:
                         </span>
                         <span>Techdoc or your custom domain endpoint</span>
@@ -209,19 +209,19 @@ export default function WhiteLabelling() {
             </div>
 
             {/* Option B */}
-            <div className="bg-gray-50 rounded-lg p-8 border border-gray-200">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium mr-3">
+            <div className="rounded-lg p-8 theme-bg-secondary theme-border">
+              <h3 className="text-2xl font-bold mb-6 flex items-center">
+                <span className="px-3 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
                   Option B
                 </span>
                 Configure using endpoint
               </h3>
 
-              <div className="bg-white p-4 rounded-lg border border-gray-200 mb-6">
+              <div className="p-4 rounded-lg theme-border mb-6">
                 <p className="text-lg">
                   Example:{" "}
                   <a
-                    className="text-blue-600 hover:underline font-medium"
+                    className="hover:underline font-medium opacity-80"
                     href="http://thingsofbrand.com/help"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -233,16 +233,16 @@ export default function WhiteLabelling() {
 
               <div className="space-y-8">
                 {/* Step 1 */}
-                <div className="border-l-4 border-purple-400 pl-6">
-                  <h4 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-sm font-medium mr-3">
+                <div className="border-l-4 pl-6" style={{ borderColor: 'var(--app-border)' }}>
+                  <h4 className="text-xl font-semibold mb-4 flex items-center">
+                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
                       Step 1
                     </span>
                     Add domain in Techdoc Configuration
                   </h4>
-                  <p className="text-gray-700">
+                  <p className="opacity-80">
                     Go to{" "}
-                    <span className="bg-gray-100 px-2 py-1 rounded font-mono text-sm">
+                    <span className="px-2 py-1 rounded font-mono text-sm theme-bg-secondary">
                       Configurations → Domain tab
                     </span>{" "}
                     and fill in your details.
@@ -250,9 +250,9 @@ export default function WhiteLabelling() {
                 </div>
 
                 {/* Step 2 */}
-                <div className="border-l-4 border-purple-400 pl-6">
-                  <h4 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-sm font-medium mr-3">
+                <div className="border-l-4 pl-6" style={{ borderColor: 'var(--app-border)' }}>
+                  <h4 className="text-xl font-semibold mb-4 flex items-center">
+                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
                       Step 2
                     </span>
                     Open Worker Routes
@@ -265,14 +265,14 @@ export default function WhiteLabelling() {
                 </div>
 
                 {/* Step 3 */}
-                <div className="border-l-4 border-purple-400 pl-6">
-                  <h4 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-sm font-medium mr-3">
+                <div className="border-l-4 pl-6" style={{ borderColor: 'var(--app-border)' }}>
+                  <h4 className="text-xl font-semibold mb-4 flex items-center">
+                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
                       Step 3
                     </span>
                     Manage Workers
                   </h4>
-                  <p className="text-gray-700 mb-4">
+                  <p className="mb-4 opacity-80">
                     Use Cloudflare Workers to apply custom logic at the DNS
                     level.
                   </p>
@@ -285,9 +285,9 @@ export default function WhiteLabelling() {
                 </div>
 
                 {/* Step 4 */}
-                <div className="border-l-4 border-purple-400 pl-6">
-                  <h4 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-sm font-medium mr-3">
+                <div className="border-l-4 pl-6" style={{ borderColor: 'var(--app-border)' }}>
+                  <h4 className="text-xl font-semibold mb-4 flex items-center">
+                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
                       Step 4
                     </span>
                     Create Application
@@ -300,9 +300,9 @@ export default function WhiteLabelling() {
                 </div>
 
                 {/* Step 5 */}
-                <div className="border-l-4 border-purple-400 pl-6">
-                  <h4 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-sm font-medium mr-3">
+                <div className="border-l-4 pl-6" style={{ borderColor: 'var(--app-border)' }}>
+                  <h4 className="text-xl font-semibold mb-4 flex items-center">
+                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
                       Step 5
                     </span>
                     Quick Edit your Worker
@@ -315,7 +315,7 @@ export default function WhiteLabelling() {
                         alt="Quick edit"
                         className="rounded-lg border-2 border-gray-200 shadow-md hover:shadow-lg transition-shadow duration-300"
                       />
-                      <p className="text-sm text-gray-600 text-center">
+                      <p className="text-sm text-center opacity-70">
                         Quick Edit Interface
                       </p>
                     </div>
@@ -325,7 +325,7 @@ export default function WhiteLabelling() {
                         alt="Worker file"
                         className="rounded-lg border-2 border-gray-200 shadow-md hover:shadow-lg transition-shadow duration-300"
                       />
-                      <p className="text-sm text-gray-600 text-center">
+                      <p className="text-sm text-center opacity-70">
                         Worker File Structure
                       </p>
                     </div>
@@ -333,15 +333,15 @@ export default function WhiteLabelling() {
                 </div>
 
                 {/* Step 6 */}
-                <div className="border-l-4 border-purple-400 pl-6">
-                  <h4 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-sm font-medium mr-3">
+                <div className="border-l-4 pl-6" style={{ borderColor: 'var(--app-border)' }}>
+                  <h4 className="text-xl font-semibold mb-4 flex items-center">
+                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
                       Step 6
                     </span>
                     Paste this code
                   </h4>
 
-                  <div className="bg-gray-900 text-green-400 p-6 rounded-lg overflow-x-auto text-sm leading-relaxed shadow-lg border border-gray-700">
+                  <div className="p-6 rounded-lg overflow-x-auto text-sm leading-relaxed shadow-lg theme-bg-secondary theme-border" style={{ opacity: 0.95 }}>
                     <pre className="whitespace-pre-wrap">
                       <code>{`addEventListener('fetch', event => {
   const url = new URL(event.request.url);
@@ -395,12 +395,12 @@ async function handleFaqPath(event, url) {
                     </pre>
                   </div>
 
-                  <div className="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
-                    <h5 className="font-semibold text-amber-800 mb-3 flex items-center">
-                      <span className="text-amber-600 mr-2">⚙️</span>
+                  <div className="mt-6 rounded-lg p-4 theme-bg-secondary theme-border">
+                    <h5 className="font-semibold mb-3 flex items-center">
+                      <span className="mr-2 opacity-80">⚙️</span>
                       Variable Reference
                     </h5>
-                    <ul className="space-y-2 text-amber-900 text-sm">
+                    <ul className="space-y-2 text-sm opacity-80">
                       <li>
                         <strong>your_endpoint</strong> → your endpoint path
                       </li>

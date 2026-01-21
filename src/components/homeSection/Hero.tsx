@@ -125,8 +125,7 @@ const Hero = ({ heroImages }: HeroProps) => {
 
       {showScheduler && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm px-4"
-          style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }}
+          className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm px-4 theme-overlay-light"
           onClick={closeScheduler}
         >
           <div
@@ -136,7 +135,7 @@ const Hero = ({ heroImages }: HeroProps) => {
             <button
               type="button"
               onClick={closeScheduler}
-              className="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded transition focus:outline-none focus-visible:ring-2 bg-white/10"
+              className="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded transition focus:outline-none focus-visible:ring-2 theme-bg-secondary"
               aria-label="Close scheduler"
             >
               <X className="h-5 w-5" />

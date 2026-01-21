@@ -103,7 +103,7 @@ export default async function PricingPage() {
           </p>
         </div>
 
-        <div className="mt-14 rounded p-6 sm:p-10 shadow-sm theme-bg theme-border-text">
+        <div className="mt-14 rounded p-6 sm:p-10 shadow-sm theme-bg">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-2xl font-semibold">
               Everything you need in the Free plan
@@ -148,7 +148,7 @@ export default async function PricingPage() {
           {paidPlans.map((plan) => (
             <article
               key={plan.title}
-              className={`flex h-full flex-col justify-between rounded p-8 shadow-sm transition-shadow duration-200 hover:shadow-lg theme-bg ${plan.highlight ? 'theme-border-text' : 'theme-border'}`}
+              className={`flex h-full flex-col justify-between rounded p-8 shadow-sm transition-shadow duration-200 hover:shadow-lg theme-bg ${plan.highlight ? 'border' : 'theme-border'}`}
             >
               <div>
                 <div className="flex items-center gap-3">

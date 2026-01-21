@@ -29,7 +29,7 @@ const items: FeatureItem[] = [
   {
     id: 1,
     text: "Centralized Knowledge Base",
-    barClass: "bg-rose-300/60",
+    barClass: "theme-bg-secondary opacity-60",
     image: {
       src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/nJnoRrQ__W6d/793987ab-3a39-46bb-84ac-00b323d4f742_ChatGPT%20Image%20Sep%206,%202025,%2004_16_38%20PM_compressed.png",
       alt: "Knowledge base with tags",
@@ -39,7 +39,7 @@ const items: FeatureItem[] = [
   {
     id: 2,
     text: "Create API Documentation Easily",
-    barClass: "bg-amber-300/70",
+    barClass: "theme-bg-secondary opacity-70",
     image: {
       src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/nJnoRrQ__W6d/983e3386-8d33-4f0f-8f0c-1253245613a7_ChatGPT%20Image%20Sep%206,%202025,%2003_12_17%20PM_compressed.png",
       alt: "Automated reminders dashboard",
@@ -49,7 +49,7 @@ const items: FeatureItem[] = [
   {
     id: 3,
     text: "Publish Engaging Blogs to Grow Your Presence",
-    barClass: "bg-rose-300/80",
+    barClass: "theme-bg-secondary opacity-80",
     image: {
       src: "https://storage.googleapis.com/techdoc.walkover.in/JnRXY3eKEu4Y/nJnoRrQ__W6d/b9bc61b1-92bf-43d7-92cb-8076ac20bb45_ChatGPT%20Image%20Sep%206,%202025,%2003_09_27%20PM_compressed.png",
       alt: "AI suggestions panel",
@@ -122,21 +122,12 @@ export default function Feature({ autoCycle = false, cycleMs = 4500 }: Props) {
                     />
                     <div className="flex flex-1 items-center gap-3">
                       <span className="flex-1 leading-relaxed text-lg sm:text-xl">{item.text}</span>
-                      {/* <div className="relative hidden h-12 w-16 overflow-hidden rounded-lg border border-rose-100 bg-white/70 opacity-0 transition duration-200 group-hover:opacity-100 group-hover:translate-x-1 sm:block">
-                        <Image
-                          src={item.image.src}
-                          alt={item.image.alt}
-                          fill
-                          sizes="64px"
-                          className="object-cover"
-                        />
-                      </div> */}
                       <span
                         className={[
                           "ml-auto flex h-8 w-8 items-center justify-center rounded-full border transition-colors",
                           isActive
-                            ? "border-rose-300 bg-rose-100 text-rose-600"
-                            : "border-slate-200 text-slate-400 group-hover:border-rose-200 group-hover:text-rose-500",
+                            ? "theme-border theme-bg-secondary opacity-80"
+                            : "theme-border opacity-60",
                         ].join(" ")}
                         aria-hidden
                       >
@@ -153,7 +144,7 @@ export default function Feature({ autoCycle = false, cycleMs = 4500 }: Props) {
         {/* Right: Images + progress pill */}
         <div className="flex items-center">
           <div className="w-full space-y-6">
-            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl bg-rose-100 shadow-sm" style={{ height: "340px" }}>
+            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl theme-bg-secondary shadow-sm" style={{ height: "340px" }}>
               {/* Smoothly transition between screenshots as the active feature changes. */}
               <AnimatePresence initial={false} mode="wait">
                 <MotionWrapper
@@ -176,9 +167,9 @@ export default function Feature({ autoCycle = false, cycleMs = 4500 }: Props) {
             </div>
 
             {/* Progress bar */}
-            <div className="h-4 w-full rounded-full bg-rose-100">
+            <div className="h-4 w-full rounded-full theme-bg-secondary opacity-40">
               <MotionWrapper
-                className="h-4 rounded-full bg-rose-300"
+                className="h-4 rounded-full theme-bg-secondary"
                 style={{ width: `${progressPct}%` }}
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               />
