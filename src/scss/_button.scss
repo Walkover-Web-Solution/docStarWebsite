@@ -3,21 +3,26 @@
 }
 
 .btn-primary {
-  @apply bg-black text-white border border-black;
+  background-color: var(--app-text);
+  color: var(--app-bg);
+  border: 1px solid var(--app-text);
 }
 
 .btn-outline {
-  @apply border border-black text-black;
+  border: 1px solid var(--app-text);
+  color: var(--app-text);
+  background-color: transparent;
 }
 
 .btn-primary:hover {
-  @apply bg-neutral-800;
+  opacity: 0.85;
 }
 
 .btn-outline:hover {
-  @apply bg-black text-white;
+  background-color: var(--app-text);
+  color: var(--app-bg);
 }
 
 .custom-border {
-  @apply border-gray-400;
+  border: 1px solid var(--app-border);
 }

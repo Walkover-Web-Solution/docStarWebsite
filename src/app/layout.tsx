@@ -3,6 +3,7 @@ import "../scss/_import.scss";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import ThemeScript from "@/components/ThemeScript";
 
 export const runtime = "edge";
 
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
+        <ThemeScript />
         <Navbar />
         <ScrollToTop />
         {children}

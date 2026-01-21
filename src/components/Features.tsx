@@ -87,12 +87,12 @@ export default function Feature({ autoCycle = false, cycleMs = 4500 }: Props) {
   const progressPct = ((active + 1) / items.length) * 100
 
   return (
-    <section className="w-full bg-white">
+    <section className="w-full">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-16 md:grid-cols-2 md:gap-16 md:py-24 lg:px-12">
         
         {/* Left: Title + Features */}
         <div className="max-w-2xl flex flex-col">
-          <h2 className="text-pretty text-3xl font-semibold leading-tight text-slate-900 md:text-4xl">
+          <h2 className="text-pretty text-3xl font-semibold leading-tight md:text-4xl">
             Minimal Documentation platform.
           </h2>
 
@@ -108,8 +108,8 @@ export default function Feature({ autoCycle = false, cycleMs = 4500 }: Props) {
                     className={[
                       "group flex w-full items-center gap-3 rounded-xl border px-4 py-3 text-left transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/70",
                       isActive
-                        ? "bg-white/70 border-rose-200 shadow-sm text-slate-900"
-                        : "border-transparent text-slate-600 hover:text-slate-900 hover:bg-white/60 hover:border-rose-100 hover:shadow-sm",
+                        ? "shadow-sm"
+                        : "border-transparent hover:shadow-sm",
                     ].join(" ")}
                   >
                     <span
