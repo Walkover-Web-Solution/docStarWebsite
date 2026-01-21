@@ -72,7 +72,7 @@ const AppsMarquee = () => {
                                 height={36}
                                 className={`object-contain grayscale opacity-80`}
                             />
-                            <p className="text-center font-medium text-xl text-gray-500">{app.name}</p>
+                            <p className="text-center font-medium text-xl opacity-70">{app.name}</p>
                         </div>
                     ))}
                 </div>

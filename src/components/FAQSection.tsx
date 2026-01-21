@@ -17,11 +17,11 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
   }
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           <div className="lg:pr-8 py-4">
-            <h2 className="text-4xl md:text-5xl font-medium text-black mb-4">
+            <h2 className="text-4xl md:text-5xl font-medium mb-4">
               Frequently Asked Questions
             </h2>
             <p className="text-lg">
@@ -31,14 +31,14 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
           
           <div className="flex flex-col">
             {faqs?.map((faq, index) => (
-              <div key={index} className="border-b border-gray-200">
+              <div key={index} className="border-b theme-border">
                 <button 
                   type="button" 
                   className="flex w-full items-start justify-between gap-4 py-4 text-left cursor-pointer group" 
                   onClick={() => handleToggle(index)}
                 >
-                  <span className="font-medium text-black leading-relaxed pr-4">{faq.question}</span>
-                  <ChevronDown className={`h-5 w-5 shrink-0 text-gray-400 transition-transform duration-200 mt-1 ${openIndex === index ? "rotate-180" : "rotate-0"}`} />
+                  <span className="font-medium leading-relaxed pr-4">{faq.question}</span>
+                  <ChevronDown className={`h-5 w-5 shrink-0 transition-transform duration-200 mt-1 opacity-60 ${openIndex === index ? "rotate-180" : "rotate-0"}`} />
                 </button>
                 <div 
                   className={`grid overflow-hidden transition-all duration-500 ease-in-out ${
@@ -48,7 +48,7 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
                   }`}
                 >
                   <div className="min-h-0">
-                    <p className="text-gray-600 leading-relaxed pb-6">{faq.answer}</p>
+                    <p className="leading-relaxed pb-6 opacity-80">{faq.answer}</p>
                   </div>
                 </div>
               </div>
