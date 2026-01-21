@@ -14,37 +14,37 @@ const customers: Customer[] = [
   {
     name: "Giddh",
     logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM6Y55TrI7VBC8N2Ur1wMR3LEccw1q3ZO7Kw&s",
-    color: "from-black to-gray-700",
+    color: "",
     link: "https://giddh.com/api/",
   },
   {
     name: "viaSocket",
     logo: "https://cdn-1.webcatalog.io/catalog/viasocket/viasocket-icon-filled-256.png?v=1714777446463",
-    color: "from-gray-800 to-black",
+    color: "",
     link: "https://viasocket.com/faq",
   },
   {
     name: "Okfit",
     logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN-spTyfqWAW-laM6_nEs2-5ntUdmL_Tf1UA&s",
-    color: "from-gray-600 to-gray-800",
+    color: "",
     link: "https://help.okfit.in/",
   },
   {
     name: "MSG91",
     logo: "https://cdn.shopify.com/app-store/listing_images/1b7a23964d664a267ed7cbf3339a7589/icon/CJ75uLzOi_gCEAE=.jpeg",
-    color: "from-black to-gray-600",
+    color: "",
     link: "https://docs.msg91.com/",
   },
   {
     name: "Walkover",
     logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0rNNFIitwuJt_wr7keKdgUXE5Cqo4REbnJbuWZu0U5INc2QdNjhZSZIxyOeWWczxj5As&usqp=CAU",
-    color: "from-gray-700 to-black",
+    color: "",
     link: "https://walkover.in/",
   },
   {
     name: "GTWY AI",
     logo: "https://thingsofbrand.com/api/icon/gtwy.ai",
-    color: "from-gray-700 to-black",
+    color: "",
     link: "https://gtwy.ai/blogs",
   },
 ]

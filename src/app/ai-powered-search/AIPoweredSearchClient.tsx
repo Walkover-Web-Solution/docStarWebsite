@@ -92,15 +92,15 @@ export const AIPoweredSearchClient = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <MotionWrapper
-        className="py-20 relative overflow-hidden bg-gradient-to-tr from-rose-100 to-pink-500 text-white"
+        className="py-20 relative overflow-hidden theme-bg-secondary"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }}></div>
         <div className="relative max-w-6xl mx-auto px-6 py-20 text-center">
           <MotionWrapper
             className="text-5xl md:text-7xl font-bold mb-6 text-balance"
@@ -108,11 +108,11 @@ export const AIPoweredSearchClient = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            AI-Powered <span className="text-black/70">Search</span>
+            AI-Powered <span className="opacity-70">Search</span>
           </MotionWrapper>
 
           <MotionWrapper
-            className="text-xl md:text-2xl mb-12 text-purple-100 max-w-4xl mx-auto text-pretty"
+            className="text-xl md:text-2xl mb-12 max-w-4xl mx-auto text-pretty opacity-80"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -122,7 +122,7 @@ export const AIPoweredSearchClient = () => {
 
           <MotionWrapper
             as="button"
-            className="text-lg rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm border border-white/40 font-semibold px-6 py-3 cursor-pointer"
+            className="btn btn-primary mx-auto w-fit"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => window.open("https://app.docstar.io/login")}
@@ -134,7 +134,7 @@ export const AIPoweredSearchClient = () => {
 
       {/* Why AI-Powered Search Matters Section */}
       <MotionWrapper
-        className="py-20 bg-white"
+        className="py-20"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -142,14 +142,14 @@ export const AIPoweredSearchClient = () => {
       >
         <div className="max-w-6xl mx-auto px-6">
           <MotionWrapper
-            className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900"
+            className="text-4xl md:text-5xl font-bold text-center mb-16"
             variants={itemVariants}
           >
             Why AI-Powered Search Matters
           </MotionWrapper>
 
           <MotionWrapper
-            className="text-xl text-center mb-12 text-gray-700 max-w-4xl mx-auto"
+            className="text-xl text-center mb-12 max-w-4xl mx-auto opacity-80"
             variants={itemVariants}
           >
             Traditional search tools often overwhelm users with irrelevant results. DocStar's AI-driven search solves
@@ -160,13 +160,13 @@ export const AIPoweredSearchClient = () => {
             {whyMatters.map((item, index) => (
               <MotionWrapper
                 key={index}
-                className="flex items-start space-x-4 p-6 rounded-2xl bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-100"
+                className="flex items-start space-x-4 p-6 rounded-2xl theme-bg-secondary theme-border"
                 variants={itemVariants}
               >
-                <div className="w-2 h-2 bg-purple-500 rounded-full mt-3 flex-shrink-0"></div>
+                <div className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80" style={{ backgroundColor: 'var(--app-text)' }}></div>
                 <div>
-                  <h3 className="text-xl font-semibold text-purple-900 mb-2">{item.title}</h3>
-                  <p className="text-gray-700">{item.description}</p>
+                  <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                  <p className="opacity-80">{item.description}</p>
                 </div>
               </MotionWrapper>
             ))}
@@ -176,7 +176,7 @@ export const AIPoweredSearchClient = () => {
 
       {/* Key Features Section */}
       <MotionWrapper
-        className="py-20 bg-gray-50"
+        className="py-20 theme-bg-secondary"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -184,7 +184,7 @@ export const AIPoweredSearchClient = () => {
       >
         <div className="max-w-6xl mx-auto px-6">
           <MotionWrapper
-            className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900"
+            className="text-4xl md:text-5xl font-bold text-center mb-16"
             variants={itemVariants}
           >
             Key Features of DocStar's AI Search
@@ -194,15 +194,15 @@ export const AIPoweredSearchClient = () => {
             {features.map((feature, index) => (
               <MotionWrapper
                 key={index}
-                className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm theme-bg theme-border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
-                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4 text-purple-600">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 theme-bg-secondary opacity-80">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+                <p className="opacity-80">{feature.description}</p>
               </MotionWrapper>
             ))}
           </div>
@@ -211,7 +211,7 @@ export const AIPoweredSearchClient = () => {
 
       {/* Benefits Section */}
       <MotionWrapper
-        className="py-20 bg-white"
+        className="py-20"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -219,7 +219,7 @@ export const AIPoweredSearchClient = () => {
       >
         <div className="max-w-6xl mx-auto px-6">
           <MotionWrapper
-            className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900"
+            className="text-4xl md:text-5xl font-bold text-center mb-16"
             variants={itemVariants}
           >
             Benefits for Your Users and Teams
@@ -229,27 +229,27 @@ export const AIPoweredSearchClient = () => {
             {benefits.map((benefit, index) => (
               <MotionWrapper
                 key={index}
-                className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm theme-bg theme-border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
                 <div className="flex items-center mb-4">
-                  <CheckCircle className="w-6 h-6 text-green-500 mr-3" />
-                  <h3 className="text-xl font-semibold text-gray-900">{benefit.title}</h3>
+                  <CheckCircle className="w-6 h-6 mr-3 opacity-80" />
+                  <h3 className="text-xl font-semibold">{benefit.title}</h3>
                 </div>
-                <p className="text-gray-600">{benefit.description}</p>
+                <p className="opacity-80">{benefit.description}</p>
               </MotionWrapper>
             ))}
           </div>
 
           <MotionWrapper
-            className="mt-16 text-center bg-gradient-to-r from-purple-50 to-pink-50 p-8 rounded-2xl border border-purple-100"
+            className="mt-16 text-center p-8 rounded-2xl theme-bg-secondary theme-border"
             variants={itemVariants}
           >
-            <h3 className="text-2xl font-bold text-purple-900 mb-4">
+            <h3 className="text-2xl font-bold mb-4">
               Transform Search Into a Competitive Advantage
             </h3>
-            <p className="text-xl text-gray-800">
+            <p className="text-xl opacity-90">
               With AI-powered search, DocStar turns documentation into a true knowledge hub—where answers are always
               within reach. Whether you're supporting global customers, onboarding developers, or streamlining internal
               workflows, DocStar ensures your users never waste time hunting for information.
@@ -260,13 +260,13 @@ export const AIPoweredSearchClient = () => {
 
       {/* Final CTA Section */}
       <MotionWrapper
-        className="py-20 bg-rose-100 text-white text-center"
+        className="py-20 theme-bg-secondary text-center"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <div className="max-w-4xl mx-auto px-6 text-black/70">
+        <div className="max-w-4xl mx-auto px-6 opacity-80">
           <MotionWrapper
             className="text-4xl md:text-5xl font-bold mb-6 text-balance"
             initial={{ opacity: 0, y: 30 }}
@@ -291,7 +291,7 @@ export const AIPoweredSearchClient = () => {
 
           <MotionWrapper
             as="button"
-            className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-black/70 hover:text-white transition-colors duration-300 shadow-lg cursor-pointer"
+            className="btn btn-outline mx-auto w-fit"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => window.open("https://app.docstar.io/login")}
