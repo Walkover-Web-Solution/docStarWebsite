@@ -11,14 +11,16 @@ import MotionWrapper from "../motion/MotionDivWrapper";
 import ImageCarousel from "./ImageCarousel";
 import { HeroImage } from "@/types/data-types";
 import ContentSection from "../contentSection/ContentSection";
+import { TestimonialItem } from "@/types/data-types";
 
 interface HeroProps {
   heroImages: HeroImage[];
+  testimonials: TestimonialItem[];
 }
 /**
  * Landing hero that introduces DocStar, showcases key value props, and provides CTAs for signup or demos.
  */
-const Hero = ({ heroImages }: HeroProps) => {
+const Hero = ({ heroImages, testimonials }: HeroProps) => {
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
@@ -145,7 +147,7 @@ const Hero = ({ heroImages }: HeroProps) => {
           </div>
         </div>
       )}
-      <ContentSection />
+      <ContentSection testimonials={testimonials} />
     </>
   );
 };

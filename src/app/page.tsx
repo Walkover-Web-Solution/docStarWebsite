@@ -3,7 +3,8 @@ import Hero from "@/components/homeSection/Hero";
 import { fetchFeatures } from "@/services/features.api";
 import { fetchHeroImages } from "@/services/hero-images.api";
 import { fetchFaqs } from "@/services/faqs.api";
-import { type FeatureItem, type MetaItem, type HeroImage, type Faq } from "@/types/data-types";
+import { fetchTestimonials } from "@/services/testimonials.api";
+import { type FeatureItem, type MetaItem, type HeroImage, type Faq, type TestimonialItem } from "@/types/data-types";
 import { fetchMeta } from "@/services/meta.api";
 import { generateSEOMetadata } from "@/lib/seo";
 
@@ -56,9 +57,17 @@ export default async function HomePage() {
     console.error("[HomePage] Unable to load faqs from API:", error);
   }
 
+let testimonials: TestimonialItem[] = [];
+try {
+  testimonials = await fetchTestimonials();
+} catch (error) {
+  console.error("[HomePage] Unable to load testimonials from API:", error);
+}
+
+
   return (
     <>
-      <Hero heroImages={heroImages} />
+      <Hero heroImages={heroImages} testimonials={testimonials} />
       <FAQSection faqs={faqs} />
     </>
   );
