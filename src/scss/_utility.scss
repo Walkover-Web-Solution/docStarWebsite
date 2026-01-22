@@ -22,7 +22,11 @@
   color: var(--app-text);
 }
 
-.theme-border {
+.border {
+  border: 1px solid var(--app-border) !important;
+}
+
+.border-color {
   border-color: var(--app-border);
 }
 
@@ -37,4 +41,8 @@
 .theme-badge {
   background-color: var(--app-text);
   color: var(--app-bg);
+}
+
+.theme-underline {
+  background-color: var(--app-text);
 }

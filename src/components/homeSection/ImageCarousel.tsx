@@ -149,7 +149,7 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
             }}
             className={`
               h-2.5 w-2.5 rounded-full transition-all
-              ${index === activeIndex ? "scale-110" : "opacity-50"} theme-bg
+              ${index === activeIndex ? "scale-110" : "opacity-50"} theme-badge
             `}
             aria-label={`Go to slide ${index + 1}`}
           />

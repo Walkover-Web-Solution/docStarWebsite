@@ -103,7 +103,7 @@ export const Pricing: React.FC = () => {
         {plans.map((plan, index) => (
           <div
             key={index}
-            className="rounded-2xl shadow-md p-6 transition-all duration-300 ease-in-out hover:shadow-xl theme-bg theme-border"
+            className="rounded-2xl shadow-md p-6 transition-all duration-300 ease-in-out hover:shadow-xl theme-bg border"
           >
             <h3 className="text-2xl font-semibold">
               {plan.title}
@@ -143,7 +143,7 @@ export const Pricing: React.FC = () => {
                   {plan.integrations.map((icon, i) => (
                     <span
                       key={i}
-                      className="px-2 py-1 rounded-md theme-bg-secondary theme-border"
+                      className="px-2 py-1 rounded-md theme-bg-secondary border"
                     >
                       {icon}
                     </span>

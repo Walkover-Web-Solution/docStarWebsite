@@ -154,7 +154,7 @@ export const SsoAuthentication = () => {
           </MotionWrapper>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <MotionWrapper className="text-center p-6 rounded-2xl theme-bg-secondary theme-border" variants={itemVariants}>
+            <MotionWrapper className="text-center p-6 rounded-2xl theme-bg-secondary border" variants={itemVariants}>
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 theme-bg-secondary">
                 <Lock className="w-8 h-8 opacity-80" />
               </div>
@@ -164,7 +164,7 @@ export const SsoAuthentication = () => {
             </MotionWrapper>
 
             <MotionWrapper
-              className="text-center p-6 rounded-2xl theme-bg-secondary theme-border"
+              className="text-center p-6 rounded-2xl theme-bg-secondary border"
               variants={itemVariants}
             >
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 theme-bg-secondary">
@@ -176,7 +176,7 @@ export const SsoAuthentication = () => {
             </MotionWrapper>
 
             <MotionWrapper
-              className="text-center p-6 rounded-2xl theme-bg-secondary theme-border"
+              className="text-center p-6 rounded-2xl theme-bg-secondary border"
               variants={itemVariants}
             >
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 theme-bg-secondary">
@@ -189,7 +189,7 @@ export const SsoAuthentication = () => {
           </div>
 
           <MotionWrapper
-            className="mt-16 text-center p-8 rounded-2xl theme-bg-secondary theme-border"
+            className="mt-16 text-center p-8 rounded-2xl theme-bg-secondary border"
             variants={itemVariants}
           >
             <p className="text-xl font-medium opacity-90">
@@ -217,7 +217,7 @@ export const SsoAuthentication = () => {
             {benefits.map((benefit, index) => (
               <MotionWrapper
                 key={index}
-                className="p-6 rounded-2xl shadow-sm theme-bg theme-border hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
@@ -254,7 +254,7 @@ export const SsoAuthentication = () => {
             {whyChoose.map((item, index) => (
               <MotionWrapper
                 key={index}
-                className="flex items-start space-x-4 p-6 rounded-2xl theme-bg-secondary theme-border"
+                className="flex items-start space-x-4 p-6 rounded-2xl theme-bg-secondary border"
                 variants={itemVariants}
               >
                 <div className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80" style={{ backgroundColor: 'var(--app-text)' }}></div>
@@ -285,7 +285,7 @@ export const SsoAuthentication = () => {
             {features.map((feature, index) => (
               <MotionWrapper
                 key={index}
-                className="text-center p-6 rounded-2xl shadow-sm theme-bg theme-border"
+                className="text-center p-6 rounded-2xl shadow-sm theme-bg border"
                 variants={itemVariants}
                 whileHover={{ scale: 1.05 }}
               >

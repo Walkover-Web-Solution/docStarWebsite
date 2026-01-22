@@ -221,7 +221,7 @@ const EmbedEditorPageClient: React.FC = () => {
         viewport={{ once: true }}
         className="px-6 py-16 max-w-4xl mx-auto"
       >
-        <div className="rounded-2xl p-8 shadow-2xl theme-bg theme-border">
+        <div className="rounded-2xl p-8 shadow-2xl theme-bg border">
           <div className="flex items-center mb-4">
             <div className="flex space-x-2">
               <div className="w-3 h-3 rounded-full opacity-40" style={{ backgroundColor: 'var(--app-text)' }}></div>
@@ -273,7 +273,7 @@ const EmbedEditorPageClient: React.FC = () => {
             <MotionWrapper
               key={index}
               variants={fadeInUp}
-              className="p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow theme-bg theme-border"
+              className="p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow theme-bg border"
             >
               <feature.icon className="h-12 w-12 mb-6 opacity-80" />
               <h3 className="text-2xl font-bold mb-4">{feature.title}</h3>
@@ -345,7 +345,7 @@ const EmbedEditorPageClient: React.FC = () => {
               x: { type: "spring", stiffness: 150, damping: 30 },
               y: { type: "spring", stiffness: 150, damping: 30 },
             }}
-            className="absolute pointer-events-none z-10 flex items-center space-x-2 backdrop-blur-sm px-3 py-2 rounded-full shadow-lg theme-bg theme-border"
+            className="absolute pointer-events-none z-10 flex items-center space-x-2 backdrop-blur-sm px-3 py-2 rounded-full shadow-lg theme-bg border"
             style={{ left: 0, top: 0 }}
           >
             <div className="w-3 h-3 rounded-full animate-pulse opacity-80" style={{ backgroundColor: 'var(--app-text)' }}></div>
@@ -362,7 +362,7 @@ const EmbedEditorPageClient: React.FC = () => {
               className="relative"
             >
               {/* Mock Document */}
-              <div className="rounded-lg shadow-xl p-6 relative overflow-hidden theme-bg theme-border">
+              <div className="rounded-lg shadow-xl p-6 relative overflow-hidden theme-bg border">
                 {/* Document Header */}
                 <div className="flex items-center justify-between mb-4 pb-3 border-b opacity-20" style={{ borderColor: 'var(--app-border)' }}>
                   <div className="flex items-center space-x-2">
@@ -466,7 +466,7 @@ const EmbedEditorPageClient: React.FC = () => {
       </MotionWrapper>
 
       {/* Footer */}
-      <footer className="px-6 py-12 border-t theme-border">
+      <footer className="px-6 py-12 border-t border">
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <CodeBracketIcon className="h-8 w-8 opacity-80" />

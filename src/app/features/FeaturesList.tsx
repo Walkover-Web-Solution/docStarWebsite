@@ -57,22 +57,22 @@ const FeaturesList = ({ features }: { features: FeatureItem[] }) => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.4, delay: (index % 3) * 0.08 }}
                                 viewport={{ once: true, margin: "-50px" }}
-                                className="relative flex h-full flex-col overflow-hidden shadow-sm theme-bg theme-border"
+                                className="relative flex h-full flex-col overflow-hidden shadow-sm theme-bg border transition-all duration-300 group-hover:shadow-lg group-hover:-translate-y-1 group-hover:border-opacity-60 dark:group-hover:shadow-white/5"
                             >
 
                                 <div className="flex flex-1 flex-col gap-5 p-6 sm:p-8">
                                     <div className="flex items-center gap-3">
-                                        <span className="inline-flex h-11 w-11 items-center justify-center rounded-full shadow-sm ring-1 ring-inset theme-bg opacity-90">
-                                            <Icon className="h-5 w-5 opacity-80" />
+                                        <span className="inline-flex h-11 w-11 items-center justify-center rounded-full shadow-sm ring-1 ring-inset theme-bg opacity-90 transition-all duration-300 group-hover:scale-110 group-hover:opacity-100">
+                                            <Icon className="h-5 w-5 opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
                                         </span>
                                         <h3 className="text-lg font-semibold sm:text-xl">{feature.name}</h3>
                                     </div>
 
                                     <p className="text-sm leading-relaxed sm:text-base opacity-80">{feature.description}</p>
 
-                                    <div className="mt-auto pt-2 inline-flex items-center gap-2 text-sm font-semibold transition-colors">
+                                    <div className="mt-auto pt-2 inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 group-hover:gap-3">
                                         Learn more
-                                        <ChevronRight className="h-4 w-4" />
+                                        <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                                     </div>
                                 </div>
                             </MotionWrapper>

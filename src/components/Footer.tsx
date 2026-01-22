@@ -33,7 +33,7 @@ const Footer = () => {
                 title="Email"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-all duration-300 p-2.5 rounded-lg theme-border opacity-70"
+                className="transition-all duration-300 p-2.5 rounded-lg border opacity-70"
               >
                 <Mail className="h-4 w-4" />
               </a>
@@ -41,7 +41,7 @@ const Footer = () => {
                 href="https://play.google.com/store/apps/details?id=com.tech_doc_mobile"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center transition-all duration-300 p-2.5 rounded-lg theme-border opacity-70"
+                className="group inline-flex items-center transition-all duration-300 p-2.5 rounded-lg border opacity-70"
               >
                 <span className="text-sm">Get it on Android</span>
                 <Smartphone className="h-4 w-4 ml-2" />
@@ -53,13 +53,13 @@ const Footer = () => {
               <ul className="space-y-3">
                 <li className="font-semibold">Build with DocStar</li>
                 <li><Link href="https://developers.docstar.io/" target="_blank" className="group relative inline-block">API Doc<div
-                    className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300 w-0 group-hover:w-full"
+                    className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300 w-0 group-hover:w-full theme-underline"
                   /></Link></li>
                 <li><Link href="https://docstar.io/help" target="_blank" className="group relative inline-block">Help Doc<div
-                    className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300 w-0 group-hover:w-full"
+                    className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300 w-0 group-hover:w-full theme-underline"
                   /></Link></li>
                 <li><Link href="https://docstar.io/blogs" target="_blank" className="group relative inline-block">Blogs<div
-                    className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300 w-0 group-hover:w-full"
+                    className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300 w-0 group-hover:w-full theme-underline"
                   /></Link></li>
               </ul>
             </div>
@@ -67,13 +67,13 @@ const Footer = () => {
               <ul className="space-y-3">
                 <li className="font-semibold">Company</li>
                 <li><Link href="/support" target="_blank" className="group relative inline-block">Contact Us<div
-                    className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300 w-0 group-hover:w-full"
+                    className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300 w-0 group-hover:w-full theme-underline"
                   /></Link></li>
                 <li><Link href="/privacy-policy" target="_blank" className="group relative inline-block">Privacy Policy<div
-                    className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300 w-0 group-hover:w-full"
+                    className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300 w-0 group-hover:w-full theme-underline"
                   /></Link></li>
                 <li><Link href="/data-retention-policy" target="_blank" className="group relative inline-block">Data Retention Policy<div
-                    className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300 w-0 group-hover:w-full"
+                    className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300 w-0 group-hover:w-full theme-underline"
                   /></Link></li>
               </ul>
             </div>
