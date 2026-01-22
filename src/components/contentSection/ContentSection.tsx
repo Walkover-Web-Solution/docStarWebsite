@@ -2,20 +2,27 @@ import AppsMarquee from "../AppsMarquee";
 import APITemplateSection from "../templateSection/ApiTemplateSection";
 import BlogTemplateSection from "../templateSection/BlogTemplateSection";
 import DocsTemplatesSection from "../templateSection/DocsTemplatesSection";
-import MSG91Section from "../testimonialSection/MSG91Section";
-import GiddhSection from "../testimonialSection/GiddhSection";
-import ViasocketSection from "../testimonialSection/ViasocketSection";
+import TestimonialSection from "../testimonialSection/TestimonialSection";
+// import GiddhSection from "../testimonialSection/GiddhSection";
+// import ViasocketSection from "../testimonialSection/ViasocketSection";
+import { TestimonialItem } from "@/types/data-types";
 
-const ContentSection = () => {
+const ContentSection = ({
+  testimonials,
+}: {
+  testimonials: TestimonialItem[];
+}) => {
   return (
     <>
       <AppsMarquee />
       <DocsTemplatesSection />
-      <MSG91Section />
+      <TestimonialSection testimonials={testimonials} index={0} />
       <BlogTemplateSection />
-      <GiddhSection />
+      {/* <GiddhSection testimonials={testimonials} index={1} /> */}
+      <TestimonialSection testimonials={testimonials} index={1} />
       <APITemplateSection />
-      <ViasocketSection />
+      {/* <ViasocketSection testimonials={testimonials} index={2} /> */}
+      <TestimonialSection testimonials={testimonials} index={2} />
     </>
   );
 };
