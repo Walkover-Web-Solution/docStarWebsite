@@ -184,7 +184,7 @@ const PublishPage = () => {
             {growthReasons.map((reason, index) => (
               <MotionWrapper
                 key={index}
-                className="text-center p-6 rounded-2xl theme-bg-secondary theme-border hover:shadow-md transition-shadow duration-300"
+                className="text-center p-6 rounded-2xl theme-bg-secondary border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
@@ -198,7 +198,7 @@ const PublishPage = () => {
           </div>
 
           <MotionWrapper
-            className="mt-16 text-center p-8 rounded-2xl theme-bg-secondary theme-border"
+            className="mt-16 text-center p-8 rounded-2xl theme-bg-secondary border"
             variants={itemVariants}
           >
             <p className="text-lg font-bold opacity-90">
@@ -238,7 +238,7 @@ const PublishPage = () => {
             {benefits.map((benefit, index) => (
               <MotionWrapper
                 key={index}
-                className="p-6 rounded-2xl shadow-sm theme-bg theme-border hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
@@ -271,7 +271,7 @@ const PublishPage = () => {
 
           <div className="grid md:grid-cols-2 gap-8">
             <MotionWrapper
-              className="flex items-start space-x-4 p-6 rounded-xl theme-border"
+              className="flex items-start space-x-4 p-6 rounded-xl border"
               variants={itemVariants}
             >
               <div
@@ -376,7 +376,7 @@ const PublishPage = () => {
             {features.map((feature, index) => (
               <MotionWrapper
                 key={index}
-                className="text-center p-6 rounded-2xl shadow-sm theme-bg theme-border"
+                className="text-center p-6 rounded-2xl shadow-sm theme-bg border"
                 variants={itemVariants}
                 whileHover={{ scale: 1.05 }}
               >

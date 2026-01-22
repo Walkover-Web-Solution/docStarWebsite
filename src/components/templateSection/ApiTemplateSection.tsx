@@ -11,7 +11,7 @@ export default function APITemplateSection() {
         <div className="grid lg:grid-cols-2 gap-20 items-start">
           {/* Left Content */}
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded theme-bg theme-border">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded theme-bg border">
               <div className="w-6 h-6 rounded flex items-center justify-center theme-badge">
                 <FileCode className="w-4 h-4" />
               </div>
@@ -51,7 +51,7 @@ export default function APITemplateSection() {
             </Link>
 
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="p-6 rounded-lg hover:shadow-lg transition-shadow theme-bg theme-border">
+              <div className="p-6 rounded-lg hover:shadow-lg transition-shadow theme-bg border">
                 <PlayCircle className="w-8 h-8 mb-4 opacity-80" />
                 <h4 className="h4">Interactive API playground</h4>
                 <p className="line-clamp-3 text-sm">
@@ -60,7 +60,7 @@ export default function APITemplateSection() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-lg hover:shadow-lg transition-shadow theme-bg theme-border">
+              <div className="p-6 rounded-lg hover:shadow-lg transition-shadow theme-bg border">
                 <Key className="w-8 h-8 mb-4 opacity-80" />
                 <h4 className="h4">API token management</h4>
                 <p className="line-clamp-3 text-sm">
@@ -70,7 +70,7 @@ export default function APITemplateSection() {
               </div>
 
               <div
-                className="p-6 rounded-lg hover:shadow-lg transition-shadow theme-bg theme-border"
+                className="p-6 rounded-lg hover:shadow-lg transition-shadow theme-bg border"
                 style={{ gridColumn: "span 2" }}
               >
                 <Palette className="w-8 h-8 mb-4 opacity-80" />

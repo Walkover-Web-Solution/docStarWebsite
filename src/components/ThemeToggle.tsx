@@ -8,6 +8,7 @@ type Theme = "light" | "dark" | "system";
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>("system");
   const [mounted, setMounted] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -56,14 +57,38 @@ export default function ThemeToggle() {
     }
   };
 
+  const getTooltip = () => {
+    switch (theme) {
+      case "light":
+        return "Light";
+      case "dark":
+        return "Dark";
+      case "system":
+        return "System Default";
+    }
+  };
+
   return (
-    <button
-      onClick={cycleTheme}
-      className="p-2 rounded-lg transition-all duration-200 hover:opacity-70 theme-border"
-      aria-label={`Current theme: ${theme}. Click to change.`}
-      title={`Theme: ${theme}`}
-    >
-      {getIcon()}
-    </button>
+    <div className="relative inline-block">
+      <button
+        onClick={cycleTheme}
+        onMouseEnter={() => setShowTooltip(true)}
+        onMouseLeave={() => setShowTooltip(false)}
+        className="p-2 rounded-lg cursor-pointer transition-all duration-200 hover:opacity-70 border"
+        aria-label={`Current theme: ${theme}. Click to change.`}
+      >
+        {getIcon()}
+      </button>
+      
+      <div
+        role="tooltip"
+        className={`absolute z-10 inline-block px-2 py-1 text-xs font-medium transition-opacity duration-300 rounded shadow-sm top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap theme-badge ${
+          showTooltip ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+      >
+        {getTooltip()}
+        <div className="absolute w-1.5 h-1.5 rotate-45 -top-0.5 left-1/2 -translate-x-1/2 theme-badge"></div>
+      </div>
+    </div>
   );
 }

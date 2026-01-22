@@ -11,7 +11,7 @@ export default function BlogTemplateSection() {
         <div className="grid lg:grid-cols-2 gap-20 items-start">
           {/* Left Content */}
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded theme-bg theme-border">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded theme-bg border">
               <div className="w-6 h-6 rounded flex items-center justify-center theme-badge">
                 <BookOpen className="w-4 h-4" />
               </div>
@@ -45,7 +45,7 @@ export default function BlogTemplateSection() {
             </Link>
 
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="p-6 rounded-lg hover:shadow-lg transition-shadow theme-bg theme-border">
+              <div className="p-6 rounded-lg hover:shadow-lg transition-shadow theme-bg border">
                 <Sparkles className="w-8 h-8 mb-4 opacity-80" />
                 <h4 className="h4">Turn Ideas Easily with AI</h4>
                 <p className="text-sm line-clamp-3">
@@ -55,7 +55,7 @@ export default function BlogTemplateSection() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-lg hover:shadow-lg transition-shadow theme-bg theme-border">
+              <div className="p-6 rounded-lg hover:shadow-lg transition-shadow theme-bg border">
                 <Languages className="w-8 h-8 mb-4 opacity-80" />
                 <h4 className="h4">Multi-Language Support</h4>
                 <p className="text-sm line-clamp-3">
@@ -65,7 +65,7 @@ export default function BlogTemplateSection() {
               </div>
 
               <div
-                className="p-6 rounded-lg hover:shadow-lg transition-shadow theme-bg theme-border"
+                className="p-6 rounded-lg hover:shadow-lg transition-shadow theme-bg border"
                 style={{ gridColumn: "span 2" }}
               >
                 <Tag className="w-8 h-8 mb-4 opacity-80" />

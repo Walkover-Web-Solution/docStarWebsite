@@ -112,21 +112,21 @@ export default function FaqClient() {
           </MotionWrapper>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <MotionWrapper className="text-center p-6 rounded-2xl theme-bg-secondary theme-border" variants={itemVariants}>
+            <MotionWrapper className="text-center p-6 rounded-2xl theme-bg-secondary border" variants={itemVariants}>
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 theme-bg-secondary">
                 <Users className="w-8 h-8 opacity-80" />
               </div>
               <p className="text-lg opacity-80">Support teams keep answering the same questions.</p>
             </MotionWrapper>
 
-            <MotionWrapper className="text-center p-6 rounded-2xl theme-bg-secondary theme-border" variants={itemVariants}>
+            <MotionWrapper className="text-center p-6 rounded-2xl theme-bg-secondary border" variants={itemVariants}>
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 theme-bg-secondary">
                 <FileText className="w-8 h-8 opacity-80" />
               </div>
               <p className="text-lg opacity-80">Internal knowledge is scattered across chats and docs.</p>
             </MotionWrapper>
 
-            <MotionWrapper className="text-center p-6 rounded-2xl theme-bg-secondary theme-border" variants={itemVariants}>
+            <MotionWrapper className="text-center p-6 rounded-2xl theme-bg-secondary border" variants={itemVariants}>
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 theme-bg-secondary">
                 <Search className="w-8 h-8 opacity-80" />
               </div>
@@ -135,7 +135,7 @@ export default function FaqClient() {
           </div>
 
           <MotionWrapper
-            className="mt-16 text-center p-8 rounded-2xl theme-bg-secondary theme-border"
+            className="mt-16 text-center p-8 rounded-2xl theme-bg-secondary border"
             variants={itemVariants}
           >
             <p className="text-xl font-medium opacity-80">
@@ -166,7 +166,7 @@ export default function FaqClient() {
             {benefits.map((benefit, index) => (
               <MotionWrapper
                 key={index}
-                className="p-6 rounded-2xl shadow-sm theme-bg theme-border hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
@@ -201,7 +201,7 @@ export default function FaqClient() {
             {teams.map((team, index) => (
               <MotionWrapper
                 key={index}
-                className="flex items-start space-x-4 p-6 rounded-2xl theme-bg-secondary theme-border"
+                className="flex items-start space-x-4 p-6 rounded-2xl theme-bg-secondary border"
                 variants={itemVariants}
               >
                 <div className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80" style={{ backgroundColor: 'var(--app-text)' }}></div>
@@ -235,7 +235,7 @@ export default function FaqClient() {
             {features.map((feature, index) => (
               <MotionWrapper
                 key={index}
-                className="text-center p-6 rounded-2xl shadow-sm theme-bg theme-border"
+                className="text-center p-6 rounded-2xl shadow-sm theme-bg border"
                 variants={itemVariants}
                 whileHover={{ scale: 1.05 }}
               >

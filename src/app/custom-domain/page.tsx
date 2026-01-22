@@ -71,7 +71,7 @@ export default function WhiteLabelling() {
 
           <div className="space-y-12">
             {/* Option A */}
-            <div className="rounded-lg p-8 theme-bg-secondary theme-border">
+            <div className="rounded-lg p-8 theme-bg-secondary border">
               <h3 className="text-2xl font-bold mb-6 flex items-center">
                 <span className="px-3 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
                   Option A
@@ -79,7 +79,7 @@ export default function WhiteLabelling() {
                 Configure using subdomain
               </h3>
 
-              <div className="p-4 rounded-lg theme-border mb-6">
+              <div className="p-4 rounded-lg border mb-6">
                 <p className="text-lg">
                   A subdomain is like a separate neighborhood on the internet.
                   Example:{" "}
@@ -168,7 +168,7 @@ export default function WhiteLabelling() {
                     Fill details
                   </h4>
 
-                  <div className="p-4 rounded-lg theme-border mb-4">
+                  <div className="p-4 rounded-lg border mb-4">
                     <ul className="space-y-3">
                       <li className="flex items-start">
                         <span className="px-2 py-1 rounded text-sm font-medium mr-3 mt-0.5 theme-bg-secondary" style={{ opacity: 0.8 }}>
@@ -209,7 +209,7 @@ export default function WhiteLabelling() {
             </div>
 
             {/* Option B */}
-            <div className="rounded-lg p-8 theme-bg-secondary theme-border">
+            <div className="rounded-lg p-8 theme-bg-secondary border">
               <h3 className="text-2xl font-bold mb-6 flex items-center">
                 <span className="px-3 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
                   Option B
@@ -217,7 +217,7 @@ export default function WhiteLabelling() {
                 Configure using endpoint
               </h3>
 
-              <div className="p-4 rounded-lg theme-border mb-6">
+              <div className="p-4 rounded-lg border mb-6">
                 <p className="text-lg">
                   Example:{" "}
                   <a
@@ -341,7 +341,7 @@ export default function WhiteLabelling() {
                     Paste this code
                   </h4>
 
-                  <div className="p-6 rounded-lg overflow-x-auto text-sm leading-relaxed shadow-lg theme-bg-secondary theme-border" style={{ opacity: 0.95 }}>
+                  <div className="p-6 rounded-lg overflow-x-auto text-sm leading-relaxed shadow-lg theme-bg-secondary border" style={{ opacity: 0.95 }}>
                     <pre className="whitespace-pre-wrap">
                       <code>{`addEventListener('fetch', event => {
   const url = new URL(event.request.url);
@@ -395,7 +395,7 @@ async function handleFaqPath(event, url) {
                     </pre>
                   </div>
 
-                  <div className="mt-6 rounded-lg p-4 theme-bg-secondary theme-border">
+                  <div className="mt-6 rounded-lg p-4 theme-bg-secondary border">
                     <h5 className="font-semibold mb-3 flex items-center">
                       <span className="mr-2 opacity-80">⚙️</span>
                       Variable Reference

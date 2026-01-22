@@ -160,7 +160,7 @@ export const AIPoweredSearchClient = () => {
             {whyMatters.map((item, index) => (
               <MotionWrapper
                 key={index}
-                className="flex items-start space-x-4 p-6 rounded-2xl theme-bg-secondary theme-border"
+                className="flex items-start space-x-4 p-6 rounded-2xl theme-bg-secondary border"
                 variants={itemVariants}
               >
                 <div className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80" style={{ backgroundColor: 'var(--app-text)' }}></div>
@@ -194,7 +194,7 @@ export const AIPoweredSearchClient = () => {
             {features.map((feature, index) => (
               <MotionWrapper
                 key={index}
-                className="p-6 rounded-2xl shadow-sm theme-bg theme-border hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
@@ -229,7 +229,7 @@ export const AIPoweredSearchClient = () => {
             {benefits.map((benefit, index) => (
               <MotionWrapper
                 key={index}
-                className="p-6 rounded-2xl shadow-sm theme-bg theme-border hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
@@ -243,7 +243,7 @@ export const AIPoweredSearchClient = () => {
           </div>
 
           <MotionWrapper
-            className="mt-16 text-center p-8 rounded-2xl theme-bg-secondary theme-border"
+            className="mt-16 text-center p-8 rounded-2xl theme-bg-secondary border"
             variants={itemVariants}
           >
             <h3 className="text-2xl font-bold mb-4">

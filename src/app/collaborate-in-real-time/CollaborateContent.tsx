@@ -157,7 +157,7 @@ const CollaborateContent = () => {
             {whyMatters.map((point, index) => (
               <MotionWrapper
                 key={index}
-                className="flex items-start space-x-4 p-6 rounded-2xl theme-bg-secondary theme-border"
+                className="flex items-start space-x-4 p-6 rounded-2xl theme-bg-secondary border"
                 variants={itemVariants}
               >
                 <div className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80" style={{ backgroundColor: 'var(--app-text)' }}></div>
@@ -185,7 +185,7 @@ const CollaborateContent = () => {
             {features.map((feature, index) => (
               <MotionWrapper
                 key={index}
-                className="p-8 rounded-2xl shadow-sm theme-bg theme-border hover:shadow-md transition-shadow duration-300"
+                className="p-8 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
@@ -221,7 +221,7 @@ const CollaborateContent = () => {
             {benefits.map((benefit, index) => (
               <MotionWrapper
                 key={index}
-                className="p-6 rounded-2xl shadow-sm theme-bg theme-border hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >

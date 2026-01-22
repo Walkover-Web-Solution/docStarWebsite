@@ -183,7 +183,7 @@ const ApiDocumentationPage = () => {
                 </div>
 
                 <div className="relative">
-                  <div className="rounded-2xl p-8 theme-bg-secondary theme-border">
+                  <div className="rounded-2xl p-8 theme-bg-secondary border">
                     <div className="rounded-xl p-6 shadow-sm theme-bg">
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex space-x-2">
@@ -240,7 +240,7 @@ const ApiDocumentationPage = () => {
                 </div>
 
                 <div className="lg:order-1 relative">
-                  <div className="rounded-2xl p-8 theme-bg-secondary theme-border">
+                  <div className="rounded-2xl p-8 theme-bg-secondary border">
                     <div className="rounded-xl p-6 shadow-sm theme-bg">
                       <div className="flex items-center justify-between mb-4">
                         <span className="text-xs font-bold px-3 py-1 rounded-full theme-bg-secondary opacity-80">
@@ -288,7 +288,7 @@ const ApiDocumentationPage = () => {
             {benefits.map((benefit, index) => (
               <MotionWrapper
                 key={index}
-                className="p-6 rounded-2xl shadow-sm theme-bg theme-border hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
@@ -317,7 +317,7 @@ const ApiDocumentationPage = () => {
           </MotionWrapper>
 
           <MotionWrapper
-            className="text-center p-8 rounded-xl theme-bg-secondary theme-border mb-12"
+            className="text-center p-8 rounded-xl theme-bg-secondary border mb-12"
             variants={itemVariants}
           >
             <p className="text-xl mb-6 font-semibold italic opacity-90">
@@ -327,7 +327,7 @@ const ApiDocumentationPage = () => {
 
           <div className="grid md:grid-cols-2 gap-8">
             <MotionWrapper
-              className="flex items-start space-x-4 p-6 rounded-xl theme-bg-secondary theme-border"
+              className="flex items-start space-x-4 p-6 rounded-xl theme-bg-secondary border"
               variants={itemVariants}
             >
               <div className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80" style={{ backgroundColor: 'var(--app-text)' }}></div>
@@ -338,7 +338,7 @@ const ApiDocumentationPage = () => {
             </MotionWrapper>
 
             <MotionWrapper
-              className="flex items-start space-x-4 p-6 rounded-xl theme-bg-secondary theme-border"
+              className="flex items-start space-x-4 p-6 rounded-xl theme-bg-secondary border"
               variants={itemVariants}
             >
               <div className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80" style={{ backgroundColor: 'var(--app-text)' }}></div>
@@ -349,7 +349,7 @@ const ApiDocumentationPage = () => {
             </MotionWrapper>
 
             <MotionWrapper
-              className="flex items-start space-x-4 p-6 rounded-xl theme-bg-secondary theme-border"
+              className="flex items-start space-x-4 p-6 rounded-xl theme-bg-secondary border"
               variants={itemVariants}
             >
               <div className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80" style={{ backgroundColor: 'var(--app-text)' }}></div>
@@ -362,7 +362,7 @@ const ApiDocumentationPage = () => {
             </MotionWrapper>
 
             <MotionWrapper
-              className="flex items-start space-x-4 p-6 rounded-xl theme-bg-secondary theme-border"
+              className="flex items-start space-x-4 p-6 rounded-xl theme-bg-secondary border"
               variants={itemVariants}
             >
               <div className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80" style={{ backgroundColor: 'var(--app-text)' }}></div>

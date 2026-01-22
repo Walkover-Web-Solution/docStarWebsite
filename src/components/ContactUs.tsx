@@ -27,7 +27,7 @@ export const ContactUs = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 mb-20">
         <section
-          className="shadow-lg rounded-xl p-8 hover:shadow-2xl transition theme-bg theme-border"
+          className="shadow-lg rounded-xl p-8 hover:shadow-2xl transition theme-bg border"
           aria-label="Contact Support"
         >
           <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
@@ -73,7 +73,7 @@ export const ContactUs = () => {
           </ul>
         </section>
         <section
-          className="shadow-lg rounded-xl p-8 hover:shadow-2xl transition theme-bg theme-border"
+          className="shadow-lg rounded-xl p-8 hover:shadow-2xl transition theme-bg border"
           aria-label="Schedule a Demo"
         >
           <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">

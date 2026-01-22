@@ -126,8 +126,8 @@ export default function Feature({ autoCycle = false, cycleMs = 4500 }: Props) {
                         className={[
                           "ml-auto flex h-8 w-8 items-center justify-center rounded-full border transition-colors",
                           isActive
-                            ? "theme-border theme-bg-secondary opacity-80"
-                            : "theme-border opacity-60",
+                            ? "border theme-bg-secondary opacity-80"
+                            : "border opacity-60",
                         ].join(" ")}
                         aria-hidden
                       >
