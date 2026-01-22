@@ -105,7 +105,7 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
           >
             {/* Glossy laptop screen container */}
             <div>
-              <div className="bg-transparent border border-black/20 rounded-lg px-2 pt-8">
+              <div className="bg-transparent rounded-lg px-2 pt-8" style={{ border: '1px solid rgba(0, 0, 0, 0.2)' }}>
                 {/* Browser controls */}
                 <div className="absolute top-3 left-4">
                   <svg width="52" height="12" viewBox="0 0 52 12">
@@ -116,7 +116,7 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
                 </div>
 
                 {/* Screen content */}
-                <div className="relative rounded aspect-[16/9] bg-white overflow-hidden">
+                <div className="relative rounded aspect-[16/9] overflow-hidden theme-bg">
                   <Image
                     src={img.url}
                     alt={img.alt}
@@ -127,7 +127,7 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
                   />
                 </div>
               </div>
-              <p className="w-full bg-transparent text-center text-md text-black py-2">
+              <p className="w-full bg-transparent text-center text-md py-2">
                 {img.alt}
               </p>
             </div>
@@ -149,7 +149,7 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
             }}
             className={`
               h-2.5 w-2.5 rounded-full transition-all
-              ${index === activeIndex ? "bg-black scale-110" : "bg-gray-400"}
+              ${index === activeIndex ? "scale-110" : "opacity-50"} theme-badge
             `}
             aria-label={`Go to slide ${index + 1}`}
           />

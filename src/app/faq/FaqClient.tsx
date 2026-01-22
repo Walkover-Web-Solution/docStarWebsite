@@ -53,15 +53,15 @@ export default function FaqClient() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       {/* ✅ Hero Section */}
       <MotionWrapper
-        className="py-20 relative overflow-hidden bg-gradient-to-tr from-rose-100 to-pink-500 text-white"
+        className="py-20 relative overflow-hidden theme-bg-secondary"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }}></div>
         <div className="relative max-w-6xl mx-auto px-6 py-20 text-center">
           <MotionWrapper
             className="text-5xl md:text-7xl font-bold mb-6 text-balance"
@@ -70,11 +70,11 @@ export default function FaqClient() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             The smarter way to{" "}
-            <span className="text-black/70">Manage FAQs</span> and team knowledge with AI.
+            <span className="opacity-70">Manage FAQs</span> and team knowledge with AI.
           </MotionWrapper>
 
           <MotionWrapper
-            className="text-xl md:text-2xl mb-12 text-purple-100 max-w-4xl mx-auto text-pretty"
+            className="text-xl md:text-2xl mb-12 max-w-4xl mx-auto text-pretty opacity-80"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -84,7 +84,7 @@ export default function FaqClient() {
 
           <MotionWrapper
             as="button"
-            className="text-lg rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm border border-white/40 font-semibold px-6 py-3 cursor-pointer"
+            className="btn btn-primary mx-auto"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             data-cursor-hover
@@ -97,7 +97,7 @@ export default function FaqClient() {
 
       {/* ✅ Why You Need This */}
       <MotionWrapper
-        className="py-20 bg-white"
+        className="py-20"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -105,40 +105,40 @@ export default function FaqClient() {
       >
         <div className="max-w-6xl mx-auto px-6">
           <MotionWrapper
-            className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900"
+            className="text-4xl md:text-5xl font-bold text-center mb-16"
             variants={itemVariants}
           >
             Why You Need This
           </MotionWrapper>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <MotionWrapper className="text-center p-6 rounded-2xl bg-red-50 border border-red-100" variants={itemVariants}>
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="w-8 h-8 text-black/80" />
+            <MotionWrapper className="text-center p-6 rounded-2xl theme-bg-secondary border" variants={itemVariants}>
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 theme-bg-secondary">
+                <Users className="w-8 h-8 opacity-80" />
               </div>
-              <p className="text-gray-700 text-lg">Support teams keep answering the same questions.</p>
+              <p className="text-lg opacity-80">Support teams keep answering the same questions.</p>
             </MotionWrapper>
 
-            <MotionWrapper className="text-center p-6 rounded-2xl bg-orange-50 border border-orange-100" variants={itemVariants}>
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <FileText className="w-8 h-8 text-black/80" />
+            <MotionWrapper className="text-center p-6 rounded-2xl theme-bg-secondary border" variants={itemVariants}>
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 theme-bg-secondary">
+                <FileText className="w-8 h-8 opacity-80" />
               </div>
-              <p className="text-gray-700 text-lg">Internal knowledge is scattered across chats and docs.</p>
+              <p className="text-lg opacity-80">Internal knowledge is scattered across chats and docs.</p>
             </MotionWrapper>
 
-            <MotionWrapper className="text-center p-6 rounded-2xl bg-yellow-50 border border-yellow-100" variants={itemVariants}>
-              <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Search className="w-8 h-8 text-black/80" />
+            <MotionWrapper className="text-center p-6 rounded-2xl theme-bg-secondary border" variants={itemVariants}>
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 theme-bg-secondary">
+                <Search className="w-8 h-8 opacity-80" />
               </div>
-              <p className="text-gray-700 text-lg">Employees and customers waste time searching for answers.</p>
+              <p className="text-lg opacity-80">Employees and customers waste time searching for answers.</p>
             </MotionWrapper>
           </div>
 
           <MotionWrapper
-            className="mt-16 text-center bg-gradient-to-r from-purple-50 to-pink-50 p-8 rounded-2xl border border-purple-100"
+            className="mt-16 text-center p-8 rounded-2xl theme-bg-secondary border"
             variants={itemVariants}
           >
-            <p className="text-xl text-gray-800 font-medium text-black/60">
+            <p className="text-xl font-medium opacity-80">
               <strong>Your solution:</strong> A single AI-powered knowledge base that serves both your customers (FAQs,
               help articles) and your team (internal documentation).
             </p>
@@ -148,7 +148,7 @@ export default function FaqClient() {
 
       {/* ✅ Key Benefits */}
       <MotionWrapper
-        className="py-20 bg-gray-50"
+        className="py-20 theme-bg-secondary"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -156,7 +156,7 @@ export default function FaqClient() {
       >
         <div className="max-w-6xl mx-auto px-6">
           <MotionWrapper
-            className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900"
+            className="text-4xl md:text-5xl font-bold text-center mb-16"
             variants={itemVariants}
           >
             Key Benefits
@@ -166,15 +166,15 @@ export default function FaqClient() {
             {benefits.map((benefit, index) => (
               <MotionWrapper
                 key={index}
-                className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
-                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4 text-purple-600">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 theme-bg-secondary opacity-80">
                   {benefit.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.description}</p>
+                <h3 className="text-xl font-semibold mb-3">{benefit.title}</h3>
+                <p className="opacity-80">{benefit.description}</p>
               </MotionWrapper>
             ))}
           </div>
@@ -183,7 +183,7 @@ export default function FaqClient() {
 
       {/* ✅ For Different Teams */}
       <MotionWrapper
-        className="py-20 bg-white"
+        className="py-20"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -191,7 +191,7 @@ export default function FaqClient() {
       >
         <div className="max-w-6xl mx-auto px-6">
           <MotionWrapper
-            className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900"
+            className="text-4xl md:text-5xl font-bold text-center mb-16"
             variants={itemVariants}
           >
             For Different Teams
@@ -201,13 +201,13 @@ export default function FaqClient() {
             {teams.map((team, index) => (
               <MotionWrapper
                 key={index}
-                className="flex items-start space-x-4 p-6 rounded-2xl bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-100"
+                className="flex items-start space-x-4 p-6 rounded-2xl theme-bg-secondary border"
                 variants={itemVariants}
               >
-                <div className="w-2 h-2 bg-black/80 rounded-full mt-3 flex-shrink-0"></div>
+                <div className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80" style={{ backgroundColor: 'var(--app-text)' }}></div>
                 <div>
-                  <h3 className="text-normal font-semibold text-black/70 mb-2">For {team.team}</h3>
-                  <p className="text-gray-700 text-sm">{team.benefit}</p>
+                  <h3 className="text-normal font-semibold mb-2 opacity-80">For {team.team}</h3>
+                  <p className="text-sm opacity-80">{team.benefit}</p>
                 </div>
               </MotionWrapper>
             ))}
@@ -217,7 +217,7 @@ export default function FaqClient() {
 
       {/* ✅ Feature Highlights */}
       <MotionWrapper
-        className="py-20 bg-gray-50"
+        className="py-20 theme-bg-secondary"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -225,7 +225,7 @@ export default function FaqClient() {
       >
         <div className="max-w-6xl mx-auto px-6">
           <MotionWrapper
-            className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900"
+            className="text-4xl md:text-5xl font-bold text-center mb-16"
             variants={itemVariants}
           >
             Feature Highlights
@@ -235,15 +235,15 @@ export default function FaqClient() {
             {features.map((feature, index) => (
               <MotionWrapper
                 key={index}
-                className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100"
+                className="text-center p-6 rounded-2xl shadow-sm theme-bg border"
                 variants={itemVariants}
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="w-16 h-16 bg-gradient-to-tr from-rose-100 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4 text-white">
+                <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 theme-bg-secondary">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-gray-900">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                <p className="opacity-80">{feature.description}</p>
               </MotionWrapper>
             ))}
           </div>
@@ -252,13 +252,13 @@ export default function FaqClient() {
 
       {/* ✅ Final CTA */}
       <MotionWrapper
-        className="py-20 bg-rose-100 text-white text-center"
+        className="py-20 theme-bg-secondary text-center"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <div className="max-w-4xl mx-auto px-6 text-black/70">
+        <div className="max-w-4xl mx-auto px-6 opacity-80">
           <MotionWrapper
             className="text-4xl md:text-5xl font-bold mb-6 text-balance"
             initial={{ opacity: 0, y: 30 }}
@@ -270,7 +270,7 @@ export default function FaqClient() {
           </MotionWrapper>
 
           <MotionWrapper
-            className="text-xl mb-8 text-black/40"
+            className="text-xl mb-8 opacity-70"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

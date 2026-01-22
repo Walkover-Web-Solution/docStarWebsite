@@ -62,7 +62,7 @@ const Hero = ({ heroImages }: HeroProps) => {
         className="relative flex flex-col items-center justify-center"
       >
         {/* <div className="absolute inset-0 bg-[url('/bg-images/hero-svg2.svg')] bg-cover bg-center bg-no-repeat opacity-60"></div> */}
-        <div className="relative mt-12 py-20 pb-2 gap-8 flex flex-col items-center justify-center z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-black">
+        <div className="relative mt-12 py-20 pb-2 gap-8 flex flex-col items-center justify-center z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           {/* Heading */}
           <MotionWrapper
             initial={{ opacity: 0, y: 30 }}
@@ -78,7 +78,7 @@ const Hero = ({ heroImages }: HeroProps) => {
 
           {/* Subtitle */}
           <MotionWrapper
-            className="md:text-xl max-w-4xl mx-auto text-black"
+            className="md:text-xl max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.3 }}
@@ -125,17 +125,17 @@ const Hero = ({ heroImages }: HeroProps) => {
 
       {showScheduler && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm px-4"
+          className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm px-4 theme-overlay-light"
           onClick={closeScheduler}
         >
           <div
-            className="relative w-full max-w-4xl overflow-hidden rounded bg-black shadow-2xl"
+            className="relative w-full max-w-4xl overflow-hidden rounded shadow-2xl theme-bg-secondary"
             onClick={(event) => event.stopPropagation()}
           >
             <button
               type="button"
               onClick={closeScheduler}
-              className="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded bg-white/10 text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              className="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded transition focus:outline-none focus-visible:ring-2 theme-bg-secondary"
               aria-label="Close scheduler"
             >
               <X className="h-5 w-5" />

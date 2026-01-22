@@ -7,3 +7,42 @@
 .scrollbar-width-thin {
   scrollbar-width: thin !important;
 }
+
+/** theme-based utility classes */
+
+.theme-bg {
+  background-color: var(--app-bg);
+}
+
+.theme-bg-secondary {
+  background-color: var(--app-bg-secondary);
+}
+
+.theme-text {
+  color: var(--app-text);
+}
+
+.border {
+  border: 1px solid var(--app-border) !important;
+}
+
+.border-color {
+  border-color: var(--app-border);
+}
+
+.theme-gradient-fade {
+  background: linear-gradient(to top, var(--app-bg), transparent);
+}
+
+.theme-overlay-light {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-badge {
+  background-color: var(--app-text);
+  color: var(--app-bg);
+}
+
+.theme-underline {
+  background-color: var(--app-text);
+}

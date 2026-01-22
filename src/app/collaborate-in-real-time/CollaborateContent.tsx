@@ -90,15 +90,15 @@ const CollaborateContent = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <MotionWrapper
-        className="py-20 relative overflow-hidden bg-gradient-to-tr from-rose-100 to-pink-500 text-white"
+        className="py-20 relative overflow-hidden theme-bg-secondary"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }}></div>
         <div className="relative max-w-6xl mx-auto px-6 py-20 text-center">
           <MotionWrapper
             className="text-5xl md:text-7xl font-bold mb-6 text-balance"
@@ -106,14 +106,14 @@ const CollaborateContent = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <span className="text-black/70">
+            <span className="opacity-70">
               Collaborate
             </span>{" "}
             in Real Time
           </MotionWrapper>
 
           <MotionWrapper
-            className="text-xl md:text-2xl mb-12 text-purple-100 max-w-4xl mx-auto text-pretty"
+            className="text-xl md:text-2xl mb-12 max-w-4xl mx-auto text-pretty opacity-80"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -125,7 +125,7 @@ const CollaborateContent = () => {
 
           <MotionWrapper
             as="button"
-            className="text-lg rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm border border border-white/40 font-semibold px-6 py-3 cursor-pointer"
+            className="btn btn-primary mx-auto"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={()=>{window.open('https://app.docstar.io/login')}}
@@ -137,18 +137,18 @@ const CollaborateContent = () => {
 
       {/* Why Real-Time Collaboration Matters Section */}
       <MotionWrapper
-        className="py-20 bg-white"
+        className="py-20"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
         <div className="max-w-6xl mx-auto px-6">
-          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-8 text-gray-900" variants={itemVariants}>
+          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-8" variants={itemVariants}>
             Why Real-Time Collaboration Matters
           </MotionWrapper>
 
-          <MotionWrapper className="text-xl text-center mb-16 text-gray-700 max-w-4xl mx-auto" variants={itemVariants}>
+          <MotionWrapper className="text-xl text-center mb-16 max-w-4xl mx-auto opacity-80" variants={itemVariants}>
             In fast-moving teams, documentation needs to keep up with product changes, customer requirements, and
             developer workflows. Real-time collaboration ensures that:
           </MotionWrapper>
@@ -157,11 +157,11 @@ const CollaborateContent = () => {
             {whyMatters.map((point, index) => (
               <MotionWrapper
                 key={index}
-                className="flex items-start space-x-4 p-6 rounded-2xl bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-100"
+                className="flex items-start space-x-4 p-6 rounded-2xl theme-bg-secondary border"
                 variants={itemVariants}
               >
-                <div className="w-2 h-2 bg-purple-500 rounded-full mt-3 flex-shrink-0"></div>
-                <p className="text-gray-700 text-lg">{point}</p>
+                <div className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80" style={{ backgroundColor: 'var(--app-text)' }}></div>
+                <p className="text-lg opacity-80">{point}</p>
               </MotionWrapper>
             ))}
           </div>
@@ -170,14 +170,14 @@ const CollaborateContent = () => {
 
       {/* Key Features Section */}
       <MotionWrapper
-        className="py-20 bg-gray-50"
+        className="py-20 theme-bg-secondary"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
         <div className="max-w-6xl mx-auto px-6">
-          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900" variants={itemVariants}>
+          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16" variants={itemVariants}>
             Key Features of Real-Time Collaboration
           </MotionWrapper>
 
@@ -185,17 +185,17 @@ const CollaborateContent = () => {
             {features.map((feature, index) => (
               <MotionWrapper
                 key={index}
-                className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
+                className="p-8 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
                 <div className="flex items-start space-x-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-rose-300 to-pink-200 rounded-2xl flex items-center justify-center text-white flex-shrink-0">
+                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 theme-bg-secondary">
                     {feature.icon}
                   </div>
                   <div>
-                    <h3 className="text-2xl font-semibold mb-3 text-gray-900">{feature.title}</h3>
-                    <p className="text-gray-600 text-lg leading-relaxed">{feature.description}</p>
+                    <h3 className="text-2xl font-semibold mb-3">{feature.title}</h3>
+                    <p className="text-lg leading-relaxed opacity-80">{feature.description}</p>
                   </div>
                 </div>
               </MotionWrapper>
@@ -206,14 +206,14 @@ const CollaborateContent = () => {
 
       {/* Benefits Section */}
       <MotionWrapper
-        className="py-20 bg-white"
+        className="py-20"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
         <div className="max-w-6xl mx-auto px-6">
-          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900" variants={itemVariants}>
+          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16" variants={itemVariants}>
             Benefits for Your Team
           </MotionWrapper>
 
@@ -221,15 +221,15 @@ const CollaborateContent = () => {
             {benefits.map((benefit, index) => (
               <MotionWrapper
                 key={index}
-                className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
-                <div className="rounded-xl flex items-center justify-center mb-4 text-black/70">
+                <div className="rounded-xl flex items-center justify-center mb-4 opacity-80">
                   {benefit.icon}
                 </div>
-                <h3 className="text-normal font-semibold mb-3 text-gray-900">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.description}</p>
+                <h3 className="text-normal font-semibold mb-3">{benefit.title}</h3>
+                <p className="opacity-80">{benefit.description}</p>
               </MotionWrapper>
             ))}
           </div>
@@ -238,13 +238,13 @@ const CollaborateContent = () => {
 
       {/* Final CTA Section */}
       <MotionWrapper
-        className="py-20 bg-rose-100 text-white text-center"
+        className="py-20 theme-bg-secondary text-center"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <div className="max-w-4xl mx-auto px-6 text-black/70">
+        <div className="max-w-4xl mx-auto px-6 opacity-80">
           <MotionWrapper
             className="text-4xl md:text-5xl font-bold mb-6 text-balance"
             initial={{ opacity: 0, y: 30 }}
@@ -256,7 +256,7 @@ const CollaborateContent = () => {
           </MotionWrapper>
 
           <MotionWrapper
-            className="text-xl mb-8 max-w-3xl mx-auto text-black/50"
+            className="text-xl mb-8 max-w-3xl mx-auto opacity-70"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -269,7 +269,7 @@ const CollaborateContent = () => {
 
           <MotionWrapper
             as="button"
-            className="bg-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-black/70 hover:text-white transition-colors duration-300 shadow-lg cursor-pointer"
+            className="btn btn-outline mx-auto"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={()=>{window.open('https://app.docstar.io/login')}}

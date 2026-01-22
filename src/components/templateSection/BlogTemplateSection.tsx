@@ -4,24 +4,24 @@ import Link from "next/link";
 export default function BlogTemplateSection() {
   return (
     <section
-      className="w-full bg-[#f8f9fa] py-20 px-6"
+      className="w-full py-20 px-6 theme-bg-secondary"
       id="docs-templates-section"
     >
-      <div className="container mx-auto flex flex-col gap-12 bg-white p-6">
+      <div className="container mx-auto flex flex-col gap-12 p-6 theme-bg">
         <div className="grid lg:grid-cols-2 gap-20 items-start">
           {/* Left Content */}
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded border border-gray-200">
-              <div className="w-6 h-6 bg-black rounded flex items-center justify-center">
-                <BookOpen className="w-4 h-4 text-white" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded theme-bg border">
+              <div className="w-6 h-6 rounded flex items-center justify-center theme-badge">
+                <BookOpen className="w-4 h-4" />
               </div>
-              <span className="font-semibold text-gray-900">Blogs</span>
+              <span className="font-semibold">Blogs</span>
             </div>
 
             <div className="flex flex-col gap-1">
               <h3 className="h3">The best blogging platform for teams</h3>
 
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg leading-relaxed opacity-80">
                 Effortlessly run your blog with a team. Customize everything —
                 map a domain, subdomain, or use a company sub-path.
               </p>
@@ -45,8 +45,8 @@ export default function BlogTemplateSection() {
             </Link>
 
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
-                <Sparkles className="w-8 h-8 text-gray-700 mb-4" />
+              <div className="p-6 rounded-lg hover:shadow-lg transition-shadow theme-bg border">
+                <Sparkles className="w-8 h-8 mb-4 opacity-80" />
                 <h4 className="h4">Turn Ideas Easily with AI</h4>
                 <p className="text-sm line-clamp-3">
                   Helps you generate well-structured, professional documents in
@@ -55,8 +55,8 @@ export default function BlogTemplateSection() {
                 </p>
               </div>
 
-              <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
-                <Languages className="w-8 h-8 text-gray-700 mb-4" />
+              <div className="p-6 rounded-lg hover:shadow-lg transition-shadow theme-bg border">
+                <Languages className="w-8 h-8 mb-4 opacity-80" />
                 <h4 className="h4">Multi-Language Support</h4>
                 <p className="text-sm line-clamp-3">
                   Allows your platform to be used in different languages, making
@@ -65,10 +65,10 @@ export default function BlogTemplateSection() {
               </div>
 
               <div
-                className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow"
+                className="p-6 rounded-lg hover:shadow-lg transition-shadow theme-bg border"
                 style={{ gridColumn: "span 2" }}
               >
-                <Tag className="w-8 h-8 text-gray-700 mb-4" />
+                <Tag className="w-8 h-8 mb-4 opacity-80" />
                 <h4 className="h4">Meta tags</h4>
                 <p className="text-sm line-clamp-3">
                   Meta Tags let you add SEO-friendly title, description, and
@@ -87,7 +87,7 @@ export default function BlogTemplateSection() {
               alt="Documentation Interface Preview"
               className="w-full h-full object-cover object-left"
             />
-            <div className="absolute inset-0 bg-gradient-to-l from-white/60 via-white/30 via-40% to-transparent to-70% pointer-events-none"></div>
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-l from-white/60 via-white/30 to-transparent"></div>
           </div>
         </div>
       </div>

@@ -42,15 +42,15 @@ const MultiLanguageClient = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <MotionWrapper
-        className="py-20 relative overflow-hidden bg-gradient-to-tr from-rose-100 to-pink-500 text-white"
+        className="py-20 relative overflow-hidden theme-bg-secondary"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="absolute inset-0 bg-black/10" />
+        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }} />
         <div className="relative max-w-6xl mx-auto px-6 py-20 text-center">
           <MotionWrapper
             className="text-5xl md:text-7xl font-bold mb-6 text-balance"
@@ -58,12 +58,12 @@ const MultiLanguageClient = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Multi-Language <span className="text-black/70">Support for </span>
+            Multi-Language <span className="opacity-70">Support for </span>
             Global Teams
           </MotionWrapper>
 
           <MotionWrapper
-            className="text-xl md:text-2xl mb-12 text-purple-100 max-w-4xl mx-auto text-pretty"
+            className="text-xl md:text-2xl mb-12 max-w-4xl mx-auto text-pretty opacity-80"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -76,7 +76,7 @@ const MultiLanguageClient = () => {
             href="https://app.docstar.io/login"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-lg rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm border border-white/40 font-semibold px-6 py-3 inline-block"
+            className="btn btn-primary mx-auto w-fit"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -87,18 +87,18 @@ const MultiLanguageClient = () => {
 
       {/* Why Multi-Language Matters */}
       <MotionWrapper
-        className="py-20 bg-white"
+        className="py-20"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
         <div className="max-w-6xl mx-auto px-6">
-          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900" variants={itemVariants}>
+          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16" variants={itemVariants}>
             Why Multi-Language Support Matters
           </MotionWrapper>
 
-          <MotionWrapper className="text-xl text-center mb-12 text-gray-700 max-w-4xl mx-auto" variants={itemVariants}>
+          <MotionWrapper className="text-xl text-center mb-12 max-w-4xl mx-auto opacity-80" variants={itemVariants}>
             As businesses expand globally, clear communication becomes critical. With DocStar, you can:
           </MotionWrapper>
 
@@ -106,23 +106,23 @@ const MultiLanguageClient = () => {
             {benefits.map((benefit, index) => (
               <MotionWrapper
                 key={index}
-                className="flex items-start space-x-4 p-6 rounded-2xl bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-100"
+                className="flex items-start space-x-4 p-6 rounded-2xl theme-bg-secondary border"
                 variants={itemVariants}
               >
-                <div className="w-2 h-2 bg-purple-500 rounded-full mt-3 flex-shrink-0" />
+                <div className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80" style={{ backgroundColor: 'var(--app-text)' }} />
                 <div>
-                  <h3 className="text-xl font-semibold text-purple-900 mb-2">{benefit.title}</h3>
-                  <p className="text-gray-700">{benefit.description}</p>
+                  <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
+                  <p className="opacity-80">{benefit.description}</p>
                 </div>
               </MotionWrapper>
             ))}
           </div>
 
           <MotionWrapper
-            className="mt-16 text-center bg-gradient-to-r from-purple-50 to-pink-50 p-8 rounded-2xl border border-purple-100"
+            className="mt-16 text-center p-8 rounded-2xl theme-bg-secondary border"
             variants={itemVariants}
           >
-            <p className="text-xl text-gray-800 font-medium">
+            <p className="text-xl font-medium opacity-90">
               <strong>Build trust and engagement</strong> with customers in their native language while strengthening
               your brand's global presence and visibility.
             </p>
@@ -132,18 +132,18 @@ const MultiLanguageClient = () => {
 
       {/* Languages Supported */}
       <MotionWrapper
-        className="py-20 bg-gray-50"
+        className="py-20 theme-bg-secondary"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
         <div className="max-w-6xl mx-auto px-6">
-          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900" variants={itemVariants}>
+          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16" variants={itemVariants}>
             Languages Supported by DocStar
           </MotionWrapper>
 
-          <MotionWrapper className="text-xl text-center mb-12 text-gray-700 max-w-4xl mx-auto" variants={itemVariants}>
+          <MotionWrapper className="text-xl text-center mb-12 max-w-4xl mx-auto opacity-80" variants={itemVariants}>
             DocStar provides full support for some of the world's most widely spoken languages, allowing you to serve
             global audiences without additional complexity:
           </MotionWrapper>
@@ -152,15 +152,15 @@ const MultiLanguageClient = () => {
             {languages.map((language, index) => (
               <MotionWrapper
                 key={index}
-                className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
                 <div className="flex items-center mb-4">
                   <span className="text-3xl mr-3">{language.flag}</span>
-                  <h3 className="text-xl font-semibold text-gray-900">{language.name}</h3>
+                  <h3 className="text-xl font-semibold">{language.name}</h3>
                 </div>
-                <p className="text-gray-600">{language.description}</p>
+                <p className="opacity-80">{language.description}</p>
               </MotionWrapper>
             ))}
           </div>
@@ -169,14 +169,14 @@ const MultiLanguageClient = () => {
 
       {/* Key Features */}
       <MotionWrapper
-        className="py-20 bg-white"
+        className="py-20"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
         <div className="max-w-6xl mx-auto px-6">
-          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900" variants={itemVariants}>
+          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16" variants={itemVariants}>
             Key Features of DocStar's Multi-Language Support
           </MotionWrapper>
 
@@ -184,25 +184,25 @@ const MultiLanguageClient = () => {
             {features.map((feature, index) => (
               <MotionWrapper
                 key={index}
-                className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
-                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4 text-purple-600">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 theme-bg-secondary opacity-80">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+                <p className="opacity-80">{feature.description}</p>
               </MotionWrapper>
             ))}
           </div>
 
           <MotionWrapper
-            className="mt-16 text-center bg-gradient-to-r from-purple-50 to-pink-50 p-8 rounded-2xl border border-purple-100"
+            className="mt-16 text-center p-8 rounded-2xl theme-bg-secondary border"
             variants={itemVariants}
           >
-            <h3 className="text-2xl font-bold text-purple-900 mb-4">Scalable for Global Growth</h3>
-            <p className="text-xl text-gray-800">
+            <h3 className="text-2xl font-bold mb-4">Scalable for Global Growth</h3>
+            <p className="text-xl opacity-90">
               As your business expands, add new languages effortlessly without disrupting your workflow.
             </p>
           </MotionWrapper>
@@ -211,13 +211,13 @@ const MultiLanguageClient = () => {
 
       {/* Final CTA */}
       <MotionWrapper
-        className="py-20 bg-rose-100 text-white text-center"
+        className="py-20 theme-bg-secondary text-center"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <div className="max-w-6xl mx-auto px-6 text-black/70">
+        <div className="max-w-6xl mx-auto px-6 opacity-80">
           <MotionWrapper
             className="text-4xl md:text-5xl font-bold mb-6 text-balance"
             initial={{ opacity: 0, y: 30 }}
@@ -242,7 +242,7 @@ const MultiLanguageClient = () => {
             href="https://app.docstar.io/login"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-black/70 hover:text-white transition-colors duration-300 shadow-lg inline-block"
+            className="btn btn-primary w-fit"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

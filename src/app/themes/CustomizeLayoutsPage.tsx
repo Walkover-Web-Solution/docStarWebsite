@@ -114,15 +114,15 @@ export const CustomizeLayoutsPage = () => {
   }
 //bg-gradient-to-tr from-rose-100 to-pink-500
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <MotionWrapper
-        className="py-20 relative overflow-hidden bg-gradient-to-tr from-rose-100 to-pink-500 text-white/80"
+        className="py-20 relative overflow-hidden theme-bg-secondary"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }}></div>
         <div className="relative max-w-6xl mx-auto px-6 py-20 text-center">
           <MotionWrapper
             className="text-5xl md:text-7xl font-bold mb-6 text-balance"
@@ -130,11 +130,11 @@ export const CustomizeLayoutsPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-             Design Your Way: <span className="text-black/70">Layouts & Themes</span>
+             Design Your Way: <span className="opacity-70">Layouts & Themes</span>
           </MotionWrapper>
 
           <MotionWrapper
-            className="text-xl md:text-2xl mb-12 text-white/60 max-w-4xl mx-auto text-pretty"
+            className="text-xl md:text-2xl mb-12 max-w-4xl mx-auto opacity-80"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -144,7 +144,7 @@ export const CustomizeLayoutsPage = () => {
 
           <MotionWrapper
           as="button"
-            className="text-lg rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm border border-white/40 font-semibold px-6 py-3 cursor-pointer"
+            className="btn btn-primary mx-auto"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={()=>{window.open('https://app.docstar.io/login')}}
@@ -156,14 +156,14 @@ export const CustomizeLayoutsPage = () => {
 
       {/* Flexible Customization Section */}
       <MotionWrapper
-        className="py-20 bg-white"
+        className="py-20"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
         <div className="max-w-6xl mx-auto px-6">
-          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900" variants={itemVariants}>
+          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16" variants={itemVariants}>
             Flexible Customization for Your Docs
           </MotionWrapper>
 
@@ -171,15 +171,15 @@ export const CustomizeLayoutsPage = () => {
             {customizationFeatures.map((feature, index) => (
               <MotionWrapper
                 key={index}
-                className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
-                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4 text-purple-600">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 theme-bg-secondary opacity-80">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+                <p className="opacity-80">{feature.description}</p>
               </MotionWrapper>
             ))}
           </div>
@@ -188,14 +188,14 @@ export const CustomizeLayoutsPage = () => {
 
       {/* Smart Publishing Features Section */}
       <MotionWrapper
-        className="py-20 bg-gray-50"
+        className="py-20 theme-bg-secondary"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
         <div className="max-w-6xl mx-auto px-6">
-          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900" variants={itemVariants}>
+          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16" variants={itemVariants}>
             Smart Publishing Features
           </MotionWrapper>
 
@@ -203,15 +203,15 @@ export const CustomizeLayoutsPage = () => {
             {publishingFeatures.map((feature, index) => (
               <MotionWrapper
                 key={index}
-                className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
-                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4 text-purple-600">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 theme-bg-secondary opacity-80">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+                <p className="opacity-80">{feature.description}</p>
               </MotionWrapper>
             ))}
           </div>
@@ -220,14 +220,14 @@ export const CustomizeLayoutsPage = () => {
 
       {/* Benefits Section */}
       <MotionWrapper
-        className="py-20 bg-white"
+        className="py-20"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
         <div className="max-w-6xl mx-auto px-6">
-          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900" variants={itemVariants}>
+          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16" variants={itemVariants}>
             Benefits for Your Organization
           </MotionWrapper>
 
@@ -235,27 +235,27 @@ export const CustomizeLayoutsPage = () => {
             {benefits.map((benefit, index) => (
               <MotionWrapper
                 key={index}
-                className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
                 <div className="flex items-center mb-4">
-                  <CheckCircle className="w-6 h-6 text-green-500 mr-3" />
-                  <h3 className="text-xl font-semibold text-gray-900">{benefit.title}</h3>
+                  <CheckCircle className="w-6 h-6 mr-3 opacity-80" />
+                  <h3 className="text-xl font-semibold">{benefit.title}</h3>
                 </div>
-                <p className="text-gray-600">{benefit.description}</p>
+                <p className="opacity-80">{benefit.description}</p>
               </MotionWrapper>
             ))}
           </div>
 
           <MotionWrapper
-            className="mt-16 text-center bg-gradient-to-r from-purple-50 to-pink-50 p-8 rounded-2xl border border-purple-100"
+            className="mt-16 text-center p-8 rounded-2xl theme-bg-secondary border"
             variants={itemVariants}
           >
-            <h3 className="text-2xl font-bold text-purple-900 mb-4">
+            <h3 className="text-2xl font-bold mb-4">
               From Draft to Professional Docs—All in One Platform
             </h3>
-            <p className="text-xl text-gray-800">
+            <p className="text-xl opacity-90">
               With DocStar's layouts, themes, and publishing options, you can go beyond writing. Build a branded,
               interactive, and user-friendly documentation hub that's optimized for growth, SEO, and customer
               engagement.
@@ -266,13 +266,13 @@ export const CustomizeLayoutsPage = () => {
 
       {/* Final CTA Section */}
       <MotionWrapper
-        className="py-20 bg-rose-100 text-white text-center"
+        className="py-20 theme-bg-secondary text-center"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <div className="max-w-4xl mx-auto px-6 text-black/70">
+        <div className="max-w-4xl mx-auto px-6 opacity-80">
           <MotionWrapper
             className="text-4xl md:text-5xl font-bold mb-6 text-balance"
             initial={{ opacity: 0, y: 30 }}
@@ -297,7 +297,7 @@ export const CustomizeLayoutsPage = () => {
 
           <MotionWrapper
           as="button"
-            className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-black/70 hover:text-white transition-colors duration-300 shadow-lg cursor-pointer"
+            className="btn btn-outline mx-auto"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={()=>{window.open('https://app.docstar.io/login')}}

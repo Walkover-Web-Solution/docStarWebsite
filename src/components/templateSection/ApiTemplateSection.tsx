@@ -4,18 +4,18 @@ import Link from "next/link";
 export default function APITemplateSection() {
   return (
     <section
-      className="w-full bg-[#f8f9fa] py-20 px-6"
+      className="w-full py-20 px-6 theme-bg-secondary"
       id="docs-templates-section"
     >
-      <div className="container mx-auto flex flex-col gap-12 bg-white p-6">
+      <div className="container mx-auto flex flex-col gap-12 p-6 theme-bg">
         <div className="grid lg:grid-cols-2 gap-20 items-start">
           {/* Left Content */}
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded border border-gray-200">
-              <div className="w-6 h-6 bg-black rounded flex items-center justify-center">
-                <FileCode className="w-4 h-4 text-white" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded theme-bg border">
+              <div className="w-6 h-6 rounded flex items-center justify-center theme-badge">
+                <FileCode className="w-4 h-4" />
               </div>
-              <span className="font-semibold text-gray-900">API Doc</span>
+              <span className="font-semibold">API Doc</span>
             </div>
 
             <div className="flex flex-col gap-1">
@@ -23,7 +23,7 @@ export default function APITemplateSection() {
                 Clean, Interactive API Docs platform for Modern Teams
               </h3>
 
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg leading-relaxed opacity-80">
                 From REST APIs to webhooks - Create structured, developer-ready
                 documentation.
               </p>
@@ -51,8 +51,8 @@ export default function APITemplateSection() {
             </Link>
 
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
-                <PlayCircle className="w-8 h-8 text-gray-700 mb-4" />
+              <div className="p-6 rounded-lg hover:shadow-lg transition-shadow theme-bg border">
+                <PlayCircle className="w-8 h-8 mb-4 opacity-80" />
                 <h4 className="h4">Interactive API playground</h4>
                 <p className="line-clamp-3 text-sm">
                   Test endpoints, tweak parameters, and copy ready-to-run code
@@ -60,8 +60,8 @@ export default function APITemplateSection() {
                 </p>
               </div>
 
-              <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
-                <Key className="w-8 h-8 text-gray-700 mb-4" />
+              <div className="p-6 rounded-lg hover:shadow-lg transition-shadow theme-bg border">
+                <Key className="w-8 h-8 mb-4 opacity-80" />
                 <h4 className="h4">API token management</h4>
                 <p className="line-clamp-3 text-sm">
                   Allows users to securely create, manage, and control the API
@@ -70,10 +70,10 @@ export default function APITemplateSection() {
               </div>
 
               <div
-                className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow"
+                className="p-6 rounded-lg hover:shadow-lg transition-shadow theme-bg border"
                 style={{ gridColumn: "span 2" }}
               >
-                <Palette className="w-8 h-8 text-gray-700 mb-4" />
+                <Palette className="w-8 h-8 mb-4 opacity-80" />
                 <h4 className="h4">Themes</h4>
                 <p className="line-clamp-3 text-sm">
                   Lets you personalize the look and structure of your workspace,
@@ -91,7 +91,7 @@ export default function APITemplateSection() {
               alt="Documentation Interface Preview"
               className="w-full h-full object-cover object-left"
             />
-            <div className="absolute inset-0 bg-gradient-to-l from-white/60 via-white/30 via-40% to-transparent to-70% pointer-events-none"></div>
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-l from-white/60 via-white/30 to-transparent"></div>
           </div>
         </div>
       </div>

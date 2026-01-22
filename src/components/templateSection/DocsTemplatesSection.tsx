@@ -4,18 +4,18 @@ import Link from "next/link";
 export default function DocsTemplatesSection() {
   return (
     <section
-      className="w-full bg-[#f8f9fa] py-20 px-6"
+      className="w-full py-20 px-6 theme-bg-secondary"
       id="docs-templates-section"
     >
-      <div className="container mx-auto flex flex-col gap-12 bg-white p-6">
+      <div className="container mx-auto flex flex-col gap-12 p-6 theme-bg">
         <div className="grid lg:grid-cols-2 gap-20 items-start">
           {/* Left Content */}
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded border border-gray-200">
-              <div className="w-6 h-6 bg-black rounded flex items-center justify-center">
-                <FileText className="w-4 h-4 text-white" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded theme-bg border">
+              <div className="w-6 h-6 rounded flex items-center justify-center theme-badge">
+                <FileText className="w-4 h-4" />
               </div>
-              <span className="font-semibold text-gray-900">
+              <span className="font-semibold">
                 Knowledge base/FAQ
               </span>
             </div>
@@ -25,7 +25,7 @@ export default function DocsTemplatesSection() {
                 Turn Information into Actionable Knowledge base
               </h3>
 
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg leading-relaxed opacity-80">
                 Create and publish beautiful, AI-optimized documentation and
                 knowledge bases that always stay up-to-date, accelerate
                 onboarding and surface in AI-powered search
@@ -50,8 +50,8 @@ export default function DocsTemplatesSection() {
             </Link>
 
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
-                <BarChart className="w-8 h-8 text-gray-700 mb-4" />
+              <div className="p-6 rounded-lg hover:shadow-lg transition-shadow theme-bg border">
+                <BarChart className="w-8 h-8 mb-4 opacity-80" />
                 <h4 className="h4">Page Analytics</h4>
                 <p className="text-sm line-clamp-3">
                   Helps you understand how your documentation is performing. It
@@ -61,8 +61,8 @@ export default function DocsTemplatesSection() {
                 </p>
               </div>
 
-              <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
-                <List className="w-8 h-8 text-gray-700 mb-4" />
+              <div className="p-6 rounded-lg hover:shadow-lg transition-shadow theme-bg border">
+                <List className="w-8 h-8 mb-4 opacity-80" />
                 <h4 className="h4">Table of content in public view</h4>
                 <p className="text-sm line-clamp-3">
                   Generates a structured outline for every public page. It helps
@@ -73,10 +73,10 @@ export default function DocsTemplatesSection() {
               </div>
 
               <div
-                className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow"
+                className="p-6 rounded-lg hover:shadow-lg transition-shadow theme-bg border"
                 style={{ gridColumn: "span 2" }}
               >
-                <LinkIcon className="w-8 h-8 text-gray-700 mb-4" />
+                <LinkIcon className="w-8 h-8 mb-4 opacity-80" />
                 <h4 className="h4">Edit via link</h4>
                 <p className="text-sm line-clamp-3">
                   Allows you to open a document directly in edit mode using a
@@ -95,7 +95,7 @@ export default function DocsTemplatesSection() {
               alt="Documentation Interface Preview"
               className="w-full h-full object-cover object-left"
             />
-            <div className="absolute inset-0 bg-gradient-to-l from-white/60 via-white/30 via-40% to-transparent to-70% pointer-events-none"></div>
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-l from-white/60 via-white/30 to-transparent"></div>
           </div>
         </div>
       </div>

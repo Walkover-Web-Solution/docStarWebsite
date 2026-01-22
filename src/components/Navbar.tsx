@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import Logo from "./Logo";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -54,10 +55,9 @@ const Navbar = () => {
     }
   };
 
-  // Always use dark navigation elements so they remain visible on light hero
-  const textColor = "text-neutral-900";
-  const hoverColor = "hover:text-neutral-600";
-  const underlineColor = "bg-neutral-900";
+  const textColor = "";
+  const hoverColor = "";
+  const underlineColor = "";
 
   return (
     <nav
@@ -71,8 +71,8 @@ const Navbar = () => {
         <div className="flex justify-between gap-8 items-center h-20">
           {/* Logo */}
           <div className="flex items-center ">
-            <Logo size="md" className={`${textColor} transition-colors`} />
-            <Link href="/" className={`text-2xl font-bold ${textColor}`}>
+            <Logo size="md" className="transition-colors" />
+            <Link href="/" className="text-2xl font-bold">
               DocStar
             </Link>
           </div>
@@ -90,11 +90,12 @@ const Navbar = () => {
                   key={item.name}
                   onClick={() => handleNavClick(item.href)}
                   aria-current={isActiveLink ? "page" : undefined}
-                  className={`relative min-w-fit group cursor-pointer ${textColor} ${hoverColor} bg-transparent border-0 p-0`}
+                  className="relative min-w-fit group cursor-pointer bg-transparent border-0 p-0"
                 >
                   {item.name}
                   <div
-                    className={`absolute -bottom-1 left-0 h-0.5 ${underlineColor} transition-all duration-300 ${isActiveLink ? "w-full" : "w-0 group-hover:w-full"}`}
+                    className={`absolute -bottom-1 left-0 h-0.5 transition-all duration-300 ${isActiveLink ? "w-full" : "w-0 group-hover:w-full"}`}
+                    style={{ backgroundColor: 'var(--app-text)' }}
                   />
                 </button>
               ) : (
@@ -103,11 +104,12 @@ const Navbar = () => {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`relative min-w-fit group cursor-pointer ${textColor} ${hoverColor} no-underline`}
+                  className="relative min-w-fit group cursor-pointer no-underline"
                 >
                   {item.name}
                   <div
-                    className={`absolute -bottom-1 left-0 h-0.5 ${underlineColor} transition-all duration-300 w-0 group-hover:w-full`}
+                    className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300 w-0 group-hover:w-full"
+                    style={{ backgroundColor: 'var(--app-text)' }}
                   />
                 </a>
               );
@@ -116,6 +118,7 @@ const Navbar = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center space-x-4 gap-4">
+            <ThemeToggle />
             <a
               href="https://app.docstar.io/login"
               target="_blank"
@@ -128,10 +131,11 @@ const Navbar = () => {
          </div>
 
           {/* Mobile Toggle */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-3">
+            <ThemeToggle />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`${textColor} ${hoverColor}`}
+              className=""
             >
               {isMobileMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -145,7 +149,7 @@ const Navbar = () => {
         {/* Mobile Nav */}
         {isMobileMenuOpen && (
           <div className="md:hidden overflow-hidden">
-              <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-md rounded-lg mt-2 border border-neutral-200 shadow-lg">
+              <div className="px-2 pt-2 pb-3 space-y-1 backdrop-blur-md rounded-lg mt-2 shadow-lg border theme-bg" style={{ opacity: 0.95 }}>
                 {dynamicNavItems.map((item, index) => {
                   const isAnchorLink = item.href.startsWith("#");
                   const isActiveLink =
@@ -155,11 +159,7 @@ const Navbar = () => {
                     <button
                       key={item.name}
                       onClick={() => handleNavClick(item.href)}
-                      className={`block px-3 py-2 font-medium w-full text-left ${
-                        isActiveLink
-                          ? "text-neutral-900"
-                          : "text-neutral-700 hover:text-neutral-900"
-                      }`}
+                      className={`block px-3 py-2 font-medium w-full text-left ${isActiveLink ? '' : 'opacity-80'}`}
                     >
                       {item.name}
                     </button>
@@ -170,7 +170,7 @@ const Navbar = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block px-3 py-2 text-neutral-700 hover:text-neutral-900 font-medium no-underline"
+                      className="block px-3 py-2 font-medium no-underline opacity-80"
                     >
                       {item.name}
                     </a>
@@ -180,13 +180,13 @@ const Navbar = () => {
                 <div className="px-3 py-2 space-y-2">
                   <a
                     href="https://app.docstar.io/login"
-                    className="block text-neutral-700 hover:text-neutral-900 font-medium"
+                    className="block font-medium opacity-80"
                   >
                     Sign In
                   </a>
                   <a
                     href="https://app.docstar.io/login"
-                    className="block bg-neutral-900 text-white px-6 py-2 rounded-lg font-medium shadow-lg text-center hover:bg-neutral-800 transition-colors duration-200"
+                    className="btn btn-primary block text-center"
                   >
                     Get Started Free
                   </a>

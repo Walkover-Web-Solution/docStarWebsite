@@ -108,9 +108,9 @@ const EmbedEditorPageClient: React.FC = () => {
   const [showComment, setShowComment] = useState(false)
 
   const collaborators = [
-    { name: "Alex", color: "bg-blue-500", position: { x: 120, y: 80 } },
-    { name: "Sarah", color: "bg-purple-500", position: { x: 280, y: 120 } },
-    { name: "Mike", color: "bg-green-500", position: { x: 200, y: 160 } },
+    { name: "Alex", color: "theme-badge", position: { x: 120, y: 80 } },
+    { name: "Sarah", color: "theme-badge", position: { x: 280, y: 120 } },
+    { name: "Mike", color: "theme-badge", position: { x: 200, y: 160 } },
   ]
 
   useEffect(() => {
@@ -161,7 +161,7 @@ const EmbedEditorPageClient: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-stone-50 to-amber-50">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="px-6 py-20 max-w-7xl mx-auto">
         <MotionWrapper
@@ -172,21 +172,21 @@ const EmbedEditorPageClient: React.FC = () => {
         >
           <MotionWrapper
             variants={fadeInUp}
-            className="inline-flex items-center px-4 py-2 bg-amber-100 text-amber-700 rounded-full text-sm font-medium mb-8"
+            className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-8 theme-bg-secondary opacity-80"
           >
             <SparklesIcon className="h-4 w-4 mr-2" />
             Minimal Setup, Maximum Impact
           </MotionWrapper>
 
-          <MotionWrapper variants={fadeInUp} className="text-5xl md:text-7xl font-bold text-stone-900 mb-6 leading-tight">
+          <MotionWrapper variants={fadeInUp} className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             Google Docs{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-amber-600">Inside</span>{" "}
             Your Product
           </MotionWrapper>
 
-          <MotionWrapper variants={fadeInUp} className="text-xl md:text-2xl text-stone-600 mb-12 leading-relaxed">
+          <MotionWrapper variants={fadeInUp} className="text-xl md:text-2xl mb-12 leading-relaxed opacity-80">
             Transform any text area into a powerful, collaborative editor with just{" "}
-            <span className="font-semibold text-emerald-600">one line of code</span>. Give your users the editing
+            <span className="font-semibold">one line of code</span>. Give your users the editing
             experience they love, without the complexity.
           </MotionWrapper>
 
@@ -195,7 +195,7 @@ const EmbedEditorPageClient: React.FC = () => {
              as="button"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-emerald-600 text-white rounded-xl font-semibold text-lg hover:bg-emerald-700 transition-colors shadow-lg cursor-pointer"
+              className="btn btn-primary"
               onClick={() => router.push("/editor")}
             >
               Try Live Demo
@@ -204,7 +204,7 @@ const EmbedEditorPageClient: React.FC = () => {
               as="button"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 border-2 border-stone-300 text-stone-700 rounded-xl font-semibold text-lg hover:border-emerald-600 hover:text-emerald-600 transition-colors cursor-pointer"
+              className="btn btn-outline"
               onClick={() => window.open("https://app.docstar.io/p/embed-docstar-editor?collectionId=fLMgydvRdvN7", "_blank")}
             >
               View Documentation
@@ -221,20 +221,20 @@ const EmbedEditorPageClient: React.FC = () => {
         viewport={{ once: true }}
         className="px-6 py-16 max-w-4xl mx-auto"
       >
-        <div className="bg-white rounded-2xl p-8 shadow-2xl border border-stone-200">
+        <div className="rounded-2xl p-8 shadow-2xl theme-bg border">
           <div className="flex items-center mb-4">
             <div className="flex space-x-2">
-              <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-              <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              <div className="w-3 h-3 rounded-full opacity-40" style={{ backgroundColor: 'var(--app-text)' }}></div>
+              <div className="w-3 h-3 rounded-full opacity-40" style={{ backgroundColor: 'var(--app-text)' }}></div>
+              <div className="w-3 h-3 rounded-full opacity-40" style={{ backgroundColor: 'var(--app-text)' }}></div>
             </div>
-            <span className="ml-4 text-stone-500 text-sm">embed-editor.js</span>
+            <span className="ml-4 text-sm opacity-70">embed-editor.js</span>
           </div>
           <MotionWrapper
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-emerald-700 font-mono text-sm md:text-base overflow-x-auto"
+            className="font-mono text-sm md:text-base overflow-x-auto opacity-90"
           >
             {`<script
   id="docstar-main-script"
@@ -256,8 +256,8 @@ const EmbedEditorPageClient: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-stone-900 mb-6">Everything You Need, Nothing You Don't</h2>
-          <p className="text-xl text-stone-600 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">Everything You Need, Nothing You Don't</h2>
+          <p className="text-xl max-w-3xl mx-auto opacity-80">
             Powerful editing capabilities that integrate seamlessly into your existing workflow
           </p>
         </MotionWrapper>
@@ -273,18 +273,18 @@ const EmbedEditorPageClient: React.FC = () => {
             <MotionWrapper
               key={index}
               variants={fadeInUp}
-              className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-stone-100"
+              className="p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow theme-bg border"
             >
-              <feature.icon className="h-12 w-12 text-emerald-600 mb-6" />
-              <h3 className="text-2xl font-bold text-stone-900 mb-4">{feature.title}</h3>
-              <p className="text-stone-600 leading-relaxed">{feature.description}</p>
+              <feature.icon className="h-12 w-12 mb-6 opacity-80" />
+              <h3 className="text-2xl font-bold mb-4">{feature.title}</h3>
+              <p className="leading-relaxed opacity-80">{feature.description}</p>
             </MotionWrapper>
           ))}
         </MotionWrapper>
       </section>
 
       {/* How It Works */}
-      <section className="px-6 py-20 bg-stone-50">
+      <section className="px-6 py-20 theme-bg-secondary">
         <div className="max-w-6xl mx-auto">
           <MotionWrapper
             initial={{ opacity: 0, y: 40 }}
@@ -293,8 +293,8 @@ const EmbedEditorPageClient: React.FC = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-stone-900 mb-6">Setup in Under 60 Seconds</h2>
-            <p className="text-xl text-stone-600">Seriously. It's that simple.</p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">Setup in Under 60 Seconds</h2>
+            <p className="text-xl opacity-80">Seriously. It's that simple.</p>
           </MotionWrapper>
 
           <MotionWrapper
@@ -306,11 +306,11 @@ const EmbedEditorPageClient: React.FC = () => {
           >
             {steps.map((step, index) => (
               <MotionWrapper key={index} variants={fadeInUp} className="text-center">
-                <div className="w-16 h-16 bg-emerald-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 theme-badge">
                   {step.step}
                 </div>
-                <h3 className="text-xl font-bold text-stone-900 mb-3">{step.title}</h3>
-                <p className="text-stone-600">{step.description}</p>
+                <h3 className="text-xl font-bold mb-3">{step.title}</h3>
+                <p className="opacity-80">{step.description}</p>
               </MotionWrapper>
             ))}
           </MotionWrapper>
@@ -326,7 +326,7 @@ const EmbedEditorPageClient: React.FC = () => {
         onMouseEnter={() => setIsCollaborationHovered(true)}
         onMouseLeave={() => setIsCollaborationHovered(false)}
         onMouseMove={handleMouseMove}
-        className="px-6 py-20 bg-gradient-to-br from-amber-50 to-stone-100 relative overflow-hidden"
+        className="px-6 py-20 theme-bg-secondary relative overflow-hidden"
       >
         {/* Your cursor indicator */}
         {isCollaborationHovered && (
@@ -345,11 +345,11 @@ const EmbedEditorPageClient: React.FC = () => {
               x: { type: "spring", stiffness: 150, damping: 30 },
               y: { type: "spring", stiffness: 150, damping: 30 },
             }}
-            className="absolute pointer-events-none z-10 flex items-center space-x-2 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-full shadow-lg border border-orange-200"
+            className="absolute pointer-events-none z-10 flex items-center space-x-2 backdrop-blur-sm px-3 py-2 rounded-full shadow-lg theme-bg border"
             style={{ left: 0, top: 0 }}
           >
-            <div className="w-3 h-3 bg-orange-500 rounded-full animate-pulse"></div>
-            <span className="text-sm font-medium text-stone-700">You</span>
+            <div className="w-3 h-3 rounded-full animate-pulse opacity-80" style={{ backgroundColor: 'var(--app-text)' }}></div>
+            <span className="text-sm font-medium">You</span>
           </MotionWrapper>
         )}
 
@@ -362,12 +362,12 @@ const EmbedEditorPageClient: React.FC = () => {
               className="relative"
             >
               {/* Mock Document */}
-              <div className="bg-white rounded-lg shadow-xl p-6 border border-stone-200 relative overflow-hidden">
+              <div className="rounded-lg shadow-xl p-6 relative overflow-hidden theme-bg border">
                 {/* Document Header */}
-                <div className="flex items-center justify-between mb-4 pb-3 border-b border-stone-100">
+                <div className="flex items-center justify-between mb-4 pb-3 border-b opacity-20" style={{ borderColor: 'var(--app-border)' }}>
                   <div className="flex items-center space-x-2">
-                    <DocumentTextIcon className="h-5 w-5 text-stone-500" />
-                    <span className="text-sm font-medium text-stone-600">Product Strategy Doc</span>
+                    <DocumentTextIcon className="h-5 w-5 opacity-70" />
+                    <span className="text-sm font-medium opacity-80">Product Strategy Doc</span>
                   </div>
                   <div className="flex items-center space-x-1">
                     {/* {collaborators.map((collaborator, index) => (
@@ -386,15 +386,15 @@ const EmbedEditorPageClient: React.FC = () => {
 
                 {/* Document Content */}
                 <div className="space-y-3">
-                  <h3 className="text-lg font-semibold text-stone-900">Q1 Planning Session</h3>
+                  <h3 className="text-lg font-semibold">Q1 Planning Session</h3>
                   <div className="relative">
-                    <p className="text-stone-700 leading-relaxed min-h-[60px]">
+                    <p className="leading-relaxed min-h-[60px] opacity-90">
                       {animatedText}
                       {isCollaborationHovered && (
                         <MotionWrapper
                           animate={{ opacity: [1, 0] }}
                           transition={{ duration: 0.8, repeat: Number.POSITIVE_INFINITY }}
-                          className="inline-block w-0.5 h-5 bg-blue-500 ml-1"
+                          className="inline-block w-0.5 h-5 ml-1 opacity-80" style={{ backgroundColor: 'var(--app-text)' }}
                         />
                       )}
                     </p>
@@ -447,7 +447,7 @@ const EmbedEditorPageClient: React.FC = () => {
               transition={{ duration: 0.8 }}
               className="text-center lg:text-left"
             >
-              <p className="text-xl text-stone-600 mb-8 leading-relaxed">
+              <p className="text-xl mb-8 leading-relaxed opacity-80">
                 Real-time collaboration that feels natural. See who's editing, share ideas instantly, and work together
                 seamlessly.
               </p>
@@ -455,7 +455,7 @@ const EmbedEditorPageClient: React.FC = () => {
               as="button"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-blue-600 text-white rounded-xl font-semibold text-lg hover:bg-blue-700 transition-colors shadow-lg cursor-pointer"
+                className="btn btn-primary"
                 onClick={() => window.open("https://app.docstar.io/login", "_blank")}
               >
                 Get started
@@ -465,37 +465,14 @@ const EmbedEditorPageClient: React.FC = () => {
         </div>
       </MotionWrapper>
 
-      {/* CTA Section */}
-      {/* <MotionWrapper
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="px-6 py-20 bg-gradient-to-r from-emerald-50 to-amber-50 border-t border-stone-200"
-      >
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-stone-900">Ready to Embed Excellence?</h2>
-          <p className="text-xl mb-8 text-stone-600">
-            Join thousands of developers who've already upgraded their text editing experience
-          </p>
-          <MotionWrapper
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-emerald-600 text-white rounded-xl font-semibold text-lg hover:bg-emerald-700 transition-colors shadow-lg"
-          >
-            Start Building Today
-          </MotionWrapper>
-        </div>
-      </MotionWrapper> */}
-
       {/* Footer */}
-      <footer className="px-6 py-12 bg-white border-t border-stone-200">
+      <footer className="px-6 py-12 border-t border">
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
-            <CodeBracketIcon className="h-8 w-8 text-emerald-600" />
-            <span className="text-xl font-bold text-stone-900">EmbedEditor</span>
+            <CodeBracketIcon className="h-8 w-8 opacity-80" />
+            <span className="text-xl font-bold">EmbedEditor</span>
           </div>
-          <p className="text-stone-500">Making rich text editing accessible to every product.</p>
+          <p className="opacity-70">Making rich text editing accessible to every product.</p>
         </div>
       </footer>
     </div>

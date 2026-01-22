@@ -91,32 +91,32 @@ export default async function PricingPage() {
     console.error("[HomePage] Unable to load faqs from API:", error);
   }
   return (
-    <div className="pricing-page bg-white pt-32 pb-20 px-4 sm:px-6 lg:px-10">
+    <div className="pricing-page pt-32 pb-20 px-4 sm:px-6 lg:px-10">
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
-          <h1 className="mx-auto max-w-2xl text-3xl sm:text-4xl font-semibold text-neutral-900">
+          <h1 className="mx-auto max-w-2xl text-3xl sm:text-4xl font-semibold">
             Build beautiful documentation for free
           </h1>
-          <p className="mx-auto mt-3 max-w-2xl text-base text-neutral-600">
+          <p className="mx-auto mt-3 max-w-2xl text-base opacity-80">
             Paywalls get out of the way? Docstar keeps the essential tools open so you can publish
             knowledge bases, blogs, and API docs without friction.
           </p>
         </div>
 
-        <div className="mt-14 rounded border border-neutral-900 bg-white p-6 sm:p-10 shadow-sm">
+        <div className="mt-14 rounded p-6 sm:p-10 border theme-bg">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-2xl font-semibold text-neutral-900">
+            <h2 className="text-2xl font-semibold">
               Everything you need in the Free plan
             </h2>
-            <p className="mt-2 text-sm text-neutral-600">
+            <p className="mt-2 text-sm opacity-80">
               Unlock the full Docstar workspace with unlimited pages, collaboration, and publishing
               tools at no cost under our fair-usage policy.
             </p>
           </div>
-          <ul className="mt-10 grid grid-cols-1 gap-4 text-sm text-neutral-800 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-10 grid grid-cols-1 gap-4 text-sm sm:grid-cols-2 lg:grid-cols-3">
             {freePlanFeatures.map((feature, index) => (
               <li key={index} className="flex items-start gap-3">
-                <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-neutral-900 text-[11px] font-semibold text-white">
+                <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-semibold theme-badge">
                   ✓
                 </span>
                 <span>{feature}</span>
@@ -128,7 +128,7 @@ export default async function PricingPage() {
                 href="https://docstar.io/help"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-semibold text-neutral-900 transition-colors duration-200 group-hover:text-neutral-600"
+                className="inline-flex items-center gap-2 font-semibold transition-colors duration-200"
               >
                 See all features
                 <ArrowRight className="h-4 w-4 translate-x-0 transition-transform duration-200 group-hover:translate-x-1" />
@@ -138,8 +138,8 @@ export default async function PricingPage() {
         </div>
 
         <div className="mt-16 text-center">
-          <h2 className="text-3xl font-semibold text-neutral-900">Do more with Docstar</h2>
-          <p className="mt-3 text-base text-neutral-600">
+          <h2 className="text-3xl font-semibold">Do more with Docstar</h2>
+          <p className="mt-3 text-base opacity-80">
             Upgrade only when you need deeper controls, security, or hands-on support from our team.
           </p>
         </div>
@@ -148,25 +148,24 @@ export default async function PricingPage() {
           {paidPlans.map((plan) => (
             <article
               key={plan.title}
-              className={`flex h-full flex-col justify-between rounded border bg-white p-8 shadow-sm transition-shadow duration-200 hover:shadow-lg ${plan.highlight ? "border-neutral-900" : "border-neutral-200"
-                }`}
+              className={`flex h-full flex-col justify-between rounded p-8 shadow-sm transition-shadow duration-200 hover:shadow-lg theme-bg ${plan.highlight ? 'border' : 'border'}`}
             >
               <div>
                 <div className="flex items-center gap-3">
-                  <h3 className="text-2xl font-semibold text-neutral-900">{plan.title}</h3>
+                  <h3 className="text-2xl font-semibold">{plan.title}</h3>
                 </div>
                 <div className="mt-4 flex items-baseline gap-2">
-                  <span className="text-4xl font-bold text-neutral-900">{plan.price}</span>
+                  <span className="text-4xl font-bold">{plan.price}</span>
                   {plan.priceNote && (
-                    <span className="text-sm font-medium text-neutral-500">{plan.priceNote}</span>
+                    <span className="text-sm font-medium opacity-70">{plan.priceNote}</span>
                   )}
                 </div>
-                <p className="mt-3 text-sm text-neutral-600">{plan.description}</p>
+                <p className="mt-3 text-sm opacity-80">{plan.description}</p>
 
-                <ul className="mt-6 space-y-3 text-sm text-neutral-700">
+                <ul className="mt-6 space-y-3 text-sm opacity-90">
                   {plan.features.map((feature, index) => (
                     <li key={index} className="flex items-start gap-3">
-                      <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-neutral-900 text-[11px] font-semibold text-white">
+                      <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-semibold theme-bg theme-text" style={{ backgroundColor: 'var(--app-text)', color: 'var(--app-bg)' }}>
                         ✓
                       </span>
                       <span>{feature}</span>
