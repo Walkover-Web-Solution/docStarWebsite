@@ -7,6 +7,5 @@ export async function fetchTestimonials() {
     }
     
     const data = await res.json();
-    console.log(data);
     return data;
 }
