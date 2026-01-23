@@ -33,7 +33,7 @@ const Footer = () => {
                 title="Email"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-all duration-300 p-2.5 rounded-lg border opacity-70"
+                className="transition-all duration-300 p-2 rounded-lg border opacity-70"
               >
                 <Mail className="h-4 w-4" />
               </a>
@@ -41,7 +41,7 @@ const Footer = () => {
                 href="https://play.google.com/store/apps/details?id=com.tech_doc_mobile"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center transition-all duration-300 p-2.5 rounded-lg border opacity-70"
+                className="group inline-flex items-center transition-all duration-300 p-2 rounded-lg border opacity-70"
               >
                 <span className="text-sm">Get it on Android</span>
                 <Smartphone className="h-4 w-4 ml-2" />
