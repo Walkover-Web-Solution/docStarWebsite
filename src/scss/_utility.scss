@@ -23,12 +23,12 @@
 }
 
 .border {
-  border-style: var(--tw-border-style);
-  border-width: 1px;
+  border-style: var(--tw-border-style) !important;
+  border-width: 1px !important;
 }
 
 .border-color {
-  border-color: var(--app-border);
+  border-color: var(--app-border) !important;
 }
 
 .theme-gradient-fade {
