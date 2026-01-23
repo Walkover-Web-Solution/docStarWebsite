@@ -23,7 +23,8 @@
 }
 
 .border {
-  border: 1px solid var(--app-border) !important;
+  border-style: var(--tw-border-style);
+  border-width: 1px;
 }
 
 .border-color {

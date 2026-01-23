@@ -29,4 +29,5 @@ export type TestimonialItem = {
   client_img: string[];
   given_by: string;
   giver_title: string;
+  product_logo: string[];
 };
