@@ -128,7 +128,7 @@ export default async function PricingPage() {
                 href="https://docstar.io/help"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-semibold transition-colors duration-200"
+                className="inline-flex items-center gap-2 font-semibold opacity-60 hover:opacity-100 transition-all duration-200"
               >
                 See all features
                 <ArrowRight className="h-4 w-4 translate-x-0 transition-transform duration-200 group-hover:translate-x-1" />
@@ -148,7 +148,7 @@ export default async function PricingPage() {
           {paidPlans.map((plan) => (
             <article
               key={plan.title}
-              className={`flex h-full flex-col justify-between rounded p-8 shadow-sm transition-shadow duration-200 hover:shadow-lg theme-bg ${plan.highlight ? 'border' : 'border'}`}
+              className={`flex h-full flex-col justify-between rounded p-8 shadow-sm transition-shadow duration-200 hover:shadow-lg theme-bg ${plan.highlight ? 'border' : 'border border-color'}`}
             >
               <div>
                 <div className="flex items-center gap-3">

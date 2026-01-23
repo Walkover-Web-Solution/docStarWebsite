@@ -23,11 +23,12 @@
 }
 
 .border {
-  border: 1px solid var(--app-border) !important;
+  border-style: var(--tw-border-style) !important;
+  border-width: 1px !important;
 }
 
 .border-color {
-  border-color: var(--app-border);
+  border-color: var(--app-border) !important;
 }
 
 .theme-gradient-fade {

@@ -5,24 +5,22 @@
 "use client";
 
 import { useInView } from "react-intersection-observer";
-import { ArrowRight, Sparkles, X } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import DocsTemplatesSection from "@/components/templateSection/DocsTemplatesSection";
-import BlogTemplateSection from "@/components/templateSection/BlogTemplateSection";
-import ApiTemplateSection from "@/components/templateSection/ApiTemplateSection";
 import MotionWrapper from "../motion/MotionDivWrapper";
 import ImageCarousel from "./ImageCarousel";
 import { HeroImage } from "@/types/data-types";
-import AppsMarquee from "../AppsMarquee";
-import APITemplateSection from "@/components/templateSection/ApiTemplateSection";
+import ContentSection from "../contentSection/ContentSection";
+import { TestimonialItem } from "@/types/data-types";
 
 interface HeroProps {
   heroImages: HeroImage[];
+  testimonials: TestimonialItem[];
 }
 /**
  * Landing hero that introduces DocStar, showcases key value props, and provides CTAs for signup or demos.
  */
-const Hero = ({ heroImages }: HeroProps) => {
+const Hero = ({ heroImages, testimonials }: HeroProps) => {
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
@@ -149,13 +147,7 @@ const Hero = ({ heroImages }: HeroProps) => {
           </div>
         </div>
       )}
-
-      <AppsMarquee />
-
-      {/* Lazy load heavy section */}
-      <DocsTemplatesSection />
-      <BlogTemplateSection />
-      <APITemplateSection />
+      <ContentSection testimonials={testimonials} />
     </>
   );
 };
