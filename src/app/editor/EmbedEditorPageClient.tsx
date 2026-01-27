@@ -233,7 +233,7 @@ const EmbedEditorPageClient = () => {
       </section>
 
       {/* Formatting Tools Section */}
-      <section className="px-6 py-20">
+      <section className="px-6 py-20 container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Just the right amount of formatting.
@@ -241,7 +241,7 @@ const EmbedEditorPageClient = () => {
           <div className="flex items-center justify-center gap-3 mt-8">
             <button
               onClick={prevTool}
-              className="w-10 h-10 rounded-full border theme-border flex items-center justify-center transition-opacity hover:opacity-70"
+              className="w-10 h-10 cursor-pointer rounded-full border theme-border flex items-center justify-center transition-opacity hover:opacity-70"
             >
               <ChevronLeft className="w-5 h-5 opacity-70" />
             </button>
@@ -250,23 +250,17 @@ const EmbedEditorPageClient = () => {
                 <button
                   key={pageIndex}
                   onClick={() => setCurrentTool(pageIndex * toolsPerPage)}
-                  style={{
-                    opacity:
-                      Math.floor(currentTool / toolsPerPage) === pageIndex
-                        ? 0.8
-                        : 0.3,
-                  }}
-                  className={`h-2 rounded-full transition-all border theme-border ${
+                  className={`h-2 rounded-full transition-all border-2 ${
                     Math.floor(currentTool / toolsPerPage) === pageIndex
                       ? "w-8 theme-bg"
-                      : "w-2"
+                      : "w-2 theme-bg opacity-40"
                   }`}
                 />
               ))}
             </div>
             <button
               onClick={nextTool}
-              className="w-10 h-10 rounded-full border theme-border flex items-center justify-center transition-opacity hover:opacity-70"
+              className="w-10 h-10 cursor-pointer rounded-full border theme-border flex items-center justify-center transition-opacity hover:opacity-70"
             >
               <ChevronRight className="w-5 h-5 opacity-70" />
             </button>
