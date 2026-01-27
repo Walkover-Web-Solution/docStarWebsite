@@ -12,7 +12,7 @@ const SimpleWebsite: React.FC = () => {
           Turn your ideas and vision into a fully functional website, and let the world explore what you've built—<span className="italic">no tech expertise required</span>!
         </p>
 
-        <div className="p-10 rounded-xl shadow-md theme-bg">
+        <div className="p-10 rounded-xl shadow-md ">
           <h2 className="text-2xl font-semibold mb-4">
             Fast, Easy, and No-Code
           </h2>

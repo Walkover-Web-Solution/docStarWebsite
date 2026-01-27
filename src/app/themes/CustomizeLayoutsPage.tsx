@@ -122,7 +122,7 @@ export const CustomizeLayoutsPage = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }}></div>
+        <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative max-w-6xl mx-auto px-6 py-20 text-center">
           <MotionWrapper
             className="text-5xl md:text-7xl font-bold mb-6 text-balance"
@@ -171,7 +171,7 @@ export const CustomizeLayoutsPage = () => {
             {customizationFeatures.map((feature, index) => (
               <MotionWrapper
                 key={index}
-                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
@@ -203,7 +203,7 @@ export const CustomizeLayoutsPage = () => {
             {publishingFeatures.map((feature, index) => (
               <MotionWrapper
                 key={index}
-                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
@@ -235,7 +235,7 @@ export const CustomizeLayoutsPage = () => {
             {benefits.map((benefit, index) => (
               <MotionWrapper
                 key={index}
-                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >

@@ -10,11 +10,11 @@ export default function WhiteLabelling() {
   return (
     <div className='py-10'>
     <section
-      className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 mt-16 scroll-mt-16"
+      className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 mt-16 scroll-mt-16"
       id="white-labelling"
     >
       <article className="prose prose-sm sm:prose-base md:prose-lg lg:prose-xl prose-slate max-w-none">
-        <h1 className="text-4xl font-extrabold mb-8 leading-tight">
+        <h1 className="h1 mb-2">
           How to white label your Techdoc Documentation for branding?
         </h1>
 
@@ -24,7 +24,7 @@ export default function WhiteLabelling() {
             addresses for your Techdoc.
           </p>
 
-          <div className="border-l-4 p-4 rounded-r-lg theme-bg-secondary" style={{ borderColor: 'var(--app-border)' }}>
+          <div className="border-l-4 p-4 rounded-r-lg theme-bg-secondary theme-border ">
             <p className="mb-3">
               For example: Your DocStar documentation will be available on{" "}
               <a
@@ -53,7 +53,7 @@ export default function WhiteLabelling() {
         </div>
 
         <div className="mt-12">
-          <h2 className="text-3xl font-bold mb-8 pb-3 border-b-2" style={{ borderColor: 'var(--app-border)' }}>
+          <h2 className="text-3xl font-bold mb-8 pb-3 border-b-2 theme-border">
             For Cloudflare:
           </h2>
 
@@ -73,7 +73,7 @@ export default function WhiteLabelling() {
             {/* Option A */}
             <div className="rounded-lg p-8 theme-bg-secondary border">
               <h3 className="text-2xl font-bold mb-6 flex items-center">
-                <span className="px-3 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
+                <span className="px-3 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary opacity-80">
                   Option A
                 </span>
                 Configure using subdomain
@@ -99,9 +99,9 @@ export default function WhiteLabelling() {
 
               <div className="space-y-8">
                 {/* Step 1 */}
-                <div className="border-l-4 pl-6" style={{ borderColor: 'var(--app-border)' }}>
+                <div className="border-l-4 pl-6 theme-border">
                   <h4 className="text-xl font-semibold mb-4 flex items-center">
-                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
+                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary opacity-80">
                       Step 1
                     </span>
                     Add domain in Techdoc settings
@@ -116,7 +116,7 @@ export default function WhiteLabelling() {
                       <img
                         src="https://storage.googleapis.com/techdoc.walkover.in/2Uv_sfKTLPI3/tRAbnkRAR9Cs/87980b2c-4d5d-47a6-9713-c6e97742c1fc_Screenshot 2024-11-18 at 4.55.52 PM.png"
                         alt="Settings 1"
-                        className="rounded-lg border-2 border-gray-200 shadow-md hover:shadow-lg transition-shadow duration-300"
+                        className="rounded-lg border-2 theme-border shadow-md hover:shadow-lg transition-shadow duration-300"
                       />
                       <p className="text-sm text-center opacity-70">
                         Settings Configuration
@@ -126,7 +126,7 @@ export default function WhiteLabelling() {
                       <img
                         src="https://storage.googleapis.com/techdoc.walkover.in/2Uv_sfKTLPI3/tRAbnkRAR9Cs/5b85a7d6-a865-4477-bbcf-6c0e7e3e1ffc_Screenshot 2024-11-18 at 4.48.50 PM.png"
                         alt="Settings 2"
-                        className="rounded-lg border-2 border-gray-200 shadow-md hover:shadow-lg transition-shadow duration-300"
+                        className="rounded-lg border-2 theme-border shadow-md hover:shadow-lg transition-shadow duration-300"
                       />
                       <p className="text-sm text-center opacity-70">
                         Domain Setup
@@ -136,9 +136,9 @@ export default function WhiteLabelling() {
                 </div>
 
                 {/* Step 2 */}
-                <div className="border-l-4 pl-6" style={{ borderColor: 'var(--app-border)' }}>
+                <div className="border-l-4 pl-6 theme-border">
                   <h4 className="text-xl font-semibold mb-4 flex items-center">
-                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
+                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary opacity-80">
                       Step 2
                     </span>
                     Create a CNAME record
@@ -154,15 +154,15 @@ export default function WhiteLabelling() {
                     <img
                       src="https://phone91.com/static/msg91/Kb17007225951817951700722582368.png"
                       alt="DNS CNAME record"
-                      className="rounded-lg border-2 border-gray-200 shadow-md w-full hover:shadow-lg transition-shadow duration-300"
+                      className="rounded-lg border-2 theme-border shadow-md w-full hover:shadow-lg transition-shadow duration-300"
                     />
                   </div>
                 </div>
 
                 {/* Step 3 */}
-                <div className="border-l-4 pl-6" style={{ borderColor: 'var(--app-border)' }}>
+                <div className="border-l-4 pl-6 theme-border">
                   <h4 className="text-xl font-semibold mb-4 flex items-center">
-                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
+                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary opacity-80">
                       Step 3
                     </span>
                     Fill details
@@ -171,7 +171,7 @@ export default function WhiteLabelling() {
                   <div className="p-4 rounded-lg border mb-4">
                     <ul className="space-y-3">
                       <li className="flex items-start">
-                        <span className="px-2 py-1 rounded text-sm font-medium mr-3 mt-0.5 theme-bg-secondary" style={{ opacity: 0.8 }}>
+                        <span className="px-2 py-1 rounded text-sm font-medium mr-3 mt-0.5 theme-bg-secondary opacity-80">
                           Type:
                         </span>
                         <span className="font-mono px-2 py-1 rounded theme-bg-secondary">
@@ -179,7 +179,7 @@ export default function WhiteLabelling() {
                         </span>
                       </li>
                       <li className="flex items-start">
-                        <span className="px-2 py-1 rounded text-sm font-medium mr-3 mt-0.5 theme-bg-secondary" style={{ opacity: 0.8 }}>
+                        <span className="px-2 py-1 rounded text-sm font-medium mr-3 mt-0.5 theme-bg-secondary opacity-80">
                           Name:
                         </span>
                         <span>
@@ -191,7 +191,7 @@ export default function WhiteLabelling() {
                         </span>
                       </li>
                       <li className="flex items-start">
-                        <span className="px-2 py-1 rounded text-sm font-medium mr-3 mt-0.5 theme-bg-secondary" style={{ opacity: 0.8 }}>
+                        <span className="px-2 py-1 rounded text-sm font-medium mr-3 mt-0.5 theme-bg-secondary opacity-80">
                           Target:
                         </span>
                         <span>Techdoc or your custom domain endpoint</span>
@@ -202,7 +202,7 @@ export default function WhiteLabelling() {
                   <Image
                     src={Step3}
                     alt="CNAME record details"
-                    className="rounded-lg border-2 border-gray-200 shadow-md w-full hover:shadow-lg transition-shadow duration-300"
+                    className="rounded-lg border-2 theme-border shadow-md w-full hover:shadow-lg transition-shadow duration-300"
                   />
                 </div>
               </div>
@@ -211,7 +211,7 @@ export default function WhiteLabelling() {
             {/* Option B */}
             <div className="rounded-lg p-8 theme-bg-secondary border">
               <h3 className="text-2xl font-bold mb-6 flex items-center">
-                <span className="px-3 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
+                <span className="px-3 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary opacity-80">
                   Option B
                 </span>
                 Configure using endpoint
@@ -233,9 +233,9 @@ export default function WhiteLabelling() {
 
               <div className="space-y-8">
                 {/* Step 1 */}
-                <div className="border-l-4 pl-6" style={{ borderColor: 'var(--app-border)' }}>
+                <div className="border-l-4 pl-6 theme-border">
                   <h4 className="text-xl font-semibold mb-4 flex items-center">
-                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
+                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary opacity-80">
                       Step 1
                     </span>
                     Add domain in Techdoc Configuration
@@ -250,9 +250,9 @@ export default function WhiteLabelling() {
                 </div>
 
                 {/* Step 2 */}
-                <div className="border-l-4 pl-6" style={{ borderColor: 'var(--app-border)' }}>
+                <div className="border-l-4 pl-6 theme-border">
                   <h4 className="text-xl font-semibold mb-4 flex items-center">
-                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
+                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary opacity-80">
                       Step 2
                     </span>
                     Open Worker Routes
@@ -260,14 +260,14 @@ export default function WhiteLabelling() {
                   <img
                     src="https://phone91.com/static/msg91/Kb17007225962871091700722582779.png"
                     alt="Worker Routes"
-                    className="rounded-lg border-2 border-gray-200 shadow-md w-full hover:shadow-lg transition-shadow duration-300"
+                    className="rounded-lg border-2 theme-border shadow-md w-full hover:shadow-lg transition-shadow duration-300"
                   />
                 </div>
 
                 {/* Step 3 */}
-                <div className="border-l-4 pl-6" style={{ borderColor: 'var(--app-border)' }}>
+                <div className="border-l-4 pl-6 theme-border">
                   <h4 className="text-xl font-semibold mb-4 flex items-center">
-                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
+                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary opacity-80">
                       Step 3
                     </span>
                     Manage Workers
@@ -280,14 +280,14 @@ export default function WhiteLabelling() {
                   <img
                     src="https://phone91.com/static/msg91/Kb1700722595687111700722582673.png"
                     alt="Manage Workers"
-                    className="rounded-lg border-2 border-gray-200 shadow-md w-full hover:shadow-lg transition-shadow duration-300"
+                    className="rounded-lg border-2 theme-border shadow-md w-full hover:shadow-lg transition-shadow duration-300"
                   />
                 </div>
 
                 {/* Step 4 */}
-                <div className="border-l-4 pl-6" style={{ borderColor: 'var(--app-border)' }}>
+                <div className="border-l-4 pl-6 theme-border">
                   <h4 className="text-xl font-semibold mb-4 flex items-center">
-                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
+                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary opacity-80">
                       Step 4
                     </span>
                     Create Application
@@ -295,14 +295,14 @@ export default function WhiteLabelling() {
                   <img
                     src="https://phone91.com/static/msg91/Kb17007225920268841700722581330.png"
                     alt="Create application"
-                    className="rounded-lg border-2 border-gray-200 shadow-md w-full hover:shadow-lg transition-shadow duration-300"
+                    className="rounded-lg border-2 theme-border shadow-md w-full hover:shadow-lg transition-shadow duration-300"
                   />
                 </div>
 
                 {/* Step 5 */}
-                <div className="border-l-4 pl-6" style={{ borderColor: 'var(--app-border)' }}>
+                <div className="border-l-4 pl-6 theme-border">
                   <h4 className="text-xl font-semibold mb-4 flex items-center">
-                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
+                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary opacity-80">
                       Step 5
                     </span>
                     Quick Edit your Worker
@@ -313,7 +313,7 @@ export default function WhiteLabelling() {
                       <img
                         src="https://phone91.com/static/msg91/Kb17007225955260211700722582485.png"
                         alt="Quick edit"
-                        className="rounded-lg border-2 border-gray-200 shadow-md hover:shadow-lg transition-shadow duration-300"
+                        className="rounded-lg border-2 theme-border shadow-md hover:shadow-lg transition-shadow duration-300"
                       />
                       <p className="text-sm text-center opacity-70">
                         Quick Edit Interface
@@ -323,7 +323,7 @@ export default function WhiteLabelling() {
                       <img
                         src="https://phone91.com/static/msg91/Kb17007225959776281700722582852.png"
                         alt="Worker file"
-                        className="rounded-lg border-2 border-gray-200 shadow-md hover:shadow-lg transition-shadow duration-300"
+                        className="rounded-lg border-2 theme-border shadow-md hover:shadow-lg transition-shadow duration-300"
                       />
                       <p className="text-sm text-center opacity-70">
                         Worker File Structure
@@ -333,9 +333,9 @@ export default function WhiteLabelling() {
                 </div>
 
                 {/* Step 6 */}
-                <div className="border-l-4 pl-6" style={{ borderColor: 'var(--app-border)' }}>
+                <div className="border-l-4 pl-6 theme-border">
                   <h4 className="text-xl font-semibold mb-4 flex items-center">
-                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary" style={{ opacity: 0.8 }}>
+                    <span className="px-2 py-1 rounded-full text-sm font-medium mr-3 theme-bg-secondary opacity-80">
                       Step 6
                     </span>
                     Paste this code

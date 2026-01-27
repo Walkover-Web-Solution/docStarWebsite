@@ -10,7 +10,7 @@ export default function BloggingPage() {
           </p>
   
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-left">
-            <div className="p-8 rounded-xl shadow hover:shadow-lg transition duration-300 theme-bg">
+            <div className="p-8 rounded-xl shadow hover:shadow-lg transition duration-300 ">
               <h2 className="text-2xl font-semibold mb-4">
                 Boost Your Blog’s Reach with SEO
               </h2>
@@ -19,7 +19,7 @@ export default function BloggingPage() {
               </p>
             </div>
   
-            <div className="p-8 rounded-xl shadow hover:shadow-lg transition duration-300 theme-bg">
+            <div className="p-8 rounded-xl shadow hover:shadow-lg transition duration-300 ">
               <h2 className="text-2xl font-semibold mb-4">
                 Personalize Your Blog’s Header and Footer
               </h2>
@@ -28,7 +28,7 @@ export default function BloggingPage() {
               </p>
             </div>
   
-            <div className="p-8 rounded-xl shadow hover:shadow-lg transition duration-300 theme-bg">
+            <div className="p-8 rounded-xl shadow hover:shadow-lg transition duration-300 ">
               <h2 className="text-2xl font-semibold mb-4">
                 Hassle-Free Blog Setup
               </h2>

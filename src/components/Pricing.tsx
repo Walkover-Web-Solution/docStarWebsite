@@ -103,7 +103,7 @@ export const Pricing: React.FC = () => {
         {plans.map((plan, index) => (
           <div
             key={index}
-            className="rounded-2xl shadow-md p-6 transition-all duration-300 ease-in-out hover:shadow-xl theme-bg border"
+            className="rounded-2xl shadow-md p-6 transition-all duration-300 ease-in-out hover:shadow-xl border"
           >
             <h3 className="text-2xl font-semibold">
               {plan.title}
@@ -154,7 +154,7 @@ export const Pricing: React.FC = () => {
 
             <a
               href="https://app.docstar.io/login"
-              className="mt-6 block text-center w-full py-2 rounded-xl font-semibold hover:opacity-90 transition theme-text"
+              className="mt-6 block text-center w-full py-2 rounded-xl font-semibold hover:opacity-90 transition"
             >
               {plan.title === "Free" ? "Sign up" : "Get started"}
             </a>

@@ -17,7 +17,7 @@ const CONTACT = {
  */
 export const ContactUs = () => {
   return (
-    <div className="max-w-7xl mx-auto px-6 py-16 mt-10">
+    <div className="container mx-auto px-6 py-16 mt-10">
       <h1 className="text-4xl font-extrabold mb-4 text-center">Support</h1>
       <p className="text-lg text-center mb-14 max-w-2xl mx-auto opacity-80">
         Need help? Our team is ready to assist you—whether you’re just getting
@@ -27,7 +27,7 @@ export const ContactUs = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 mb-20">
         <section
-          className="shadow-lg rounded-xl p-8 hover:shadow-2xl transition theme-bg border"
+          className="shadow-lg rounded-xl p-8 hover:shadow-2xl transition border"
           aria-label="Contact Support"
         >
           <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
@@ -73,7 +73,7 @@ export const ContactUs = () => {
           </ul>
         </section>
         <section
-          className="shadow-lg rounded-xl p-8 hover:shadow-2xl transition theme-bg border"
+          className="shadow-lg rounded-xl p-8 hover:shadow-2xl transition border"
           aria-label="Schedule a Demo"
         >
           <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">

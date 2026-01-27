@@ -30,7 +30,7 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
 
           <div className="flex flex-col">
             {faqs?.map((faq, index) => (
-              <div key={index} className="border-b border-color">
+              <div key={index} className="border-b theme-border">
                 <button
                   type="button"
                   className="flex w-full items-start justify-between gap-4 py-4 text-left cursor-pointer group"

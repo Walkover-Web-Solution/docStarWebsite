@@ -100,7 +100,7 @@ export const AIPoweredSearchClient = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }}></div>
+        <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative max-w-6xl mx-auto px-6 py-20 text-center">
           <MotionWrapper
             className="text-5xl md:text-7xl font-bold mb-6 text-balance"
@@ -163,7 +163,7 @@ export const AIPoweredSearchClient = () => {
                 className="flex items-start space-x-4 p-6 rounded-2xl theme-bg-secondary border"
                 variants={itemVariants}
               >
-                <div className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80" style={{ backgroundColor: 'var(--app-text)' }}></div>
+                <div className="w-2 h-2 rounded-full theme-bg mt-3 flex-shrink-0 opacity-80"></div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
                   <p className="opacity-80">{item.description}</p>
@@ -194,7 +194,7 @@ export const AIPoweredSearchClient = () => {
             {features.map((feature, index) => (
               <MotionWrapper
                 key={index}
-                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
@@ -229,7 +229,7 @@ export const AIPoweredSearchClient = () => {
             {benefits.map((benefit, index) => (
               <MotionWrapper
                 key={index}
-                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >

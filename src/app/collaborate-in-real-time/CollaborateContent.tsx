@@ -98,7 +98,7 @@ const CollaborateContent = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }}></div>
+        <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative max-w-6xl mx-auto px-6 py-20 text-center">
           <MotionWrapper
             className="text-5xl md:text-7xl font-bold mb-6 text-balance"
@@ -160,7 +160,7 @@ const CollaborateContent = () => {
                 className="flex items-start space-x-4 p-6 rounded-2xl theme-bg-secondary border"
                 variants={itemVariants}
               >
-                <div className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80" style={{ backgroundColor: 'var(--app-text)' }}></div>
+                <div className="w-2 h-2 rounded-full theme-bg mt-3 flex-shrink-0 opacity-80"></div>
                 <p className="text-lg opacity-80">{point}</p>
               </MotionWrapper>
             ))}
@@ -185,7 +185,7 @@ const CollaborateContent = () => {
             {features.map((feature, index) => (
               <MotionWrapper
                 key={index}
-                className="p-8 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
+                className="p-8 rounded-2xl shadow-sm border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
@@ -221,7 +221,7 @@ const CollaborateContent = () => {
             {benefits.map((benefit, index) => (
               <MotionWrapper
                 key={index}
-                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
