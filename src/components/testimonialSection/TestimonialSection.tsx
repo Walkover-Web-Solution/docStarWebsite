@@ -37,9 +37,9 @@ const TestimonialSection = ({
             {t?.testimonial}
           </blockquote>
 
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-4 border-t border-color">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-4 border-t theme-border">
             <div className="flex items-center gap-4">
-              <figure className="w-16 h-16 overflow-hidden rounded-full border border-color flex-shrink-0">
+              <figure className="w-16 h-16 overflow-hidden rounded-full border theme-border flex-shrink-0">
                 <img
                   src={imageSrc}
                   alt={t?.given_by ?? "Testimonial author"}

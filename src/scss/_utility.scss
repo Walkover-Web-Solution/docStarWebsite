@@ -9,17 +9,12 @@
 }
 
 /** theme-based utility classes */
-
-.theme-bg {
-  background-color: var(--app-bg);
-}
-
 .theme-bg-secondary {
   background-color: var(--app-bg-secondary);
 }
 
-.theme-text {
-  color: var(--app-text);
+.theme-bg {
+  background-color: var(--app-text);
 }
 
 .border {
@@ -27,23 +22,10 @@
   border-width: 1px !important;
 }
 
-.border-color {
+.theme-border {
   border-color: var(--app-border) !important;
 }
 
-.theme-gradient-fade {
-  background: linear-gradient(to top, var(--app-bg), transparent);
-}
-
-.theme-overlay-light {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.theme-badge {
-  background-color: var(--app-text);
-  color: var(--app-bg);
-}
-
-.theme-underline {
-  background-color: var(--app-text);
+.theme-shadow {
+  box-shadow: 0 1px 3px 0 var(--app-shadow);
 }

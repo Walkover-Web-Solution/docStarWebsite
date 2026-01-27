@@ -60,7 +60,7 @@ const Hero = ({ heroImages, testimonials }: HeroProps) => {
         className="relative flex flex-col items-center justify-center"
       >
         {/* <div className="absolute inset-0 bg-[url('/bg-images/hero-svg2.svg')] bg-cover bg-center bg-no-repeat opacity-60"></div> */}
-        <div className="relative mt-12 py-20 pb-2 gap-8 flex flex-col items-center justify-center z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative mt-12 py-20 pb-2 gap-8 flex flex-col items-center justify-center z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           {/* Heading */}
           <MotionWrapper
             initial={{ opacity: 0, y: 30 }}

@@ -16,7 +16,7 @@ const DocumentationWithAI: React.FC = () => {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-left">
-          <div className="p-8 rounded-xl shadow hover:shadow-lg transition duration-300 theme-bg">
+          <div className="p-8 rounded-xl shadow hover:shadow-lg transition duration-300 ">
             <h2 className="text-2xl font-semibold mb-4">
               Quick and Easy Formatting for Docs
             </h2>
@@ -25,7 +25,7 @@ const DocumentationWithAI: React.FC = () => {
             </p>
           </div>
 
-          <div className="p-8 rounded-xl shadow hover:shadow-lg transition duration-300 theme-bg">
+          <div className="p-8 rounded-xl shadow hover:shadow-lg transition duration-300 ">
             <h2 className="text-2xl font-semibold mb-4">
               Manage Your Workspaces
             </h2>
@@ -34,7 +34,7 @@ const DocumentationWithAI: React.FC = () => {
             </p>
           </div>
 
-          <div className="p-8 rounded-xl shadow hover:shadow-lg transition duration-300 theme-bg">
+          <div className="p-8 rounded-xl shadow hover:shadow-lg transition duration-300 ">
             <h2 className="text-2xl font-semibold mb-4">
               Simple Drag-and-Drop Organization
             </h2>
@@ -43,7 +43,7 @@ const DocumentationWithAI: React.FC = () => {
             </p>
           </div>
 
-          <div className="p-8 rounded-xl shadow hover:shadow-lg transition duration-300 theme-bg">
+          <div className="p-8 rounded-xl shadow hover:shadow-lg transition duration-300 ">
             <h2 className="text-2xl font-semibold mb-4">
               Easy Document Publishing
             </h2>
@@ -53,7 +53,7 @@ const DocumentationWithAI: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-16 p-10 rounded-xl shadow-md theme-bg">
+        <div className="mt-16 p-10 rounded-xl shadow-md ">
           <h2 className="text-2xl font-semibold mb-4">
             Smart Search with DocStar AI
           </h2>

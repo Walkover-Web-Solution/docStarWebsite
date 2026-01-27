@@ -103,7 +103,7 @@ export default async function PricingPage() {
           </p>
         </div>
 
-        <div className="mt-14 rounded p-6 sm:p-10 border theme-bg">
+        <div className="mt-14 rounded p-6 sm:p-10 border ">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-2xl font-semibold">
               Everything you need in the Free plan
@@ -148,7 +148,7 @@ export default async function PricingPage() {
           {paidPlans.map((plan) => (
             <article
               key={plan.title}
-              className={`flex h-full flex-col justify-between rounded p-8 shadow-sm transition-shadow duration-200 hover:shadow-lg theme-bg ${plan.highlight ? 'border' : 'border border-color'}`}
+              className={`flex h-full flex-col justify-between rounded p-8 shadow-sm transition-shadow duration-200 hover:shadow-lg ${plan.highlight ? 'border' : 'border theme-border'}`}
             >
               <div>
                 <div className="flex items-center gap-3">
@@ -165,7 +165,7 @@ export default async function PricingPage() {
                 <ul className="mt-6 space-y-3 text-sm opacity-90">
                   {plan.features.map((feature, index) => (
                     <li key={index} className="flex items-start gap-3">
-                      <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-semibold theme-bg theme-text" style={{ backgroundColor: 'var(--app-text)', color: 'var(--app-bg)' }}>
+                      <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-semibold theme-bg" style={{ color: 'var(--app-bg)' }}>
                         ✓
                       </span>
                       <span>{feature}</span>

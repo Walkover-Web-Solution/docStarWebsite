@@ -105,7 +105,7 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
           >
             {/* Glossy laptop screen container */}
             <div>
-              <div className="bg-transparent rounded-lg px-2 pt-8" style={{ border: '1px solid rgba(0, 0, 0, 0.2)' }}>
+              <div className="bg-transparent rounded-lg px-2 pt-8 border theme-border">
                 {/* Browser controls */}
                 <div className="absolute top-3 left-4">
                   <svg width="52" height="12" viewBox="0 0 52 12">
@@ -116,7 +116,7 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
                 </div>
 
                 {/* Screen content */}
-                <div className="relative rounded aspect-[16/9] overflow-hidden theme-bg">
+                <div className="relative rounded aspect-[16/9] overflow-hidden ">
                   <Image
                     src={img.url}
                     alt={img.alt}

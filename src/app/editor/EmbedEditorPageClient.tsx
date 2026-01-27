@@ -1,7 +1,5 @@
 "use client";
-
 import React from "react";
-import { motion } from "framer-motion";
 import { useState } from "react";
 import {
   Heading1,
@@ -26,12 +24,8 @@ import {
   Menu,
   ChevronLeft,
   ChevronRight,
-  Star,
-  Pencil, // Added Pencil icon import
+  Pencil,
 } from "lucide-react";
-import MotionWrapper from "@/components/motion/MotionDivWrapper";
-// import DocStarEmbed from "../components/DocstarEmbed"
-// import DocStarEmbed from "../components/DocstarEmbed"
 
 const formatTools = [
   {
@@ -141,8 +135,6 @@ const testimonials = [
 
 const EmbedEditorPageClient = () => {
   const [currentTool, setCurrentTool] = useState(0);
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
-
   const toolsPerPage = 4;
   const totalPages = Math.ceil(formatTools.length / toolsPerPage);
 
@@ -153,16 +145,6 @@ const EmbedEditorPageClient = () => {
   const prevTool = () => {
     setCurrentTool(
       (prev) => (prev - toolsPerPage + formatTools.length) % formatTools.length,
-    );
-  };
-
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length,
     );
   };
 
@@ -177,214 +159,154 @@ const EmbedEditorPageClient = () => {
 
   return (
     <div className="min-h-screen">
-      <section className="relative overflow-hidden theme-bg-secondary py-16 px-8">
-        <div className="max-w-6xl mx-auto text-center">
-          <MotionWrapper
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-7xl font-bold my-8 mb-6">The Smart Editor</h1>
-            <div className="flex items-center justify-center gap-2 mb-8">
-              <Pencil className="w-5 h-5 opacity-80" />
-              <p className="text-xl font-['Dancing_Script',_cursive] -mt-1 opacity-90">
-                Your space for every idea and policy.
-              </p>
-            </div>
-            <p className="text-xl max-w-3xl mx-auto mb-8 leading-relaxed opacity-80">
-              A platform that helps you say it all—your thoughts, your rules,
-              everything. It's simple, fast, and always works the way you need
-              it to.
+      {/* Hero Section */}
+      <section className="px-6 py-20 md:py-32">
+        <div className="container mx-auto text-center">
+          <h1 className="h1 mb-4">The Smart Editor</h1>
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <Pencil className="w-5 h-5 opacity-70" />
+            <p className="text-lg md:text-xl font-['Dancing_Script',_cursive] opacity-80">
+              Your space for every idea and policy.
             </p>
-          </MotionWrapper>
-        </div>
-      </section>
-
-      <section className="py-12 px-8">
-        <div className="max-w-6xl mx-auto">
-          <MotionWrapper
-            className="rounded-3xl p-8 shadow-xl theme-bg"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-4xl font-bold mb-6">
-                  Transform any text area into a{" "}
-                  <span className="opacity-80">powerful editor</span>
-                </h2>
-                <p className="text-lg mb-8 leading-relaxed opacity-80">
-                  With just one line of code, give your users the editing
-                  experience they love, without the complexity.
-                </p>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div
-                      className="w-2 h-2 rounded-full opacity-80"
-                      style={{ backgroundColor: "var(--app-text)" }}
-                    ></div>
-                    <span>Real-time collaboration</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div
-                      className="w-2 h-2 rounded-full opacity-80"
-                      style={{ backgroundColor: "var(--app-text)" }}
-                    ></div>
-                    <span>Rich formatting tools</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div
-                      className="w-2 h-2 rounded-full opacity-80"
-                      style={{ backgroundColor: "var(--app-text)" }}
-                    ></div>
-                    <span>Lightning fast performance</span>
-                  </div>
-                </div>
-              </div>
-              <div className="rounded-2xl p-6 shadow-lg theme-bg-secondary">
-                <div
-                  className="rounded-lg p-4 mb-4 theme-bg-secondary"
-                  style={{ opacity: 0.6 }}
-                >
-                  <code className="text-sm font-mono opacity-80">
-                    {"<EmbedEditor />"}
-                  </code>
-                </div>
-                <div className="space-y-3">
-                  <div
-                    className="h-4 rounded w-full theme-bg-secondary"
-                    style={{ opacity: 0.6 }}
-                  ></div>
-                  <div
-                    className="h-4 rounded w-3/4 theme-bg-secondary"
-                    style={{ opacity: 0.6 }}
-                  ></div>
-                  <div
-                    className="h-4 rounded w-5/6 theme-bg-secondary"
-                    style={{ opacity: 0.6 }}
-                  ></div>
-                  <div className="flex gap-2 mt-4">
-                    <div className="w-8 h-8 rounded flex items-center justify-center theme-bg-secondary">
-                      <Bold className="w-4 h-4 opacity-80" />
-                    </div>
-                    <div className="w-8 h-8 rounded flex items-center justify-center theme-bg-secondary">
-                      <Italic className="w-4 h-4 opacity-80" />
-                    </div>
-                    <div className="w-8 h-8 rounded flex items-center justify-center theme-bg-secondary">
-                      <Link className="w-4 h-4 opacity-80" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </MotionWrapper>
-        </div>
-      </section>
-
-      <section className="py-16 px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-between mb-12">
-            <MotionWrapper
-              className="text-5xl font-bold leading-tight"
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              Just the right amount of formatting.
-            </MotionWrapper>
-
-            <div className="flex items-center gap-4">
-              <button
-                onClick={prevTool}
-                className="p-3 rounded-full theme-bg hover:opacity-80 transition-colors shadow-md cursor-pointer"
-              >
-                <ChevronLeft className="w-6 h-6 opacity-80" />
-              </button>
-              <button
-                onClick={nextTool}
-                className="p-3 rounded-full theme-bg hover:opacity-80 transition-colors shadow-md cursor-pointer"
-              >
-                <ChevronRight className="w-6 h-6 opacity-80" />
-              </button>
-            </div>
           </div>
-          <MotionWrapper
-            className="grid grid-cols-1 sm:grid-cols-2 gap-6"
-            key={currentTool}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            {getCurrentTools().map((tool, index) => (
-              <MotionWrapper
-                key={tool.index}
-                className="rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow theme-bg"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <div className="flex flex-col items-center text-center gap-4">
-                  <div className="p-4 rounded-xl theme-badge">
-                    {React.createElement(tool.icon, {
-                      className: "w-8 h-8",
-                      strokeWidth: 1.5,
-                    })}
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold mb-2">{tool.label}</h3>
-                    <p className="text-sm opacity-80">{tool.description}</p>
-                  </div>
-                </div>
-              </MotionWrapper>
-            ))}
-          </MotionWrapper>
-
-          <div className="flex justify-center gap-2 mt-8">
-            {Array.from({ length: totalPages }).map((_, pageIndex) => (
-              <button
-                key={pageIndex}
-                onClick={() => setCurrentTool(pageIndex * toolsPerPage)}
-                className={`w-3 h-3 rounded-full transition-colors theme-bg-secondary ${
-                  Math.floor(currentTool / toolsPerPage) === pageIndex
-                    ? "opacity-100"
-                    : "opacity-30"
-                }`}
-              />
-            ))}
-          </div>
+          <p className="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed opacity-70">
+            A platform that helps you say it all—your thoughts, your rules,
+            everything. It's simple, fast, and always works the way you need it
+            to.
+          </p>
         </div>
       </section>
 
-      {/* <DocStarEmbed />  */}
-
-      <section className="py-20 px-8 theme-bg-secondary">
-        <div className="max-w-4xl mx-auto text-center">
-          <MotionWrapper
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-5xl font-bold mb-6">
-              Ready to transform your writing?
+      {/* Features Section */}
+      <section className="px-6 py-20 container mx-auto">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold">
+              Transform any text area into a{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-amber-600">
+                powerful editor
+              </span>
             </h2>
-            <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-              Join thousands of creators who've already discovered the perfect
-              balance of power and simplicity.
+            <p className="text-lg mb-8 leading-relaxed opacity-70">
+              With just one line of code, give your users the editing experience
+              they love, without the complexity.
             </p>
-            <MotionWrapper
-              as="button"
-              className="btn btn-primary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() =>
-                window.open("https://app.docstar.io/login", "_blank")
-              }
-            >
-              Get Started Now
-            </MotionWrapper>
-          </MotionWrapper>
+            <div className="space-y-2">
+              <div className="flex items-center gap-3">
+                <div className="w-2 h-2 rounded-full bg-black/40 dark:bg-white/40"></div>
+                <span className="opacity-80">Real-time collaboration</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-2 h-2 rounded-full bg-black/40 dark:bg-white/40"></div>
+                <span className="opacity-80">Rich formatting tools</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-2 h-2 rounded-full bg-black/40 dark:bg-white/40"></div>
+                <span className="opacity-80">Lightning fast performance</span>
+              </div>
+            </div>
+          </div>
+          <div className="rounded border theme-border p-6">
+            <div className="rounded border theme-border p-4 mb-4 bg-black/5 dark:bg-white/5">
+              <code className="text-sm font-mono opacity-80">
+                {"<EmbedEditor />"}
+              </code>
+            </div>
+            <div className="space-y-3">
+              <div className="h-4 rounded theme-bg opacity-20 w-full"></div>
+              <div className="h-4 rounded theme-bg opacity-20 w-3/4"></div>
+              <div className="h-4 rounded theme-bg opacity-20 w-5/6"></div>
+              <div className="flex gap-2 mt-4">
+                <div className="w-8 h-8 rounded border theme-border flex items-center justify-center">
+                  <Bold className="w-4 h-4 opacity-70" />
+                </div>
+                <div className="w-8 h-8 rounded border theme-border flex items-center justify-center">
+                  <Italic className="w-4 h-4 opacity-70" />
+                </div>
+                <div className="w-8 h-8 rounded border theme-border flex items-center justify-center">
+                  <Link className="w-4 h-4 opacity-70" />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
+
+      {/* Formatting Tools Section */}
+      <section className="px-6 py-20 container mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Just the right amount of formatting.
+          </h2>
+          <div className="flex items-center justify-center gap-3 mt-8">
+            <button
+              onClick={prevTool}
+              className="w-10 h-10 cursor-pointer rounded-full border theme-border flex items-center justify-center transition-opacity hover:opacity-70"
+            >
+              <ChevronLeft className="w-5 h-5 opacity-70" />
+            </button>
+            <div className="flex gap-2">
+              {Array.from({ length: totalPages }).map((_, pageIndex) => (
+                <button
+                  key={pageIndex}
+                  onClick={() => setCurrentTool(pageIndex * toolsPerPage)}
+                  className={`h-2 rounded-full transition-all border-2 ${
+                    Math.floor(currentTool / toolsPerPage) === pageIndex
+                      ? "w-8 theme-bg"
+                      : "w-2 theme-bg opacity-40"
+                  }`}
+                />
+              ))}
+            </div>
+            <button
+              onClick={nextTool}
+              className="w-10 h-10 cursor-pointer rounded-full border theme-border flex items-center justify-center transition-opacity hover:opacity-70"
+            >
+              <ChevronRight className="w-5 h-5 opacity-70" />
+            </button>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {getCurrentTools().map((tool) => (
+            <div
+              key={tool.index}
+              className="p-6 rounded-lg border theme-border"
+            >
+              <div className="flex flex-col items-center text-center gap-3">
+                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-black/5 to-transparent dark:from-white/5 flex items-center justify-center">
+                  {React.createElement(tool.icon, {
+                    className: "w-7 h-7 opacity-70",
+                    strokeWidth: 1.5,
+                  })}
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold mb-1">{tool.label}</h3>
+                  <p className="text-xs opacity-60 leading-relaxed">
+                    {tool.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="px-6 py-20 container mx-auto text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-2">
+          Ready to transform your writing?
+        </h2>
+        <p className="text-lg md:text-xl opacity-70 mb-8 max-w-2xl mx-auto">
+          Join thousands of creators who've already discovered the perfect
+          balance of power and simplicity.
+        </p>
+        <button
+          className="btn btn-primary mx-auto"
+          onClick={() => window.open("https://app.docstar.io/login", "_blank")}
+        >
+          Get Started Now
+        </button>
       </section>
     </div>
   );

@@ -14,7 +14,7 @@ const APIDocumentationPage = () => {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-left">
-          <div className="p-8 rounded-xl shadow hover:shadow-lg transition duration-300 theme-bg">
+          <div className="p-8 rounded-xl shadow hover:shadow-lg transition duration-300 ">
             <h2 className="text-2xl font-semibold mb-4">
               One-Stop API Learning Docs Hub
             </h2>
@@ -23,7 +23,7 @@ const APIDocumentationPage = () => {
             </p>
           </div>
 
-          <div className="p-8 rounded-xl shadow hover:shadow-lg transition duration-300 theme-bg">
+          <div className="p-8 rounded-xl shadow hover:shadow-lg transition duration-300 ">
             <h2 className="text-2xl font-semibold mb-4">
               Quick API Testing for Users
             </h2>
@@ -32,7 +32,7 @@ const APIDocumentationPage = () => {
             </p>
           </div>
 
-          <div className="p-8 rounded-xl shadow hover:shadow-lg transition duration-300 theme-bg">
+          <div className="p-8 rounded-xl shadow hover:shadow-lg transition duration-300 ">
             <h2 className="text-2xl font-semibold mb-4">
               Built-In Testing + Docs
             </h2>

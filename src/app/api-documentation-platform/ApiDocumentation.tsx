@@ -96,7 +96,7 @@ const ApiDocumentationPage = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }}></div>
+        <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative max-w-6xl mx-auto px-6 py-20 text-center">
           <MotionWrapper
             className="text-5xl md:text-7xl font-bold mb-6 text-balance"
@@ -184,12 +184,12 @@ const ApiDocumentationPage = () => {
 
                 <div className="relative">
                   <div className="rounded-2xl p-8 theme-bg-secondary border">
-                    <div className="rounded-xl p-6 shadow-sm theme-bg">
+                    <div className="rounded-xl p-6 shadow-sm ">
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex space-x-2">
-                          <div className="w-3 h-3 rounded-full opacity-40" style={{ backgroundColor: 'var(--app-text)' }}></div>
-                          <div className="w-3 h-3 rounded-full opacity-40" style={{ backgroundColor: 'var(--app-text)' }}></div>
-                          <div className="w-3 h-3 rounded-full opacity-40" style={{ backgroundColor: 'var(--app-text)' }}></div>
+                          <div className="w-3 h-3 rounded-full theme-bg opacity-40"></div>
+                          <div className="w-3 h-3 rounded-full theme-bg opacity-40"></div>
+                          <div className="w-3 h-3 rounded-full theme-bg opacity-40"></div>
                         </div>
                         <Code className="w-5 h-5 opacity-60" />
                       </div>
@@ -228,7 +228,7 @@ const ApiDocumentationPage = () => {
                         whileHover={{ x: 10 }}
                       >
                         <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 theme-bg-secondary opacity-80">
-                          <div className="w-2 h-2 rounded-full opacity-80" style={{ backgroundColor: 'var(--app-text)' }}></div>
+                          <div className="w-2 h-2 rounded-full theme-bg opacity-80"></div>
                         </div>
                         <div>
                           <h4 className="font-semibold mb-1">{feature.title}</h4>
@@ -241,7 +241,7 @@ const ApiDocumentationPage = () => {
 
                 <div className="lg:order-1 relative">
                   <div className="rounded-2xl p-8 theme-bg-secondary border">
-                    <div className="rounded-xl p-6 shadow-sm theme-bg">
+                    <div className="rounded-xl p-6 shadow-sm ">
                       <div className="flex items-center justify-between mb-4">
                         <span className="text-xs font-bold px-3 py-1 rounded-full theme-bg-secondary opacity-80">
                           API Testing
@@ -250,15 +250,15 @@ const ApiDocumentationPage = () => {
                       </div>
                       <div className="space-y-3">
                         <div className="flex items-center space-x-2">
-                          <div className="w-3 h-3 rounded-full opacity-60" style={{ backgroundColor: 'var(--app-text)' }}></div>
+                          <div className="w-3 h-3 rounded-full theme-bg opacity-60"></div>
                           <div className="h-3 rounded flex-1 theme-bg-secondary"></div>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <div className="w-3 h-3 rounded-full opacity-60" style={{ backgroundColor: 'var(--app-text)' }}></div>
+                          <div className="w-3 h-3 rounded-full theme-bg opacity-60"></div>
                           <div className="h-3 rounded flex-1 theme-bg-secondary"></div>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <div className="w-3 h-3 rounded-full opacity-60" style={{ backgroundColor: 'var(--app-text)' }}></div>
+                          <div className="w-3 h-3 rounded-full theme-bg opacity-60"></div>
                           <div className="h-3 rounded flex-1 theme-bg-secondary"></div>
                         </div>
                       </div>
@@ -288,7 +288,7 @@ const ApiDocumentationPage = () => {
             {benefits.map((benefit, index) => (
               <MotionWrapper
                 key={index}
-                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
@@ -330,7 +330,7 @@ const ApiDocumentationPage = () => {
               className="flex items-start space-x-4 p-6 rounded-xl theme-bg-secondary border"
               variants={itemVariants}
             >
-              <div className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80" style={{ backgroundColor: 'var(--app-text)' }}></div>
+              <div className="w-2 h-2 rounded-full theme-bg mt-3 flex-shrink-0 opacity-80"></div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">Improve developer onboarding speed</h3>
                 <p className="opacity-80">Get developers productive faster with clear, interactive documentation.</p>
@@ -341,7 +341,7 @@ const ApiDocumentationPage = () => {
               className="flex items-start space-x-4 p-6 rounded-xl theme-bg-secondary border"
               variants={itemVariants}
             >
-              <div className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80" style={{ backgroundColor: 'var(--app-text)' }}></div>
+              <div className="w-2 h-2 rounded-full theme-bg mt-3 flex-shrink-0 opacity-80"></div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">Reduce support tickets and friction</h3>
                 <p className="opacity-80">Self-service documentation reduces the burden on your support team.</p>
@@ -352,7 +352,7 @@ const ApiDocumentationPage = () => {
               className="flex items-start space-x-4 p-6 rounded-xl theme-bg-secondary border"
               variants={itemVariants}
             >
-              <div className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80" style={{ backgroundColor: 'var(--app-text)' }}></div>
+              <div className="w-2 h-2 rounded-full theme-bg mt-3 flex-shrink-0 opacity-80"></div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">
                   Boost your API visibility and SEO ranking
@@ -365,7 +365,7 @@ const ApiDocumentationPage = () => {
               className="flex items-start space-x-4 p-6 rounded-xl theme-bg-secondary border"
               variants={itemVariants}
             >
-              <div className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80" style={{ backgroundColor: 'var(--app-text)' }}></div>
+              <div className="w-2 h-2 rounded-full theme-bg mt-3 flex-shrink-0 opacity-80"></div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">Offer a modern developer experience</h3>
                 <p className="opacity-80">

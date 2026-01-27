@@ -115,10 +115,7 @@ const PublishPage = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <div
-          className="absolute inset-0"
-          style={{ backgroundColor: "rgba(0, 0, 0, 0.1)" }}
-        ></div>
+        <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative max-w-6xl mx-auto px-6 py-20 text-center">
           <MotionWrapper
             className="text-5xl md:text-7xl font-bold mb-6 text-balance"
@@ -188,7 +185,7 @@ const PublishPage = () => {
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
-                <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm theme-bg">
+                <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm ">
                   {reason.icon}
                 </div>
                 <h3 className="text-lg font-semibold mb-3">{reason.title}</h3>
@@ -238,7 +235,7 @@ const PublishPage = () => {
             {benefits.map((benefit, index) => (
               <MotionWrapper
                 key={index}
-                className="p-6 rounded-2xl shadow-sm theme-bg border hover:shadow-md transition-shadow duration-300"
+                className="p-6 rounded-2xl shadow-sm border hover:shadow-md transition-shadow duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
@@ -274,10 +271,7 @@ const PublishPage = () => {
               className="flex items-start space-x-4 p-6 rounded-xl border"
               variants={itemVariants}
             >
-              <div
-                className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80"
-                style={{ backgroundColor: "var(--app-text)" }}
-              ></div>
+              <div className="w-2 h-2 rounded-full theme-bg mt-3 flex-shrink-0 opacity-80"></div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">
                   Grow Online Visibility
@@ -293,10 +287,7 @@ const PublishPage = () => {
               className="flex items-start space-x-4 p-6 rounded-xl border border-black"
               variants={itemVariants}
             >
-              <div
-                className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80"
-                style={{ backgroundColor: "var(--app-text)" }}
-              ></div>
+              <div className="w-2 h-2 rounded-full theme-bg mt-3 flex-shrink-0 opacity-80"></div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">
                   Simplify Content Management
@@ -312,10 +303,7 @@ const PublishPage = () => {
               className="flex items-start space-x-4 p-6 rounded-xl border border-black"
               variants={itemVariants}
             >
-              <div
-                className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80"
-                style={{ backgroundColor: "var(--app-text)" }}
-              ></div>
+              <div className="w-2 h-2 rounded-full theme-bg mt-3 flex-shrink-0 opacity-80"></div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">
                   Reach Target Audience
@@ -331,10 +319,7 @@ const PublishPage = () => {
               className="flex items-start space-x-4 p-6 rounded-xl border border-black"
               variants={itemVariants}
             >
-              <div
-                className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80"
-                style={{ backgroundColor: "var(--app-text)" }}
-              ></div>
+              <div className="w-2 h-2 rounded-full theme-bg mt-3 flex-shrink-0 opacity-80"></div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">Support Growth</h3>
                 <p className="opacity-80">
@@ -376,7 +361,7 @@ const PublishPage = () => {
             {features.map((feature, index) => (
               <MotionWrapper
                 key={index}
-                className="text-center p-6 rounded-2xl shadow-sm theme-bg border"
+                className="text-center p-6 rounded-2xl shadow-sm border"
                 variants={itemVariants}
                 whileHover={{ scale: 1.05 }}
               >
@@ -394,30 +379,21 @@ const PublishPage = () => {
             variants={itemVariants}
           >
             <div className="flex items-start gap-3">
-              <div
-                className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80"
-                style={{ backgroundColor: "var(--app-text)" }}
-              ></div>
+              <div className="w-2 h-2 rounded-full theme-bg mt-3 flex-shrink-0 opacity-80"></div>
               <p className="font-semibold">
                 Fast, scalable, and secure blogging solution
               </p>
             </div>
 
             <div className="flex items-start gap-3">
-              <div
-                className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80"
-                style={{ backgroundColor: "var(--app-text)" }}
-              ></div>
+              <div className="w-2 h-2 rounded-full theme-bg mt-3 flex-shrink-0 opacity-80"></div>
               <p className="font-semibold">
                 Seamless integration with your API docs and knowledge base
               </p>
             </div>
 
             <div className="flex items-start gap-3">
-              <div
-                className="w-2 h-2 rounded-full mt-3 flex-shrink-0 opacity-80"
-                style={{ backgroundColor: "var(--app-text)" }}
-              ></div>
+              <div className="w-2 h-2 rounded-full theme-bg mt-3 flex-shrink-0 opacity-80"></div>
               <p className="font-semibold">
                 Tools to combine documentation + blogs in one place
               </p>
