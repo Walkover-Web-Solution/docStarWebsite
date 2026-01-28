@@ -30,4 +30,5 @@ export type TestimonialItem = {
   given_by: string;
   giver_title: string;
   product_logo: string[];
+  link: string;
 };

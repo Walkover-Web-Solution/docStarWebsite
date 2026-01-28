@@ -1,8 +1,16 @@
-"use client"
+"use client";
 
-import MotionWrapper from "@/components/motion/MotionDivWrapper"
-import { motion } from "framer-motion"
-import { Layout, Palette, Globe, Settings, BarChart3, MessageSquare, CheckCircle, Sparkles } from "lucide-react"
+import { motion } from "framer-motion";
+import {
+  Layout,
+  Palette,
+  Globe,
+  Settings,
+  BarChart3,
+  MessageSquare,
+  CheckCircle,
+  Sparkles,
+} from "lucide-react";
 
 export const CustomizeLayoutsPage = () => {
   const customizationFeatures = [
@@ -36,13 +44,14 @@ export const CustomizeLayoutsPage = () => {
       description:
         "Easily personalize your documentation with custom headers and footers, adding navigation menus, company links, or CTAs.",
     },
-  ]
+  ];
 
   const publishingFeatures = [
     {
       icon: <Layout className="w-6 h-6" />,
       title: "Bulk Publishing",
-      description: "Save time by publishing multiple documents at once instead of handling them individually.",
+      description:
+        "Save time by publishing multiple documents at once instead of handling them individually.",
     },
     {
       icon: <Globe className="w-6 h-6" />,
@@ -59,7 +68,8 @@ export const CustomizeLayoutsPage = () => {
     {
       icon: <Settings className="w-6 h-6" />,
       title: "Logs and Activity Tracking",
-      description: "Keep complete visibility over changes, updates, and publishing history with detailed logs.",
+      description:
+        "Keep complete visibility over changes, updates, and publishing history with detailed logs.",
     },
     {
       icon: <MessageSquare className="w-6 h-6" />,
@@ -67,7 +77,7 @@ export const CustomizeLayoutsPage = () => {
       description:
         "Enable readers to leave feedback directly on your docs, helping your team continuously improve clarity and usefulness.",
     },
-  ]
+  ];
 
   const benefits = [
     {
@@ -90,7 +100,7 @@ export const CustomizeLayoutsPage = () => {
       title: "Seamless scaling",
       description: "For growing teams and global audiences",
     },
-  ]
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -100,7 +110,7 @@ export const CustomizeLayoutsPage = () => {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -111,201 +121,158 @@ export const CustomizeLayoutsPage = () => {
         duration: 0.6,
       },
     },
-  }
-//bg-gradient-to-tr from-rose-100 to-pink-500
+  };
+
   return (
-    <div className="min-h-screen">
+    <main className="min-h-screen">
       {/* Hero Section */}
-      <MotionWrapper
-        className="py-20 relative overflow-hidden theme-bg-secondary"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="absolute inset-0 bg-black/10"></div>
-        <div className="relative max-w-6xl mx-auto px-6 py-20 text-center">
-          <MotionWrapper
-            className="text-5xl md:text-7xl font-bold mb-6 text-balance"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-             Design Your Way: <span className="opacity-70">Layouts & Themes</span>
-          </MotionWrapper>
+      <section className="py-20 md:py-32 theme-bg-secondary border-b theme-border">
+        <div className="container mx-auto px-6">
+          <div className="mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="mb-6"
+            >
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded border theme-border text-sm font-medium">
+                <Sparkles className="w-4 h-4 text-[var(--theme-color)]" />
+                Layouts & Themes
+              </span>
+            </motion.div>
 
-          <MotionWrapper
-            className="text-xl md:text-2xl mb-12 max-w-4xl mx-auto opacity-80"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            From themes and layouts to workflows and analytics, DocStar gives you full control over your content experience.
-          </MotionWrapper>
+            <motion.h1
+              className="h1 mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Design Your Way:{" "}
+              <span className="text-gradient">Layouts & Themes</span>
+            </motion.h1>
 
-          <MotionWrapper
-          as="button"
-            className="btn btn-primary mx-auto"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={()=>{window.open('https://app.docstar.io/login')}}
-          >
-            Get Started with DocStar
-          </MotionWrapper>
+            <motion.p
+              className="text-lg md:text-xl mb-10 max-w-3xl mx-auto leading-relaxed opacity-70"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              From themes and layouts to workflows and analytics, DocStar gives
+              you full control over your content experience.
+            </motion.p>
+
+            <button
+              className="btn btn-primary mx-auto"
+              onClick={() => {
+                window.open("https://app.docstar.io/login");
+              }}
+            >
+              Get Started with DocStar
+            </button>
+          </div>
         </div>
-      </MotionWrapper>
+      </section>
 
       {/* Flexible Customization Section */}
-      <MotionWrapper
-        className="py-20"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <div className="max-w-6xl mx-auto px-6">
-          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16" variants={itemVariants}>
-            Flexible Customization for Your Docs
-          </MotionWrapper>
+      <section className="container mx-auto py-20 md:py-32 px-6">
+        <h2 className="h2 mb-12">Flexible Customization for Your Docs</h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {customizationFeatures.map((feature, index) => (
-              <MotionWrapper
-                key={index}
-                className="p-6 rounded-2xl shadow-sm border hover:shadow-md transition-shadow duration-300"
-                variants={itemVariants}
-                whileHover={{ y: -5 }}
-              >
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 theme-bg-secondary opacity-80">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                <p className="opacity-80">{feature.description}</p>
-              </MotionWrapper>
-            ))}
-          </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {customizationFeatures.map((feature, index) => (
+            <article
+              key={index}
+              className="p-6 rounded theme-bg-secondary border theme-border hover:border-[var(--theme-color)] transition-colors duration-300"
+            >
+              <div className="w-12 h-12 rounded border theme-border flex items-center justify-center mb-4">
+                {feature.icon}
+              </div>
+              <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+              <p className="opacity-70 leading-relaxed">
+                {feature.description}
+              </p>
+            </article>
+          ))}
         </div>
-      </MotionWrapper>
+      </section>
 
       {/* Smart Publishing Features Section */}
-      <MotionWrapper
-        className="py-20 theme-bg-secondary"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <div className="max-w-6xl mx-auto px-6">
-          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16" variants={itemVariants}>
-            Smart Publishing Features
-          </MotionWrapper>
+      <section className="py-20 md:py-32 container mx-auto px-6">
+        <h2 className="h2 mb-12">Smart Publishing Features</h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {publishingFeatures.map((feature, index) => (
-              <MotionWrapper
-                key={index}
-                className="p-6 rounded-2xl shadow-sm border hover:shadow-md transition-shadow duration-300"
-                variants={itemVariants}
-                whileHover={{ y: -5 }}
-              >
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 theme-bg-secondary opacity-80">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                <p className="opacity-80">{feature.description}</p>
-              </MotionWrapper>
-            ))}
-          </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {publishingFeatures.map((feature, index) => (
+            <article
+              key={index}
+              className="p-6 rounded border theme-border bg-[var(--theme-bg)] hover:border-[var(--theme-color)] transition-colors duration-300"
+            >
+              <div className="w-12 h-12 rounded border theme-border flex items-center justify-center mb-4">
+                {feature.icon}
+              </div>
+              <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+              <p className="opacity-70 leading-relaxed">
+                {feature.description}
+              </p>
+            </article>
+          ))}
         </div>
-      </MotionWrapper>
+      </section>
 
       {/* Benefits Section */}
-      <MotionWrapper
-        className="py-20"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <div className="max-w-6xl mx-auto px-6">
-          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16" variants={itemVariants}>
-            Benefits for Your Organization
-          </MotionWrapper>
+      <section className="container mx-auto py-20 md:py-32 px-6">
+        <h2 className="h2 mb-12">Benefits for Your Organization</h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {benefits.map((benefit, index) => (
-              <MotionWrapper
-                key={index}
-                className="p-6 rounded-2xl shadow-sm border hover:shadow-md transition-shadow duration-300"
-                variants={itemVariants}
-                whileHover={{ y: -5 }}
-              >
-                <div className="flex items-center mb-4">
-                  <CheckCircle className="w-6 h-6 mr-3 opacity-80" />
-                  <h3 className="text-xl font-semibold">{benefit.title}</h3>
-                </div>
-                <p className="opacity-80">{benefit.description}</p>
-              </MotionWrapper>
-            ))}
-          </div>
-
-          <MotionWrapper
-            className="mt-16 text-center p-8 rounded-2xl theme-bg-secondary border"
-            variants={itemVariants}
-          >
-            <h3 className="text-2xl font-bold mb-4">
-              From Draft to Professional Docs—All in One Platform
-            </h3>
-            <p className="text-xl opacity-90">
-              With DocStar's layouts, themes, and publishing options, you can go beyond writing. Build a branded,
-              interactive, and user-friendly documentation hub that's optimized for growth, SEO, and customer
-              engagement.
-            </p>
-          </MotionWrapper>
+        <div className="grid md:grid-cols-2 gap-6">
+          {benefits.map((benefit, index) => (
+            <article
+              key={index}
+              className="p-6 rounded theme-bg-secondary border theme-border hover:border-[var(--theme-color)] transition-colors duration-300"
+            >
+              <div className="flex items-center mb-3">
+                <CheckCircle className="w-5 h-5 mr-3 text-[var(--theme-color)]" />
+                <h3 className="text-xl font-semibold">{benefit.title}</h3>
+              </div>
+              <p className="opacity-70 leading-relaxed">
+                {benefit.description}
+              </p>
+            </article>
+          ))}
         </div>
-      </MotionWrapper>
+
+        <div className="mt-12 p-8 rounded theme-bg-secondary border theme-border">
+          <h3 className="text-2xl font-semibold mb-4">
+            From Draft to Professional Docs—All in One Platform
+          </h3>
+          <p className="text-lg opacity-70 leading-relaxed">
+            With DocStar's layouts, themes, and publishing options, you can go
+            beyond writing. Build a branded, interactive, and user-friendly
+            documentation hub that's optimized for growth, SEO, and customer
+            engagement.
+          </p>
+        </div>
+      </section>
 
       {/* Final CTA Section */}
-      <MotionWrapper
-        className="py-20 theme-bg-secondary text-center"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="max-w-4xl mx-auto px-6 opacity-80">
-          <MotionWrapper
-            className="text-4xl md:text-5xl font-bold mb-6 text-balance"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Design Documentation That Reflects Your Brand
-          </MotionWrapper>
+      <section className="py-20 md:py-32 container mx-auto px-6">
+        <h2 className="h2 mb-6">
+          Design Documentation That Reflects Your Brand
+        </h2>
 
-          <MotionWrapper
-            className="text-xl mb-8"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Stop settling for generic documentation that doesn't represent your brand. With DocStar's comprehensive
-            customization and publishing tools, create a documentation experience that's as polished and professional as
-            your product itself.
-          </MotionWrapper>
+        <p className="text-xl mb-8 opacity-70 leading-relaxed">
+          Stop settling for generic documentation that doesn't represent your
+          brand. With DocStar's comprehensive customization and publishing
+          tools, create a documentation experience that's as polished and
+          professional as your product itself.
+        </p>
 
-          <MotionWrapper
-          as="button"
-            className="btn btn-outline mx-auto"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={()=>{window.open('https://app.docstar.io/login')}}
-          >
-            Get Started with DocStar
-          </MotionWrapper>
-        </div>
-      </MotionWrapper>
-    </div>
-  )
-}
+        <button
+          className="btn btn-primary"
+          onClick={() => {
+            window.open("https://app.docstar.io/login");
+          }}
+        >
+          Get Started with DocStar
+        </button>
+      </section>
+    </main>
+  );
+};
