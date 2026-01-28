@@ -183,7 +183,7 @@ const EmbedEditorPageClient = () => {
           <div>
             <h2 className="text-2xl md:text-3xl font-bold">
               Transform any text area into a{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-amber-600">
+              <span className="text-gradient">
                 powerful editor
               </span>
             </h2>
