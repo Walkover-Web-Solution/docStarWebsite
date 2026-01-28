@@ -1,6 +1,5 @@
 "use client"
 
-import MotionWrapper from "@/components/motion/MotionDivWrapper"
 import { motion } from "framer-motion"
 import {
   Zap,
@@ -142,229 +141,172 @@ export const IdeasWithAIClient = () => {
   }
 
   return (
-    <div className="min-h-screen">
+    <main className="min-h-screen">
       {/* Hero Section */}
-      <MotionWrapper
-        className="py-20 relative overflow-hidden theme-bg-secondary"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="absolute inset-0 bg-black/10"></div>
-        <div className="relative max-w-6xl mx-auto px-6 py-20 text-center">
-          <MotionWrapper
-            className="text-5xl md:text-7xl font-bold mb-6 text-balance"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Turn Your Ideas into <span className="opacity-70">Documents Easily with AI</span>
-          </MotionWrapper>
+      <section className="py-20 md:py-32 theme-bg-secondary border-b theme-border">
+        <div className="container mx-auto px-6">
+          <div className="mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="mb-6"
+            >
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded border theme-border text-sm font-medium">
+                <Brain className="w-4 h-4 text-[var(--theme-color)]" />
+                AI-Powered Documentation
+              </span>
+            </motion.div>
 
-          <MotionWrapper
-            className="text-xl md:text-2xl mb-12 max-w-4xl mx-auto text-pretty opacity-80"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            With DocStar's AI-powered documentation platform, you can transform raw ideas, notes, or outlines into professional
-            documents in a matter of minutes.
-          </MotionWrapper>
+            <motion.h1
+              className="h1 mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Turn Your Ideas into <span className="text-gradient">Documents Easily with AI</span>
+            </motion.h1>
 
-          <MotionWrapper
-          as="button"
-            className="btn btn-primary mx-auto"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={()=>{window.open('https://app.docstar.io/login')}}
-          >
-            Get Started with DocStar
-          </MotionWrapper>
-        </div>
-      </MotionWrapper>
+            <motion.p
+              className="text-lg md:text-xl mb-10 max-w-3xl mx-auto leading-relaxed opacity-70"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              With DocStar's AI-powered documentation platform, you can transform raw ideas, notes, or outlines into professional
+              documents in a matter of minutes.
+            </motion.p>
 
-      {/* Why Choose AI-Powered Documentation Section */}
-      <MotionWrapper
-        className="py-20"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <div className="max-w-6xl mx-auto px-6">
-          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16" variants={itemVariants}>
-            Why Choose AI-Powered Documentation?
-          </MotionWrapper>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {whyChooseFeatures.map((feature, index) => (
-              <MotionWrapper
-                key={index}
-                className="p-6 rounded-2xl shadow-sm border hover:shadow-md transition-shadow duration-300"
-                variants={itemVariants}
-                whileHover={{ y: -5 }}
-              >
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 theme-bg-secondary opacity-80">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                <p className="opacity-80">{feature.description}</p>
-              </MotionWrapper>
-            ))}
+            <button
+              className="btn btn-primary mx-auto"
+              onClick={() => { window.open('https://app.docstar.io/login') }}
+            >
+              Get Started with DocStar
+            </button>
           </div>
         </div>
-      </MotionWrapper>
+      </section>
+
+      {/* Why Choose AI-Powered Documentation Section */}
+      <section className="container mx-auto py-20 md:py-32 px-6">
+        <h2 className="h2 mb-12">
+          Why Choose AI-Powered Documentation?
+        </h2>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {whyChooseFeatures.map((feature, index) => (
+            <article
+              key={index}
+              className="p-6 rounded theme-bg-secondary border theme-border hover:border-[var(--theme-color)] transition-colors duration-300"
+            >
+              <div className="w-12 h-12 rounded border theme-border flex items-center justify-center mb-4">
+                {feature.icon}
+              </div>
+              <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+              <p className="opacity-70 leading-relaxed">{feature.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
 
       {/* Key Features Section */}
-      <MotionWrapper
-        className="py-20 theme-bg-secondary"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <div className="max-w-6xl mx-auto px-6">
-          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16" variants={itemVariants}>
+      <section className="theme-bg-secondary py-20 md:py-32">
+        <div className="container mx-auto px-6">
+          <h2 className="h2 mb-12">
             Key Features
-          </MotionWrapper>
+          </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {keyFeatures.map((feature, index) => (
-              <MotionWrapper
+              <article
                 key={index}
-                className="p-6 rounded-2xl shadow-sm border hover:shadow-md transition-shadow duration-300"
-                variants={itemVariants}
-                whileHover={{ y: -5 }}
+                className="p-6 rounded border theme-border bg-[var(--theme-bg)] hover:border-[var(--theme-color)] transition-colors duration-300"
               >
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 theme-bg-secondary opacity-80">
+                <div className="w-12 h-12 rounded border theme-border flex items-center justify-center mb-4">
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                <p className="opacity-80">{feature.description}</p>
-              </MotionWrapper>
+                <p className="opacity-70 leading-relaxed">{feature.description}</p>
+              </article>
             ))}
           </div>
         </div>
-      </MotionWrapper>
+      </section>
 
       {/* How DocStar's AI Works Section */}
-      <MotionWrapper
-        className="py-20"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <div className="max-w-6xl mx-auto px-6">
-          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16" variants={itemVariants}>
-            How DocStar's AI Works for You
-          </MotionWrapper>
+      <section className="container mx-auto py-20 md:py-32 px-6">
+        <h2 className="h2 mb-12">
+          How DocStar's AI Works for You
+        </h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {aiFeatures.map((feature, index) => (
-              <MotionWrapper
-                key={index}
-                className="p-6 rounded-2xl shadow-sm border hover:shadow-md transition-shadow duration-300"
-                variants={itemVariants}
-                whileHover={{ y: -5 }}
-              >
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 theme-bg-secondary opacity-80">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                <p className="opacity-80">{feature.description}</p>
-              </MotionWrapper>
-            ))}
-          </div>
+        <div className="grid md:grid-cols-2 gap-6">
+          {aiFeatures.map((feature, index) => (
+            <article
+              key={index}
+              className="p-6 rounded theme-bg-secondary border theme-border hover:border-[var(--theme-color)] transition-colors duration-300"
+            >
+              <div className="w-12 h-12 rounded border theme-border flex items-center justify-center mb-4">
+                {feature.icon}
+              </div>
+              <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+              <p className="opacity-70 leading-relaxed">{feature.description}</p>
+            </article>
+          ))}
         </div>
-      </MotionWrapper>
+      </section>
 
       {/* Benefits Section */}
-      <MotionWrapper
-        className="py-20 theme-bg-secondary"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <div className="max-w-6xl mx-auto px-6">
-          <MotionWrapper className="text-4xl md:text-5xl font-bold text-center mb-16" variants={itemVariants}>
+      <section className="theme-bg-secondary py-20 md:py-32">
+        <div className="container mx-auto px-6">
+          <h2 className="h2 mb-12">
             Benefits for Your Organization
-          </MotionWrapper>
+          </h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6">
             {benefits.map((benefit, index) => (
-              <MotionWrapper
+              <article
                 key={index}
-                className="p-6 rounded-2xl shadow-sm border hover:shadow-md transition-shadow duration-300"
-                variants={itemVariants}
-                whileHover={{ y: -5 }}
+                className="p-6 rounded border theme-border bg-[var(--theme-bg)] hover:border-[var(--theme-color)] transition-colors duration-300"
               >
-                <div className="flex items-center mb-4">
-                  <CheckCircle className="w-6 h-6 mr-3 opacity-80" />
+                <div className="flex items-center mb-3">
+                  <CheckCircle className="w-5 h-5 mr-3 text-[var(--theme-color)]" />
                   <h3 className="text-xl font-semibold">{benefit.title}</h3>
                 </div>
-                <p className="opacity-80">{benefit.description}</p>
-              </MotionWrapper>
+                <p className="opacity-70 leading-relaxed">{benefit.description}</p>
+              </article>
             ))}
           </div>
 
-          <MotionWrapper
-            className="mt-16 text-center p-8 rounded-2xl theme-bg-secondary border"
-            variants={itemVariants}
-          >
-            <h3 className="text-2xl font-bold mb-4">Create a Seamless Knowledge Experience</h3>
-            <p className="text-xl opacity-90">
+          <div className="mt-12 p-8 rounded border theme-border bg-[var(--theme-bg)]">
+            <h3 className="text-2xl font-semibold mb-4">Create a Seamless Knowledge Experience</h3>
+            <p className="text-lg opacity-70 leading-relaxed">
               With DocStar, you don't just write documents—you create a seamless knowledge experience. Transform ideas
               into actionable, structured documents with the power of AI, and give your team the clarity and speed they
               need to move faster.
             </p>
-          </MotionWrapper>
+          </div>
         </div>
-      </MotionWrapper>
+      </section>
 
       {/* Final CTA Section */}
-      <MotionWrapper
-        className="py-20 theme-bg-secondary text-center"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="max-w-4xl mx-auto px-6 opacity-80">
-          <MotionWrapper
-            className="text-4xl md:text-5xl font-bold mb-6 text-balance"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Start Turning Ideas into Documents Today
-          </MotionWrapper>
+      <section className="container mx-auto py-20 md:py-32 px-6">
+        <h2 className="h2 mb-6">
+          Start Turning Ideas into Documents Today
+        </h2>
 
-          <MotionWrapper
-            className="text-xl mb-8"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            With DocStar, you don't just write documents—you create a seamless knowledge experience. Transform ideas
-            into actionable, structured documents with the power of AI, and give your team the clarity and speed they
-            need to move faster.
-          </MotionWrapper>
+        <p className="text-xl mb-8 opacity-70 leading-relaxed max-w-3xl">
+          With DocStar, you don't just write documents—you create a seamless knowledge experience. Transform ideas
+          into actionable, structured documents with the power of AI, and give your team the clarity and speed they
+          need to move faster.
+        </p>
 
-          <MotionWrapper
-          as="button"
-            className="btn btn-outline mx-auto"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={()=>{window.open('https://app.docstar.io/login')}}
-          >
-            Get Started with DocStar
-          </MotionWrapper>
-        </div>
-      </MotionWrapper>
-    </div>
+        <button
+          className="btn btn-primary"
+          onClick={() => { window.open('https://app.docstar.io/login') }}
+        >
+          Get Started with DocStar
+        </button>
+      </section>
+    </main>
   )
 }
