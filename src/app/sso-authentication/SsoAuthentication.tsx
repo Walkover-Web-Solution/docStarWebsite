@@ -289,8 +289,6 @@ export const SsoAuthentication = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 relative">
-            <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-black/10 dark:bg-white/10 -translate-y-1/2"></div>
-
             {[
               {
                 num: "01",

@@ -156,7 +156,7 @@ const EmbedEditorPageClient: React.FC = () => {
 
               <h1 className="h1 mb-2">
                 Google Docs{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-amber-600">
+                <span className="text-gradient">
                   Inside
                 </span>{" "}
                 Your Product
