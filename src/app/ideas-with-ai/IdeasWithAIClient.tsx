@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 import {
   Zap,
   Users,
@@ -13,31 +13,35 @@ import {
   Sparkles,
   Target,
   CheckCircle,
-} from "lucide-react"
+} from "lucide-react";
 
 export const IdeasWithAIClient = () => {
   const whyChooseFeatures = [
     {
       icon: <Zap className="w-6 h-6" />,
       title: "Accelerated Workflows",
-      description: "Move from scattered notes to polished documentation in record time.",
+      description:
+        "Move from scattered notes to polished documentation in record time.",
     },
     {
       icon: <Target className="w-6 h-6" />,
       title: "Clarity and Structure",
-      description: "Automatically organize content into sections, pages, and subpages that make sense.",
+      description:
+        "Automatically organize content into sections, pages, and subpages that make sense.",
     },
     {
       icon: <Users className="w-6 h-6" />,
       title: "Enhanced Collaboration",
-      description: "Share well-formatted documents across teams with consistent style and structure.",
+      description:
+        "Share well-formatted documents across teams with consistent style and structure.",
     },
     {
       icon: <BarChart3 className="w-6 h-6" />,
       title: "Scalability for Teams",
-      description: "Manage multiple projects and workspaces without losing control or organization.",
+      description:
+        "Manage multiple projects and workspaces without losing control or organization.",
     },
-  ]
+  ];
 
   const keyFeatures = [
     {
@@ -70,7 +74,7 @@ export const IdeasWithAIClient = () => {
       description:
         "Publishing is straightforward—make entire collections and all their documents accessible to your team or customers with a single click.",
     },
-  ]
+  ];
 
   const aiFeatures = [
     {
@@ -82,19 +86,22 @@ export const IdeasWithAIClient = () => {
     {
       icon: <Sparkles className="w-6 h-6" />,
       title: "Smart Formatting Suggestions",
-      description: "Receive AI-driven recommendations on layout, headings, and styling for improved readability.",
+      description:
+        "Receive AI-driven recommendations on layout, headings, and styling for improved readability.",
     },
     {
       icon: <Target className="w-6 h-6" />,
       title: "Consistency Across Content",
-      description: "Ensure every document across your organization follows the same structure and visual style.",
+      description:
+        "Ensure every document across your organization follows the same structure and visual style.",
     },
     {
       icon: <Users className="w-6 h-6" />,
       title: "Seamless Human-AI Collaboration",
-      description: "AI handles the heavy lifting, while your team fine-tunes the content for precision and tone.",
+      description:
+        "AI handles the heavy lifting, while your team fine-tunes the content for precision and tone.",
     },
-  ]
+  ];
 
   const benefits = [
     {
@@ -115,9 +122,10 @@ export const IdeasWithAIClient = () => {
     },
     {
       title: "Quick publishing",
-      description: "To make your documentation accessible when and where it's needed",
+      description:
+        "To make your documentation accessible when and where it's needed",
     },
-  ]
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -127,7 +135,7 @@ export const IdeasWithAIClient = () => {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -138,95 +146,105 @@ export const IdeasWithAIClient = () => {
         duration: 0.6,
       },
     },
-  }
+  };
 
   return (
-    <main className="min-h-screen">
+    <div className="container mx-auto">
       {/* Hero Section */}
-      <section className="py-20 md:py-32 theme-bg-secondary border-b theme-border">
-        <div className="container mx-auto px-6">
-          <div className="mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="mb-6"
-            >
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded border theme-border text-sm font-medium">
-                <Brain className="w-4 h-4 text-[var(--theme-color)]" />
-                AI-Powered Documentation
-              </span>
-            </motion.div>
+      <section className="py-12 theme-bg-secondary border-b theme-border">
+        <div className="px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-4 mt-20"
+          >
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded border theme-border text-xs font-medium">
+              <Brain className="w-4 h-4 text-[var(--theme-color)]" />
+              AI-Powered Documentation
+            </span>
+          </motion.div>
 
-            <motion.h1
-              className="h1 mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              Turn Your Ideas into <span className="text-gradient">Documents Easily with AI</span>
-            </motion.h1>
+          <motion.h1
+            className="h1 mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Turn Your Ideas into{" "}
+            <span className="text-gradient">Documents Easily with AI</span>
+          </motion.h1>
 
-            <motion.p
-              className="text-lg md:text-xl mb-10 max-w-3xl mx-auto leading-relaxed opacity-70"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              With DocStar's AI-powered documentation platform, you can transform raw ideas, notes, or outlines into professional
-              documents in a matter of minutes.
-            </motion.p>
+          <motion.p
+            className="text-sm md:text-base mb-6 max-w-3xl mx-auto leading-snug opacity-70"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            With DocStar's AI-powered documentation platform, you can transform
+            raw ideas, notes, or outlines into professional documents in a
+            matter of minutes.
+          </motion.p>
 
-            <button
-              className="btn btn-primary mx-auto"
-              onClick={() => { window.open('https://app.docstar.io/login') }}
-            >
-              Get Started with DocStar
-            </button>
-          </div>
+          <button
+            className="btn btn-primary mx-auto"
+            onClick={() => {
+              window.open("https://app.docstar.io/login");
+            }}
+          >
+            Get Started with DocStar
+          </button>
         </div>
       </section>
 
       {/* Why Choose AI-Powered Documentation Section */}
-      <section className="container mx-auto py-20 md:py-32 px-6">
-        <h2 className="h2 mb-12">
+      <section className="py-12 px-6">
+        <h2 className="text-2xl md:text-3xl font-medium mb-8 leading-tight">
           Why Choose AI-Powered Documentation?
         </h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
           {whyChooseFeatures.map((feature, index) => (
             <article
               key={index}
-              className="p-6 rounded theme-bg-secondary border theme-border hover:border-[var(--theme-color)] transition-colors duration-300"
+              className="p-5 md:p-6 rounded theme-bg-secondary border theme-border hover:border-[var(--theme-color)] transition-colors duration-300"
             >
-              <div className="w-12 h-12 rounded border theme-border flex items-center justify-center mb-4">
+              <div className="w-10 h-10 rounded border theme-border flex items-center justify-center mb-3">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-              <p className="opacity-70 leading-relaxed">{feature.description}</p>
+              <h3 className="text-lg font-medium mb-2 leading-tight">
+                {feature.title}
+              </h3>
+              <p className="text-sm opacity-70 leading-snug">
+                {feature.description}
+              </p>
             </article>
           ))}
         </div>
       </section>
 
       {/* Key Features Section */}
-      <section className="theme-bg-secondary py-20 md:py-32">
-        <div className="container mx-auto px-6">
-          <h2 className="h2 mb-12">
+      <section className="theme-bg-secondary py-12">
+        <div className="px-6">
+          <h2 className="text-2xl md:text-3xl font-medium mb-8 leading-tight">
             Key Features
           </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
             {keyFeatures.map((feature, index) => (
               <article
                 key={index}
-                className="p-6 rounded border theme-border bg-[var(--theme-bg)] hover:border-[var(--theme-color)] transition-colors duration-300"
+                className="p-5 md:p-6 rounded border theme-border bg-[var(--theme-bg)] hover:border-[var(--theme-color)] transition-colors duration-300"
               >
-                <div className="w-12 h-12 rounded border theme-border flex items-center justify-center mb-4">
+                <div className="w-10 h-10 rounded border theme-border flex items-center justify-center mb-3">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                <p className="opacity-70 leading-relaxed">{feature.description}</p>
+                <h3 className="text-lg font-medium mb-2 leading-tight">
+                  {feature.title}
+                </h3>
+                <p className="text-sm opacity-70 leading-snug">
+                  {feature.description}
+                </p>
               </article>
             ))}
           </div>
@@ -234,79 +252,91 @@ export const IdeasWithAIClient = () => {
       </section>
 
       {/* How DocStar's AI Works Section */}
-      <section className="container mx-auto py-20 md:py-32 px-6">
-        <h2 className="h2 mb-12">
+      <section className="py-12 px-6">
+        <h2 className="text-2xl md:text-3xl font-medium mb-8 leading-tight">
           How DocStar's AI Works for You
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-5">
           {aiFeatures.map((feature, index) => (
             <article
               key={index}
-              className="p-6 rounded theme-bg-secondary border theme-border hover:border-[var(--theme-color)] transition-colors duration-300"
+              className="p-5 md:p-6 rounded theme-bg-secondary border theme-border hover:border-[var(--theme-color)] transition-colors duration-300"
             >
-              <div className="w-12 h-12 rounded border theme-border flex items-center justify-center mb-4">
+              <div className="w-10 h-10 rounded border theme-border flex items-center justify-center mb-3">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-              <p className="opacity-70 leading-relaxed">{feature.description}</p>
+              <h3 className="text-lg font-medium mb-2 leading-tight">
+                {feature.title}
+              </h3>
+              <p className="text-sm opacity-70 leading-snug">
+                {feature.description}
+              </p>
             </article>
           ))}
         </div>
       </section>
 
       {/* Benefits Section */}
-      <section className="theme-bg-secondary py-20 md:py-32">
-        <div className="container mx-auto px-6">
-          <h2 className="h2 mb-12">
+      <section className="theme-bg-secondary py-12">
+        <div className="px-6">
+          <h2 className="text-2xl md:text-3xl font-medium mb-8 leading-tight">
             Benefits for Your Organization
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-5">
             {benefits.map((benefit, index) => (
               <article
                 key={index}
-                className="p-6 rounded border theme-border bg-[var(--theme-bg)] hover:border-[var(--theme-color)] transition-colors duration-300"
+                className="p-5 md:p-6 rounded border theme-border bg-[var(--theme-bg)] hover:border-[var(--theme-color)] transition-colors duration-300"
               >
-                <div className="flex items-center mb-3">
-                  <CheckCircle className="w-5 h-5 mr-3 text-[var(--theme-color)]" />
-                  <h3 className="text-xl font-semibold">{benefit.title}</h3>
+                <div className="flex items-center mb-2">
+                  <CheckCircle className="w-4 h-4 mr-2 text-[var(--theme-color)]" />
+                  <h3 className="text-lg font-medium">{benefit.title}</h3>
                 </div>
-                <p className="opacity-70 leading-relaxed">{benefit.description}</p>
+                <p className="text-sm opacity-70 leading-snug">
+                  {benefit.description}
+                </p>
               </article>
             ))}
           </div>
 
-          <div className="mt-12 p-8 rounded border theme-border bg-[var(--theme-bg)]">
-            <h3 className="text-2xl font-semibold mb-4">Create a Seamless Knowledge Experience</h3>
-            <p className="text-lg opacity-70 leading-relaxed">
-              With DocStar, you don't just write documents—you create a seamless knowledge experience. Transform ideas
-              into actionable, structured documents with the power of AI, and give your team the clarity and speed they
-              need to move faster.
+          <div className="mt-8 p-6 md:p-8 rounded border theme-border bg-[var(--theme-bg)]">
+            <h3 className="text-xl md:text-2xl font-medium mb-3 leading-tight">
+              Create a Seamless Knowledge Experience
+            </h3>
+            <p className="text-sm md:text-base opacity-70 leading-snug">
+              With DocStar, you don't just write documents—you create a seamless
+              knowledge experience. Transform ideas into actionable, structured
+              documents with the power of AI, and give your team the clarity and
+              speed they need to move faster.
             </p>
           </div>
         </div>
       </section>
 
       {/* Final CTA Section */}
-      <section className="container mx-auto py-20 md:py-32 px-6">
-        <h2 className="h2 mb-6">
+      <section className="py-12 px-6">
+        <h2 className="text-2xl md:text-3xl font-medium mb-4 leading-tight">
           Start Turning Ideas into Documents Today
         </h2>
 
-        <p className="text-xl mb-8 opacity-70 leading-relaxed max-w-3xl">
-          With DocStar, you don't just write documents—you create a seamless knowledge experience. Transform ideas
-          into actionable, structured documents with the power of AI, and give your team the clarity and speed they
-          need to move faster.
+        <p className="text-sm md:text-base mb-6 opacity-70 leading-snug max-w-3xl">
+          With DocStar, you don't just write documents—you create a seamless
+          knowledge experience. Transform ideas into actionable, structured
+          documents with the power of AI, and give your team the clarity and
+          speed they need to move faster.
         </p>
 
         <button
           className="btn btn-primary"
-          onClick={() => { window.open('https://app.docstar.io/login') }}
+          onClick={() => {
+            window.open("https://app.docstar.io/login");
+          }}
         >
           Get Started with DocStar
         </button>
       </section>
-    </main>
-  )
-}
+    </div>
+  );
+};

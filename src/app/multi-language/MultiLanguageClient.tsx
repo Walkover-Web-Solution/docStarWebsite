@@ -119,230 +119,221 @@ const MultiLanguageClient = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="container mx-auto">
       {/* Hero Section */}
       <MotionWrapper
-        className="py-20 relative overflow-hidden theme-bg-secondary"
+        className="py-20 relative overflow-hidden theme-bg-secondary px-6 pt-20 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="relative container mx-auto px-6 py-20 text-center">
-          <h1 className="h1 mb-2">
-            Multi-Language{" "}
-            <span className="text-gradient">
-              Support for{" "}
-            </span>
-            Global Teams
-          </h1>
+        <h1 className="h1 pt-12">
+          Multi-Language <span className="text-gradient">Support for </span>
+          Global Teams
+        </h1>
 
-          <p className="text-xl mb-12">
-            Deliver clear and accessible documentation in every language your
-            audience speaks. Your docs, any language, everywhere.
-          </p>
+        <p className="text-sm md:text-base mb-6 leading-snug opacity-70">
+          Deliver clear and accessible documentation in every language your
+          audience speaks. Your docs, any language, everywhere.
+        </p>
 
-          <Link
-            href="https://app.docstar.io/login"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary mx-auto w-fit"
-          >
-            Get Started with DocStar
-          </Link>
-        </div>
+        <Link
+          href="https://app.docstar.io/login"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-primary mx-auto w-fit"
+        >
+          Get Started with DocStar
+        </Link>
       </MotionWrapper>
 
       {/* Why Multi-Language Matters */}
       <MotionWrapper
-        className="py-20 px-6"
+        className="py-12 px-6"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <div className="container mx-auto">
-          <h2 className="h2 text-center mb-2">
-            Why Multi-Language Support Matters
-          </h2>
+        <h2 className="text-2xl md:text-3xl font-medium text-center mb-2 leading-tight">
+          Why Multi-Language Support Matters
+        </h2>
 
-          <p className="text-xl text-center mb-16 container mx-auto opacity-80">
-            As businesses expand globally, clear communication becomes critical.
-            With DocStar, you can:
-          </p>
+        <p className="text-sm md:text-base text-center mb-10 opacity-70 leading-snug">
+          As businesses expand globally, clear communication becomes critical.
+          With DocStar, you can:
+        </p>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {benefits.map((benefit, index) => (
-              <MotionWrapper
-                key={index}
-                className="group relative p-8 rounded border theme-border theme-bg-secondary"
-                variants={itemVariants}
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 rounded border flex items-center justify-center flex-shrink-0 mt-1 group-hover:scale-110 group-hover:border-opacity-50 transition-all duration-300">
-                    <CheckCircle className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold">
-                      {benefit.title}
-                    </h3>
-                    <p className="opacity-80 leading-relaxed">
-                      {benefit.description}
-                    </p>
-                  </div>
+        <div className="grid md:grid-cols-2 gap-6">
+          {benefits.map((benefit, index) => (
+            <MotionWrapper
+              key={index}
+              className="group relative p-5 md:p-6 rounded border theme-border theme-bg-secondary"
+              variants={itemVariants}
+            >
+              <div className="flex items-start space-x-4">
+                <div className="w-7 h-7 rounded border flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-110 group-hover:border-opacity-50 transition-all duration-300">
+                  <CheckCircle className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 transition-opacity" />
                 </div>
-              </MotionWrapper>
-            ))}
-          </div>
-
-          <MotionWrapper
-            className="mt-12 text-center p-10 rounded border theme-border theme-bg-secondary"
-            variants={itemVariants}
-          >
-            <p className="text-xl font-medium opacity-90 leading-relaxed">
-              <strong>Build trust and engagement</strong> with customers in
-              their native language while strengthening your brand's global
-              presence and visibility.
-            </p>
-          </MotionWrapper>
+                <div>
+                  <h3 className="text-lg font-medium mb-1 leading-tight">
+                    {benefit.title}
+                  </h3>
+                  <p className="opacity-70 text-sm leading-snug">
+                    {benefit.description}
+                  </p>
+                </div>
+              </div>
+            </MotionWrapper>
+          ))}
         </div>
+
+        <MotionWrapper
+          className="mt-8 text-center p-6 md:p-8 rounded border theme-border theme-bg-secondary"
+          variants={itemVariants}
+        >
+          <p className="text-sm md:text-base font-medium opacity-80 leading-snug">
+            <strong>Build trust and engagement</strong> with customers in their
+            native language while strengthening your brand's global presence and
+            visibility.
+          </p>
+        </MotionWrapper>
       </MotionWrapper>
 
       {/* Languages Supported */}
       <MotionWrapper
-        className="py-20 px-6 theme-bg-secondary"
+        className="py-12 px-6 theme-bg-secondary"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <div className="container mx-auto">
-          <h2
-            className="h2 text-center mb-2"
-          >
-            Languages Supported by DocStar
-          </h2>
+        <h2 className="text-2xl md:text-3xl font-medium text-center mb-2 leading-tight">
+          Languages Supported by DocStar
+        </h2>
 
-          <MotionWrapper
-            className="text-xl text-center mb-16 container mx-auto opacity-80"
-            variants={itemVariants}
-          >
-            DocStar provides full support for some of the world's most widely
-            spoken languages, allowing you to serve global audiences without
-            additional complexity:
-          </MotionWrapper>
+        <MotionWrapper
+          className="text-sm md:text-base text-center mb-10 opacity-70 leading-snug"
+          variants={itemVariants}
+        >
+          DocStar provides full support for some of the world's most widely
+          spoken languages, allowing you to serve global audiences without
+          additional complexity:
+        </MotionWrapper>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {languages.map((language, index) => (
-              <MotionWrapper
-                key={index}
-                className="group relative p-6 rounded border theme-border"
-                variants={itemVariants}
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-14 h-14 rounded theme-bg-secondary flex items-center justify-center mr-4 group-hover:scale-125 group-hover:rotate-6 transition-all duration-300">
-                    <span className="text-3xl">{language.flag}</span>
-                  </div>
-                  <h3 className="text-xl font-semibold group-hover:opacity-80 transition-opacity">{language.name}</h3>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+          {languages.map((language, index) => (
+            <MotionWrapper
+              key={index}
+              className="group relative p-4 md:p-5 rounded border theme-border"
+              variants={itemVariants}
+            >
+              <div className="flex items-center mb-3">
+                <div className="w-12 h-12 rounded theme-bg-secondary flex items-center justify-center mr-3 group-hover:scale-125 group-hover:rotate-6 transition-all duration-300">
+                  <span className="text-2xl">{language.flag}</span>
                 </div>
-                <p className="opacity-80 text-sm leading-relaxed">
-                  {language.description}
-                </p>
-              </MotionWrapper>
-            ))}
-          </div>
+                <h3 className="text-lg font-medium group-hover:opacity-80 transition-opacity">
+                  {language.name}
+                </h3>
+              </div>
+              <p className="opacity-70 text-xs md:text-sm leading-snug">
+                {language.description}
+              </p>
+            </MotionWrapper>
+          ))}
         </div>
       </MotionWrapper>
 
       {/* Key Features */}
       <MotionWrapper
-        className="py-20 px-6"
+        className="py-12 px-6"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <div className="container mx-auto">
-          <MotionWrapper
-            className="text-4xl md:text-5xl font-bold text-center mb-16"
-            variants={itemVariants}
-          >
-            Key Features of DocStar's Multi-Language Support
-          </MotionWrapper>
+        <MotionWrapper
+          className="text-2xl md:text-3xl font-medium text-center mb-10 leading-tight"
+          variants={itemVariants}
+        >
+          Key Features of DocStar's Multi-Language Support
+        </MotionWrapper>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {features.map((feature, index) => (
-              <MotionWrapper
-                key={index}
-                className="group relative p-8 rounded border theme-border"
-                variants={itemVariants}
-              >
-                <div className="w-16 h-16 rounded theme-bg-secondary flex items-center justify-center mb-6 group-hover:scale-125 group-hover:rotate-6 transition-all duration-300">
-                  <div className="group-hover:scale-110 transition-transform duration-300">{feature.icon}</div>
+        <div className="grid md:grid-cols-2 gap-6">
+          {features.map((feature, index) => (
+            <MotionWrapper
+              key={index}
+              className="group relative p-5 md:p-6 rounded border theme-border"
+              variants={itemVariants}
+            >
+              <div className="w-12 h-12 rounded theme-bg-secondary flex items-center justify-center mb-4 group-hover:scale-125 group-hover:rotate-6 transition-all duration-300">
+                <div className="group-hover:scale-110 transition-transform duration-300">
+                  {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                <p className="opacity-80 leading-relaxed">
-                  {feature.description}
-                </p>
-              </MotionWrapper>
-            ))}
-          </div>
-
-          <MotionWrapper
-            className="mt-12 text-center p-10 rounded border theme-border theme-bg-secondary"
-            variants={itemVariants}
-          >
-            <h3 className="text-2xl font-bold mb-4">
-              Scalable for Global Growth
-            </h3>
-            <p className="text-xl opacity-90 leading-relaxed">
-              As your business expands, add new languages effortlessly without
-              disrupting your workflow.
-            </p>
-          </MotionWrapper>
+              </div>
+              <h3 className="text-lg font-medium mb-2 leading-tight">
+                {feature.title}
+              </h3>
+              <p className="opacity-70 text-sm leading-snug">
+                {feature.description}
+              </p>
+            </MotionWrapper>
+          ))}
         </div>
+
+        <MotionWrapper
+          className="mt-8 text-center p-6 md:p-8 rounded border theme-border theme-bg-secondary"
+          variants={itemVariants}
+        >
+          <h3 className="text-xl font-medium mb-3 leading-tight">
+            Scalable for Global Growth
+          </h3>
+          <p className="text-sm md:text-base opacity-80 leading-snug">
+            As your business expands, add new languages effortlessly without
+            disrupting your workflow.
+          </p>
+        </MotionWrapper>
       </MotionWrapper>
 
       {/* Final CTA */}
       <MotionWrapper
-        className="py-20 px-6 text-center"
+        className="py-12 px-6 text-center"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <div className="container mx-auto">
-          <MotionWrapper
-            className="text-4xl md:text-5xl font-bold mb-6 text-balance"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Deliver Documentation Without Borders
-          </MotionWrapper>
+        <MotionWrapper
+          className="text-2xl md:text-3xl lg:text-4xl font-medium mb-4 text-balance leading-tight"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          Deliver Documentation Without Borders
+        </MotionWrapper>
 
-          <MotionWrapper
-            className="text-xl mb-10 opacity-80"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            With DocStar's multi-language support, your documentation isn't
-            limited by geography.
-          </MotionWrapper>
+        <MotionWrapper
+          className="text-sm md:text-base mb-6 opacity-70 leading-snug"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          With DocStar's multi-language support, your documentation isn't
+          limited by geography.
+        </MotionWrapper>
 
-          <MotionWrapper
-            href="https://app.docstar.io/login"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary w-fit mx-auto"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Get Started with DocStar
-          </MotionWrapper>
-        </div>
+        <MotionWrapper
+          href="https://app.docstar.io/login"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-primary w-fit mx-auto"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Get Started with DocStar
+        </MotionWrapper>
       </MotionWrapper>
     </div>
   );
