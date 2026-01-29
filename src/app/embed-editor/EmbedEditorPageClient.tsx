@@ -137,17 +137,17 @@ const EmbedEditorPageClient: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="w-full">
       {/* Hero Section with Floating Code Preview */}
-      <section className="relative px-6 py-12 md:py-16 overflow-hidden">
+      <section className="relative px-4 py-8 sm:px-6 sm:py-12 md:py-16 overflow-hidden">
         <div className="absolute inset-0 theme-bg-secondary"></div>
         <div className="absolute top-0 right-0 w-1/3 h-full bg-black/5 dark:bg-white/5"></div>
 
-        <div className="relative">
-          <div className="grid lg:grid-cols-12 gap-8 items-center pt-20">
+        <div className="relative container mx-auto">
+          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 sm:gap-8 items-center pt-12 sm:pt-16 md:pt-20">
             {/* Left: Hero Content */}
-            <div className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded border theme-border mb-4">
+            <div className="w-full lg:col-span-7">
+              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded border theme-border mb-3 sm:mb-4">
                 <Sparkles className="h-4 w-4" />
                 <span className="text-xs font-medium uppercase tracking-wider opacity-70">
                   Minimal Setup, Maximum Impact
@@ -159,7 +159,7 @@ const EmbedEditorPageClient: React.FC = () => {
                 Product
               </h1>
 
-              <p className="text-sm md:text-base mb-6 leading-snug opacity-70 max-w-2xl">
+              <p className="text-sm sm:text-base md:text-lg mb-5 sm:mb-6 leading-relaxed opacity-70 max-w-2xl">
                 Transform any text area into a powerful, collaborative editor
                 with just{" "}
                 <span className="font-semibold">one line of code</span>. Give
@@ -167,7 +167,7 @@ const EmbedEditorPageClient: React.FC = () => {
                 complexity.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <button
                   className="btn btn-primary"
                   onClick={() => router.push("/editor")}
@@ -189,19 +189,19 @@ const EmbedEditorPageClient: React.FC = () => {
             </div>
 
             {/* Right: Code Preview */}
-            <div className="lg:col-span-5">
-              <div className="rounded border theme-border theme-bg-secondary p-4 md:p-5">
-                <div className="flex items-center mb-3 pb-2 border-b theme-border">
+            <div className="w-full lg:col-span-5">
+              <div className="rounded-lg border theme-border theme-bg-secondary p-3 sm:p-4 md:p-5">
+                <div className="flex items-center mb-2 sm:mb-3 pb-2 border-b theme-border">
                   <div className="flex space-x-1.5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-red-600"></div>
-                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-600"></div>
-                    <div className="w-2.5 h-2.5 rounded-full bg-green-600"></div>
+                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-red-600"></div>
+                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-yellow-600"></div>
+                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-green-600"></div>
                   </div>
-                  <span className="ml-3 text-xs font-medium opacity-70">
+                  <span className="ml-2 sm:ml-3 text-xs font-medium opacity-70">
                     embed-editor.js
                   </span>
                 </div>
-                <pre className="font-mono text-xs overflow-x-auto opacity-90">
+                <pre className="font-mono text-[10px] sm:text-xs overflow-x-auto opacity-90">
                   {`<script
   id="docstar-main-script"
   defaultOpen="true"
@@ -217,57 +217,61 @@ const EmbedEditorPageClient: React.FC = () => {
       </section>
 
       {/* Features Grid */}
-      <section className="px-6 py-12 md:py-16">
-        <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-medium mb-2 leading-tight">
+      <section className="px-4 py-8 sm:px-6 sm:py-12 md:py-16">
+        <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-8 sm:mb-10">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-2 sm:mb-3 leading-tight">
             Everything You Need, Nothing You Don't
           </h2>
-          <p className="text-sm md:text-base max-w-3xl mx-auto opacity-70 leading-snug">
+          <p className="text-sm sm:text-base max-w-3xl mx-auto opacity-70 leading-relaxed px-4">
             Powerful editing capabilities that integrate seamlessly into your
             existing workflow
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           {features.map((feature, index) => (
-            <div key={index} className="p-5 md:p-6 rounded border theme-border">
-              <feature.icon className="h-10 w-10 mb-4 opacity-70" />
-              <h3 className="text-lg font-medium mb-2 leading-tight">
+            <div key={index} className="p-4 sm:p-5 md:p-6 rounded-lg border theme-border">
+              <feature.icon className="h-8 w-8 sm:h-10 sm:w-10 mb-3 sm:mb-4 opacity-70" />
+              <h3 className="text-base sm:text-lg font-medium mb-2 leading-tight">
                 {feature.title}
               </h3>
-              <p className="leading-snug text-sm opacity-70">
+              <p className="leading-relaxed text-sm opacity-70">
                 {feature.description}
               </p>
             </div>
           ))}
         </div>
+        </div>
       </section>
 
       {/* How It Works */}
-      <section className="px-6 py-12 md:py-16 theme-bg-secondary">
-        <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-medium mb-2 leading-tight">
+      <section className="px-4 py-8 sm:px-6 sm:py-12 md:py-16 theme-bg-secondary">
+        <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-8 sm:mb-10">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-2 sm:mb-3 leading-tight">
             Setup in Under 60 Seconds
           </h2>
-          <p className="text-sm md:text-base opacity-70 leading-snug">
+          <p className="text-sm sm:text-base opacity-70 leading-relaxed px-4">
             Seriously. It's that simple.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
           {steps.map((step, index) => (
             <div key={index} className="text-center">
-              <div className="w-12 h-12 rounded-full border-2 theme-border flex items-center justify-center text-xl font-medium mx-auto mb-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 theme-border flex items-center justify-center text-lg sm:text-xl font-medium mx-auto mb-3 sm:mb-4">
                 {step.step}
               </div>
-              <h3 className="text-base font-medium mb-2 leading-tight">
+              <h3 className="text-sm sm:text-base font-medium mb-2 leading-tight">
                 {step.title}
               </h3>
-              <p className="opacity-70 text-sm leading-snug">
+              <p className="opacity-70 text-xs sm:text-sm leading-relaxed px-2">
                 {step.description}
               </p>
             </div>
           ))}
+        </div>
         </div>
       </section>
 
@@ -276,8 +280,9 @@ const EmbedEditorPageClient: React.FC = () => {
         onMouseEnter={() => setIsCollaborationHovered(true)}
         onMouseLeave={() => setIsCollaborationHovered(false)}
         onMouseMove={handleMouseMove}
-        className="px-6 py-12 md:py-16 relative overflow-hidden"
+        className="px-4 py-8 sm:px-6 sm:py-12 md:py-16 relative overflow-hidden"
       >
+        <div className="max-w-7xl mx-auto">
         {/* Your cursor indicator */}
         {isCollaborationHovered && (
           <MotionWrapper
@@ -302,15 +307,15 @@ const EmbedEditorPageClient: React.FC = () => {
             <span className="text-sm font-medium">You</span>
           </MotionWrapper>
         )}
-        <div className="grid lg:grid-cols-2 gap-8 items-center">
-          <div className="relative">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
+          <div className="relative order-2 lg:order-1">
             {/* Mock Document */}
-            <div className="rounded border theme-border p-4 md:p-5 relative overflow-hidden">
+            <div className="rounded-lg border theme-border p-3 sm:p-4 md:p-5 relative overflow-hidden min-h-[250px] sm:min-h-[300px]">
               {/* Document Header */}
-              <div className="flex items-center justify-between mb-3 pb-2 border-b opacity-20 theme-border">
+              <div className="flex items-center justify-between mb-2 sm:mb-3 pb-2 border-b opacity-20 theme-border">
                 <div className="flex items-center space-x-2">
-                  <FileText className="h-5 w-5" />
-                  <span className="text-sm font-medium">
+                  <FileText className="h-4 w-4 sm:h-5 sm:w-5" />
+                  <span className="text-xs sm:text-sm font-medium">
                     Product Strategy Doc
                   </span>
                 </div>
@@ -318,9 +323,9 @@ const EmbedEditorPageClient: React.FC = () => {
 
               {/* Document Content */}
               <div className="space-y-2">
-                <h3 className="text-base font-semibold">Q1 Planning Session</h3>
+                <h3 className="text-sm sm:text-base font-semibold">Q1 Planning Session</h3>
                 <div className="relative">
-                  <p className="leading-snug text-sm min-h-[60px] opacity-90">
+                  <p className="leading-relaxed text-xs sm:text-sm min-h-[60px] sm:min-h-[80px] opacity-90">
                     {animatedText}
                     {isCollaborationHovered && (
                       <MotionWrapper
@@ -329,7 +334,7 @@ const EmbedEditorPageClient: React.FC = () => {
                           duration: 0.8,
                           repeat: Number.POSITIVE_INFINITY,
                         }}
-                        className="inline-block w-0.5 h-5 ml-1 theme-bg opacity-80"
+                        className="inline-block w-0.5 h-4 sm:h-5 ml-1 theme-bg opacity-80"
                       />
                     )}
                   </p>
@@ -394,11 +399,11 @@ const EmbedEditorPageClient: React.FC = () => {
           </div>
 
           {/* Content */}
-          <div className="real-time-collaboration">
-            <h2 className="text-2xl md:text-3xl font-medium mb-2 leading-tight">
+          <div className="real-time-collaboration order-1 lg:order-2">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-3 sm:mb-4 leading-tight">
               Real-time Collaboration
             </h2>
-            <p className="text-sm md:text-base mb-2 leading-snug opacity-70">
+            <p className="text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed opacity-70">
               Real-time collaboration that feels natural. See who's editing,
               share ideas instantly, and work together seamlessly.
             </p>
@@ -412,16 +417,17 @@ const EmbedEditorPageClient: React.FC = () => {
             </button>
           </div>
         </div>
+        </div>
       </section>
 
       {/* Footer */}
-      <footer className="px-6 py-8 border-t theme-border">
-        <div className="text-center">
-          <div className="flex items-center justify-center space-x-2 mb-3">
-            <Code2 className="h-6 w-6 opacity-80" />
-            <span className="text-lg font-medium">EmbedEditor</span>
+      <footer className="px-4 py-6 sm:px-6 sm:py-8 border-t theme-border">
+        <div className="text-center max-w-7xl mx-auto">
+          <div className="flex items-center justify-center space-x-2 mb-2 sm:mb-3">
+            <Code2 className="h-5 w-5 sm:h-6 sm:w-6 opacity-80" />
+            <span className="text-base sm:text-lg font-medium">EmbedEditor</span>
           </div>
-          <p className="opacity-70 text-sm">
+          <p className="opacity-70 text-xs sm:text-sm">
             Making rich text editing accessible to every product.
           </p>
         </div>

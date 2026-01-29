@@ -149,10 +149,10 @@ export const IdeasWithAIClient = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <>
       {/* Hero Section */}
-      <section className="py-12 theme-bg-secondary border-b theme-border">
-        <div className="px-6 text-center">
+      <section className="py-8 sm:py-10 md:py-12 theme-bg-secondary border-b theme-border">
+        <div className="container mx-auto px-4 sm:px-5 md:px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -197,13 +197,14 @@ export const IdeasWithAIClient = () => {
         </div>
       </section>
 
+      <div className="container mx-auto">
       {/* Why Choose AI-Powered Documentation Section */}
-      <section className="py-12 px-6">
-        <h2 className="text-2xl md:text-3xl font-medium mb-8 leading-tight">
+      <section className="py-8 sm:py-10 md:py-12 px-4 sm:px-5 md:px-6">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-8 leading-tight">
           Why Choose AI-Powered Documentation?
         </h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-4.5 md:gap-5">
           {whyChooseFeatures.map((feature, index) => (
             <article
               key={index}
@@ -226,7 +227,7 @@ export const IdeasWithAIClient = () => {
       {/* Key Features Section */}
       <section className="theme-bg-secondary py-12">
         <div className="px-6">
-          <h2 className="text-2xl md:text-3xl font-medium mb-8 leading-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-8 leading-tight">
             Key Features
           </h2>
 
@@ -252,8 +253,8 @@ export const IdeasWithAIClient = () => {
       </section>
 
       {/* How DocStar's AI Works Section */}
-      <section className="py-12 px-6">
-        <h2 className="text-2xl md:text-3xl font-medium mb-8 leading-tight">
+      <section className="py-8 sm:py-10 md:py-12 px-4 sm:px-5 md:px-6">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-8 leading-tight">
           How DocStar's AI Works for You
         </h2>
 
@@ -280,7 +281,7 @@ export const IdeasWithAIClient = () => {
       {/* Benefits Section */}
       <section className="theme-bg-secondary py-12">
         <div className="px-6">
-          <h2 className="text-2xl md:text-3xl font-medium mb-8 leading-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-8 leading-tight">
             Benefits for Your Organization
           </h2>
 
@@ -316,8 +317,8 @@ export const IdeasWithAIClient = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-12 px-6">
-        <h2 className="text-2xl md:text-3xl font-medium mb-4 leading-tight">
+      <section className="py-8 sm:py-10 md:py-12 px-4 sm:px-5 md:px-6">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-4 leading-tight">
           Start Turning Ideas into Documents Today
         </h2>
 
@@ -337,6 +338,7 @@ export const IdeasWithAIClient = () => {
           Get Started with DocStar
         </button>
       </section>
-    </div>
+      </div>
+    </>
   );
 };

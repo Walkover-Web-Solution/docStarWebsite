@@ -158,73 +158,71 @@ const EmbedEditorPageClient = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="container mx-auto">
       {/* Hero Section */}
-      <section className="px-6 py-20 md:py-32">
-        <div className="container mx-auto text-center">
-          <h1 className="h1 mb-4">The Smart Editor</h1>
-          <div className="flex items-center justify-center gap-2 mb-6">
-            <Pencil className="w-5 h-5 opacity-70" />
-            <p className="text-lg md:text-xl font-['Dancing_Script',_cursive] opacity-80">
+      <section className="px-6 py-12 md:py-16 text-center">
+        <h1 className="h1 mb-4 mt-20">The Smart Editor</h1>
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <Pencil className="w-4 h-4 opacity-70" />
+          <p className="text-base md:text-lg font-['Dancing_Script',_cursive] opacity-80">
               Your space for every idea and policy.
-            </p>
-          </div>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed opacity-70">
+          </p>
+        </div>
+        <p className="text-sm md:text-base max-w-3xl mx-auto leading-snug opacity-70">
             A platform that helps you say it all—your thoughts, your rules,
             everything. It's simple, fast, and always works the way you need it
             to.
-          </p>
-        </div>
+        </p>
       </section>
 
       {/* Features Section */}
-      <section className="px-6 py-20 container mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <section className="px-6 py-12">
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold">
+            <h2 className="text-xl md:text-2xl font-medium leading-tight">
               Transform any text area into a{" "}
               <span className="text-gradient">
                 powerful editor
               </span>
             </h2>
-            <p className="text-lg mb-8 leading-relaxed opacity-70">
+            <p className="text-sm md:text-base mb-6 leading-snug opacity-70">
               With just one line of code, give your users the editing experience
               they love, without the complexity.
             </p>
-            <div className="space-y-2">
-              <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-black/40 dark:bg-white/40"></div>
-                <span className="opacity-80">Real-time collaboration</span>
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-black/40 dark:bg-white/40"></div>
+                <span className="text-sm opacity-80">Real-time collaboration</span>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-black/40 dark:bg-white/40"></div>
-                <span className="opacity-80">Rich formatting tools</span>
+              <div className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-black/40 dark:bg-white/40"></div>
+                <span className="text-sm opacity-80">Rich formatting tools</span>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-black/40 dark:bg-white/40"></div>
-                <span className="opacity-80">Lightning fast performance</span>
+              <div className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-black/40 dark:bg-white/40"></div>
+                <span className="text-sm opacity-80">Lightning fast performance</span>
               </div>
             </div>
           </div>
-          <div className="rounded border theme-border p-6">
-            <div className="rounded border theme-border p-4 mb-4 bg-black/5 dark:bg-white/5">
+          <div className="rounded border theme-border p-5">
+            <div className="rounded border theme-border p-3 mb-3 bg-black/5 dark:bg-white/5">
               <code className="text-sm font-mono opacity-80">
                 {"<EmbedEditor />"}
               </code>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-2">
               <div className="h-4 rounded theme-bg opacity-20 w-full"></div>
               <div className="h-4 rounded theme-bg opacity-20 w-3/4"></div>
               <div className="h-4 rounded theme-bg opacity-20 w-5/6"></div>
-              <div className="flex gap-2 mt-4">
-                <div className="w-8 h-8 rounded border theme-border flex items-center justify-center">
-                  <Bold className="w-4 h-4 opacity-70" />
+              <div className="flex gap-2 mt-3">
+                <div className="w-7 h-7 rounded border theme-border flex items-center justify-center">
+                  <Bold className="w-3.5 h-3.5 opacity-70" />
                 </div>
-                <div className="w-8 h-8 rounded border theme-border flex items-center justify-center">
-                  <Italic className="w-4 h-4 opacity-70" />
+                <div className="w-7 h-7 rounded border theme-border flex items-center justify-center">
+                  <Italic className="w-3.5 h-3.5 opacity-70" />
                 </div>
-                <div className="w-8 h-8 rounded border theme-border flex items-center justify-center">
-                  <Link className="w-4 h-4 opacity-70" />
+                <div className="w-7 h-7 rounded border theme-border flex items-center justify-center">
+                  <Link className="w-3.5 h-3.5 opacity-70" />
                 </div>
               </div>
             </div>
@@ -233,17 +231,17 @@ const EmbedEditorPageClient = () => {
       </section>
 
       {/* Formatting Tools Section */}
-      <section className="px-6 py-20 container mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+      <section className="px-6 py-12">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-medium mb-3 leading-tight">
             Just the right amount of formatting.
           </h2>
-          <div className="flex items-center justify-center gap-3 mt-8">
+          <div className="flex items-center justify-center gap-3 mt-6">
             <button
               onClick={prevTool}
-              className="w-10 h-10 cursor-pointer rounded-full border theme-border flex items-center justify-center transition-opacity hover:opacity-70"
+              className="w-8 h-8 cursor-pointer rounded-full border theme-border flex items-center justify-center transition-opacity hover:opacity-70"
             >
-              <ChevronLeft className="w-5 h-5 opacity-70" />
+              <ChevronLeft className="w-4 h-4 opacity-70" />
             </button>
             <div className="flex gap-2">
               {Array.from({ length: totalPages }).map((_, pageIndex) => (
@@ -260,29 +258,29 @@ const EmbedEditorPageClient = () => {
             </div>
             <button
               onClick={nextTool}
-              className="w-10 h-10 cursor-pointer rounded-full border theme-border flex items-center justify-center transition-opacity hover:opacity-70"
+              className="w-8 h-8 cursor-pointer rounded-full border theme-border flex items-center justify-center transition-opacity hover:opacity-70"
             >
-              <ChevronRight className="w-5 h-5 opacity-70" />
+              <ChevronRight className="w-4 h-4 opacity-70" />
             </button>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {getCurrentTools().map((tool) => (
             <div
               key={tool.index}
-              className="p-6 rounded-lg border theme-border"
+              className="p-4 md:p-5 rounded-lg border theme-border"
             >
-              <div className="flex flex-col items-center text-center gap-3">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-black/5 to-transparent dark:from-white/5 flex items-center justify-center">
+              <div className="flex flex-col items-center text-center gap-2">
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-black/5 to-transparent dark:from-white/5 flex items-center justify-center">
                   {React.createElement(tool.icon, {
-                    className: "w-7 h-7 opacity-70",
+                    className: "w-6 h-6 opacity-70",
                     strokeWidth: 1.5,
                   })}
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold mb-1">{tool.label}</h3>
-                  <p className="text-xs opacity-60 leading-relaxed">
+                  <h3 className="text-xs font-medium mb-1 leading-tight">{tool.label}</h3>
+                  <p className="text-xs opacity-60 leading-snug">
                     {tool.description}
                   </p>
                 </div>
@@ -293,11 +291,11 @@ const EmbedEditorPageClient = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="px-6 py-20 container mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-2">
+      <section className="px-6 py-12 text-center">
+        <h2 className="text-2xl md:text-3xl font-medium mb-3 leading-tight">
           Ready to transform your writing?
         </h2>
-        <p className="text-lg md:text-xl opacity-70 mb-8 max-w-2xl mx-auto">
+        <p className="text-sm md:text-base opacity-70 mb-6 max-w-2xl mx-auto leading-snug">
           Join thousands of creators who've already discovered the perfect
           balance of power and simplicity.
         </p>
