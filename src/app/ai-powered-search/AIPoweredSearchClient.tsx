@@ -106,7 +106,7 @@ export const AIPoweredSearchClient = () => {
   return (
     <div className="container mx-auto">
       {/* Hero Section */}
-      <section className="py-12 px-6">
+      <section className="py-8 sm:py-10 md:py-12 px-4 sm:px-5 md:px-6">
         <MotionWrapper
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
@@ -155,7 +155,7 @@ export const AIPoweredSearchClient = () => {
       </section>
 
       {/* Why AI-Powered Search Matters Section */}
-      <section className="py-12 border-y theme-border px-6">
+      <section className="py-8 sm:py-10 md:py-12 border-y theme-border px-4 sm:px-5 md:px-6">
         <MotionWrapper
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -173,7 +173,7 @@ export const AIPoweredSearchClient = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1 }}
         >
-          <h2 className="text-2xl md:text-3xl font-medium mb-4 leading-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-4 leading-tight">
             Why AI-Powered Search Matters
           </h2>
         </MotionWrapper>
@@ -190,7 +190,7 @@ export const AIPoweredSearchClient = () => {
           </p>
         </MotionWrapper>
 
-        <div className="grid md:grid-cols-2 gap-4 md:gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-4.5 md:gap-5">
           {whyMatters.map((item, index) => (
             <MotionWrapper
               key={index}
@@ -217,7 +217,7 @@ export const AIPoweredSearchClient = () => {
       </section>
 
       {/* Key Features Section */}
-      <section className="py-12 px-6">
+      <section className="py-8 sm:py-10 md:py-12 px-4 sm:px-5 md:px-6">
         <MotionWrapper
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -235,12 +235,12 @@ export const AIPoweredSearchClient = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1 }}
         >
-          <h2 className="text-2xl md:text-3xl font-medium mb-6 leading-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-6 leading-tight">
             Key Features of DocStar's AI Search
           </h2>
         </MotionWrapper>
 
-        <div className="grid md:grid-cols-2 gap-4 md:gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-4.5 md:gap-5">
           {features.map((feature, index) => (
             <MotionWrapper
               key={index}
@@ -266,7 +266,7 @@ export const AIPoweredSearchClient = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="theme-bg-secondary py-12 border-y theme-border px-6">
+      <section className="theme-bg-secondary py-8 sm:py-10 md:py-12 border-y theme-border px-4 sm:px-5 md:px-6">
         <MotionWrapper
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -284,12 +284,12 @@ export const AIPoweredSearchClient = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1 }}
         >
-          <h2 className="text-2xl md:text-3xl font-medium mb-10 leading-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-10 leading-tight">
             Benefits for Your Users and Teams
           </h2>
         </MotionWrapper>
 
-        <div className="grid md:grid-cols-2 gap-4 md:gap-5 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-4.5 md:gap-5 mb-10">
           {benefits.map((benefit, index) => (
             <MotionWrapper
               key={index}
@@ -335,7 +335,7 @@ export const AIPoweredSearchClient = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-12 px-6">
+      <section className="py-8 sm:py-10 md:py-12 px-4 sm:px-5 md:px-6">
         <MotionWrapper
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -353,7 +353,7 @@ export const AIPoweredSearchClient = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1 }}
         >
-          <h2 className="text-2xl md:text-3xl font-medium mb-6 leading-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-6 leading-tight">
             Make Every Search Count
           </h2>
         </MotionWrapper>

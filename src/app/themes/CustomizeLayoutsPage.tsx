@@ -124,10 +124,10 @@ export const CustomizeLayoutsPage = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <>
       {/* Hero Section */}
-      <section className="py-12 md:py-16 theme-bg-secondary border-b theme-border">
-        <div className="px-6 text-center">
+      <section className="py-8 sm:py-10 md:py-12 lg:py-16 theme-bg-secondary border-b theme-border">
+        <div className="container mx-auto px-4 sm:px-5 md:px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -171,9 +171,10 @@ export const CustomizeLayoutsPage = () => {
         </div>
       </section>
 
+      <div className="container mx-auto">
       {/* Flexible Customization Section */}
-      <section className="py-12 md:py-16 px-6">
-        <h2 className="text-2xl md:text-3xl font-medium mb-8 leading-tight">
+      <section className="py-8 sm:py-10 md:py-12 lg:py-16 px-4 sm:px-5 md:px-6">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-8 leading-tight">
           Flexible Customization for Your Docs
         </h2>
 
@@ -198,8 +199,8 @@ export const CustomizeLayoutsPage = () => {
       </section>
 
       {/* Smart Publishing Features Section */}
-      <section className="py-12 md:py-16 px-6">
-        <h2 className="text-2xl md:text-3xl font-medium mb-8 leading-tight">
+      <section className="py-8 sm:py-10 md:py-12 lg:py-16 px-4 sm:px-5 md:px-6">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-8 leading-tight">
           Smart Publishing Features
         </h2>
 
@@ -224,12 +225,12 @@ export const CustomizeLayoutsPage = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-12 md:py-16 px-6">
-        <h2 className="text-2xl md:text-3xl font-medium mb-8 leading-tight">
+      <section className="py-8 sm:py-10 md:py-12 lg:py-16 px-4 sm:px-5 md:px-6">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-8 leading-tight">
           Benefits for Your Organization
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-4 md:gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-4.5 md:gap-5">
           {benefits.map((benefit, index) => (
             <article
               key={index}
@@ -260,8 +261,8 @@ export const CustomizeLayoutsPage = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-12 md:py-16 px-6">
-        <h2 className="text-2xl md:text-3xl font-medium mb-4 leading-tight">
+      <section className="py-8 sm:py-10 md:py-12 lg:py-16 px-4 sm:px-5 md:px-6">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-4 leading-tight">
           Design Documentation That Reflects Your Brand
         </h2>
 
@@ -281,6 +282,7 @@ export const CustomizeLayoutsPage = () => {
           Get Started with DocStar
         </button>
       </section>
-    </div>
+      </div>
+    </>
   );
 };

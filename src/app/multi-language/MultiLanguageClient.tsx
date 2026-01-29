@@ -119,14 +119,15 @@ const MultiLanguageClient = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <>
       {/* Hero Section */}
       <MotionWrapper
-        className="py-20 relative overflow-hidden theme-bg-secondary px-6 pt-20 text-center"
+        className="py-12 sm:py-16 md:py-20 relative overflow-hidden theme-bg-secondary pt-12 sm:pt-16 md:pt-20 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
+        <div className="container mx-auto px-4 sm:px-5 md:px-6">
         <h1 className="h1 pt-12">
           Multi-Language <span className="text-gradient">Support for </span>
           Global Teams
@@ -145,11 +146,13 @@ const MultiLanguageClient = () => {
         >
           Get Started with DocStar
         </Link>
+        </div>
       </MotionWrapper>
 
+      <div className="container mx-auto">
       {/* Why Multi-Language Matters */}
       <MotionWrapper
-        className="py-12 px-6"
+        className="py-8 sm:py-10 md:py-12 px-4 sm:px-5 md:px-6"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -164,11 +167,11 @@ const MultiLanguageClient = () => {
           With DocStar, you can:
         </p>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
           {benefits.map((benefit, index) => (
             <MotionWrapper
               key={index}
-              className="group relative p-5 md:p-6 rounded border theme-border theme-bg-secondary"
+              className="group relative p-4 sm:p-4.5 md:p-5 lg:p-6 rounded-lg border theme-border theme-bg-secondary"
               variants={itemVariants}
             >
               <div className="flex items-start space-x-4">
@@ -202,7 +205,7 @@ const MultiLanguageClient = () => {
 
       {/* Languages Supported */}
       <MotionWrapper
-        className="py-12 px-6 theme-bg-secondary"
+        className="py-8 sm:py-10 md:py-12 px-4 sm:px-5 md:px-6 theme-bg-secondary"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -213,7 +216,7 @@ const MultiLanguageClient = () => {
         </h2>
 
         <MotionWrapper
-          className="text-sm md:text-base text-center mb-10 opacity-70 leading-snug"
+          className="text-sm sm:text-[15px] md:text-base text-center mb-10 opacity-70 leading-snug"
           variants={itemVariants}
         >
           DocStar provides full support for some of the world's most widely
@@ -246,24 +249,24 @@ const MultiLanguageClient = () => {
 
       {/* Key Features */}
       <MotionWrapper
-        className="py-12 px-6"
+        className="py-8 sm:py-10 md:py-12 px-4 sm:px-5 md:px-6"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
         <MotionWrapper
-          className="text-2xl md:text-3xl font-medium text-center mb-10 leading-tight"
+          className="text-xl sm:text-2xl md:text-3xl font-medium text-center mb-10 leading-tight"
           variants={itemVariants}
         >
           Key Features of DocStar's Multi-Language Support
         </MotionWrapper>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
           {features.map((feature, index) => (
             <MotionWrapper
               key={index}
-              className="group relative p-5 md:p-6 rounded border theme-border"
+              className="group relative p-4 sm:p-4.5 md:p-5 lg:p-6 rounded-lg border theme-border"
               variants={itemVariants}
             >
               <div className="w-12 h-12 rounded theme-bg-secondary flex items-center justify-center mb-4 group-hover:scale-125 group-hover:rotate-6 transition-all duration-300">
@@ -314,7 +317,7 @@ const MultiLanguageClient = () => {
         </MotionWrapper>
 
         <MotionWrapper
-          className="text-sm md:text-base mb-6 opacity-70 leading-snug"
+          className="text-sm sm:text-[15px] md:text-base mb-6 opacity-70 leading-snug"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -335,7 +338,8 @@ const MultiLanguageClient = () => {
           Get Started with DocStar
         </MotionWrapper>
       </MotionWrapper>
-    </div>
+      </div>
+    </>
   );
 };
 

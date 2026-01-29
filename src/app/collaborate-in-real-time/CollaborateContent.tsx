@@ -105,7 +105,7 @@ const CollaborateContent = () => {
     <div className="container mx-auto">
       {/* Hero Section */}
       <motion.section
-        className="py-12 px-6 text-center"
+        className="py-8 sm:py-10 md:py-12 px-4 sm:px-5 md:px-6 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -150,7 +150,7 @@ const CollaborateContent = () => {
 
       {/* Why Real-Time Collaboration Matters Section */}
       <motion.section
-        className="theme-bg-secondary py-12"
+        className="theme-bg-secondary py-8 sm:py-10 md:py-12"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -169,7 +169,7 @@ const CollaborateContent = () => {
           </motion.span>
 
           <motion.h2
-            className="text-2xl md:text-3xl font-medium mb-4 leading-tight"
+            className="text-xl sm:text-2xl md:text-3xl font-medium mb-4 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -192,7 +192,7 @@ const CollaborateContent = () => {
         </div>
 
         <div className="px-6">
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-4.5 md:gap-5">
             {whyMatters.map((point, index) => (
               <motion.article
                 key={index}
@@ -218,7 +218,7 @@ const CollaborateContent = () => {
 
       {/* Key Features Section */}
       <motion.section
-        className="py-12 px-6"
+        className="py-8 sm:py-10 md:py-12 px-4 sm:px-5 md:px-6"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -236,7 +236,7 @@ const CollaborateContent = () => {
         </motion.span>
 
         <motion.h2
-          className="text-2xl md:text-3xl font-medium mb-6 leading-tight"
+          className="text-xl sm:text-2xl md:text-3xl font-medium mb-6 leading-tight"
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -271,7 +271,7 @@ const CollaborateContent = () => {
 
       {/* Benefits Section */}
       <motion.section
-        className="py-12 px-6"
+        className="py-8 sm:py-10 md:py-12 px-4 sm:px-5 md:px-6"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -289,7 +289,7 @@ const CollaborateContent = () => {
         </motion.span>
 
         <motion.h2
-          className="text-2xl md:text-3xl font-medium leading-tight"
+          className="text-xl sm:text-2xl md:text-3xl font-medium leading-tight"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -340,7 +340,7 @@ const CollaborateContent = () => {
           </motion.div>
 
           <motion.h2
-            className="text-2xl md:text-3xl font-medium mb-4 text-balance leading-tight"
+            className="text-xl sm:text-2xl md:text-3xl font-medium mb-4 text-balance leading-tight"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
