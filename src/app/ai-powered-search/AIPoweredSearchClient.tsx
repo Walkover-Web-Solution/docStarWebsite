@@ -104,290 +104,287 @@ export const AIPoweredSearchClient = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="container mx-auto">
       {/* Hero Section */}
-      <section className="container mx-auto py-20 md:py-32 px-6">
-          <MotionWrapper
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <div className="inline-block px-4 py-2 theme-bg-secondary border-l-4 border-l-[var(--theme-color)] mb-8">
-              <span className="text-sm font-semibold">
-                Intelligent Search Technology
-              </span>
-            </div>
-          </MotionWrapper>
+      <section className="py-12 px-6">
+        <MotionWrapper
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="inline-block px-3 py-2 mt-20 theme-bg-secondary border-l-4 border-l-[var(--theme-color)] mb-4">
+            <span className="text-xs font-semibold">
+              Intelligent Search Technology
+            </span>
+          </div>
+        </MotionWrapper>
 
-          <MotionWrapper
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-          >
-            <h1 className="h1 mb-2 container">
-              AI-Powered <span className="text-gradient">Search</span>
-            </h1>
-          </MotionWrapper>
+        <MotionWrapper
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+        >
+          <h1 className="h1">
+            AI-Powered <span className="text-gradient">Search</span>
+          </h1>
+        </MotionWrapper>
 
-          <MotionWrapper
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            <p className="text-xl md:text-2xl opacity-70 mb-10 container leading-relaxed">
-              AI-powered search helps your users quickly discover the most
-              relevant content across documentation and knowledge bases.
-            </p>
-          </MotionWrapper>
+        <MotionWrapper
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
+          <p className="text-sm md:text-base opacity-70 mb-6 leading-snug">
+            AI-powered search helps your users quickly discover the most
+            relevant content across documentation and knowledge bases.
+          </p>
+        </MotionWrapper>
 
-          <MotionWrapper
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
+        <MotionWrapper
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+        >
+          <button
+            className="btn btn-primary"
+            onClick={() => window.open("https://app.docstar.io/login")}
           >
-            <button
-              className="btn btn-primary"
-              onClick={() => window.open("https://app.docstar.io/login")}
-            >
-              Get Started with DocStar
-            </button>
-          </MotionWrapper>
+            Get Started with DocStar
+          </button>
+        </MotionWrapper>
       </section>
 
       {/* Why AI-Powered Search Matters Section */}
-      <section className="container mx-auto py-20 md:py-32 border-y theme-border px-6">
+      <section className="py-12 border-y theme-border px-6">
+        <MotionWrapper
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="inline-block px-3 py-1.5 theme-bg-secondary border-l-4 border-l-[var(--theme-color)] mb-4">
+            <span className="text-xs font-semibold">The Problem</span>
+          </div>
+        </MotionWrapper>
+
+        <MotionWrapper
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+        >
+          <h2 className="text-2xl md:text-3xl font-medium mb-4 leading-tight">
+            Why AI-Powered Search Matters
+          </h2>
+        </MotionWrapper>
+
+        <MotionWrapper
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
+          <p className="text-sm md:text-base opacity-70 mb-10 leading-snug">
+            Traditional search tools often overwhelm users with irrelevant
+            results. DocStar's AI-driven search solves this problem by:
+          </p>
+        </MotionWrapper>
+
+        <div className="grid md:grid-cols-2 gap-4 md:gap-5">
+          {whyMatters.map((item, index) => (
             <MotionWrapper
-              initial={{ opacity: 0, x: -30 }}
+              key={index}
+              initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="flex gap-4 p-5 md:p-6 theme-bg-secondary"
             >
-              <div className="inline-block px-4 py-2 theme-bg-secondary border-l-4 border-l-[var(--theme-color)] mb-8">
-                <span className="text-sm font-semibold">The Problem</span>
+              <div className="flex-shrink-0 w-10 h-10 border theme-border flex items-center justify-center">
+                <span className="text-lg font-bold">{index + 1}</span>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-medium mb-1 leading-tight">
+                  {item.title}
+                </h3>
+                <p className="text-sm opacity-70 leading-snug">
+                  {item.description}
+                </p>
               </div>
             </MotionWrapper>
-
-            <MotionWrapper
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-            >
-              <h2 className="h2 mb-6 container">
-                Why AI-Powered Search Matters
-              </h2>
-            </MotionWrapper>
-
-            <MotionWrapper
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-            >
-              <p className="text-xl md:text-2xl opacity-70 mb-16 container leading-relaxed">
-                Traditional search tools often overwhelm users with irrelevant
-                results. DocStar's AI-driven search solves this problem by:
-              </p>
-            </MotionWrapper>
-
-            <div className="grid md:grid-cols-2 gap-6 container">
-              {whyMatters.map((item, index) => (
-                <MotionWrapper
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="flex gap-6 p-8 theme-bg-secondary"
-                >
-                  <div className="flex-shrink-0 w-14 h-14 border theme-border flex items-center justify-center">
-                    <span className="text-xl font-bold">{index + 1}</span>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-medium">
-                      {item.title}
-                    </h3>
-                    <p className="text-lg opacity-70 leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                </MotionWrapper>
-              ))}
-            </div>
+          ))}
+        </div>
       </section>
 
       {/* Key Features Section */}
-      <section className="container mx-auto py-20 md:py-32 px-6">
-          <MotionWrapper
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <div className="inline-block px-4 py-2 theme-bg-secondary border-l-4 border-l-[var(--theme-color)] mb-8">
-              <span className="text-sm font-semibold">Features</span>
-            </div>
-          </MotionWrapper>
-
-          <MotionWrapper
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-          >
-            <h2 className="h2 container mb-8">
-              Key Features of DocStar's AI Search
-            </h2>
-          </MotionWrapper>
-
-          <div className="grid md:grid-cols-2 gap-6 container">
-            {features.map((feature, index) => (
-              <MotionWrapper
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <div className="h-full p-8 theme-bg-secondary border theme-border">
-                  <div className="w-16 h-16 theme-border border flex items-center justify-center mb-6">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-medium mb-4">
-                    {feature.title}
-                  </h3>
-                  <p className="text-lg opacity-70 leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-              </MotionWrapper>
-            ))}
+      <section className="py-12 px-6">
+        <MotionWrapper
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="inline-block px-3 py-1.5 theme-bg-secondary border-l-4 border-l-[var(--theme-color)] mb-4">
+            <span className="text-xs font-semibold">Features</span>
           </div>
+        </MotionWrapper>
+
+        <MotionWrapper
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+        >
+          <h2 className="text-2xl md:text-3xl font-medium mb-6 leading-tight">
+            Key Features of DocStar's AI Search
+          </h2>
+        </MotionWrapper>
+
+        <div className="grid md:grid-cols-2 gap-4 md:gap-5">
+          {features.map((feature, index) => (
+            <MotionWrapper
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              <div className="h-full p-5 md:p-6 theme-bg-secondary border theme-border">
+                <div className="w-12 h-12 theme-border border flex items-center justify-center mb-4">
+                  {feature.icon}
+                </div>
+                <h3 className="text-lg font-medium mb-2 leading-tight">
+                  {feature.title}
+                </h3>
+                <p className="text-sm opacity-70 leading-snug">
+                  {feature.description}
+                </p>
+              </div>
+            </MotionWrapper>
+          ))}
+        </div>
       </section>
 
       {/* Benefits Section */}
-      <section className="container mx-auto theme-bg-secondary py-20 md:py-32 border-y theme-border px-6">
+      <section className="theme-bg-secondary py-12 border-y theme-border px-6">
+        <MotionWrapper
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="inline-block px-3 py-1.5 border-l-4 border-l-[var(--theme-color)] mb-4">
+            <span className="text-xs font-semibold">Benefits</span>
+          </div>
+        </MotionWrapper>
+
+        <MotionWrapper
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+        >
+          <h2 className="text-2xl md:text-3xl font-medium mb-10 leading-tight">
+            Benefits for Your Users and Teams
+          </h2>
+        </MotionWrapper>
+
+        <div className="grid md:grid-cols-2 gap-4 md:gap-5 mb-10">
+          {benefits.map((benefit, index) => (
             <MotionWrapper
-              initial={{ opacity: 0, x: -30 }}
+              key={index}
+              initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="flex gap-4 p-5 md:p-6 theme-bg-secondary"
             >
-              <div className="inline-block px-4 py-2 border-l-4 border-l-[var(--theme-color)] mb-8">
-                <span className="text-sm font-semibold">Benefits</span>
+              <div className="flex-shrink-0 w-10 h-10 theme-border border flex items-center justify-center">
+                <CheckCircle className="w-5 h-5" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-medium mb-1 leading-tight">
+                  {benefit.title}
+                </h3>
+                <p className="text-sm opacity-70 leading-snug">
+                  {benefit.description}
+                </p>
               </div>
             </MotionWrapper>
+          ))}
+        </div>
 
-            <MotionWrapper
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-            >
-              <h2 className="h2 mb-16 container">
-                Benefits for Your Users and Teams
-              </h2>
-            </MotionWrapper>
-
-            <div className="grid md:grid-cols-2 gap-6 container mb-16">
-              {benefits.map((benefit, index) => (
-                <MotionWrapper
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="flex gap-6 p-8 theme-bg-secondary"
-                >
-                  <div className="flex-shrink-0 w-14 h-14 theme-border border flex items-center justify-center">
-                    <CheckCircle className="w-7 h-7" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl md:text-2xl font-medium">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-lg opacity-70 leading-relaxed">
-                      {benefit.description}
-                    </p>
-                  </div>
-                </MotionWrapper>
-              ))}
-            </div>
-
-            <MotionWrapper
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="container p-10 md:p-12"
-            >
-              <h3 className="h2 mb-6">
-                Transform Search Into a Competitive Advantage
-              </h3>
-              <p className="text-xl md:text-2xl opacity-70 leading-relaxed">
-                With AI-powered search, DocStar turns documentation into a true
-                knowledge hub—where answers are always within reach. Whether
-                you're supporting global customers, onboarding developers, or
-                streamlining internal workflows, DocStar ensures your users
-                never waste time hunting for information.
-              </p>
-            </MotionWrapper>
+        <MotionWrapper
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="p-6 md:p-8"
+        >
+          <h3 className="text-xl md:text-2xl font-medium mb-4 leading-tight">
+            Transform Search Into a Competitive Advantage
+          </h3>
+          <p className="text-sm md:text-base opacity-70 leading-snug">
+            With AI-powered search, DocStar turns documentation into a true
+            knowledge hub—where answers are always within reach. Whether you're
+            supporting global customers, onboarding developers, or streamlining
+            internal workflows, DocStar ensures your users never waste time
+            hunting for information.
+          </p>
+        </MotionWrapper>
       </section>
 
       {/* Final CTA Section */}
-      <section className="container mx-auto py-20 md:py-32 px-6">
-          <MotionWrapper
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <div className="inline-block px-4 py-2 theme-bg-secondary border-l-4 border-l-[var(--theme-color)] mb-8">
-              <span className="text-sm font-semibold">
-                Ready to Get Started?
-              </span>
-            </div>
-          </MotionWrapper>
+      <section className="py-12 px-6">
+        <MotionWrapper
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="inline-block px-3 py-1.5 theme-bg-secondary border-l-4 border-l-[var(--theme-color)] mb-4">
+            <span className="text-xs font-semibold">Ready to Get Started?</span>
+          </div>
+        </MotionWrapper>
 
-          <MotionWrapper
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-          >
-            <h2 className="h2 mb-8 container">
-              Make Every Search Count
-            </h2>
-          </MotionWrapper>
+        <MotionWrapper
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+        >
+          <h2 className="text-2xl md:text-3xl font-medium mb-6 leading-tight">
+            Make Every Search Count
+          </h2>
+        </MotionWrapper>
 
-          <MotionWrapper
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            <p className="text-xl md:text-2xl opacity-70 mb-10 container leading-relaxed">
-              Stop letting your users waste time with irrelevant search results.
-              With DocStar's AI-powered search, every query delivers exactly
-              what they need, when they need it. Transform your documentation
-              from a static resource into an intelligent, responsive knowledge
-              hub.
-            </p>
-          </MotionWrapper>
+        <MotionWrapper
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
+          <p className="text-sm md:text-base opacity-70 mb-6 leading-snug">
+            Stop letting your users waste time with irrelevant search results.
+            With DocStar's AI-powered search, every query delivers exactly what
+            they need, when they need it. Transform your documentation from a
+            static resource into an intelligent, responsive knowledge hub.
+          </p>
+        </MotionWrapper>
 
-          <MotionWrapper
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.3 }}
+        <MotionWrapper
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+        >
+          <button
+            className="btn btn-outline"
+            onClick={() => window.open("https://app.docstar.io/login")}
           >
-            <button
-              className="btn btn-outline"
-              onClick={() => window.open("https://app.docstar.io/login")}
-            >
-              Get Started with DocStar
-            </button>
-          </MotionWrapper>
+            Get Started with DocStar
+          </button>
+        </MotionWrapper>
       </section>
     </div>
   );

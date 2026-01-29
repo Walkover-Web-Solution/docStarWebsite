@@ -124,70 +124,72 @@ export const CustomizeLayoutsPage = () => {
   };
 
   return (
-    <main className="min-h-screen">
+    <div className="container mx-auto">
       {/* Hero Section */}
-      <section className="py-20 md:py-32 theme-bg-secondary border-b theme-border">
-        <div className="container mx-auto px-6">
-          <div className="mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="mb-6"
-            >
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded border theme-border text-sm font-medium">
-                <Sparkles className="w-4 h-4 text-[var(--theme-color)]" />
-                Layouts & Themes
-              </span>
-            </motion.div>
+      <section className="py-12 md:py-16 theme-bg-secondary border-b theme-border">
+        <div className="px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-4 mt-20"
+          >
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded border theme-border text-xs font-medium">
+              <Sparkles className="w-4 h-4 text-[var(--theme-color)]" />
+              Layouts & Themes
+            </span>
+          </motion.div>
 
-            <motion.h1
-              className="h1 mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              Design Your Way:{" "}
-              <span className="text-gradient">Layouts & Themes</span>
-            </motion.h1>
+          <motion.h1
+            className="h1 mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Design Your Way:{" "}
+            <span className="text-gradient">Layouts & Themes</span>
+          </motion.h1>
 
-            <motion.p
-              className="text-lg md:text-xl mb-10 max-w-3xl mx-auto leading-relaxed opacity-70"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              From themes and layouts to workflows and analytics, DocStar gives
-              you full control over your content experience.
-            </motion.p>
+          <motion.p
+            className="text-sm md:text-base mb-6 max-w-3xl mx-auto leading-snug opacity-70"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            From themes and layouts to workflows and analytics, DocStar gives
+            you full control over your content experience.
+          </motion.p>
 
-            <button
-              className="btn btn-primary mx-auto"
-              onClick={() => {
-                window.open("https://app.docstar.io/login");
-              }}
-            >
-              Get Started with DocStar
-            </button>
-          </div>
+          <button
+            className="btn btn-primary mx-auto"
+            onClick={() => {
+              window.open("https://app.docstar.io/login");
+            }}
+          >
+            Get Started with DocStar
+          </button>
         </div>
       </section>
 
       {/* Flexible Customization Section */}
-      <section className="container mx-auto py-20 md:py-32 px-6">
-        <h2 className="h2 mb-12">Flexible Customization for Your Docs</h2>
+      <section className="py-12 md:py-16 px-6">
+        <h2 className="text-2xl md:text-3xl font-medium mb-8 leading-tight">
+          Flexible Customization for Your Docs
+        </h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {customizationFeatures.map((feature, index) => (
             <article
               key={index}
-              className="p-6 rounded theme-bg-secondary border theme-border hover:border-[var(--theme-color)] transition-colors duration-300"
+              className="p-5 md:p-6 rounded theme-bg-secondary border theme-border hover:border-[var(--theme-color)] transition-colors duration-300"
             >
-              <div className="w-12 h-12 rounded border theme-border flex items-center justify-center mb-4">
+              <div className="w-10 h-10 rounded border theme-border flex items-center justify-center mb-3">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-              <p className="opacity-70 leading-relaxed">
+              <h3 className="text-lg font-medium mb-2 leading-tight">
+                {feature.title}
+              </h3>
+              <p className="text-sm opacity-70 leading-snug">
                 {feature.description}
               </p>
             </article>
@@ -196,20 +198,24 @@ export const CustomizeLayoutsPage = () => {
       </section>
 
       {/* Smart Publishing Features Section */}
-      <section className="py-20 md:py-32 container mx-auto px-6">
-        <h2 className="h2 mb-12">Smart Publishing Features</h2>
+      <section className="py-12 md:py-16 px-6">
+        <h2 className="text-2xl md:text-3xl font-medium mb-8 leading-tight">
+          Smart Publishing Features
+        </h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {publishingFeatures.map((feature, index) => (
             <article
               key={index}
-              className="p-6 rounded border theme-border bg-[var(--theme-bg)] hover:border-[var(--theme-color)] transition-colors duration-300"
+              className="p-5 md:p-6 rounded border theme-border bg-[var(--theme-bg)] hover:border-[var(--theme-color)] transition-colors duration-300"
             >
-              <div className="w-12 h-12 rounded border theme-border flex items-center justify-center mb-4">
+              <div className="w-10 h-10 rounded border theme-border flex items-center justify-center mb-3">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-              <p className="opacity-70 leading-relaxed">
+              <h3 className="text-lg font-medium mb-2 leading-tight">
+                {feature.title}
+              </h3>
+              <p className="text-sm opacity-70 leading-snug">
                 {feature.description}
               </p>
             </article>
@@ -218,31 +224,33 @@ export const CustomizeLayoutsPage = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="container mx-auto py-20 md:py-32 px-6">
-        <h2 className="h2 mb-12">Benefits for Your Organization</h2>
+      <section className="py-12 md:py-16 px-6">
+        <h2 className="text-2xl md:text-3xl font-medium mb-8 leading-tight">
+          Benefits for Your Organization
+        </h2>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-5">
           {benefits.map((benefit, index) => (
             <article
               key={index}
-              className="p-6 rounded theme-bg-secondary border theme-border hover:border-[var(--theme-color)] transition-colors duration-300"
+              className="p-5 md:p-6 rounded theme-bg-secondary border theme-border hover:border-[var(--theme-color)] transition-colors duration-300"
             >
-              <div className="flex items-center mb-3">
-                <CheckCircle className="w-5 h-5 mr-3 text-[var(--theme-color)]" />
-                <h3 className="text-xl font-semibold">{benefit.title}</h3>
+              <div className="flex items-center mb-2">
+                <CheckCircle className="w-4 h-4 mr-2 text-[var(--theme-color)]" />
+                <h3 className="text-lg font-medium">{benefit.title}</h3>
               </div>
-              <p className="opacity-70 leading-relaxed">
+              <p className="text-sm opacity-70 leading-snug">
                 {benefit.description}
               </p>
             </article>
           ))}
         </div>
 
-        <div className="mt-12 p-8 rounded theme-bg-secondary border theme-border">
-          <h3 className="text-2xl font-semibold mb-4">
+        <div className="mt-8 p-6 md:p-8 rounded theme-bg-secondary border theme-border">
+          <h3 className="text-xl md:text-2xl font-medium mb-3 leading-tight">
             From Draft to Professional Docs—All in One Platform
           </h3>
-          <p className="text-lg opacity-70 leading-relaxed">
+          <p className="text-sm md:text-base opacity-70 leading-snug">
             With DocStar's layouts, themes, and publishing options, you can go
             beyond writing. Build a branded, interactive, and user-friendly
             documentation hub that's optimized for growth, SEO, and customer
@@ -252,12 +260,12 @@ export const CustomizeLayoutsPage = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-20 md:py-32 container mx-auto px-6">
-        <h2 className="h2 mb-6">
+      <section className="py-12 md:py-16 px-6">
+        <h2 className="text-2xl md:text-3xl font-medium mb-4 leading-tight">
           Design Documentation That Reflects Your Brand
         </h2>
 
-        <p className="text-xl mb-8 opacity-70 leading-relaxed">
+        <p className="text-sm md:text-base mb-6 opacity-70 leading-snug">
           Stop settling for generic documentation that doesn't represent your
           brand. With DocStar's comprehensive customization and publishing
           tools, create a documentation experience that's as polished and
@@ -273,6 +281,6 @@ export const CustomizeLayoutsPage = () => {
           Get Started with DocStar
         </button>
       </section>
-    </main>
+    </div>
   );
 };

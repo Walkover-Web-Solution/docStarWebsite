@@ -102,26 +102,25 @@ const CollaborateContent = () => {
   };
 
   return (
-    <main className="min-h-screen">
+    <div className="container mx-auto">
       {/* Hero Section */}
       <motion.section
-        className="container mx-auto py-20 md:py-32 px-6 text-center"
+        className="py-12 px-6 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <motion.div
+        <motion.span
+          className="text-xs mt-20 font-medium text-[var(--theme-color)] mb-4 block"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          <span className="text-sm font-medium text-[var(--theme-color)] mb-4 block">
-            Real-Time Collaboration
-          </span>
-        </motion.div>
+          Real-Time Collaboration
+        </motion.span>
 
         <motion.h1
-          className="h1 mb-2"
+          className="h1"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -130,7 +129,7 @@ const CollaborateContent = () => {
         </motion.h1>
 
         <motion.p
-          className="text-xl mb-10 max-w-3xl mx-auto leading-relaxed opacity-70"
+          className="text-sm md:text-base mb-6 max-w-3xl mx-auto leading-snug opacity-70"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
@@ -151,64 +150,63 @@ const CollaborateContent = () => {
 
       {/* Why Real-Time Collaboration Matters Section */}
       <motion.section
-        className="theme-bg-secondary py-20 md:py-32"
+        className="theme-bg-secondary py-12"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <div className="container mx-auto px-6 text-center mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-            >
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded border theme-border text-sm font-medium mb-6">
-                <span className="w-2 h-2 rounded theme-bg"></span>
-                The Impact
-              </span>
-            </motion.div>
+        <div className="px-6 text-center mb-10">
+          <motion.span
+            className="inline-flex items-center gap-2 px-3 py-1 rounded border theme-border text-xs font-medium mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <span className="w-2 h-2 rounded theme-bg"></span>
+            The Impact
+          </motion.span>
 
-            <motion.h2
-              className="text-3xl md:text-5xl mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-            >
-              Why Real-Time Collaboration Matters
-            </motion.h2>
+          <motion.h2
+            className="text-2xl md:text-3xl font-medium mb-4 leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+          >
+            Why Real-Time Collaboration Matters
+          </motion.h2>
 
-            <motion.p
-              className="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed opacity-70"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-            >
-              In fast-moving teams, documentation needs to keep up with product
-              changes, customer requirements, and developer workflows. Real-time
-              collaboration ensures that:
-            </motion.p>
+          <motion.p
+            className="text-sm md:text-base max-w-3xl mx-auto leading-snug opacity-70"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            In fast-moving teams, documentation needs to keep up with product
+            changes, customer requirements, and developer workflows. Real-time
+            collaboration ensures that:
+          </motion.p>
         </div>
 
-        <div className="container mx-auto px-6">
+        <div className="px-6">
           <div className="grid md:grid-cols-2 gap-4">
             {whyMatters.map((point, index) => (
               <motion.article
                 key={index}
-                className="relative p-6 rounded border theme-border bg-[var(--theme-bg)] hover:border-[var(--theme-color)] transition-colors duration-300"
+                className="relative p-5 md:p-6 rounded border theme-border bg-[var(--theme-bg)] hover:border-[var(--theme-color)] transition-colors duration-300"
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 rounded flex items-center justify-center">
-                    <CheckCircle className="w-5 h-5 text-[var(--theme-color)]" />
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-6 h-6 rounded flex items-center justify-center">
+                    <CheckCircle className="w-4 h-4 text-[var(--theme-color)]" />
                   </div>
-                  <p className="text-base leading-relaxed opacity-80 flex-1">
+                  <p className="text-sm leading-snug opacity-80 flex-1">
                     {point}
                   </p>
                 </div>
@@ -220,26 +218,25 @@ const CollaborateContent = () => {
 
       {/* Key Features Section */}
       <motion.section
-        className="container mx-auto py-20 md:py-32 px-6"
+        className="py-12 px-6"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <motion.div
+        <motion.span
+          className="inline-flex items-center gap-2 px-3 py-1 rounded theme-bg-secondary text-xs font-medium mb-4"
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded theme-bg-secondary text-sm font-medium mb-6">
-            <span className="w-2 h-2 rounded theme-bg"></span>
-            Features
-          </span>
-        </motion.div>
+          <span className="w-2 h-2 rounded theme-bg"></span>
+          Features
+        </motion.span>
 
         <motion.h2
-          className="text-3xl md:text-5xl mb-8"
+          className="text-2xl md:text-3xl font-medium mb-6 leading-tight"
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -248,21 +245,21 @@ const CollaborateContent = () => {
           Key Features of Real-Time Collaboration
         </motion.h2>
 
-        <div className="space-y-6">
+        <div className="space-y-4 md:space-y-5">
           {features.map((feature, index) => (
             <article
               key={index}
-              className="group p-6 md:p-8 rounded theme-bg-secondary border-l-4 border-l-transparent hover:border-l-[var(--theme-color)] transition-all duration-300"
+              className="group p-5 md:p-6 rounded theme-bg-secondary border-l-4 border-l-transparent hover:border-l-[var(--theme-color)] transition-all duration-300"
             >
-              <div className="flex flex-col md:flex-row gap-6">
-                <div className="flex-shrink-0 w-14 h-14 rounded bg-opacity-10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <div className="flex flex-col md:flex-row gap-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded bg-opacity-10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   {feature.icon}
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl md:text-2xl font-semibold mb-3">
+                  <h3 className="text-lg font-medium mb-2 leading-tight">
                     {feature.title}
                   </h3>
-                  <p className="text-base md:text-lg leading-relaxed opacity-70">
+                  <p className="text-sm leading-snug opacity-70">
                     {feature.description}
                   </p>
                 </div>
@@ -274,45 +271,46 @@ const CollaborateContent = () => {
 
       {/* Benefits Section */}
       <motion.section
-        className="container mx-auto py-20 md:py-32 px-6"
+        className="py-12 px-6"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded theme-bg-secondary text-sm font-medium mb-6">
-              <span className="w-2 h-2 rounded theme-bg"></span>
-              Benefits
-            </span>
-          </motion.div>
+        <motion.span
+          className="inline-flex items-center gap-2 px-3 py-1 rounded theme-bg-secondary text-xs font-medium mb-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <span className="w-2 h-2 rounded theme-bg"></span>
+          Benefits
+        </motion.span>
 
-          <motion.h2
-            className="text-3xl md:text-5xl"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-          >
-            Benefits for Your Team
-          </motion.h2>
+        <motion.h2
+          className="text-2xl md:text-3xl font-medium leading-tight"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+        >
+          Benefits for Your Team
+        </motion.h2>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mt-6">
           {benefits.map((benefit, index) => (
             <article
               key={index}
-              className="group p-6 rounded theme-bg-secondary hover:shadow-lg transition-all duration-300"
+              className="group p-5 md:p-6 rounded theme-bg-secondary hover:shadow-lg transition-all duration-300"
             >
-              <div className="w-14 h-14 rounded bg-opacity-10 flex items-center justify-center border theme-border mb-5 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-12 h-12 rounded bg-opacity-10 flex items-center justify-center border theme-border mb-4 group-hover:scale-110 transition-transform duration-300">
                 {benefit.icon}
               </div>
-              <h3 className="text-lg mb-2">{benefit.title}</h3>
-              <p className="text-sm opacity-70 leading-relaxed">
+              <h3 className="text-base font-medium mb-1.5 leading-tight">
+                {benefit.title}
+              </h3>
+              <p className="text-sm opacity-70 leading-snug">
                 {benefit.description}
               </p>
             </article>
@@ -322,30 +320,27 @@ const CollaborateContent = () => {
 
       {/* Final CTA Section */}
       <motion.section
-        className="relative py-20 md:py-32 overflow-hidden"
+        className="relative py-12 overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--theme-color)] to-transparent opacity-5"></div>
-        <div className="container mx-auto px-6 relative max-w-4xl text-center">
+        <div className="px-6 relative max-w-4xl mx-auto text-center">
           <motion.div
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded theme-bg-secondary border theme-border mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded theme-bg-secondary border theme-border mb-8">
-              <Sparkles className="w-4 h-4 text-[var(--theme-color)]" />
-              <span className="text-sm font-semibold">
-                Ready to Get Started?
-              </span>
-            </div>
+            <Sparkles className="w-4 h-4 text-[var(--theme-color)]" />
+            <span className="text-xs font-semibold">Ready to Get Started?</span>
           </motion.div>
 
           <motion.h2
-            className="text-3xl md:text-5xl mb-6 text-balance"
+            className="text-2xl md:text-3xl font-medium mb-4 text-balance leading-tight"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -355,7 +350,7 @@ const CollaborateContent = () => {
           </motion.h2>
 
           <motion.p
-            className="text-lg md:text-xl mb-10 leading-relaxed opacity-70"
+            className="text-sm md:text-base mb-6 leading-snug opacity-70"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -377,7 +372,7 @@ const CollaborateContent = () => {
           </button>
         </div>
       </motion.section>
-    </main>
+    </div>
   );
 };
 

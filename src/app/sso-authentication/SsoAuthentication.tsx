@@ -97,15 +97,15 @@ export const SsoAuthentication = () => {
   ];
 
   return (
-    <div className="min-h-screen overflow-hidden">
+    <div className="container mx-auto">
       {/* Hero Section */}
-      <div className="relative min-h-[90vh] flex items-center">
+      <div className="relative min-h-[70vh] flex items-center">
         <div className="absolute inset-0 theme-bg-secondary">
           <div className="absolute top-0 right-0 w-1/2 h-full bg-black/5 dark:bg-white/5 transform skew-x-12"></div>
         </div>
 
-        <div className="relative container mx-auto px-6 py-20 w-full">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded border theme-border mb-6">
+        <div className="relative px-6 py-12 w-full">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded border theme-border mb-4">
             <div className="w-1.5 h-1.5 rounded bg-black dark:bg-white"></div>
             <span className="text-xs font-medium uppercase tracking-wider opacity-70">
               Enterprise SSO
@@ -117,13 +117,13 @@ export const SsoAuthentication = () => {
             SSO by DocStar
           </h1>
 
-          <p className="text-base md:text-lg opacity-70 mb-8 leading-relaxed">
+          <p className="text-sm md:text-base opacity-70 mb-6 leading-snug">
             DocStar's Single Sign-On authentication solution makes digital
             access both secure and effortless. One set of credentials, instant
             secure access across all connected services.
           </p>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-3">
             <Link
               href="https://app.docstar.io"
               target="_blank"
@@ -136,234 +136,223 @@ export const SsoAuthentication = () => {
       </div>
 
       {/* Problem vs Solution - Side by Side */}
-      <div className="py-20 md:py-32">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Why SSO is Essential
-            </h2>
-            <p className="text-lg md:text-xl opacity-60">
-              Multiple authentication systems drain resources and create
-              security risks
-            </p>
-          </div>
+      <div className="py-12 md:py-16">
+        <div className="text-center mb-10">
+          <h2 className="text-2xl md:text-3xl mb-2 leading-tight font-medium">
+            Why SSO is Essential
+          </h2>
+          <p className="text-sm md:text-base opacity-60 leading-snug">
+            Multiple authentication systems drain resources and create security
+            risks
+          </p>
+        </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-            <div>
-              <div className="h-full p-8 md:p-10 rounded border theme-border theme-bg-secondary">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded bg-black/10 dark:bg-white/10 flex items-center justify-center">
-                    <Lock className="w-5 h-5 opacity-70" />
-                  </div>
-                  <h3 className="text-2xl font-bold opacity-60">
-                    Traditional Login
-                  </h3>
-                </div>
-
-                <div className="space-y-4">
-                  {problems.map((problem, index) => (
-                    <div
-                      key={index}
-                      className="flex items-start gap-3 p-4 rounded"
-                    >
-                      <div className="opacity-60 flex-shrink-0 mt-1">
-                        {problem.icon}
-                      </div>
-                      <p className="opacity-70 text-sm leading-relaxed">
-                        {problem.text}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+        <div className="grid lg:grid-cols-2 gap-6">
+          <div className="h-full p-5 md:p-6 rounded border theme-border theme-bg-secondary">
+            <div className="flex items-center gap-2.5 mb-4">
+              <div className="w-8 h-8 rounded bg-black/10 dark:bg-white/10 flex items-center justify-center">
+                <Lock className="w-4 h-4 opacity-70" />
               </div>
+              <h3 className="text-lg opacity-60">Traditional Login</h3>
             </div>
 
-            <div>
-              <div className="h-full p-8 md:p-10 rounded border theme-border">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded bg-black/10 dark:bg-white/10 flex items-center justify-center">
-                    <Shield className="w-5 h-5" />
+            <div className="space-y-3">
+              {problems.map((problem, index) => (
+                <div
+                  key={index}
+                  className="flex items-start gap-2.5 p-3 rounded"
+                >
+                  <div className="opacity-60 flex-shrink-0 mt-0.5">
+                    {problem.icon}
                   </div>
-                  <h3 className="text-2xl font-bold">DocStar SSO</h3>
+                  <p className="opacity-70 text-xs md:text-sm leading-snug">
+                    {problem.text}
+                  </p>
                 </div>
+              ))}
+            </div>
+          </div>
 
-                <div className="space-y-4">
-                  {solutions.map((solution, index) => (
-                    <div
-                      key={index}
-                      className="flex items-start gap-3 p-4 rounded theme-bg-secondary"
-                    >
-                      <div className="flex-shrink-0 mt-1">{solution.icon}</div>
-                      <p className="opacity-70 text-sm leading-relaxed">
-                        {solution.text}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+          <div className="h-full p-5 md:p-6 rounded border theme-border">
+            <div className="flex items-center gap-2.5 mb-4">
+              <div className="w-8 h-8 rounded bg-black/10 dark:bg-white/10 flex items-center justify-center">
+                <Shield className="w-4 h-4" />
               </div>
+              <h3 className="text-lg font-medium">DocStar SSO</h3>
+            </div>
+
+            <div className="space-y-3">
+              {solutions.map((solution, index) => (
+                <div
+                  key={index}
+                  className="flex items-start gap-2.5 p-3 rounded theme-bg-secondary"
+                >
+                  <div className="flex-shrink-0 mt-0.5">{solution.icon}</div>
+                  <p className="opacity-70 text-xs md:text-sm leading-snug">
+                    {solution.text}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
 
       {/* Why Choose DocStar SSO Section */}
-      <div className="py-20 md:py-32 theme-bg-secondary">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Why Choose DocStar SSO for Your Organization?
-            </h2>
-            <p className="text-lg md:text-xl opacity-60 max-w-4xl mx-auto">
-              DocStar SSO isn't just a login tool—it's a strategic security
-              solution. By combining user convenience with strong identity
-              management, it helps organizations:
-            </p>
-          </div>
+      <div className="py-12 md:py-16 theme-bg-secondary px-6">
+        <div className="text-center mb-10">
+          <h2 className="text-2xl md:text-3xl mb-2 leading-tight font-medium">
+            Why Choose DocStar SSO for Your Organization?
+          </h2>
+          <p className="text-sm md:text-base opacity-60 max-w-4xl mx-auto leading-snug">
+            DocStar SSO isn't just a login tool—it's a strategic security
+            solution. By combining user convenience with strong identity
+            management, it helps organizations:
+          </p>
+        </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {whyChoose.map((item, index) => (
-              <div key={index}>
-                <div className="h-full p-8 rounded border theme-border">
-                  <div className="flex items-start gap-6">
-                    <div className="w-14 h-14 rounded theme-bg-secondary flex items-center justify-center flex-shrink-0 opacity-80">
-                      {item.icon}
-                    </div>
+        <div className="grid md:grid-cols-2 gap-6">
+          {whyChoose.map((item, index) => (
+            <div
+              key={index}
+              className="h-full p-5 md:p-6 rounded border theme-border"
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded theme-bg-secondary flex items-center justify-center flex-shrink-0 opacity-80">
+                  {item.icon}
+                </div>
 
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold mb-3">{item.title}</h3>
-                      <p className="opacity-70 text-lg leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
+                <div className="flex-1">
+                  <h3 className="text-lg mb-2 leading-tight">{item.title}</h3>
+                  <p className="opacity-70 text-sm leading-snug">
+                    {item.description}
+                  </p>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
 
       {/* Key Benefits Section */}
-      <div className="py-20 md:py-32">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Key Benefits of DocStar's SSO
-            </h2>
-            <p className="text-lg md:text-xl opacity-60">
-              Powerful features that transform how your organization handles
-              authentication
-            </p>
-          </div>
+      <div className="py-12 md:py-16 px-6">
+        <div className="text-center mb-10">
+          <h2 className="text-2xl md:text-3xl mb-2 leading-tight font-medium">
+            Key Benefits of DocStar's SSO
+          </h2>
+          <p className="text-sm md:text-base opacity-60 leading-snug">
+            Powerful features that transform how your organization handles
+            authentication
+          </p>
+        </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {benefits.map((benefit, index) => (
-              <div key={index}>
-                <div className="h-full p-8 rounded border theme-border backdrop-blur-sm">
-                  <div className="w-16 h-16 rounded theme-bg-secondary flex items-center justify-center mb-6">
-                    {benefit.icon}
-                  </div>
-
-                  <h3 className="text-2xl font-bold mb-4">{benefit.title}</h3>
-                  <p className="opacity-70 leading-relaxed text-lg">
-                    {benefit.description}
-                  </p>
-                </div>
+        <div className="grid md:grid-cols-2 gap-6">
+          {benefits.map((benefit, index) => (
+            <div
+              key={index}
+              className="h-full p-5 md:p-6 rounded border theme-border backdrop-blur-sm"
+            >
+              <div className="w-12 h-12 rounded theme-bg-secondary flex items-center justify-center mb-4">
+                {benefit.icon}
               </div>
-            ))}
-          </div>
+
+              <h3 className="text-lg mb-2 leading-tight">{benefit.title}</h3>
+              <p className="opacity-70 leading-snug text-sm">
+                {benefit.description}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
 
       {/* How It Works - Horizontal Flow */}
-      <div className="py-20 md:py-32 theme-bg-secondary">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              How to Enable SSO for Your Business
-            </h2>
-            <p className="text-lg md:text-xl opacity-60">
-              To unlock the benefits of DocStar's Single Sign-On authentication,
-              an Enterprise plan is required
-            </p>
-          </div>
+      <div className="py-12 md:py-16 theme-bg-secondary px-6">
+        <div className="text-center mb-10">
+          <h2 className="text-2xl md:text-3xl mb-2 leading-tight font-medium">
+            How to Enable SSO for Your Business
+          </h2>
+          <p className="text-sm md:text-base opacity-60 leading-snug">
+            To unlock the benefits of DocStar's Single Sign-On authentication,
+            an Enterprise plan is required
+          </p>
+        </div>
 
-          <div className="grid md:grid-cols-3 gap-8 relative">
-            {[
-              {
-                num: "01",
-                title: "Configure",
-                desc: "Set up SSO in your DocStar dashboard",
-                icon: <Server className="w-6 h-6" />,
-              },
-              {
-                num: "02",
-                title: "Integrate",
-                desc: "Connect your identity provider",
-                icon: <Layers className="w-6 h-6" />,
-              },
-              {
-                num: "03",
-                title: "Deploy",
-                desc: "Roll out to your team instantly",
-                icon: <Zap className="w-6 h-6" />,
-              },
-            ].map((step, index) => (
-              <div key={index} className="relative">
-                <div className="p-8 rounded border theme-border text-center relative z-10">
-                  <div className="w-12 h-12 rounded bg-black/5 dark:bg-white/5 flex items-center justify-center mx-auto mb-4">
-                    {step.icon}
-                  </div>
-                  <div className="text-sm font-mono opacity-40 mb-2">
-                    {step.num}
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">{step.title}</h3>
-                  <p className="opacity-70 text-sm">{step.desc}</p>
-                </div>
+        <div className="grid md:grid-cols-3 gap-6 relative">
+          {[
+            {
+              num: "01",
+              title: "Configure",
+              desc: "Set up SSO in your DocStar dashboard",
+              icon: <Server className="w-6 h-6" />,
+            },
+            {
+              num: "02",
+              title: "Integrate",
+              desc: "Connect your identity provider",
+              icon: <Layers className="w-6 h-6" />,
+            },
+            {
+              num: "03",
+              title: "Deploy",
+              desc: "Roll out to your team instantly",
+              icon: <Zap className="w-6 h-6" />,
+            },
+          ].map((step, index) => (
+            <div
+              key={index}
+              className="p-5 md:p-6 rounded border theme-border text-center relative z-10"
+            >
+              <div className="w-10 h-10 rounded bg-black/5 dark:bg-white/5 flex items-center justify-center mx-auto mb-3">
+                {step.icon}
               </div>
-            ))}
-          </div>
+              <div className="text-xs font-mono opacity-40 mb-1.5">
+                {step.num}
+              </div>
+              <h3 className="text-base mb-2 leading-tight font-medium">
+                {step.title}
+              </h3>
+              <p className="opacity-70 text-xs leading-snug">{step.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
 
       {/* CTA - Full Width */}
-      <div className="py-20 md:py-32 relative overflow-hidden">
+      <div className="py-12 md:py-16 relative overflow-hidden">
         <div className="absolute inset-0 theme-bg-secondary"></div>
         <div className="absolute inset-0 bg-black/5 dark:bg-white/5 transform -skew-y-2"></div>
 
-        <div className="relative max-w-5xl mx-auto px-6 text-center">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded border theme-border mb-6">
-              <Sparkles className="w-4 h-4 opacity-70" />
-              <span className="text-xs font-medium uppercase tracking-wider opacity-70">
-                Enterprise Ready
-              </span>
-            </div>
+        <div className="relative px-6 text-center">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded border theme-border mb-4">
+            <Sparkles className="w-3.5 h-3.5 opacity-70" />
+            <span className="text-xs font-medium uppercase tracking-wider opacity-70">
+              Enterprise Ready
+            </span>
           </div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-4 leading-tight font-medium">
             Ready to Transform Your Authentication Experience?
           </h2>
 
-          <p className="text-lg md:text-xl opacity-70 mb-10 max-w-2xl mx-auto">
+          <p className="text-sm md:text-base opacity-70 mb-6 max-w-2xl mx-auto leading-snug">
             Unlock the full power of DocStar's Single Sign-On with an Enterprise
             plan. Give your team secure, frictionless access across all
             platforms.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <button
-              className="btn btn-primary px-8 py-4 text-lg"
+              className="btn btn-primary px-6 py-3 text-sm md:text-base"
               onClick={() => {
                 window.open("https://app.docstar.io/login");
               }}
             >
               Get Started with SSO
-              <ArrowRight className="w-5 h-5 ml-2" />
+              <ArrowRight className="w-4 h-4 ml-2" />
             </button>
 
             <button
-              className="btn btn-outline px-8 py-4 text-lg"
+              className="btn btn-outline px-6 py-3 text-sm md:text-base"
               onClick={() => {
                 window.open("https://app.docstar.io/login");
               }}

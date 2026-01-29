@@ -148,8 +148,8 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
               scrollToIndex(index);
             }}
             className={`
-              h-2.5 w-2.5 rounded-full transition-all
-              ${index === activeIndex ? "scale-110" : "opacity-50"} theme-badge
+              h-2.5 w-2.5 rounded-full transition-all theme-bg
+              ${index === activeIndex ? "scale-110 opacity-100" : "opacity-50"}
             `}
             aria-label={`Go to slide ${index + 1}`}
           />
