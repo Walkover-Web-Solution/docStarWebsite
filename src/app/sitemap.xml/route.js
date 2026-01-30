@@ -7,7 +7,7 @@ const RECORD_ARRAY_KEYS = ['records', 'data', 'items', 'results', 'rows'];
 const HELP_PRIORITY = 0.74;
 const BLOG_PRIORITY = 0.64;
 const WEBSITE_FALLBACK_PRIORITY = 0.84;
-
+export const runtime = "edge";
 export const revalidate = 300; // refresh sitemap roughly every 5 minutes
 
 const noopLogger = (label, err) => {
