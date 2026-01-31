@@ -204,24 +204,24 @@ const EmbedEditorPageClient = () => {
               </div>
             </div>
           </div>
-          <div className="rounded border theme-border p-5">
-            <div className="rounded border theme-border p-3 mb-3 bg-black/5 dark:bg-white/5">
+          <div className="rounded-md border theme-border p-5">
+            <div className="rounded-md border theme-border p-3 mb-3 bg-black/5 dark:bg-white/5">
               <code className="text-sm font-mono opacity-80">
                 {"<EmbedEditor />"}
               </code>
             </div>
             <div className="space-y-2">
-              <div className="h-4 rounded theme-bg opacity-20 w-full"></div>
-              <div className="h-4 rounded theme-bg opacity-20 w-3/4"></div>
-              <div className="h-4 rounded theme-bg opacity-20 w-5/6"></div>
+              <div className="h-4 rounded-md theme-bg opacity-20 w-full"></div>
+              <div className="h-4 rounded-md theme-bg opacity-20 w-3/4"></div>
+              <div className="h-4 rounded-md theme-bg opacity-20 w-5/6"></div>
               <div className="flex gap-2 mt-3">
-                <div className="w-7 h-7 rounded border theme-border flex items-center justify-center">
+                <div className="w-7 h-7 rounded-md border theme-border flex items-center justify-center">
                   <Bold className="w-3.5 h-3.5 opacity-70" />
                 </div>
-                <div className="w-7 h-7 rounded border theme-border flex items-center justify-center">
+                <div className="w-7 h-7 rounded-md border theme-border flex items-center justify-center">
                   <Italic className="w-3.5 h-3.5 opacity-70" />
                 </div>
-                <div className="w-7 h-7 rounded border theme-border flex items-center justify-center">
+                <div className="w-7 h-7 rounded-md border theme-border flex items-center justify-center">
                   <Link className="w-3.5 h-3.5 opacity-70" />
                 </div>
               </div>

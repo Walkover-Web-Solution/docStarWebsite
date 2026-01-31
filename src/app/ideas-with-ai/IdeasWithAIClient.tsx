@@ -159,7 +159,7 @@ export const IdeasWithAIClient = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mb-4 mt-20"
           >
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded border theme-border text-xs font-medium">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-md border theme-border text-xs font-medium">
               <Brain className="w-4 h-4 text-[var(--theme-color)]" />
               AI-Powered Documentation
             </span>
@@ -208,9 +208,9 @@ export const IdeasWithAIClient = () => {
           {whyChooseFeatures.map((feature, index) => (
             <article
               key={index}
-              className="p-5 md:p-6 rounded theme-bg-secondary border theme-border hover:border-[var(--theme-color)] transition-colors duration-300"
+              className="p-5 md:p-6 rounded-md theme-bg-secondary border theme-border hover:border-[var(--theme-color)] transition-colors duration-300"
             >
-              <div className="w-10 h-10 rounded border theme-border flex items-center justify-center mb-3">
+              <div className="w-10 h-10 rounded-md border theme-border flex items-center justify-center mb-3">
                 {feature.icon}
               </div>
               <h3 className="text-lg font-medium mb-2 leading-tight">
@@ -235,9 +235,9 @@ export const IdeasWithAIClient = () => {
             {keyFeatures.map((feature, index) => (
               <article
                 key={index}
-                className="p-5 md:p-6 rounded border theme-border bg-[var(--theme-bg)] hover:border-[var(--theme-color)] transition-colors duration-300"
+                className="p-5 md:p-6 rounded-md border theme-border bg-[var(--theme-bg)] hover:border-[var(--theme-color)] transition-colors duration-300"
               >
-                <div className="w-10 h-10 rounded border theme-border flex items-center justify-center mb-3">
+                <div className="w-10 h-10 rounded-md border theme-border flex items-center justify-center mb-3">
                   {feature.icon}
                 </div>
                 <h3 className="text-lg font-medium mb-2 leading-tight">
@@ -262,9 +262,9 @@ export const IdeasWithAIClient = () => {
           {aiFeatures.map((feature, index) => (
             <article
               key={index}
-              className="p-5 md:p-6 rounded theme-bg-secondary border theme-border hover:border-[var(--theme-color)] transition-colors duration-300"
+              className="p-5 md:p-6 rounded-md theme-bg-secondary border theme-border hover:border-[var(--theme-color)] transition-colors duration-300"
             >
-              <div className="w-10 h-10 rounded border theme-border flex items-center justify-center mb-3">
+              <div className="w-10 h-10 rounded-md border theme-border flex items-center justify-center mb-3">
                 {feature.icon}
               </div>
               <h3 className="text-lg font-medium mb-2 leading-tight">
@@ -289,7 +289,7 @@ export const IdeasWithAIClient = () => {
             {benefits.map((benefit, index) => (
               <article
                 key={index}
-                className="p-5 md:p-6 rounded border theme-border bg-[var(--theme-bg)] hover:border-[var(--theme-color)] transition-colors duration-300"
+                className="p-5 md:p-6 rounded-md border theme-border bg-[var(--theme-bg)] hover:border-[var(--theme-color)] transition-colors duration-300"
               >
                 <div className="flex items-center mb-2">
                   <CheckCircle className="w-4 h-4 mr-2 text-[var(--theme-color)]" />
@@ -302,7 +302,7 @@ export const IdeasWithAIClient = () => {
             ))}
           </div>
 
-          <div className="mt-8 p-6 md:p-8 rounded border theme-border bg-[var(--theme-bg)]">
+          <div className="mt-8 p-6 md:p-8 rounded-md border theme-border bg-[var(--theme-bg)]">
             <h3 className="text-xl md:text-2xl font-medium mb-3 leading-tight">
               Create a Seamless Knowledge Experience
             </h3>

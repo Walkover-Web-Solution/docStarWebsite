@@ -175,7 +175,7 @@ const MultiLanguageClient = () => {
               variants={itemVariants}
             >
               <div className="flex items-start space-x-4">
-                <div className="w-7 h-7 rounded border flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-110 group-hover:border-opacity-50 transition-all duration-300">
+                <div className="w-7 h-7 rounded-md border flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-110 group-hover:border-opacity-50 transition-all duration-300">
                   <CheckCircle className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 transition-opacity" />
                 </div>
                 <div>
@@ -192,7 +192,7 @@ const MultiLanguageClient = () => {
         </div>
 
         <MotionWrapper
-          className="mt-8 text-center p-6 md:p-8 rounded border theme-border theme-bg-secondary"
+          className="mt-8 text-center p-6 md:p-8 rounded-md border theme-border theme-bg-secondary"
           variants={itemVariants}
         >
           <p className="text-sm md:text-base font-medium opacity-80 leading-snug">
@@ -228,11 +228,11 @@ const MultiLanguageClient = () => {
           {languages.map((language, index) => (
             <MotionWrapper
               key={index}
-              className="group relative p-4 md:p-5 rounded border theme-border"
+              className="group relative p-4 md:p-5 rounded-md border theme-border"
               variants={itemVariants}
             >
               <div className="flex items-center mb-3">
-                <div className="w-12 h-12 rounded theme-bg-secondary flex items-center justify-center mr-3 group-hover:scale-125 group-hover:rotate-6 transition-all duration-300">
+                <div className="w-12 h-12 rounded-md theme-bg-secondary flex items-center justify-center mr-3 group-hover:scale-125 group-hover:rotate-6 transition-all duration-300">
                   <span className="text-2xl">{language.flag}</span>
                 </div>
                 <h3 className="text-lg font-medium group-hover:opacity-80 transition-opacity">
@@ -269,7 +269,7 @@ const MultiLanguageClient = () => {
               className="group relative p-4 sm:p-4.5 md:p-5 lg:p-6 rounded-lg border theme-border"
               variants={itemVariants}
             >
-              <div className="w-12 h-12 rounded theme-bg-secondary flex items-center justify-center mb-4 group-hover:scale-125 group-hover:rotate-6 transition-all duration-300">
+              <div className="w-12 h-12 rounded-md theme-bg-secondary flex items-center justify-center mb-4 group-hover:scale-125 group-hover:rotate-6 transition-all duration-300">
                 <div className="group-hover:scale-110 transition-transform duration-300">
                   {feature.icon}
                 </div>
@@ -285,7 +285,7 @@ const MultiLanguageClient = () => {
         </div>
 
         <MotionWrapper
-          className="mt-8 text-center p-6 md:p-8 rounded border theme-border theme-bg-secondary"
+          className="mt-8 text-center p-6 md:p-8 rounded-md border theme-border theme-bg-secondary"
           variants={itemVariants}
         >
           <h3 className="text-xl font-medium mb-3 leading-tight">

@@ -147,7 +147,7 @@ const EmbedEditorPageClient: React.FC = () => {
           <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 sm:gap-8 items-center pt-12 sm:pt-16 md:pt-20">
             {/* Left: Hero Content */}
             <div className="w-full lg:col-span-7">
-              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded border theme-border mb-3 sm:mb-4">
+              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md border theme-border mb-3 sm:mb-4">
                 <Sparkles className="h-4 w-4" />
                 <span className="text-xs font-medium uppercase tracking-wider opacity-70">
                   Minimal Setup, Maximum Impact
@@ -388,7 +388,7 @@ const EmbedEditorPageClient: React.FC = () => {
                         <path fill="currentColor" d="M0 0l12 8-4 1-2 7z" />
                       </svg>
                       <div
-                        className={`${collaborator.color} text-white px-2 py-1 rounded text-xs font-medium`}
+                        className={`${collaborator.color} text-white px-2 py-1 rounded-md text-xs font-medium`}
                       >
                         {collaborator.name}
                       </div>

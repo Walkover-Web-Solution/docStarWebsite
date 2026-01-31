@@ -92,7 +92,7 @@ export default function WhiteLabelling() {
                     help.thingsofbrand.com
                   </a>{" "}
                   — here,{" "}
-                  <em className="px-2 py-1 rounded theme-bg-secondary">help</em> is
+                  <em className="px-2 py-1 rounded-md theme-bg-secondary">help</em> is
                   the subdomain.
                 </p>
               </div>
@@ -145,7 +145,7 @@ export default function WhiteLabelling() {
                   </h4>
                   <p className="mb-3 sm:mb-3.5 md:mb-4 opacity-80 text-sm sm:text-[15px] md:text-base">
                     In Cloudflare:{" "}
-                    <span className="px-2 py-1 rounded font-mono text-sm theme-bg-secondary">
+                    <span className="px-2 py-1 rounded-md font-mono text-sm theme-bg-secondary">
                       DNS → Records → Add record
                     </span>
                     </p>
@@ -171,27 +171,27 @@ export default function WhiteLabelling() {
                     <div className="p-2.5 sm:p-2.75 md:p-3 rounded-lg border mb-2.5 sm:mb-2.75 md:mb-3">
                       <ul className="space-y-2 text-xs sm:text-[13px] md:text-sm">
                       <li className="flex items-start">
-                        <span className="px-2 py-1 rounded text-sm font-medium mr-3 mt-0.5 theme-bg-secondary opacity-80">
+                        <span className="px-2 py-1 rounded-md text-sm font-medium mr-3 mt-0.5 theme-bg-secondary opacity-80">
                           Type:
                           </span>
-                          <span className="font-mono px-2 py-1 rounded theme-bg-secondary text-xs">
+                          <span className="font-mono px-2 py-1 rounded-md theme-bg-secondary text-xs">
                           CNAME
                         </span>
                       </li>
                       <li className="flex items-start">
-                        <span className="px-2 py-1 rounded text-sm font-medium mr-3 mt-0.5 theme-bg-secondary opacity-80">
+                        <span className="px-2 py-1 rounded-md text-sm font-medium mr-3 mt-0.5 theme-bg-secondary opacity-80">
                           Name:
                         </span>
                         <span>
                           your subdomain (e.g.,{" "}
-                          <code className="px-2 py-1 rounded theme-bg-secondary">
+                          <code className="px-2 py-1 rounded-md theme-bg-secondary">
                             help
                           </code>
                           )
                         </span>
                       </li>
                       <li className="flex items-start">
-                        <span className="px-2 py-1 rounded text-sm font-medium mr-3 mt-0.5 theme-bg-secondary opacity-80">
+                        <span className="px-2 py-1 rounded-md text-sm font-medium mr-3 mt-0.5 theme-bg-secondary opacity-80">
                           Target:
                           </span>
                           <span>Techdoc or your custom domain endpoint</span>
@@ -242,7 +242,7 @@ export default function WhiteLabelling() {
                   </h4>
                   <p className="opacity-80">
                     Go to{" "}
-                    <span className="px-2 py-1 rounded font-mono text-sm theme-bg-secondary">
+                    <span className="px-2 py-1 rounded-md font-mono text-sm theme-bg-secondary">
                       Configurations → Domain tab
                     </span>{" "}
                     and fill in your details.
