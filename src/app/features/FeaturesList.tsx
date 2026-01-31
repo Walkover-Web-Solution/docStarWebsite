@@ -60,10 +60,10 @@ const FeaturesList = ({ features }: { features: FeatureItem[] }) => {
                 className="group relative block h-full"
                 aria-label={`Learn more about ${feature.name}`}
               >
-                <div className="relative h-full rounded border theme-border p-6 transition-all duration-300 hover:border-opacity-50">
+                <div className="relative h-full rounded-md border theme-border p-6 transition-all duration-300 hover:border-opacity-50">
                   <div className="flex flex-col h-full">
                     <div className="flex items-start justify-between mb-4">
-                      <div className="flex h-14 w-14 items-center justify-center rounded theme-bg-secondary border theme-border transition-transform duration-300 group-hover:scale-110">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-md theme-bg-secondary border theme-border transition-transform duration-300 group-hover:scale-110">
                         <Icon className="h-7 w-7" strokeWidth={1.5} />
                       </div>
                       <ArrowRight className="h-5 w-5 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-60 group-hover:translate-x-0" />

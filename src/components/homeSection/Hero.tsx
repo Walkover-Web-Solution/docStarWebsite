@@ -127,13 +127,13 @@ const Hero = ({ heroImages, testimonials }: HeroProps) => {
           onClick={closeScheduler}
         >
           <div
-            className="relative w-full max-w-4xl overflow-hidden rounded shadow-2xl theme-bg-secondary"
+            className="relative w-full max-w-4xl overflow-hidden rounded-md shadow-2xl theme-bg-secondary"
             onClick={(event) => event.stopPropagation()}
           >
             <button
               type="button"
               onClick={closeScheduler}
-              className="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded transition focus:outline-none focus-visible:ring-2 theme-bg-secondary"
+              className="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded-md transition focus:outline-none focus-visible:ring-2 theme-bg-secondary"
               aria-label="Close scheduler"
             >
               <X className="h-5 w-5" />

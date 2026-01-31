@@ -11,8 +11,8 @@ export default function DocsTemplatesSection() {
         <div className="grid lg:grid-cols-2 gap-20 items-start">
           {/* Left Content */}
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded border">
-              <div className="w-6 h-6 rounded flex items-center justify-center theme-badge">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-md border">
+              <div className="w-6 h-6 rounded-md flex items-center justify-center theme-badge">
                 <FileText className="w-4 h-4" />
               </div>
               <span className="font-semibold">

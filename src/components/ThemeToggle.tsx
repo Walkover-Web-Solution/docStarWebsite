@@ -1,9 +1,17 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Sun, Moon, Monitor } from "lucide-react";
 
 type Theme = "light" | "dark" | "system";
+
+const THEMES: Theme[] = ["light", "dark", "system"];
+
+const THEME_CONFIG = {
+  light: { icon: Sun, label: "Light Mode" },
+  dark: { icon: Moon, label: "Dark Mode" },
+  system: { icon: Monitor, label: "System Default" },
+} as const;
 
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>("system");
@@ -37,57 +45,45 @@ export default function ThemeToggle() {
     localStorage.setItem("theme", theme);
   }, [theme, mounted]);
 
+  const cycleTheme = useCallback(() => {
+    const currentIndex = THEMES.indexOf(theme);
+    const nextTheme = THEMES[(currentIndex + 1) % THEMES.length];
+    setTheme(nextTheme);
+  }, [theme]);
+
+  const handleShowTooltip = useCallback(() => setShowTooltip(true), []);
+  const handleHideTooltip = useCallback(() => setShowTooltip(false), []);
+
   if (!mounted) return null;
 
-  const cycleTheme = () => {
-    const themes: Theme[] = ["light", "dark", "system"];
-    const currentIndex = themes.indexOf(theme);
-    const nextTheme = themes[(currentIndex + 1) % themes.length];
-    setTheme(nextTheme);
-  };
-
-  const getIcon = () => {
-    switch (theme) {
-      case "light":
-        return <Sun className="h-5 w-5" />;
-      case "dark":
-        return <Moon className="h-5 w-5" />;
-      case "system":
-        return <Monitor className="h-5 w-5" />;
-    }
-  };
-
-  const getTooltip = () => {
-    switch (theme) {
-      case "light":
-        return "Light";
-      case "dark":
-        return "Dark";
-      case "system":
-        return "System Default";
-    }
-  };
+  const ThemeIcon = THEME_CONFIG[theme].icon;
+  const themeLabel = THEME_CONFIG[theme].label;
 
   return (
     <div className="relative inline-block">
       <button
         onClick={cycleTheme}
-        onMouseEnter={() => setShowTooltip(true)}
-        onMouseLeave={() => setShowTooltip(false)}
-        className="p-2 rounded-lg cursor-pointer transition-all duration-200 hover:opacity-70 border"
-        aria-label={`Current theme: ${theme}. Click to change.`}
+        onMouseEnter={handleShowTooltip}
+        onMouseLeave={handleHideTooltip}
+        onFocus={handleShowTooltip}
+        onBlur={handleHideTooltip}
+        className="p-2 rounded-lg cursor-pointer transition-all duration-200 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current border theme-border"
+        aria-label={`Switch theme. Current: ${themeLabel}`}
+        aria-live="polite"
+        type="button"
       >
-        {getIcon()}
+        <ThemeIcon className="h-5 w-5" aria-hidden="true" />
       </button>
       
       <div
         role="tooltip"
-        className={`absolute z-10 inline-block px-2 py-1 text-xs font-medium transition-opacity duration-300 rounded shadow-sm top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap theme-badge ${
-          showTooltip ? "opacity-100 visible" : "opacity-0 invisible"
+        aria-hidden={!showTooltip}
+        className={`absolute z-10 inline-block px-3 py-1.5 text-xs font-medium transition-opacity duration-200 rounded-md shadow-lg top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap theme-badge border theme-border ${
+          showTooltip ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
         }`}
       >
-        {getTooltip()}
-        <div className="absolute w-1.5 h-1.5 rotate-45 -top-0.5 left-1/2 -translate-x-1/2 theme-badge"></div>
+        {themeLabel}
+        <div className="absolute w-2 h-2 rotate-45 -top-1 left-1/2 -translate-x-1/2 theme-badge border-l border-t theme-border"></div>
       </div>
     </div>
   );

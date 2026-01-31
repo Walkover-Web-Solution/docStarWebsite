@@ -56,7 +56,7 @@ const TestimonialSection = ({
                 <Image
                   src={productLogoSrc}
                   alt={t?.product ?? "Product logo"}
-                  className="rounded object-cover"
+                  className="rounded-md object-cover"
                   loading="lazy"
                   width={40}
                   height={40}

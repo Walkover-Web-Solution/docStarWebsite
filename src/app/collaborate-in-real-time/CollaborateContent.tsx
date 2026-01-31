@@ -158,13 +158,13 @@ const CollaborateContent = () => {
       >
         <div className="px-6 text-center mb-10">
           <motion.span
-            className="inline-flex items-center gap-2 px-3 py-1 rounded border theme-border text-xs font-medium mb-4"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-md border theme-border text-xs font-medium mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <span className="w-2 h-2 rounded theme-bg"></span>
+            <span className="w-2 h-2 rounded-md theme-bg"></span>
             The Impact
           </motion.span>
 
@@ -196,14 +196,14 @@ const CollaborateContent = () => {
             {whyMatters.map((point, index) => (
               <motion.article
                 key={index}
-                className="relative p-5 md:p-6 rounded border theme-border bg-[var(--theme-bg)] hover:border-[var(--theme-color)] transition-colors duration-300"
+                className="relative p-5 md:p-6 rounded-md border theme-border bg-[var(--theme-bg)] hover:border-[var(--theme-color)] transition-colors duration-300"
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 rounded flex items-center justify-center">
+                  <div className="flex-shrink-0 w-6 h-6 rounded-md flex items-center justify-center">
                     <CheckCircle className="w-4 h-4 text-[var(--theme-color)]" />
                   </div>
                   <p className="text-sm leading-snug opacity-80 flex-1">
@@ -225,13 +225,13 @@ const CollaborateContent = () => {
         viewport={{ once: true }}
       >
         <motion.span
-          className="inline-flex items-center gap-2 px-3 py-1 rounded theme-bg-secondary text-xs font-medium mb-4"
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-md theme-bg-secondary text-xs font-medium mb-4"
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <span className="w-2 h-2 rounded theme-bg"></span>
+          <span className="w-2 h-2 rounded-md theme-bg"></span>
           Features
         </motion.span>
 
@@ -249,10 +249,10 @@ const CollaborateContent = () => {
           {features.map((feature, index) => (
             <article
               key={index}
-              className="group p-5 md:p-6 rounded theme-bg-secondary border-l-4 border-l-transparent hover:border-l-[var(--theme-color)] transition-all duration-300"
+              className="group p-5 md:p-6 rounded-md theme-bg-secondary border-l-4 border-l-transparent hover:border-l-[var(--theme-color)] transition-all duration-300"
             >
               <div className="flex flex-col md:flex-row gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded bg-opacity-10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <div className="flex-shrink-0 w-12 h-12 rounded-md bg-opacity-10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   {feature.icon}
                 </div>
                 <div className="flex-1">
@@ -278,13 +278,13 @@ const CollaborateContent = () => {
         viewport={{ once: true }}
       >
         <motion.span
-          className="inline-flex items-center gap-2 px-3 py-1 rounded theme-bg-secondary text-xs font-medium mb-4"
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-md theme-bg-secondary text-xs font-medium mb-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <span className="w-2 h-2 rounded theme-bg"></span>
+          <span className="w-2 h-2 rounded-md theme-bg"></span>
           Benefits
         </motion.span>
 
@@ -302,9 +302,9 @@ const CollaborateContent = () => {
           {benefits.map((benefit, index) => (
             <article
               key={index}
-              className="group p-5 md:p-6 rounded theme-bg-secondary hover:shadow-lg transition-all duration-300"
+              className="group p-5 md:p-6 rounded-md theme-bg-secondary hover:shadow-lg transition-all duration-300"
             >
-              <div className="w-12 h-12 rounded bg-opacity-10 flex items-center justify-center border theme-border mb-4 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-12 h-12 rounded-md bg-opacity-10 flex items-center justify-center border theme-border mb-4 group-hover:scale-110 transition-transform duration-300">
                 {benefit.icon}
               </div>
               <h3 className="text-base font-medium mb-1.5 leading-tight">
@@ -329,7 +329,7 @@ const CollaborateContent = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--theme-color)] to-transparent opacity-5"></div>
         <div className="px-6 relative max-w-4xl mx-auto text-center">
           <motion.div
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded theme-bg-secondary border theme-border mb-6"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md theme-bg-secondary border theme-border mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

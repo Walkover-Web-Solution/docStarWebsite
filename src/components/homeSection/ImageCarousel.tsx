@@ -116,14 +116,14 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
                 </div>
 
                 {/* Screen content */}
-                <div className="relative rounded aspect-[16/9] overflow-hidden ">
+                <div className="relative rounded-md aspect-[16/9] overflow-hidden ">
                   <Image
                     src={img.url}
                     alt={img.alt}
                     fill
                     priority={index === 0}
                     sizes="(max-width: 768px) 90vw, 70vw"
-                    className="rounded object-contain object-top"
+                    className="rounded-md object-contain object-top"
                   />
                 </div>
               </div>
