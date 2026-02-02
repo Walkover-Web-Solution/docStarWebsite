@@ -2,7 +2,7 @@
 
 import type React from "react";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import FormattingTools from "./FormattingTools";
 import MotionWrapper from "@/components/motion/MotionDivWrapper";
 import {
   FileText,
@@ -13,21 +13,6 @@ import {
 } from "lucide-react";
 
 const EmbedEditorPageClient: React.FC = () => {
-  const router = useRouter();
-  const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 },
-  };
-
-  const staggerContainer = {
-    animate: {
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
   const features = [
     {
       icon: Zap,
@@ -141,7 +126,7 @@ const EmbedEditorPageClient: React.FC = () => {
       {/* Hero Section with Floating Code Preview */}
       <section className="relative px-4 py-8 sm:px-6 sm:py-12 md:py-16 overflow-hidden">
         <div className="absolute inset-0 theme-bg-secondary"></div>
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-black/5 dark:bg-white/5"></div>
+        <div className="absolute top-0 right-0 w-1/3 h-full theme-bg-overlay"></div>
 
         <div className="relative container mx-auto">
           <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 sm:gap-8 items-center pt-12 sm:pt-16 md:pt-20">
@@ -170,12 +155,6 @@ const EmbedEditorPageClient: React.FC = () => {
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <button
                   className="btn btn-primary"
-                  onClick={() => router.push("/editor")}
-                >
-                  Try Live Demo
-                </button>
-                <button
-                  className="btn btn-outline"
                   onClick={() =>
                     window.open(
                       "https://app.docstar.io/p/embed-docstar-editor?collectionId=fLMgydvRdvN7",
@@ -216,62 +195,64 @@ const EmbedEditorPageClient: React.FC = () => {
         </div>
       </section>
 
+      <FormattingTools />
+
       {/* Features Grid */}
       <section className="px-4 py-8 sm:px-6 sm:py-12 md:py-16">
         <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-8 sm:mb-10">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-2 sm:mb-3 leading-tight">
-            Everything You Need, Nothing You Don't
-          </h2>
-          <p className="text-sm sm:text-base max-w-3xl mx-auto opacity-70 leading-relaxed px-4">
-            Powerful editing capabilities that integrate seamlessly into your
-            existing workflow
-          </p>
-        </div>
+          <div className="text-center mb-8 sm:mb-10">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-2 sm:mb-3 leading-tight">
+              Everything You Need, Nothing You Don't
+            </h2>
+            <p className="text-sm sm:text-base max-w-3xl mx-auto opacity-70 leading-relaxed px-4">
+              Powerful editing capabilities that integrate seamlessly into your
+              existing workflow
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-          {features.map((feature, index) => (
-            <div key={index} className="p-4 sm:p-5 md:p-6 rounded-lg border theme-border">
-              <feature.icon className="h-8 w-8 sm:h-10 sm:w-10 mb-3 sm:mb-4 opacity-70" />
-              <h3 className="text-base sm:text-lg font-medium mb-2 leading-tight">
-                {feature.title}
-              </h3>
-              <p className="leading-relaxed text-sm opacity-70">
-                {feature.description}
-              </p>
-            </div>
-          ))}
-        </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            {features.map((feature, index) => (
+              <div key={index} className="p-4 sm:p-5 md:p-6 rounded-lg border theme-border">
+                <feature.icon className="h-8 w-8 sm:h-10 sm:w-10 mb-3 sm:mb-4 opacity-70" />
+                <h3 className="text-base sm:text-lg font-medium mb-2 leading-tight">
+                  {feature.title}
+                </h3>
+                <p className="leading-relaxed text-sm opacity-70">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* How It Works */}
       <section className="px-4 py-8 sm:px-6 sm:py-12 md:py-16 theme-bg-secondary">
         <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-8 sm:mb-10">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-2 sm:mb-3 leading-tight">
-            Setup in Under 60 Seconds
-          </h2>
-          <p className="text-sm sm:text-base opacity-70 leading-relaxed px-4">
-            Seriously. It's that simple.
-          </p>
-        </div>
+          <div className="text-center mb-8 sm:mb-10">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-2 sm:mb-3 leading-tight">
+              Setup in Under 60 Seconds
+            </h2>
+            <p className="text-sm sm:text-base opacity-70 leading-relaxed px-4">
+              Seriously. It's that simple.
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
-          {steps.map((step, index) => (
-            <div key={index} className="text-center">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 theme-border flex items-center justify-center text-lg sm:text-xl font-medium mx-auto mb-3 sm:mb-4">
-                {step.step}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
+            {steps.map((step, index) => (
+              <div key={index} className="text-center">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 theme-border flex items-center justify-center text-lg sm:text-xl font-medium mx-auto mb-3 sm:mb-4">
+                  {step.step}
+                </div>
+                <h3 className="text-sm sm:text-base font-medium mb-2 leading-tight">
+                  {step.title}
+                </h3>
+                <p className="opacity-70 text-xs sm:text-sm leading-relaxed px-2">
+                  {step.description}
+                </p>
               </div>
-              <h3 className="text-sm sm:text-base font-medium mb-2 leading-tight">
-                {step.title}
-              </h3>
-              <p className="opacity-70 text-xs sm:text-sm leading-relaxed px-2">
-                {step.description}
-              </p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -283,140 +264,140 @@ const EmbedEditorPageClient: React.FC = () => {
         className="px-4 py-8 sm:px-6 sm:py-12 md:py-16 relative overflow-hidden"
       >
         <div className="max-w-7xl mx-auto">
-        {/* Your cursor indicator */}
-        {isCollaborationHovered && (
-          <MotionWrapper
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-              x: mousePosition.x,
-              y: mousePosition.y,
-            }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{
-              opacity: { duration: 0.2 },
-              scale: { duration: 0.2 },
-              x: { type: "spring", stiffness: 150, damping: 30 },
-              y: { type: "spring", stiffness: 150, damping: 30 },
-            }}
-            className="absolute pointer-events-none z-10 flex items-center space-x-2 backdrop-blur-sm px-3 py-2 rounded-full shadow-lg border"
-            style={{ left: 0, top: 0 }}
-          >
-            <div className="w-3 h-3 rounded-full theme-bg animate-pulse opacity-80"></div>
-            <span className="text-sm font-medium">You</span>
-          </MotionWrapper>
-        )}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
-          <div className="relative order-2 lg:order-1">
-            {/* Mock Document */}
-            <div className="rounded-lg border theme-border p-3 sm:p-4 md:p-5 relative overflow-hidden min-h-[250px] sm:min-h-[300px]">
-              {/* Document Header */}
-              <div className="flex items-center justify-between mb-2 sm:mb-3 pb-2 border-b opacity-20 theme-border">
-                <div className="flex items-center space-x-2">
-                  <FileText className="h-4 w-4 sm:h-5 sm:w-5" />
-                  <span className="text-xs sm:text-sm font-medium">
-                    Product Strategy Doc
-                  </span>
+          {/* Your cursor indicator */}
+          {isCollaborationHovered && (
+            <MotionWrapper
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                x: mousePosition.x,
+                y: mousePosition.y,
+              }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{
+                opacity: { duration: 0.2 },
+                scale: { duration: 0.2 },
+                x: { type: "spring", stiffness: 150, damping: 30 },
+                y: { type: "spring", stiffness: 150, damping: 30 },
+              }}
+              className="absolute pointer-events-none z-10 flex items-center space-x-2 backdrop-blur-sm px-3 py-2 rounded-full shadow-lg border"
+              style={{ left: 0, top: 0 }}
+            >
+              <div className="w-3 h-3 rounded-full theme-bg animate-pulse opacity-80"></div>
+              <span className="text-sm font-medium">You</span>
+            </MotionWrapper>
+          )}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
+            <div className="relative order-2 lg:order-1">
+              {/* Mock Document */}
+              <div className="rounded-lg border theme-border p-3 sm:p-4 md:p-5 relative overflow-hidden min-h-[250px] sm:min-h-[300px]">
+                {/* Document Header */}
+                <div className="flex items-center justify-between mb-2 sm:mb-3 pb-2 border-b opacity-20 theme-border">
+                  <div className="flex items-center space-x-2">
+                    <FileText className="h-4 w-4 sm:h-5 sm:w-5" />
+                    <span className="text-xs sm:text-sm font-medium">
+                      Product Strategy Doc
+                    </span>
+                  </div>
                 </div>
-              </div>
 
-              {/* Document Content */}
-              <div className="space-y-2">
-                <h3 className="text-sm sm:text-base font-semibold">Q1 Planning Session</h3>
-                <div className="relative">
-                  <p className="leading-relaxed text-xs sm:text-sm min-h-[60px] sm:min-h-[80px] opacity-90">
-                    {animatedText}
-                    {isCollaborationHovered && (
-                      <MotionWrapper
-                        animate={{ opacity: [1, 0] }}
-                        transition={{
-                          duration: 0.8,
+                {/* Document Content */}
+                <div className="space-y-2">
+                  <h3 className="text-sm sm:text-base font-semibold">Q1 Planning Session</h3>
+                  <div className="relative">
+                    <p className="leading-relaxed text-xs sm:text-sm min-h-[60px] sm:min-h-[80px] opacity-90">
+                      {animatedText}
+                      {isCollaborationHovered && (
+                        <MotionWrapper
+                          animate={{ opacity: [1, 0] }}
+                          transition={{
+                            duration: 0.8,
+                            repeat: Number.POSITIVE_INFINITY,
+                          }}
+                          className="inline-block w-0.5 h-4 sm:h-5 ml-1 theme-bg opacity-80"
+                        />
+                      )}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Animated Collaborator Cursors */}
+                {isCollaborationHovered &&
+                  collaborators.map((collaborator, index) => (
+                    <MotionWrapper
+                      key={collaborator.name}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{
+                        opacity: 1,
+                        scale: 1,
+                        x: [
+                          collaborator.position.x,
+                          collaborator.position.x + 20,
+                          collaborator.position.x,
+                        ],
+                        y: [
+                          collaborator.position.y,
+                          collaborator.position.y - 10,
+                          collaborator.position.y,
+                        ],
+                      }}
+                      transition={{
+                        opacity: { delay: index * 0.3 },
+                        scale: { delay: index * 0.3 },
+                        x: {
+                          duration: 3,
                           repeat: Number.POSITIVE_INFINITY,
-                        }}
-                        className="inline-block w-0.5 h-4 sm:h-5 ml-1 theme-bg opacity-80"
-                      />
-                    )}
-                  </p>
-                </div>
-              </div>
-
-              {/* Animated Collaborator Cursors */}
-              {isCollaborationHovered &&
-                collaborators.map((collaborator, index) => (
-                  <MotionWrapper
-                    key={collaborator.name}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{
-                      opacity: 1,
-                      scale: 1,
-                      x: [
-                        collaborator.position.x,
-                        collaborator.position.x + 20,
-                        collaborator.position.x,
-                      ],
-                      y: [
-                        collaborator.position.y,
-                        collaborator.position.y - 10,
-                        collaborator.position.y,
-                      ],
-                    }}
-                    transition={{
-                      opacity: { delay: index * 0.3 },
-                      scale: { delay: index * 0.3 },
-                      x: {
-                        duration: 3,
-                        repeat: Number.POSITIVE_INFINITY,
-                        delay: index * 0.5,
-                      },
-                      y: {
-                        duration: 3,
-                        repeat: Number.POSITIVE_INFINITY,
-                        delay: index * 0.5,
-                      },
-                    }}
-                    className="absolute pointer-events-none"
-                    style={{ left: 0, top: 0 }}
-                  >
-                    <div className="flex items-center space-x-2 pointer-events-none">
-                      <svg
-                        width="12"
-                        height="16"
-                        viewBox="0 0 12 16"
-                        className={`${collaborator.color.replace("bg-", "text-")}`}
-                      >
-                        <path fill="currentColor" d="M0 0l12 8-4 1-2 7z" />
-                      </svg>
-                      <div
-                        className={`${collaborator.color} text-white px-2 py-1 rounded-md text-xs font-medium`}
-                      >
-                        {collaborator.name}
+                          delay: index * 0.5,
+                        },
+                        y: {
+                          duration: 3,
+                          repeat: Number.POSITIVE_INFINITY,
+                          delay: index * 0.5,
+                        },
+                      }}
+                      className="absolute pointer-events-none"
+                      style={{ left: 0, top: 0 }}
+                    >
+                      <div className="flex items-center space-x-2 pointer-events-none">
+                        <svg
+                          width="12"
+                          height="16"
+                          viewBox="0 0 12 16"
+                          className={`${collaborator.color.replace("bg-", "text-")}`}
+                        >
+                          <path fill="currentColor" d="M0 0l12 8-4 1-2 7z" />
+                        </svg>
+                        <div
+                          className={`${collaborator.color} text-white px-2 py-1 rounded-md text-xs font-medium`}
+                        >
+                          {collaborator.name}
+                        </div>
                       </div>
-                    </div>
-                  </MotionWrapper>
-                ))}
+                    </MotionWrapper>
+                  ))}
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="real-time-collaboration order-1 lg:order-2">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-3 sm:mb-4 leading-tight">
+                Real-time Collaboration
+              </h2>
+              <p className="text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed opacity-70">
+                Real-time collaboration that feels natural. See who's editing,
+                share ideas instantly, and work together seamlessly.
+              </p>
+              <button
+                className="btn btn-primary"
+                onClick={() =>
+                  window.open("https://app.docstar.io/login", "_blank")
+                }
+              >
+                Get started
+              </button>
             </div>
           </div>
-
-          {/* Content */}
-          <div className="real-time-collaboration order-1 lg:order-2">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-3 sm:mb-4 leading-tight">
-              Real-time Collaboration
-            </h2>
-            <p className="text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed opacity-70">
-              Real-time collaboration that feels natural. See who's editing,
-              share ideas instantly, and work together seamlessly.
-            </p>
-            <button
-              className="btn btn-primary"
-              onClick={() =>
-                window.open("https://app.docstar.io/login", "_blank")
-              }
-            >
-              Get started
-            </button>
-          </div>
-        </div>
         </div>
       </section>
 

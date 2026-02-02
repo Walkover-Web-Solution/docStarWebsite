@@ -4,6 +4,7 @@
   --app-bg-secondary: #f9fafb;
   --app-border: #e5e7eb;
   --app-shadow: rgba(0, 0, 0, 0.1);
+  --app-bg-overlay: rgba(0, 0, 0, 0.05);
 }
 
 :root[data-theme="dark"] {
@@ -12,4 +13,5 @@
   --app-bg-secondary: #1a1a1a;
   --app-border: #333333;
   --app-shadow: rgba(0, 0, 0, 0.3);
+  --app-bg-overlay: rgba(255, 255, 255, 0.05);
 }
