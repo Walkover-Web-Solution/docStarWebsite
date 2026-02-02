@@ -101,13 +101,13 @@ export const SsoAuthentication = () => {
       {/* Hero Section */}
       <div className="relative min-h-[60vh] sm:min-h-[65vh] md:min-h-[70vh] flex items-center">
         <div className="absolute inset-0 theme-bg-secondary">
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-black/5 dark:bg-white/5 transform skew-x-12"></div>
+          <div className="absolute top-0 right-0 w-1/2 h-full theme-bg-overlay transform skew-x-12"></div>
         </div>
 
         <div className="container mx-auto">
         <div className="relative px-4 py-8 sm:px-5 sm:py-10 md:px-6 md:py-12 w-full">
           <div className="inline-flex items-center gap-2 mt-12 px-2.5 py-1 rounded-md border theme-border mb-3 sm:mb-3.5 md:mb-4">
-            <div className="w-1.5 h-1.5 rounded-md bg-black dark:bg-white"></div>
+            <div className="w-1.5 h-1.5 rounded-md theme-bg"></div>
             <span className="text-xs font-medium uppercase tracking-wider opacity-70">
               Enterprise SSO
             </span>
@@ -153,7 +153,7 @@ export const SsoAuthentication = () => {
         <div className="px-4 sm:px-5 md:px-6 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
           <div className="h-full p-4 sm:p-4.5 md:p-5 lg:p-6 rounded-lg border theme-border theme-bg-secondary">
             <div className="flex items-center gap-2.5 mb-3 sm:mb-3.5 md:mb-4">
-              <div className="w-7 h-7 sm:w-7.5 md:w-8 md:h-8 rounded-md bg-black/10 dark:bg-white/10 flex items-center justify-center">
+              <div className="w-7 h-7 sm:w-7.5 md:w-8 md:h-8 rounded-md theme-bg-overlay flex items-center justify-center">
                 <Lock className="w-3.5 h-3.5 sm:w-3.75 md:w-4 md:h-4 opacity-70" />
               </div>
               <h3 className="text-base sm:text-[17px] md:text-lg opacity-60">Traditional Login</h3>
@@ -178,7 +178,7 @@ export const SsoAuthentication = () => {
 
           <div className="h-full p-4 sm:p-4.5 md:p-5 lg:p-6 rounded-lg border theme-border">
             <div className="flex items-center gap-2.5 mb-3 sm:mb-3.5 md:mb-4">
-              <div className="w-7 h-7 sm:w-7.5 md:w-8 md:h-8 rounded-md bg-black/10 dark:bg-white/10 flex items-center justify-center">
+              <div className="w-7 h-7 sm:w-7.5 md:w-8 md:h-8 rounded-md theme-bg-overlay flex items-center justify-center">
                 <Shield className="w-3.5 h-3.5 sm:w-3.75 md:w-4 md:h-4" />
               </div>
               <h3 className="text-base sm:text-[17px] md:text-lg font-medium">DocStar SSO</h3>
@@ -305,7 +305,7 @@ export const SsoAuthentication = () => {
               key={index}
               className="p-4 sm:p-4.5 md:p-5 lg:p-6 rounded-lg border theme-border text-center relative z-10"
             >
-              <div className="w-9 h-9 sm:w-9.5 md:w-10 md:h-10 rounded-md bg-black/5 dark:bg-white/5 flex items-center justify-center mx-auto mb-2.5 sm:mb-2.75 md:mb-3">
+              <div className="w-9 h-9 sm:w-9.5 md:w-10 md:h-10 rounded-md theme-bg-overlay flex items-center justify-center mx-auto mb-2.5 sm:mb-2.75 md:mb-3">
                 {step.icon}
               </div>
               <div className="text-[10px] sm:text-[11px] md:text-xs font-mono opacity-40 mb-1.5">
@@ -323,7 +323,7 @@ export const SsoAuthentication = () => {
       {/* CTA - Full Width */}
       <div className="py-8 sm:py-10 md:py-12 lg:py-16 relative overflow-hidden">
         <div className="absolute inset-0 theme-bg-secondary"></div>
-        <div className="absolute inset-0 bg-black/5 dark:bg-white/5 transform -skew-y-2"></div>
+        <div className="absolute inset-0 theme-bg-overlay transform -skew-y-2"></div>
 
         <div className="relative px-4 sm:px-5 md:px-6 text-center">
           <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md border theme-border mb-4">
