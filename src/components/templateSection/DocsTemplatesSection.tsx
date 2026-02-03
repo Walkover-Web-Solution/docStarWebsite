@@ -50,7 +50,7 @@ export default function DocsTemplatesSection() {
             </Link>
 
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="p-6 rounded-lg hover:shadow-lg transition-shadow border theme-border">
+              <div className="p-6 rounded-lg hover:theme-shadow transition-shadow border theme-border">
                 <BarChart className="w-8 h-8 mb-4 opacity-80" />
                 <h4 className="h4">Page Analytics</h4>
                 <p className="text-sm line-clamp-3">
@@ -61,7 +61,7 @@ export default function DocsTemplatesSection() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-lg hover:shadow-lg transition-shadow border theme-border">
+              <div className="p-6 rounded-lg hover:theme-shadow transition-shadow border theme-border">
                 <List className="w-8 h-8 mb-4 opacity-80" />
                 <h4 className="h4">Table of content in public view</h4>
                 <p className="text-sm line-clamp-3">
@@ -73,7 +73,7 @@ export default function DocsTemplatesSection() {
               </div>
 
               <div
-                className="p-6 rounded-lg hover:shadow-lg transition-shadow border theme-border"
+                className="p-6 rounded-lg hover:theme-shadow transition-shadow border theme-border"
                 style={{ gridColumn: "span 2" }}
               >
                 <LinkIcon className="w-8 h-8 mb-4 opacity-80" />

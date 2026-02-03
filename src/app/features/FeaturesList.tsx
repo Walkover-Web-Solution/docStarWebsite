@@ -56,7 +56,7 @@ const FeaturesList = ({ features }: { features: FeatureItem[] }) => {
               viewport={{ once: true }}
             >
               <Link
-                href={feature.link}
+                href={feature.link || "#"}
                 className="group relative block h-full"
                 aria-label={`Learn more about ${feature.name}`}
               >
