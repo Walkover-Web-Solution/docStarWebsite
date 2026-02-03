@@ -45,7 +45,7 @@ export default function BlogTemplateSection() {
             </Link>
 
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="p-6 rounded-lg hover:shadow-lg transition-shadow border theme-border">
+              <div className="p-6 rounded-lg hover:theme-shadow transition-shadow border theme-border">
                 <Sparkles className="w-8 h-8 mb-4 opacity-80" />
                 <h4 className="h4">Turn Ideas Easily with AI</h4>
                 <p className="text-sm line-clamp-3">
@@ -55,7 +55,7 @@ export default function BlogTemplateSection() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-lg hover:shadow-lg transition-shadow border theme-border">
+              <div className="p-6 rounded-lg hover:theme-shadow transition-shadow border theme-border">
                 <Languages className="w-8 h-8 mb-4 opacity-80" />
                 <h4 className="h4">Multi-Language Support</h4>
                 <p className="text-sm line-clamp-3">
@@ -65,7 +65,7 @@ export default function BlogTemplateSection() {
               </div>
 
               <div
-                className="p-6 rounded-lg hover:shadow-lg transition-shadow border theme-border"
+                className="p-6 rounded-lg hover:theme-shadow transition-shadow border theme-border"
                 style={{ gridColumn: "span 2" }}
               >
                 <Tag className="w-8 h-8 mb-4 opacity-80" />

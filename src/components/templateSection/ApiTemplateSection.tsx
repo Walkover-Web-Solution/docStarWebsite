@@ -51,7 +51,7 @@ export default function APITemplateSection() {
             </Link>
 
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="p-6 rounded-lg hover:shadow-lg transition-shadow border theme-border">
+              <div className="p-6 rounded-lg hover:theme-shadow transition-shadow border theme-border">
                 <PlayCircle className="w-8 h-8 mb-4 opacity-80" />
                 <h4 className="h4">Interactive API playground</h4>
                 <p className="line-clamp-3 text-sm">
@@ -60,7 +60,7 @@ export default function APITemplateSection() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-lg hover:shadow-lg transition-shadow border theme-border">
+              <div className="p-6 rounded-lg hover:theme-shadow transition-shadow border theme-border">
                 <Key className="w-8 h-8 mb-4 opacity-80" />
                 <h4 className="h4">API token management</h4>
                 <p className="line-clamp-3 text-sm">
@@ -70,7 +70,7 @@ export default function APITemplateSection() {
               </div>
 
               <div
-                className="p-6 rounded-lg hover:shadow-lg transition-shadow border theme-border"
+                className="p-6 rounded-lg hover:theme-shadow transition-shadow border theme-border"
                 style={{ gridColumn: "span 2" }}
               >
                 <Palette className="w-8 h-8 mb-4 opacity-80" />
