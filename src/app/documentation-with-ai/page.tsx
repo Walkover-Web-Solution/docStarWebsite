@@ -3,8 +3,6 @@ import { buildCanonicalUrl } from "@/lib/structuredData";
 import { buildFeaturePageMetadata, resolveFeatureContent } from "@/lib/featureMeta";
 
 const PAGE_PATH = "/documentation-with-ai";
-const PUBLISHED_AT = "2026-01-16T13:52:05.000Z";
-const UPDATED_AT = "2026-01-30T08:36:07.000Z";
 const FALLBACK_CONTENT = {
   title: "Documentation with AI | DocStar",
   description: "Create ease free documentation with AI",
@@ -31,8 +29,6 @@ const DocumentationWithAI = async () => {
       description={featureContent.description}
       path={PAGE_PATH}
       keywords={featureContent.keywords}
-      publishedAt={PUBLISHED_AT}
-      updatedAt={UPDATED_AT}
       breadcrumbs={[
         { name: "Home", url: buildCanonicalUrl("/") },
         { name: "Documentation with AI", url: buildCanonicalUrl(PAGE_PATH) },
