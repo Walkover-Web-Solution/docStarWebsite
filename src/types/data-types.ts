@@ -17,10 +17,13 @@ export type HeroImage = {
 };
 
 export type MetaItem = {
-  title: string;
-  description: string;
-  keywords: string[];
   name: string;
+  title?: string;
+  description?: string;
+  keywords?: string[] | string | null;
+  priority?: string | number | null;
+  createdat?: string;
+  updatedat?: string;
 };
 
 export type TestimonialItem = {

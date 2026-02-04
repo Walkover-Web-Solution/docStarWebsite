@@ -1,12 +1,40 @@
-import React from 'react';
+import FeatureSchema from "@/components/seo/FeatureSchema";
+import { buildCanonicalUrl } from "@/lib/structuredData";
+import { buildFeaturePageMetadata, resolveFeatureContent } from "@/lib/featureMeta";
 
-export const metadata = {
-  title: "Documentation with AI | DocStar",  
+const PAGE_PATH = "/documentation-with-ai";
+const FALLBACK_CONTENT = {
+  title: "Documentation with AI | DocStar",
   description: "Create ease free documentation with AI",
+  keywords: ["documentation", "ai documentation", "knowledge base"],
+};
+
+export async function generateMetadata() {
+  return buildFeaturePageMetadata({
+    path: PAGE_PATH,
+    fallback: FALLBACK_CONTENT,
+  });
 }
-const DocumentationWithAI: React.FC = () => {
+
+const DocumentationWithAI = async () => {
+  const featureContent = await resolveFeatureContent({
+    path: PAGE_PATH,
+    fallback: FALLBACK_CONTENT,
+  });
+
   return (
-    <div className="min-h-screen px-6 py-20 lg:px-20">
+    <FeatureSchema
+      id="docstar-docs-schema"
+      title={featureContent.title}
+      description={featureContent.description}
+      path={PAGE_PATH}
+      keywords={featureContent.keywords}
+      breadcrumbs={[
+        { name: "Home", url: buildCanonicalUrl("/") },
+        { name: "Documentation with AI", url: buildCanonicalUrl(PAGE_PATH) },
+      ]}
+    >
+      <div className="min-h-screen px-6 py-20 lg:px-20">
       <div className="max-w-5xl mx-auto text-center">
         <h1 className="text-4xl font-bold mb-6">
           Organize Your Docs with Ease
@@ -72,6 +100,7 @@ const DocumentationWithAI: React.FC = () => {
         </div>
       </div>
     </div>
+    </FeatureSchema>
   );
 };
 
