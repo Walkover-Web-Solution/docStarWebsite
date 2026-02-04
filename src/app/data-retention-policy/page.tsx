@@ -1,10 +1,39 @@
-export const metadata = {
+import FeatureSchema from "@/components/seo/FeatureSchema";
+import { buildCanonicalUrl } from "@/lib/structuredData";
+import { buildFeaturePageMetadata, resolveFeatureContent } from "@/lib/featureMeta";
+
+const PAGE_PATH = "/data-retention-policy";
+const FALLBACK_CONTENT = {
   title: "Data Retention and Deletion Policy | DocStar",
-  description: "Data retention and deletion policy",
+  description: "Learn how DocStar retains and deletes your documentation data.",
+  keywords: ["data retention", "data deletion", "docstar policy"],
 };
 
-const DataRetentionPolicy = () => {
+export async function generateMetadata() {
+  return buildFeaturePageMetadata({
+    path: PAGE_PATH,
+    fallback: FALLBACK_CONTENT,
+  });
+}
+
+const DataRetentionPolicy = async () => {
+  const featureContent = await resolveFeatureContent({
+    path: PAGE_PATH,
+    fallback: FALLBACK_CONTENT,
+  });
+
   return (
+    <FeatureSchema
+      id="docstar-data-retention-schema"
+      title={featureContent.title}
+      description={featureContent.description}
+      path={PAGE_PATH}
+      keywords={featureContent.keywords}
+      breadcrumbs={[
+        { name: "Home", url: buildCanonicalUrl("/") },
+        { name: "Data Retention Policy", url: buildCanonicalUrl(PAGE_PATH) },
+      ]}
+    >
     <div className="pt-32 pb-16 px-4 md:px-8 container mx-auto">
       <h1 className="text-4xl font-bold mb-6">
         Data Retention and Deletion Policy
@@ -186,6 +215,7 @@ const DataRetentionPolicy = () => {
         .
       </p>
     </div>
+    </FeatureSchema>
   );
 };
 
