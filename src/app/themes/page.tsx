@@ -1,9 +1,21 @@
 import { CustomizeLayoutsPage } from "./CustomizeLayoutsPage"
+import { fetchMeta } from "@/services/meta.api";
+import { generateSEOMetadata } from "@/lib/seo";
+import { type MetaItem } from "@/types/data-types";
 
-export const metadata = {
-  title: "Layouts & Themes | DocStar",
-  description:
-    "Design documentation that reflects your brand. With DocStar, customize layouts, apply themes, and publish content seamlessly with professional workflows.",
+export async function generateMetadata() {
+  let meta: MetaItem | null = null;
+
+  try {
+    meta = await fetchMeta("/themes");
+  } catch (error) {
+    console.error("[ThemesPage] Unable to load meta from API:", error);
+  }
+
+  return generateSEOMetadata({
+    meta,
+    pathname: "/themes",
+  });
 }
 
 export default function Page() {

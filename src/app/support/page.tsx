@@ -1,17 +1,28 @@
 // app/support/page.tsx
 
-import { Metadata } from "next";
+import { fetchMeta } from "@/services/meta.api";
+import { generateSEOMetadata } from "@/lib/seo";
+import { type MetaItem } from "@/types/data-types";
 
 const CONTACT = {
   EMAIL: "support@docstar.io",
   DEMO_LINK: "https://cal.com/docstar-team",
 };
 
-export const metadata: Metadata = {
-  title: "Support | Docstar",
-  description:
-    "Need help? Our support team is ready to assist you with setup, documentation, or technical questions. Contact us today.",
-};
+export async function generateMetadata() {
+  let meta: MetaItem | null = null;
+
+  try {
+    meta = await fetchMeta("/support");
+  } catch (error) {
+    console.error("[SupportPage] Unable to load meta from API:", error);
+  }
+
+  return generateSEOMetadata({
+    meta,
+    pathname: "/support",
+  });
+}
 
 export default function SupportPage() {
   return (

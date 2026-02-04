@@ -1,11 +1,25 @@
 // app/custom-domain/page.tsx
 import Step3 from '../../../public/Step3.png'
 import Image from "next/image";
+import { fetchMeta } from "@/services/meta.api";
+import { generateSEOMetadata } from "@/lib/seo";
+import { type MetaItem } from "@/types/data-types";
 
-export const metadata = {
-  title: "Custom Domain | DocStar",  
-  description: "Add custom domain to your DocStar documentation",
+export async function generateMetadata() {
+  let meta: MetaItem | null = null;
+
+  try {
+    meta = await fetchMeta("/custom-domain");
+  } catch (error) {
+    console.error("[CustomDomainPage] Unable to load meta from API:", error);
+  }
+
+  return generateSEOMetadata({
+    meta,
+    pathname: "/custom-domain",
+  });
 }
+
 export default function WhiteLabelling() {
   return (
     <div className="container mx-auto">

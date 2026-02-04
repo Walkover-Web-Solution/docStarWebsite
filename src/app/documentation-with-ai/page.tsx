@@ -1,9 +1,23 @@
 import React from 'react';
+import { fetchMeta } from "@/services/meta.api";
+import { generateSEOMetadata } from "@/lib/seo";
+import { type MetaItem } from "@/types/data-types";
 
-export const metadata = {
-  title: "Documentation with AI | DocStar",  
-  description: "Create ease free documentation with AI",
+export async function generateMetadata() {
+  let meta: MetaItem | null = null;
+
+  try {
+    meta = await fetchMeta("/documentation-with-ai");
+  } catch (error) {
+    console.error("[DocumentationWithAIPage] Unable to load meta from API:", error);
+  }
+
+  return generateSEOMetadata({
+    meta,
+    pathname: "/documentation-with-ai",
+  });
 }
+
 const DocumentationWithAI: React.FC = () => {
   return (
     <div className="min-h-screen px-6 py-20 lg:px-20">
