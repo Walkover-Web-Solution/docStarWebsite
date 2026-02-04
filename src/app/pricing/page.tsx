@@ -1,8 +1,10 @@
 import { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import FAQSection from "@/components/FAQSection";
+import JsonLd from "@/components/seo/JsonLd";
 import { fetchFaqs } from "@/services/faqs.api";
 import { type Faq } from "@/types/data-types";
+import { buildStructuredDataGraph, buildCanonicalUrl } from "@/lib/structuredData";
 
 export const runtime = 'edge';
 
@@ -90,8 +92,36 @@ export default async function PricingPage() {
   } catch (error) {
     console.error("[HomePage] Unable to load faqs from API:", error);
   }
+
+  const pageTitle =
+    typeof metadata.title === "string" ? metadata.title : "Pricing - DocStar";
+  const pageDescription =
+    typeof metadata.description === "string"
+      ? metadata.description
+      : "Up-to-date DocStar pricing for documentation, knowledge bases, and AI-powered workflows.";
+  const structuredData = buildStructuredDataGraph({
+    page: {
+      title: pageTitle,
+      description: pageDescription,
+      url: buildCanonicalUrl("/pricing"),
+      keywords: ["docstar pricing", "knowledge base pricing"],
+    },
+    breadcrumbs: [
+      { name: "Home", url: buildCanonicalUrl("/") },
+      { name: "Pricing", url: buildCanonicalUrl("/pricing") },
+    ],
+    faq: faqs.length
+      ? {
+          faqs,
+          headline: "DocStar Pricing FAQs",
+        }
+      : undefined,
+  });
+
   return (
-    <div className="pricing-page pt-32 pb-20 px-4 sm:px-6 lg:px-10">
+    <>
+      <JsonLd id="docstar-pricing-schema" data={structuredData} />
+      <div className="pricing-page pt-32 pb-20 px-4 sm:px-6 lg:px-10">
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
           <h1 className="mx-auto max-w-2xl text-3xl sm:text-4xl font-semibold">
@@ -191,5 +221,6 @@ export default async function PricingPage() {
       </div>
       <FAQSection faqs={faqs} />
     </div>
+    </>
   );
 }

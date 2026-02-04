@@ -1,13 +1,37 @@
 // app/custom-domain/page.tsx
-import Step3 from '../../../public/Step3.png'
+import Step3 from "../../../public/Step3.png"
 import Image from "next/image";
+import FeatureSchema from "@/components/seo/FeatureSchema";
+import { buildFeaturePageMetadata, resolveFeatureContent } from "@/lib/featureMeta";
 
-export const metadata = {
-  title: "Custom Domain | DocStar",  
+const PAGE_PATH = "/custom-domain";
+const FALLBACK_CONTENT = {
+  title: "Custom Domain | DocStar",
   description: "Add custom domain to your DocStar documentation",
+  keywords: ["custom domain", "white label docs", "docstar"],
+};
+
+export async function generateMetadata() {
+  return buildFeaturePageMetadata({
+    path: PAGE_PATH,
+    fallback: FALLBACK_CONTENT,
+  });
 }
-export default function WhiteLabelling() {
+
+export default async function WhiteLabelling() {
+  const featureContent = await resolveFeatureContent({
+    path: PAGE_PATH,
+    fallback: FALLBACK_CONTENT,
+  });
+
   return (
+    <FeatureSchema
+      id="docstar-custom-domain-schema"
+      title={featureContent.title}
+      description={featureContent.description}
+      path={PAGE_PATH}
+      keywords={featureContent.keywords}
+    >
     <div className="container mx-auto">
       <section
         className="px-4 py-8 sm:px-5 sm:py-10 md:px-6 md:py-12 lg:py-16 mt-8 sm:mt-10 md:mt-12 scroll-mt-16"
@@ -422,5 +446,6 @@ async function handleFaqPath(event, url) {
       </article>
     </section>
     </div>
+    </FeatureSchema>
   );
 }

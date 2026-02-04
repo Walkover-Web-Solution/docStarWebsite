@@ -12,19 +12,31 @@ interface SEOConfig {
   pathname?: string;
 }
 
+export const normalizeKeywords = (incoming?: MetaItem["keywords"], fallback: string[] = []) => {
+  if (!incoming) return fallback;
+  if (Array.isArray(incoming)) return incoming;
+  if (typeof incoming === "string") {
+    return incoming
+      .split(",")
+      .map((keyword) => keyword.trim())
+      .filter(Boolean);
+  }
+  return fallback;
+};
+
 export function generateSEOMetadata({
   meta,
   defaultTitle = "DocStar",
   defaultDescription = "",
   defaultKeywords = [],
   siteName = "DocStar",
-  baseUrl = "https://docstar.ai",
+  baseUrl = "https://docstar.io",
  // ogImageUrl = "",
   pathname = "",
 }: SEOConfig): Metadata {
   const title = meta?.title ?? defaultTitle;
   const description = meta?.description ?? defaultDescription;
-  const keywords = meta?.keywords ?? defaultKeywords;
+  const keywords = normalizeKeywords(meta?.keywords, defaultKeywords);
   const fullUrl = `${baseUrl}${pathname}`;
 
   return {
