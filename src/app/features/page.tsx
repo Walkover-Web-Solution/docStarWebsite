@@ -1,9 +1,26 @@
 import MotionWrapper from "@/components/motion/MotionDivWrapper"
 import { fetchFeatures } from "@/services/features.api"
-import { FeatureItem } from "@/types/data-types"
+import { FeatureItem, type MetaItem } from "@/types/data-types"
 import FeaturesList from "./FeaturesList"
+import { fetchMeta } from "@/services/meta.api";
+import { generateSEOMetadata } from "@/lib/seo";
 
 export const runtime = 'edge'
+
+export async function generateMetadata() {
+  let meta: MetaItem | null = null;
+
+  try {
+    meta = await fetchMeta("/features");
+  } catch (error) {
+    console.error("[FeaturesPage] Unable to load meta from API:", error);
+  }
+
+  return generateSEOMetadata({
+    meta,
+    pathname: "/features",
+  });
+}
 
 export default async function FeaturesPage() {
   let features: FeatureItem[] = []

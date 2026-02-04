@@ -1,7 +1,21 @@
-export const metadata = {
-  title: "Data Retention and Deletion Policy | DocStar",
-  description: "Data retention and deletion policy",
-};
+import { fetchMeta } from "@/services/meta.api";
+import { generateSEOMetadata } from "@/lib/seo";
+import { type MetaItem } from "@/types/data-types";
+
+export async function generateMetadata() {
+  let meta: MetaItem | null = null;
+
+  try {
+    meta = await fetchMeta("/data-retention-policy");
+  } catch (error) {
+    console.error("[DataRetentionPolicyPage] Unable to load meta from API:", error);
+  }
+
+  return generateSEOMetadata({
+    meta,
+    pathname: "/data-retention-policy",
+  });
+}
 
 const DataRetentionPolicy = () => {
   return (

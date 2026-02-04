@@ -1,8 +1,9 @@
-import { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import FAQSection from "@/components/FAQSection";
 import { fetchFaqs } from "@/services/faqs.api";
-import { type Faq } from "@/types/data-types";
+import { type Faq, type MetaItem } from "@/types/data-types";
+import { fetchMeta } from "@/services/meta.api";
+import { generateSEOMetadata } from "@/lib/seo";
 
 export const runtime = 'edge';
 
@@ -70,11 +71,20 @@ const paidPlans: PaidPlan[] = [
   },
 ];
 
-export const metadata: Metadata = {
-  title: "Pricing - Docstar",
-  description:
-    "Documentation without barriers. Publish knowledge bases, blogs, and API docs freely with Docstar pricing.",
-};
+export async function generateMetadata() {
+  let meta: MetaItem | null = null;
+
+  try {
+    meta = await fetchMeta("/pricing");
+  } catch (error) {
+    console.error("[PricingPage] Unable to load meta from API:", error);
+  }
+
+  return generateSEOMetadata({
+    meta,
+    pathname: "/pricing",
+  });
+}
 
 export default async function PricingPage() {
   let allFaqs: Faq[] = [];
