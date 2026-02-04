@@ -4,7 +4,8 @@ import { fetchFeatures } from "@/services/features.api";
 import { fetchHeroImages } from "@/services/hero-images.api";
 import { fetchFaqs } from "@/services/faqs.api";
 import { fetchTestimonials } from "@/services/testimonials.api";
-import { type FeatureItem, type MetaItem, type HeroImage, type Faq, type TestimonialItem } from "@/types/data-types";
+import { fetchAppsMarquee } from "@/services/apps-marquee.api";
+import { type FeatureItem, type MetaItem, type HeroImage, type Faq, type TestimonialItem, type AppsMarqueeItem } from "@/types/data-types";
 import { fetchMeta } from "@/services/meta.api";
 import { generateSEOMetadata } from "@/lib/seo";
 
@@ -43,6 +44,13 @@ export default async function HomePage() {
     console.error("[HomePage] Unable to load hero images from API:", error);
   }
 
+  let appsMarquee: AppsMarqueeItem[] = [];
+  try {
+    appsMarquee = await fetchAppsMarquee();
+  } catch (error) {
+    console.error("[HomePage] Unable to load apps marquee from API:", error);
+  }
+
   let allFaqs: Faq[] = [];
   try {
     allFaqs = await fetchFaqs();
@@ -67,7 +75,7 @@ try {
 
   return (
     <>
-      <Hero heroImages={heroImages} testimonials={testimonials} />
+      <Hero heroImages={heroImages} testimonials={testimonials} appsMarquee={appsMarquee} />
       <FAQSection faqs={faqs} />
     </>
   );

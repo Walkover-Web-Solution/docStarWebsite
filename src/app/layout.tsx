@@ -24,8 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
+      <head>
         <ThemeScript />
+      </head>
+      <body className="antialiased">
         <Navbar />
         <ScrollToTop />
         {children}
