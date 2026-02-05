@@ -101,7 +101,7 @@ export default function PublicHomePage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
-                        Your Docs, <span className="text-gradient">Instantly Usable</span>
+                        Your Documentation's <span className="text-gradient">Front Door</span>
                     </motion.h1>
 
                     <motion.p
@@ -110,10 +110,7 @@ export default function PublicHomePage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.3 }}
                     >
-                        With DocStar, your public documentation isn't just visible — it's
-                        instantly usable. The Public Home Page acts as a clean, searchable
-                        hub where users can quickly find answers, explore guides, and
-                        navigate content without friction.
+                        Give users a clean, searchable entry point to explore your docs, guides, and resources in seconds.
                     </motion.p>
 
                     <button

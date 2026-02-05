@@ -98,7 +98,7 @@ export default function TableOfContentInPublicView() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
-                        Navigate with <span className="text-gradient">Confidence</span>
+                        Navigate Long Docs <span className="text-gradient">With Ease</span>
                     </motion.h1>
 
                     <motion.p
@@ -107,7 +107,7 @@ export default function TableOfContentInPublicView() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.3 }}
                     >
-                        Finding your way through long documentation shouldn't be a struggle. With DocStar's Table of Contents, users can instantly understand the structure of a page and jump directly to the section they need. No endless scrolling. No guessing where information lives.
+                        Help users jump directly to the exact section they need—without endless scrolling.
                     </motion.p>
 
                     <button
@@ -196,18 +196,25 @@ export default function TableOfContentInPublicView() {
                             </article>
                         ))}
                     </div>
+                </section>
 
-                    <div className="mt-8 p-6 md:p-8 rounded-md theme-bg-secondary border theme-border">
-                        <h3 className="text-xl md:text-2xl font-medium mb-3 leading-tight">
-                            Make Every Page Easy to Navigate
-                        </h3>
-                        <p className="text-sm md:text-base opacity-70 leading-snug mb-4">
-                            With DocStar's Table of Contents, your documentation becomes clearer, faster, and more user-friendly. Users stay oriented, find answers quicker, and actually read more of what you publish.
-                        </p>
-                        <p className="text-sm md:text-base opacity-70 leading-snug">
-                            👉 Take a tour and see how DocStar makes documentation effortless
-                        </p>
-                    </div>
+                <section className="py-8 sm:py-10 md:py-12 lg:py-16 px-4 sm:px-5 md:px-6">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-4 leading-tight">
+                        Make Every Page Easy to Navigate
+                    </h2>
+
+                    <p className="text-sm md:text-base mb-6 opacity-70 leading-snug">
+                        With DocStar's Table of Contents, your documentation becomes clearer, faster, and more user-friendly. Users stay oriented, find answers quicker, and actually read more of what you publish.
+                    </p>
+
+                    <button
+                        className="btn btn-primary"
+                        onClick={() => {
+                            window.open("https://app.docstar.io/login");
+                        }}
+                    >
+                        Get Started with DocStar
+                    </button>
                 </section>
             </div>
         </>

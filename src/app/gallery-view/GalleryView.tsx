@@ -115,7 +115,7 @@ export default function GalleryView() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
-                        Effortless <span className="text-gradient">Content Discovery</span>
+                        Documentation That's <span className="text-gradient">Easy to Explore</span>
                     </motion.h1>
 
                     <motion.p
@@ -124,7 +124,7 @@ export default function GalleryView() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.3 }}
                     >
-                        Finding the right content shouldn't feel overwhelming—it should feel effortless. With DocStar's Gallery View, your documentation is transformed into a visually organized experience that helps users quickly discover and explore what they need. Instead of long text lists, Gallery View presents your content in a clean, engaging layout that invites users to click, browse, and learn.
+                        Turn long lists into a visual, organized experience that invites users to browse and discover.
                     </motion.p>
 
                     <button

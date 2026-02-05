@@ -98,7 +98,7 @@ export default function Webhook() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
-                        Real-Time <span className="text-gradient">Documentation Sync</span>
+                        Real-Time Updates, <span className="text-gradient">Fully Automated</span>
                     </motion.h1>
 
                     <motion.p
@@ -107,7 +107,7 @@ export default function Webhook() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.3 }}
                     >
-                        Keeping your Docs in sync shouldn't require manual checks. With DocStar's Webhooks, every important change in your documentation is instantly communicated to your tools and workflows. From page creation to content updates, you get real-time notifications the moment something changes.
+                        Get instant notifications for page changes and connect DocStar with your workflows effortlessly.
                     </motion.p>
 
                     <button
@@ -196,18 +196,26 @@ export default function Webhook() {
                             </article>
                         ))}
                     </div>
+                </section>
 
-                    <div className="mt-8 p-6 md:p-8 rounded-md theme-bg-secondary border theme-border">
-                        <h3 className="text-xl md:text-2xl font-medium mb-3 leading-tight">
-                            Turn Documentation Events Into Automation
-                        </h3>
-                        <p className="text-sm md:text-base opacity-70 leading-snug mb-4">
-                            With DocStar Webhooks, your documentation becomes part of your automation ecosystem. React to changes in real time, build smarter workflows, and keep everything in sync—without lifting a finger.
-                        </p>
-                        <p className="text-sm md:text-base opacity-70 leading-snug">
-                            👉 Take a tour and see how DocStar Webhooks work in action.
-                        </p>
-                    </div>
+                {/* Final CTA Section */}
+                <section className="py-8 sm:py-10 md:py-12 lg:py-16 px-4 sm:px-5 md:px-6">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-4 leading-tight">
+                        Turn Documentation Events Into Automation
+                    </h2>
+
+                    <p className="text-sm md:text-base mb-6 opacity-70 leading-snug">
+                         With DocStar Webhooks, your documentation becomes part of your automation ecosystem. React to changes in real time, build smarter workflows, and keep everything in sync—without lifting a finger.
+                    </p>
+
+                    <button
+                        className="btn btn-primary"
+                        onClick={() => {
+                            window.open("https://app.docstar.io/login");
+                        }}
+                    >
+                        Get Started with DocStar
+                    </button>
                 </section>
             </div>
         </>
