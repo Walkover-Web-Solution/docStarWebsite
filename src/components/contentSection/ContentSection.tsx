@@ -3,16 +3,18 @@ import APITemplateSection from "../templateSection/ApiTemplateSection";
 import BlogTemplateSection from "../templateSection/BlogTemplateSection";
 import DocsTemplatesSection from "../templateSection/DocsTemplatesSection";
 import TestimonialSection from "../testimonialSection/TestimonialSection";
-import { TestimonialItem } from "@/types/data-types";
+import { TestimonialItem, AppsMarqueeItem } from "@/types/data-types";
 
 const ContentSection = ({
   testimonials,
+  appsMarquee,
 }: {
   testimonials: TestimonialItem[];
+  appsMarquee: AppsMarqueeItem[];
 }) => {
   return (
     <>
-      <AppsMarquee />
+      <AppsMarquee appsMarquee={appsMarquee} />
       <DocsTemplatesSection />
       <TestimonialSection testimonials={testimonials} index={0} />
       <BlogTemplateSection />

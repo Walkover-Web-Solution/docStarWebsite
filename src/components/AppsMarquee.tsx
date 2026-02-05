@@ -2,54 +2,9 @@
 
 import Image from 'next/image';
 import Marquee from 'react-fast-marquee';
+import { AppsMarqueeItem } from '@/types/data-types';
 
-type Customer = {
-  name: string
-  logo: string
-  color: string
-  link: string
-}
-
-const customers: Customer[] = [
-  {
-    name: "Giddh",
-    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM6Y55TrI7VBC8N2Ur1wMR3LEccw1q3ZO7Kw&s",
-    color: "",
-    link: "https://giddh.com/api/",
-  },
-  {
-    name: "viaSocket",
-    logo: "https://cdn-1.webcatalog.io/catalog/viasocket/viasocket-icon-filled-256.png?v=1714777446463",
-    color: "",
-    link: "https://viasocket.com/faq",
-  },
-  {
-    name: "Okfit",
-    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN-spTyfqWAW-laM6_nEs2-5ntUdmL_Tf1UA&s",
-    color: "",
-    link: "https://help.okfit.in/",
-  },
-  {
-    name: "MSG91",
-    logo: "https://cdn.shopify.com/app-store/listing_images/1b7a23964d664a267ed7cbf3339a7589/icon/CJ75uLzOi_gCEAE=.jpeg",
-    color: "",
-    link: "https://docs.msg91.com/",
-  },
-  {
-    name: "Walkover",
-    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0rNNFIitwuJt_wr7keKdgUXE5Cqo4REbnJbuWZu0U5INc2QdNjhZSZIxyOeWWczxj5As&usqp=CAU",
-    color: "",
-    link: "https://walkover.in/",
-  },
-  {
-    name: "GTWY AI",
-    logo: "https://thingsofbrand.com/api/icon/gtwy.ai",
-    color: "",
-    link: "https://gtwy.ai/blogs",
-  },
-]
-
-const AppsMarquee = () => {
+const AppsMarquee = ({ appsMarquee }: { appsMarquee: AppsMarqueeItem[] }) => {
     return (
         <section className="pt-2 pb-20 container mx-auto relative overflow-hidden">
             <Marquee
@@ -63,7 +18,7 @@ const AppsMarquee = () => {
                 }}
             >
                 <div className="inline-flex py-4 gap-20">
-                    {customers.map((app, index) => (
+                    {appsMarquee.map((app, index) => (
                         <div key={index} className={`flex items-center gap-2 ${index === 0 ? 'ml-20' : ''}`}>
                             <Image
                                 src={app.logo}

@@ -35,3 +35,10 @@ export type TestimonialItem = {
   product_logo: string[];
   link: string;
 };
+
+export type AppsMarqueeItem = {
+  name: string;
+  logo: string;
+  link: string;
+  color: string;
+};
