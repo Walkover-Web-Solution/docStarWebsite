@@ -1,7 +1,24 @@
-export const metadata = {
-  title: "Privacy policy | DocStar",
-  description: "privacy policy",
-};
+import { fetchMeta } from "@/services/meta.api";
+import { generateSEOMetadata } from "@/lib/seo";
+
+export const dynamic = "force-dynamic";
+
+export async function generateMetadata() {
+  let meta = null;
+  try {
+    meta = await fetchMeta("/privacy-policy");
+  } catch (error) {
+    console.error("[PrivacyPolicyPage] Unable to load meta from API:", error);
+  }
+
+  return generateSEOMetadata({
+    meta,
+    defaultTitle: "Privacy Policy | DocStar",
+    defaultDescription: "Privacy Policy",
+    pathname: "/privacy-policy",
+  });
+}
+
 const PrivacyPolicy = () => {
   return (
     <div className="pt-32 pb-16 px-4 md:px-8 container mx-auto">

@@ -27,7 +27,7 @@ export const normalizeKeywords = (incoming?: MetaItem["keywords"], fallback: str
 export function generateSEOMetadata({
   meta,
   defaultTitle = "DocStar",
-  defaultDescription = "",
+  defaultDescription = "Create, collaborate, and publish documentation, FAQs, and knowledge bases with AI-powered workflows.",
   defaultKeywords = [],
   siteName = "DocStar",
   baseUrl = "https://docstar.io",
