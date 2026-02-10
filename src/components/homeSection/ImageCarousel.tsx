@@ -5,13 +5,39 @@ import Image from "next/image";
 import { HeroImage } from "@/types/data-types";
 
 const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    // Check initial theme
+    const checkTheme = () => {
+      const theme = document.documentElement.getAttribute('data-theme');
+      setIsDarkTheme(theme === 'dark');
+    };
+
+    checkTheme();
+
+    // Watch for theme changes
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   const images =
     heroImages?.flatMap(
-      (hero) =>
-        hero.images?.map((url) => ({
+      (hero) => {
+        const imageUrls = isDarkTheme && hero.dark_images?.length
+          ? hero.dark_images
+          : hero.images;
+
+        return imageUrls?.map((url) => ({
           url,
           alt: hero.name,
-        })) ?? []
+        })) ?? [];
+      }
     ) ?? [];
 
   const containerRef = useRef<HTMLDivElement | null>(null);

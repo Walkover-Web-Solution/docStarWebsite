@@ -1,42 +1,62 @@
 // app/support/page.tsx
 
-import FeatureSchema from "@/components/seo/FeatureSchema";
-import { buildFeaturePageMetadata, resolveFeatureContent } from "@/lib/featureMeta";
+import { fetchMeta } from "@/services/meta.api";
+import { generateSEOMetadata } from "@/lib/seo";
+import { cache } from "react";
+import JsonLd from "@/components/seo/JsonLd";
+import { buildStructuredDataGraph, buildCanonicalUrl } from "@/lib/structuredData";
 
 const CONTACT = {
   EMAIL: "support@docstar.io",
   DEMO_LINK: "https://cal.com/docstar-team",
 };
 
-const PAGE_PATH = "/support";
-const FALLBACK_CONTENT = {
-  title: "Support | DocStar",
-  description:
-    "Need help? Our support team is ready to assist you with setup, documentation, or technical questions. Contact us today.",
-  keywords: ["docstar support", "docstar contact", "docstar help"],
-};
+export const dynamic = "force-dynamic";
+export const runtime = "edge";
+
+const getCachedMeta = cache(async () => {
+  try {
+    return await fetchMeta("/support");
+  } catch (error) {
+    console.error("[SupportPage] Unable to load meta from API:", error);
+    return null;
+  }
+});
 
 export async function generateMetadata() {
-  return buildFeaturePageMetadata({
-    path: PAGE_PATH,
-    fallback: FALLBACK_CONTENT,
+  const meta = await getCachedMeta();
+
+  return generateSEOMetadata({
+    meta,
+    pathname: "/support",
   });
 }
 
 export default async function SupportPage() {
-  const featureContent = await resolveFeatureContent({
-    path: PAGE_PATH,
-    fallback: FALLBACK_CONTENT,
+  const meta = await getCachedMeta();
+
+  const pageTitle = meta?.title ?? "Support | DocStar";
+  const pageDescription =
+    meta?.description ??
+    "Need help? Our support team is ready to assist you with setup, documentation, or technical questions. Contact us today.";
+  const pageUrl = buildCanonicalUrl("/support");
+
+  const structuredData = buildStructuredDataGraph({
+    page: {
+      title: pageTitle,
+      description: pageDescription,
+      url: pageUrl,
+      keywords: meta?.keywords ? (Array.isArray(meta.keywords) ? meta.keywords : [meta.keywords]) : ["docstar support", "docstar contact", "docstar help"],
+    },
+    breadcrumbs: [
+      { name: "Home", url: buildCanonicalUrl("/") },
+      { name: "Support", url: pageUrl },
+    ],
   });
 
   return (
-    <FeatureSchema
-      id="docstar-support-schema"
-      title={featureContent.title}
-      description={featureContent.description}
-      keywords={featureContent.keywords}
-      path={PAGE_PATH}
-    >
+    <>
+      <JsonLd id="docstar-support-schema" data={structuredData} />
       <div className="py-20">
         <div className="container mx-auto px-6 py-16 mt-10">
           <h1 className="text-4xl font-extrabold mb-4 text-center">Support</h1>
@@ -85,6 +105,6 @@ export default async function SupportPage() {
           </div>
         </div>
       </div>
-    </FeatureSchema>
+    </>
   );
 }

@@ -100,7 +100,7 @@ export const SsoAuthentication = () => {
     <>
       {/* Hero Section */}
       <div className="relative min-h-[60vh] sm:min-h-[65vh] md:min-h-[70vh] flex items-center">
-        <div className="absolute inset-0 theme-bg-secondary">
+        <div className="absolute inset-0 theme-bg-secondary overflow-hidden">
           <div className="absolute top-0 right-0 w-1/2 h-full theme-bg-overlay transform skew-x-12"></div>
         </div>
 

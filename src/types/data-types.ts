@@ -14,6 +14,7 @@ export type FeatureItem = {
 export type HeroImage = {
   name: string;
   images: string[];
+  dark_images?: string[];
 };
 
 export type MetaItem = {

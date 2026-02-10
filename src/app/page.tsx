@@ -10,18 +10,22 @@ import { type FeatureItem, type MetaItem, type HeroImage, type Faq, type Testimo
 import { fetchMeta } from "@/services/meta.api";
 import { generateSEOMetadata, normalizeKeywords } from "@/lib/seo";
 import { buildStructuredDataGraph, buildCanonicalUrl } from "@/lib/structuredData";
+import { cache } from "react";
 
 export const dynamic = "force-dynamic";
 export const runtime = "edge";
 
-export async function generateMetadata() {
-  let meta: MetaItem | null = null;
-
+const getCachedMeta = cache(async () => {
   try {
-    meta = await fetchMeta("/");
+    return await fetchMeta("/");
   } catch (error) {
     console.error("[HomePage] Unable to load meta from API:", error);
+    return null;
   }
+});
+
+export async function generateMetadata() {
+  const meta = await getCachedMeta();
 
   return generateSEOMetadata({
     meta,
@@ -67,12 +71,7 @@ export default async function HomePage() {
     console.error("[HomePage] Unable to load faqs from API:", error);
   }
 
-  let meta: MetaItem | null = null;
-  try {
-    meta = await fetchMeta("/");
-  } catch (error) {
-    console.error("[HomePage] Unable to load meta from API:", error);
-  }
+  const meta = await getCachedMeta();
 
   const pageTitle = meta?.title ?? "DocStar: AI-Powered Documentation Platform";
   const pageDescription =
