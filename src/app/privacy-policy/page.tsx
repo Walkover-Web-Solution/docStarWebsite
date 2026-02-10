@@ -2,7 +2,6 @@ import { fetchMeta } from "@/services/meta.api";
 import { generateSEOMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
-export const runtime = "edge";
 
 export async function generateMetadata() {
   let meta = null;
