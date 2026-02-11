@@ -1,4 +1,5 @@
 import FAQSection from "@/components/FAQSection";
+import SnowfallBackground from "@/components/SnowfallBackground";
 import Hero from "@/components/homeSection/Hero";
 import JsonLd from "@/components/seo/JsonLd";
 import { fetchFeatures } from "@/services/features.api";
@@ -95,23 +96,24 @@ export default async function HomePage() {
     ],
     faq: faqs.length
       ? {
-          faqs,
-          headline: "DocStar FAQs",
-        }
+        faqs,
+        headline: "DocStar FAQs",
+      }
       : undefined,
   });
 
-let testimonials: TestimonialItem[] = [];
-try {
-  testimonials = await fetchTestimonials();
-} catch (error) {
-  console.error("[HomePage] Unable to load testimonials from API:", error);
-}
+  let testimonials: TestimonialItem[] = [];
+  try {
+    testimonials = await fetchTestimonials();
+  } catch (error) {
+    console.error("[HomePage] Unable to load testimonials from API:", error);
+  }
 
 
   return (
     <>
       <JsonLd id="docstar-homepage-schema" data={structuredData} />
+      <SnowfallBackground />
       <Hero heroImages={heroImages} testimonials={testimonials} appsMarquee={appsMarquee} />
       <FAQSection faqs={faqs} />
     </>
