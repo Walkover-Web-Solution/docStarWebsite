@@ -1,10 +1,11 @@
 import { fetchMeta } from "@/services/meta.api";
 import { generateSEOMetadata } from "@/lib/seo";
+import { MetaItem } from "@/types/data-types";
 
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
-  let meta = null;
+  let meta: MetaItem | null = null;
   try {
     meta = await fetchMeta("/privacy-policy");
   } catch (error) {

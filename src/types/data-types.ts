@@ -9,6 +9,7 @@ export type FeatureItem = {
   name: string;
   link: string;
   description: string;
+  tags: string[];
 };
 
 export type HeroImage = {
