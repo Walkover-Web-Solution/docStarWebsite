@@ -62,6 +62,23 @@ const Hero = ({ heroImages, testimonials, appsMarquee }: HeroProps) => {
       >
         {/* <div className="absolute inset-0 bg-[url('/bg-images/hero-svg2.svg')] bg-cover bg-center bg-no-repeat opacity-60"></div> */}
         <div className="relative mt-12 py-20 pb-2 gap-8 flex flex-col items-center justify-center z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          {/* AI Badge */}
+          <MotionWrapper
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <div className="inline-flex items-center justify-center flex-col px-4">
+              <div className="flex items-center">
+                <span className="text-lg">✨</span>
+                <span className="text-md font-semibold uppercase tracking-wider text-gradient-home">
+                  AI-Powered Documentation Platform
+                </span>
+              </div>
+              <div className="bg-gradient h-[2px] w-[98%]" />
+            </div>
+          </MotionWrapper>
+
           {/* Heading */}
           <MotionWrapper
             initial={{ opacity: 0, y: 30 }}
