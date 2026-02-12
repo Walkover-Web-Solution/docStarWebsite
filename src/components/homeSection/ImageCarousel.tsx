@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { HeroImage } from "@/types/data-types";
+import { ChevronRight, ChevronLeft } from 'lucide-react';
 
 const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
@@ -42,11 +43,14 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const isScrollingRef = useRef(false);
 
   // Scroll to active slide
   const scrollToIndex = (index: number) => {
     const container = containerRef.current;
     if (!container) return;
+
+    isScrollingRef.current = true;
 
     // Account for the spacer element at index 0, so actual image is at index + 1
     const slide = container.children[index + 1] as HTMLElement;
@@ -62,10 +66,18 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
       left: scrollLeft,
       behavior: "smooth",
     });
+
+    // Reset flag after scroll animation completes
+    setTimeout(() => {
+      isScrollingRef.current = false;
+    }, 500);
   };
 
   // Detect centered slide on scroll
   const handleScroll = () => {
+    // Don't update activeIndex during programmatic scrolls
+    if (isScrollingRef.current) return;
+
     const container = containerRef.current;
     if (!container) return;
 
@@ -107,6 +119,45 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
 
   return (
     <div className="w-full py-20 px-2 md:px-8">
+      {/* Title and Navigation */}
+      <div className="mb-8 flex justify-center items-center gap-4">
+        <button
+          onClick={() => {
+            if (activeIndex > 0) {
+              const prevIndex = activeIndex - 1;
+              setActiveIndex(prevIndex);
+              scrollToIndex(prevIndex);
+            }
+          }}
+          disabled={activeIndex === 0}
+          className={`p-2 rounded-full border transition-opacity ${activeIndex === 0 ? "opacity-30 cursor-not-allowed" : "hover:opacity-80"
+            }`}
+          aria-label="Previous slide"
+        >
+          <ChevronLeft />
+        </button>
+
+        <span className="uppercase text-center text-2xl font-bold min-w-[250px]">
+          {images[activeIndex]?.alt}
+        </span>
+
+        <button
+          onClick={() => {
+            if (activeIndex < images.length - 1) {
+              const nextIndex = activeIndex + 1;
+              setActiveIndex(nextIndex);
+              scrollToIndex(nextIndex);
+            }
+          }}
+          disabled={activeIndex === images.length - 1}
+          className={`p-2 rounded-full border transition-opacity ${activeIndex === images.length - 1 ? "opacity-30 cursor-not-allowed" : "hover:opacity-80"
+            }`}
+          aria-label="Next slide"
+        >
+          <ChevronRight />
+        </button>
+      </div>
+
       {/* Carousel */}
       <div
         ref={containerRef}
@@ -123,7 +174,7 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
           <div
             key={index}
             className={`
-              relative flex-shrink-0 snap-center
+              flex-shrink-0 snap-center
               transition-all duration-500
               ${index === activeIndex ? "scale-100" : "scale-90 opacity-70"}
               w-[100vw] sm:w-[90vw] xl:max-w-[1100px] max-w-[1000px]
@@ -131,9 +182,9 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
           >
             {/* Glossy laptop screen container */}
             <div>
-              <div className="bg-transparent rounded-lg px-2 pt-8 border theme-border">
+              <div className="relative bg-transparent rounded-lg px-2 pt-8 pb-2 border theme-border">
                 {/* Browser controls */}
-                <div className="absolute top-3 left-4">
+                <div className="absolute top-2.5 left-4">
                   <svg width="52" height="12" viewBox="0 0 52 12">
                     <circle cx="6" cy="6" r="5" className="fill-red-500" />
                     <circle cx="26" cy="6" r="5" className="fill-yellow-400" />
@@ -142,44 +193,24 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
                 </div>
 
                 {/* Screen content */}
-                <div className="relative rounded-md aspect-[16/9] overflow-hidden ">
+                <div className="relative rounded-md overflow-hidden">
                   <Image
                     src={img.url}
                     alt={img.alt}
-                    fill
+                    width={1200}
+                    height={800}
                     priority={index === 0}
                     sizes="(max-width: 768px) 90vw, 70vw"
-                    className="rounded-md object-contain object-top"
+                    className="rounded-md w-full h-auto object-contain"
                   />
                 </div>
               </div>
-              <p className="w-full bg-transparent text-center text-md py-2">
-                {img.alt}
-              </p>
             </div>
           </div>
         ))}
 
         {/* Spacer element after last image */}
         <div className="flex-shrink-0 w-[50vw] sm:w-[45vw]" />
-      </div>
-
-      {/* Dots */}
-      <div className="mt-8 flex justify-center gap-2">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => {
-              setActiveIndex(index);
-              scrollToIndex(index);
-            }}
-            className={`
-              h-2.5 w-2.5 rounded-full transition-all theme-bg
-              ${index === activeIndex ? "scale-110 opacity-100" : "opacity-50"}
-            `}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
       </div>
     </div>
   );
