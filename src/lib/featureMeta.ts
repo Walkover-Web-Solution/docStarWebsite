@@ -60,7 +60,7 @@ export const resolveFeatureContent = async ({
   return {
     title: feature?.name?.trim() ? feature.name : fallback.title,
     description: feature?.description?.trim() ? feature.description : fallback.description,
-    keywords: fallback.keywords,
+    keywords: feature?.tags ? feature.tags : fallback.keywords,
   }
 }
 
