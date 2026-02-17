@@ -1,16 +1,23 @@
 import { fetchMeta } from "@/services/meta.api";
 import { generateSEOMetadata } from "@/lib/seo";
-import { MetaItem } from "@/types/data-types";
+import { cache } from "react";
+import JsonLd from "@/components/seo/JsonLd";
+import { buildStructuredDataGraph, buildCanonicalUrl } from "@/lib/structuredData";
 
 export const dynamic = "force-dynamic";
+export const runtime = "edge";
 
-export async function generateMetadata() {
-  let meta: MetaItem | null = null;
+const getCachedMeta = cache(async () => {
   try {
-    meta = await fetchMeta("/privacy-policy");
+    return await fetchMeta("/privacy-policy");
   } catch (error) {
     console.error("[PrivacyPolicyPage] Unable to load meta from API:", error);
+    return null;
   }
+});
+
+export async function generateMetadata() {
+  const meta = await getCachedMeta();
 
   return generateSEOMetadata({
     meta,
@@ -20,9 +27,32 @@ export async function generateMetadata() {
   });
 }
 
-const PrivacyPolicy = () => {
+const PrivacyPolicy = async () => {
+  const meta = await getCachedMeta();
+
+  const pageTitle = meta?.title ?? "Privacy Policy | DocStar";
+  const pageDescription =
+    meta?.description ??
+    "Privacy Policy for DocStar - Learn how we collect, use, and protect your personal information when you use our documentation platform.";
+  const pageUrl = buildCanonicalUrl("/privacy-policy");
+
+  const structuredData = buildStructuredDataGraph({
+    page: {
+      title: pageTitle,
+      description: pageDescription,
+      url: pageUrl,
+      keywords: meta?.keywords ? (Array.isArray(meta.keywords) ? meta.keywords : [meta.keywords]) : ["privacy policy", "data protection", "docstar privacy"],
+    },
+    breadcrumbs: [
+      { name: "Home", url: buildCanonicalUrl("/") },
+      { name: "Privacy Policy", url: pageUrl },
+    ],
+  });
+
   return (
-    <div className="pt-32 pb-16 px-4 md:px-8 container mx-auto">
+    <>
+      <JsonLd id="docstar-privacy-policy-schema" data={structuredData} />
+      <div className="pt-32 pb-16 px-4 md:px-8 container mx-auto">
       <h1 className="text-4xl font-bold mb-6">Privacy Policy</h1>
 
       <p className="mb-4 text-lg">
@@ -182,7 +212,8 @@ const PrivacyPolicy = () => {
         </a>
         .
       </p>
-    </div>
+      </div>
+    </>
   );
 };
 
