@@ -45,6 +45,20 @@ const nextConfig = {
       }
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/white-labelling",
+        destination: "/custom-domain",
+        permanent: true,
+      },
+      {
+        source: "/editor",
+        destination: "/embed-editor",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
