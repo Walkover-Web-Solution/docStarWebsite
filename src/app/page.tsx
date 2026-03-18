@@ -11,6 +11,7 @@ import { fetchMeta } from "@/services/meta.api";
 import { generateSEOMetadata, normalizeKeywords } from "@/lib/seo";
 import { buildStructuredDataGraph, buildCanonicalUrl } from "@/lib/structuredData";
 import { cache } from "react";
+import Script from "next/script";
 
 export const dynamic = "force-dynamic";
 export const runtime = "edge";
@@ -95,22 +96,23 @@ export default async function HomePage() {
     ],
     faq: faqs.length
       ? {
-          faqs,
-          headline: "DocStar FAQs",
-        }
+        faqs,
+        headline: "DocStar FAQs",
+      }
       : undefined,
   });
 
-let testimonials: TestimonialItem[] = [];
-try {
-  testimonials = await fetchTestimonials();
-} catch (error) {
-  console.error("[HomePage] Unable to load testimonials from API:", error);
-}
+  let testimonials: TestimonialItem[] = [];
+  try {
+    testimonials = await fetchTestimonials();
+  } catch (error) {
+    console.error("[HomePage] Unable to load testimonials from API:", error);
+  }
 
 
   return (
     <>
+      <Script src="https://main.d2f49esifpcbwh.amplifyapp.com/tracker.js" strategy="afterInteractive" />
       <JsonLd id="docstar-homepage-schema" data={structuredData} />
       <Hero heroImages={heroImages} testimonials={testimonials} appsMarquee={appsMarquee} />
       <FAQSection faqs={faqs} />
