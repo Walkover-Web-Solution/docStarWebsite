@@ -7,6 +7,7 @@
 import { useInView } from "react-intersection-observer";
 import { ArrowRight, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import MotionWrapper from "../motion/MotionDivWrapper";
 import ImageCarousel from "./ImageCarousel";
 import { HeroImage } from "@/types/data-types";
@@ -22,6 +23,12 @@ interface HeroProps {
  * Landing hero that introduces DocStar, showcases key value props, and provides CTAs for signup or demos.
  */
 const Hero = ({ heroImages, testimonials, appsMarquee }: HeroProps) => {
+  const searchParams = useSearchParams();
+  const refParam = searchParams.get('ref');
+  const loginUrl = refParam
+    ? `https://app.docstar.io/login?ref=${encodeURIComponent(refParam)}`
+    : 'https://app.docstar.io/login';
+
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
@@ -112,7 +119,7 @@ const Hero = ({ heroImages, testimonials, appsMarquee }: HeroProps) => {
           >
             <MotionWrapper
               as="a"
-              href="https://app.docstar.io/login"
+              href={loginUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
