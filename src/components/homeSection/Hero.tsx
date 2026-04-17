@@ -141,7 +141,7 @@ const Hero = ({ heroImages, testimonials, appsMarquee }: HeroProps) => {
                   href={loginUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center cursor-pointer justify-center px-8 py-4 text-base md:text-lg font-semibold text-white dark:text-black bg-black dark:bg-white border-2 border-black dark:border-white rounded-lg transition-all duration-200 ease-out min-w-[220px] will-change-transform"
+                  className="btn btn-primary"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
@@ -154,7 +154,7 @@ const Hero = ({ heroImages, testimonials, appsMarquee }: HeroProps) => {
                   as="button"
                   type="button"
                   onClick={openScheduler}
-                  className="inline-flex items-center cursor-pointer justify-center px-8 py-4 text-base md:text-lg font-semibold text-black dark:text-white bg-transparent border-2 border-black dark:border-white rounded-lg hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 ease-out min-w-[220px] will-change-transform"
+                  className="btn btn-outline"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
