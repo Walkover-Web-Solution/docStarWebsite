@@ -6,41 +6,32 @@ import { AppsMarqueeItem } from '@/types/data-types';
 
 const AppsMarquee = ({ appsMarquee }: { appsMarquee: AppsMarqueeItem[] }) => {
     return (
-        <section className="py-12 relative overflow-hidden">
-            <div className="container mx-auto">
-                <Marquee
-                    direction="left"
-                    speed={35}
-                    autoFill
-                    gradient={false}
-                    pauseOnHover={false}
-                    style={{
-                        maskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)',
-                        WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)',
-                    }}
-                >
-                    <div className="inline-flex items-center py-6 gap-16 md:gap-20">
-                        {appsMarquee.map((app, index) => (
-                            <div 
-                                key={index} 
-                                className={`flex items-center gap-2.5 ${index === 0 ? 'ml-16 md:ml-20' : ''}`}
-                            >
-                                <Image
-                                    src={app.logo}
-                                    alt={app.name}
-                                    width={36}
-                                    height={36}
-                                    loading={index < 3 ? "eager" : "lazy"}
-                                    className="object-contain grayscale opacity-70 dark:opacity-60"
-                                />
-                                <p className="text-sm md:text-base lg:text-lg font-medium text-gray-600 dark:text-gray-500 whitespace-nowrap">
-                                    {app.name}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                </Marquee>
-            </div>
+        <section className="pt-2 pb-20 container mx-auto relative overflow-hidden">
+            <Marquee
+                direction="left"
+                speed={40}
+                autoFill
+                gradient={false}
+                style={{
+                    maskImage: 'linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 12.5%, rgb(0, 0, 0) 87.5%, rgba(0, 0, 0, 0) 100%)',
+                    WebkitMaskImage: 'linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 12.5%, rgb(0, 0, 0) 87.5%, rgba(0, 0, 0, 0) 100%)'
+                }}
+            >
+                <div className="inline-flex py-4 gap-20">
+                    {appsMarquee.map((app, index) => (
+                        <div key={index} className={`flex items-center gap-2 ${index === 0 ? 'ml-20' : ''}`}>
+                            <Image
+                                src={app.logo}
+                                alt={app.name}
+                                width={36}
+                                height={36}
+                                className={`object-contain grayscale opacity-80`}
+                            />
+                            <p className="text-center font-medium text-xl opacity-70">{app.name}</p>
+                        </div>
+                    ))}
+                </div>
+            </Marquee>
         </section>
     )
 }

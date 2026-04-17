@@ -65,139 +65,103 @@ const Hero = ({ heroImages, testimonials, appsMarquee }: HeroProps) => {
     <>
       <section
         ref={ref}
-        className="relative min-h-screen flex flex-col justify-between overflow-hidden"
+        className="relative flex flex-col items-center justify-center"
       >
-        {/* Subtle noise texture overlay */}
-        <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-        }} />
-
-        {/* Radial gradient background */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-b from-gray-100/40 to-transparent dark:from-gray-900/40 rounded-full blur-3xl" />
-        </div>
-
-        <div className="flex-1 flex items-center justify-center relative z-10">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center py-20 mt-8">
-            <div className="max-w-5xl mx-auto space-y-8">
-              {/* AI Badge */}
-              <MotionWrapper
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <div className="inline-flex items-center justify-center relative">
-                  {/* Glow effect behind badge */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-gray-200/50 via-gray-300/50 to-gray-200/50 dark:from-gray-800/50 dark:via-gray-700/50 dark:to-gray-800/50 blur-xl opacity-60" />
-                  
-                  <div className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-black/80 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300">
-                    <span className="text-lg">✨</span>
-                    <span className="text-xs md:text-sm font-semibold uppercase tracking-wider text-gray-900 dark:text-gray-100">
-                      AI-Powered Documentation Platform
-                    </span>
-                  </div>
-                </div>
-              </MotionWrapper>
-
-              {/* Heading */}
-              <MotionWrapper
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <div className="relative">
-                  {/* Subtle glow behind heading */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-100/30 to-transparent dark:via-gray-900/30 blur-2xl" />
-                  
-                  <h1 className="relative text-5xl sm:text-6xl md:text-7xl font-semibold leading-[1.1] tracking-tight text-gray-950 dark:text-white">
-                    Turn Documentations Into
-                    <br />
-                    <span className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">Team Culture</span>
-                  </h1>
-                </div>
-              </MotionWrapper>
-
-              {/* Subtitle */}
-              <MotionWrapper
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <p className="text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto text-gray-600 dark:text-gray-400 leading-relaxed font-normal">
-                  Write blogs, craft FAQs, and build internal knowledgebase — faster,
-                  smarter, together.
-                </p>
-              </MotionWrapper>
-
-              {/* CTA Buttons */}
-              <MotionWrapper
-                className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6"
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <MotionWrapper
-                  as="a"
-                  href={loginUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-primary"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                >
-                  Get Started for Free
-                  <ArrowRight className="h-5 w-5 ml-2 transition-transform duration-200 ease-out group-hover:translate-x-1" />
-                </MotionWrapper>
-
-                <MotionWrapper
-                  as="button"
-                  type="button"
-                  onClick={openScheduler}
-                  className="btn btn-outline"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                >
-                  Schedule Demo
-                </MotionWrapper>
-              </MotionWrapper>
+        {/* <div className="absolute inset-0 bg-[url('/bg-images/hero-svg2.svg')] bg-cover bg-center bg-no-repeat opacity-60"></div> */}
+        <div className="relative mt-12 py-20 pb-2 gap-8 flex flex-col items-center justify-center z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          {/* AI Badge */}
+          <MotionWrapper
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <div className="inline-flex items-center justify-center flex-col px-4">
+              <div className="flex items-center">
+                <span className="text-lg">✨</span>
+                <span className="text-md font-semibold uppercase tracking-wider text-gradient-home">
+                  AI-Powered Documentation Platform
+                </span>
+              </div>
+              <div className="bg-gradient h-[2px] w-[98%]" />
             </div>
-          </div>
+          </MotionWrapper>
+
+          {/* Heading */}
+          <MotionWrapper
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <h1 className="h1">
+              Turn Documentations Into
+              <br />
+              Team Culture
+            </h1>
+          </MotionWrapper>
+
+          {/* Subtitle */}
+          <MotionWrapper
+            className="md:text-xl max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            Write blogs, craft FAQs, and build internal knowledgebase — faster,
+            smarter, together.
+          </MotionWrapper>
+
+          {/* CTA Buttons */}
+          <MotionWrapper
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <MotionWrapper
+              as="a"
+              href={loginUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Get Started for Free
+              <ArrowRight className="h-5 w-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+            </MotionWrapper>
+
+            <MotionWrapper
+              as="button"
+              type="button"
+              onClick={openScheduler}
+              className="btn btn-outline"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Schedule Demo
+            </MotionWrapper>
+          </MotionWrapper>
         </div>
 
-        <div className="w-full pb-0 relative z-10">
-          <ImageCarousel heroImages={heroImages} />
-        </div>
+        <ImageCarousel heroImages={heroImages} />
       </section>
 
       {showScheduler && (
-        <MotionWrapper
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 flex items-center justify-center px-4"
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm px-4 theme-overlay-light"
           onClick={closeScheduler}
         >
-          {/* Backdrop with blur */}
-          <div className="absolute inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-md" />
-          
-          <MotionWrapper
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="relative w-full max-w-4xl overflow-hidden rounded-2xl shadow-2xl bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800"
-            onClick={(event: React.MouseEvent) => event.stopPropagation()}
+          <div
+            className="relative w-full max-w-4xl overflow-hidden rounded-md shadow-2xl theme-bg-secondary"
+            onClick={(event) => event.stopPropagation()}
           >
             <button
               type="button"
               onClick={closeScheduler}
-              className="absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-900 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white"
+              className="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded-md transition focus:outline-none focus-visible:ring-2 theme-bg-secondary"
               aria-label="Close scheduler"
             >
-              <X className="h-5 w-5 text-gray-900 dark:text-gray-100" />
+              <X className="h-5 w-5" />
             </button>
             <iframe
               src="https://cal.com/docstar-team/30min?embed=1&hide_event_type_details=1"
@@ -205,8 +169,8 @@ const Hero = ({ heroImages, testimonials, appsMarquee }: HeroProps) => {
               loading="lazy"
               allow="camera; microphone; autoplay; encrypted-media"
             />
-          </MotionWrapper>
-        </MotionWrapper>
+          </div>
+        </div>
       )}
       <ContentSection testimonials={testimonials} appsMarquee={appsMarquee} />
     </>
