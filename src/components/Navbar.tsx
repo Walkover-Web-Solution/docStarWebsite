@@ -121,7 +121,7 @@ const Navbar = () => {
               href="https://app.docstar.io/login"
               target="_blank"
               rel="noopener noreferrer"
-              className={`btn btn-primary`}
+              className={`btn btn-primary min-w-fit`}
             >
               Sign In
             </a>
