@@ -24,10 +24,10 @@ interface HeroProps {
  */
 const Hero = ({ heroImages, testimonials, appsMarquee }: HeroProps) => {
   const searchParams = useSearchParams();
-  const refParam = searchParams.get('ref');
+  const refParam = searchParams.get("ref");
   const loginUrl = refParam
     ? `https://app.docstar.io/login?ref=${encodeURIComponent(refParam)}`
-    : 'https://app.docstar.io/login';
+    : "https://app.docstar.io/login";
 
   const [ref, inView] = useInView({
     threshold: 0.1,
@@ -68,9 +68,12 @@ const Hero = ({ heroImages, testimonials, appsMarquee }: HeroProps) => {
         className="relative min-h-screen flex flex-col justify-between overflow-hidden"
       >
         {/* Subtle noise texture overlay */}
-        <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-        }} />
+        <div
+          className="absolute inset-0 opacity-[0.015] pointer-events-none"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        />
 
         {/* Radial gradient background */}
         <div className="absolute inset-0 pointer-events-none">
@@ -84,15 +87,19 @@ const Hero = ({ heroImages, testimonials, appsMarquee }: HeroProps) => {
               <MotionWrapper
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.1,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
               >
                 <div className="inline-flex items-center justify-center relative">
                   {/* Glow effect behind badge */}
                   <div className="absolute inset-0 bg-gradient-to-r from-gray-200/50 via-gray-300/50 to-gray-200/50 dark:from-gray-800/50 dark:via-gray-700/50 dark:to-gray-800/50 blur-xl opacity-60" />
-                  
-                  <div className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-black/80 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300">
+
+                  <div className="relative inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-black/80 backdrop-blur-sm transition-all duration-300">
                     <span className="text-lg">✨</span>
-                    <span className="text-xs md:text-sm font-semibold uppercase tracking-wider text-gray-900 dark:text-gray-100">
+                    <span className="text-xs font-semibold tracking-wider text-gray-900 dark:text-gray-100">
                       AI-Powered Documentation Platform
                     </span>
                   </div>
@@ -103,16 +110,22 @@ const Hero = ({ heroImages, testimonials, appsMarquee }: HeroProps) => {
               <MotionWrapper
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.2,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
               >
                 <div className="relative">
                   {/* Subtle glow behind heading */}
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-100/30 to-transparent dark:via-gray-900/30 blur-2xl" />
-                  
+
                   <h1 className="relative text-5xl sm:text-6xl md:text-7xl font-semibold leading-[1.1] tracking-tight text-gray-950 dark:text-white">
                     Turn Documentations Into
                     <br />
-                    <span className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">Team Culture</span>
+                    <span className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">
+                      Team Culture
+                    </span>
                   </h1>
                 </div>
               </MotionWrapper>
@@ -121,11 +134,15 @@ const Hero = ({ heroImages, testimonials, appsMarquee }: HeroProps) => {
               <MotionWrapper
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.3,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
               >
-                <p className="text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto text-gray-600 dark:text-gray-400 leading-relaxed font-normal">
-                  Write blogs, craft FAQs, and build internal knowledgebase — faster,
-                  smarter, together.
+                <p className="text-lg mx-auto text-gray-600 dark:text-gray-400 leading-relaxed font-normal">
+                  Write blogs, craft FAQs, and build internal knowledgebase —
+                  faster, smarter, together.
                 </p>
               </MotionWrapper>
 
@@ -134,7 +151,11 @@ const Hero = ({ heroImages, testimonials, appsMarquee }: HeroProps) => {
                 className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.4,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
               >
                 <MotionWrapper
                   as="a"
@@ -182,7 +203,7 @@ const Hero = ({ heroImages, testimonials, appsMarquee }: HeroProps) => {
         >
           {/* Backdrop with blur */}
           <div className="absolute inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-md" />
-          
+
           <MotionWrapper
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
