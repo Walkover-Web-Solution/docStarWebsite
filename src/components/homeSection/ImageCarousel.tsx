@@ -82,13 +82,13 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
 
       {/* Tabs Section */}
       <div ref={tabsSectionRef} className="mb-12 flex justify-center">
-        <div className="inline-flex items-center gap-2 p-1.5 rounded-lg bg-gray-100/80 dark:bg-gray-900/80 backdrop-blur-sm border border-gray-200 dark:border-gray-800 overflow-x-auto max-w-full">
+        <div className="inline-flex items-center gap-2 p-1 rounded-lg bg-gray-100/80 dark:bg-gray-900/80 backdrop-blur-sm border border-gray-200 dark:border-gray-800 overflow-x-auto max-w-full">
           {tabs.map((tab, index) => (
             <button
               key={index}
               onClick={() => handleTabClick(index)}
               className={`
-                relative px-6 py-2.5 cursor-pointer rounded-lg text-sm md:text-base font-semibold uppercase tracking-wide
+                relative px-6 py-2 cursor-pointer rounded-lg text-sm font-semibold uppercase tracking-wide
                 transition-all duration-300 whitespace-nowrap
                 ${
                   activeTab === index
