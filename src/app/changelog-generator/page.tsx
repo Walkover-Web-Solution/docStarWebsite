@@ -1,13 +1,12 @@
-// app/custom-domain/page.tsx
 import FeatureSchema from "@/components/seo/FeatureSchema";
 import { buildFeaturePageMetadata, resolveFeatureContent } from "@/lib/featureMeta";
-import { CustomDomainClient } from "./CustomDomainClient";
+import { ChangelogClient } from "./ChangelogClient";
 
-const PAGE_PATH = "/custom-domain";
+const PAGE_PATH = "/changelog";
 const FALLBACK_CONTENT = {
-  title: "Custom Domain | DocStar",
-  description: "Add custom domain to your DocStar documentation",
-  keywords: ["custom domain", "white label docs", "docstar"],
+  title: "Changelog & Release Notes | DocStar",
+  description: "Track and publish product updates for your documentation. Create changelogs manually or use AI to generate release notes automatically.",
+  keywords: ["changelog", "release notes", "product updates", "ai changelog"],
 };
 
 export async function generateMetadata() {
@@ -17,7 +16,7 @@ export async function generateMetadata() {
   });
 }
 
-export default async function WhiteLabelling() {
+export default async function ChangelogPage() {
   const featureContent = await resolveFeatureContent({
     path: PAGE_PATH,
     fallback: FALLBACK_CONTENT,
@@ -25,13 +24,13 @@ export default async function WhiteLabelling() {
 
   return (
     <FeatureSchema
-      id="docstar-custom-domain-schema"
+      id="docstar-changelog-schema"
       title={featureContent.title}
       description={featureContent.description}
       path={PAGE_PATH}
       keywords={featureContent.keywords}
     >
-      <CustomDomainClient />
+      <ChangelogClient />
     </FeatureSchema>
   );
 }
