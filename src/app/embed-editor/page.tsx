@@ -5,7 +5,7 @@ import EmbedEditorPageClient from "./EmbedEditorPageClient"
 const PAGE_PATH = "/embed-editor"
 const FALLBACK_CONTENT = {
   title: "Embed Editor | DocStar",
-  description: "Seamlessly embed a Google Docs-like editor inside your product.",
+  description: "Embed a Google Docs–like editor into your application with real-time collaboration, rich text editing, document management, and seamless integration for modern content workflows.",
   keywords: ["embed editor", "docstar editor", "collaborative editor"],
 }
 

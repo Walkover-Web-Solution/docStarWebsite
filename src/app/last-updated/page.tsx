@@ -4,10 +4,10 @@ import LastUpdated from "./LastUpdated"
 
 const PAGE_PATH = "/last-updated"
 const FALLBACK_CONTENT = {
-  title: "Last Updated | DocStar",
+  title: "Recent Updated | DocStar",
   description:
     "Build trust with automatic last updated timestamps. Show readers when content was last revised and maintain credibility with transparent, up-to-date documentation.",
-  keywords: ["last updated", "documentation last updated", "docstar last updated", "custom last updated"],
+  keywords: ["documentation last updated", "docstar last updated", "custom last updated"],
 }
 
 export async function generateMetadata() {

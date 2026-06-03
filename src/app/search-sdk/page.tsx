@@ -6,8 +6,8 @@ const PAGE_PATH = "/search-sdk"
 const FALLBACK_CONTENT = {
     title: "Search SDK | DocStar",
     description:
-        "Search SDK for DocStar.",
-    keywords: ["search sdk", "docstar search sdk"],
+        "Search SDK for DocStar. Embed power of RAG-powered search directly into your application.",
+    keywords: ["search sdk", "docstar search sdk", "RAG-powered search", "embed search", "AI search", "search integration", "search API"],
 }
 
 export async function generateMetadata() {

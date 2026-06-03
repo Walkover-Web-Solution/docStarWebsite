@@ -5,9 +5,8 @@ import EditViaLink from "./EditViaLink"
 const PAGE_PATH = "/edit-via-link"
 const FALLBACK_CONTENT = {
     title: "Edit via Link | DocStar",
-    description:
-        "Edit your document via link.",
-    keywords: ["edit via link", "edit document", "docstar edit via link"],
+    description:"Edit documentation through secure shareable links. Enable seamless collaboration, collect updates from team members or external contributors, and manage content without requiring full workspace access.",
+    keywords: ["edit document", "docstar edit via link","Edit via Link"],
 }
 
 export async function generateMetadata() {

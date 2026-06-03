@@ -2,12 +2,12 @@ import FeatureSchema from "@/components/seo/FeatureSchema"
 import { buildFeaturePageMetadata, resolveFeatureContent } from "@/lib/featureMeta"
 import LastUpdated from "./Logs"
 
-const PAGE_PATH = "/last-updated"
+const PAGE_PATH = "/logs"
 const FALLBACK_CONTENT = {
-  title: "Last Updated | DocStar",
+  title: "Audit Logs | DocStar",
   description:
     "Build trust with automatic last updated timestamps. Show readers when content was last revised and maintain credibility with transparent, up-to-date documentation.",
-  keywords: ["last updated", "documentation last updated", "docstar last updated", "custom last updated"],
+  keywords: ["documentation last updated", "docstar last updated", "custom last updated"],
 }
 
 export async function generateMetadata() {
