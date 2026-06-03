@@ -7,7 +7,7 @@ const PAGE_PATH = "/ai-powered-search"
 const FALLBACK_CONTENT = {
   title: "AI-Powered Search | DocStar",
   description: "Discover the most relevant content across documentation and knowledge bases",
-  keywords: ["AI search", "intelligent documentation search", "docstar search", "contextual search"],
+  keywords: ["AI search","documentation search","AI-Powered Search | DocStar","intelligent documentation search", "docstar search", "contextual search"],
 }
 
 export async function generateMetadata() {

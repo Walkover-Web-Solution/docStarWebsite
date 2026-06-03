@@ -7,7 +7,7 @@ const FALLBACK_CONTENT = {
   title: "Multi-Language Support | DocStar",
   description:
     "Deliver documentation in multiple languages with DocStar. Expand global reach, boost SEO, and engage international teams effortlessly.",
-  keywords: ["multi language docs", "localized documentation", "docstar"],
+  keywords: ["multi language docs", "localized documentation", "docstar", "Go global with DocStar"],
 }
 
 export async function generateMetadata() {

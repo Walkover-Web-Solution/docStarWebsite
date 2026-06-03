@@ -6,8 +6,8 @@ import { CustomDomainClient } from "./CustomDomainClient";
 const PAGE_PATH = "/custom-domain";
 const FALLBACK_CONTENT = {
   title: "Custom Domain | DocStar",
-  description: "Add custom domain to your DocStar documentation",
-  keywords: ["custom domain", "white label docs", "docstar"],
+  description: "Add a custom domain to your DocStar documentation and host your knowledge base on your own branded URL. Easily configure DNS, strengthen brand trust, and deliver a professional documentation experience.",
+  keywords: ["white label docs", "docstar","Custom Domain"],
 };
 
 export async function generateMetadata() {

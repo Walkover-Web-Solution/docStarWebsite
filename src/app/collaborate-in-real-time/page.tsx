@@ -5,8 +5,8 @@ import CollaborateContent from "./CollaborateContent";
 const PAGE_PATH = "/collaborate-in-real-time";
 const FALLBACK_CONTENT = {
   title: "Real Time Collaboration | DocStar",
-  description: "Contribute, edit, and refine documentation together",
-  keywords: ["real-time collaboration", "doc collaboration", "docstar"],
+  description: "Work together on documentation with live collaborative editing. See changes instantly, coordinate with teammates, and keep content accurate and up to date.",
+  keywords: ["real-time collaboration", "doc collaboration", "docstar","Real Time Collaboration"],
 };
 
 export async function generateMetadata() {
