@@ -11,7 +11,30 @@ import {
   Clock,
   CheckCircle,
   Sparkles,
+  ArrowRight,
+  Terminal,
 } from "lucide-react";
+import Link from "next/link";
+import CTASection from "@/components/CTASection";
+
+const TerminalWindow = ({ title, children, className = "" }: { title: string, children: React.ReactNode, className?: string }) => (
+  <div className={`rounded-xl overflow-hidden border theme-border shadow-2xl bg-[#0d1117] ${className}`}>
+    <div className="flex items-center px-4 py-3 bg-[#161b22] border-b border-gray-800">
+      <div className="flex space-x-2">
+        <div className="w-3 h-3 rounded-full bg-rose-500/80"></div>
+        <div className="w-3 h-3 rounded-full bg-amber-500/80"></div>
+        <div className="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+      </div>
+      <div className="mx-auto text-xs font-mono text-gray-500 flex items-center gap-2">
+        <Terminal className="w-3 h-3" />
+        {title}
+      </div>
+    </div>
+    <div className="p-5 font-mono text-sm text-gray-300 overflow-x-auto leading-relaxed">
+      {children}
+    </div>
+  </div>
+);
 
 const CollaborateContent = () => {
   const features = [
@@ -102,277 +125,221 @@ const CollaborateContent = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <>
       {/* Hero Section */}
-      <motion.section
-        className="py-8 sm:py-10 md:py-12 px-4 sm:px-5 md:px-6 text-center"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        <motion.span
-          className="text-xs mt-20 font-medium text-[var(--theme-color)] mb-4 block"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          Real-Time Collaboration
-        </motion.span>
-
-        <motion.h1
-          className="h1"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <span className="text-gradient">Collaborate</span> in Real Time
-        </motion.h1>
-
-        <motion.p
-          className="text-sm md:text-base mb-6 max-w-3xl mx-auto leading-snug opacity-70"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          Your entire team can contribute, edit, and refine documentation
-          together—no delays, no version conflicts, and no scattered feedback.
-        </motion.p>
-
-        <button
-          className="btn btn-primary mx-auto"
-          onClick={() => {
-            window.open("https://app.docstar.io/login");
-          }}
-        >
-          Start Collaborating Today
-        </button>
-      </motion.section>
-
-      {/* Why Real-Time Collaboration Matters Section */}
-      <motion.section
-        className="theme-bg-secondary py-8 sm:py-10 md:py-12"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <div className="px-6 text-center mb-10">
-          <motion.span
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-md border theme-border text-xs font-medium mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <span className="w-2 h-2 rounded-md theme-bg"></span>
-            The Impact
-          </motion.span>
-
-          <motion.h2
-            className="text-xl sm:text-2xl md:text-3xl font-medium mb-4 leading-tight"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-          >
-            Why Real-Time Collaboration Matters
-          </motion.h2>
-
-          <motion.p
-            className="text-sm md:text-base max-w-3xl mx-auto leading-snug opacity-70"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            In fast-moving teams, documentation needs to keep up with product
-            changes, customer requirements, and developer workflows. Real-time
-            collaboration ensures that:
-          </motion.p>
+      <div className="relative min-h-[75vh] flex items-center border-b theme-border overflow-hidden">
+        <div className="absolute inset-0 theme-bg-secondary">
+          {/* Subtle Grid Background */}
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-bg)] to-transparent"></div>
         </div>
 
-        <div className="px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-4.5 md:gap-5">
-            {whyMatters.map((point, index) => (
-              <motion.article
-                key={index}
-                className="relative p-5 md:p-6 rounded-md border theme-border bg-[var(--theme-bg)] hover:border-[var(--theme-color)] transition-colors duration-300"
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-md flex items-center justify-center">
-                    <CheckCircle className="w-4 h-4 text-[var(--theme-color)]" />
-                  </div>
-                  <p className="text-sm leading-snug opacity-80 flex-1">
-                    {point}
-                  </p>
+        {/* Floating elements */}
+        <div className="absolute top-20 right-10 w-72 h-72 bg-[var(--theme-color)]/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 left-10 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center pt-20 pb-16">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="max-w-2xl"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border theme-border mb-6 bg-[var(--theme-bg)] shadow-sm backdrop-blur-md">
+                <Users className="w-4 h-4 text-[var(--theme-color)]" />
+                <span className="text-xs font-semibold tracking-wide uppercase">
+                  Real-Time Collaboration
+                </span>
+              </div>
+
+              <h1 className="h1 mb-6 leading-tight">
+                <span className="text-transparent bg-clip-text bg-gradient-to-bl from-[var(--theme-color)] to-orange-500">
+                  Collaborate
+                </span> <br />
+                in Real Time.
+              </h1>
+
+              <p className="text-base sm:text-lg opacity-70 mb-8 leading-relaxed max-w-xl">
+                Your entire team can contribute, edit, and refine documentation together—no delays, no version conflicts, and no scattered feedback.
+              </p>
+
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  href="https://app.docstar.io/login"
+                  target="_blank"
+                  className="btn btn-primary shadow-lg shadow-[var(--theme-color)]/20"
+                >
+                  Start Collaborating Today
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Hero Visual */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative hidden lg:block"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-[var(--theme-color)]/20 to-orange-500/20 rounded-2xl transform rotate-3 scale-105 blur-xl"></div>
+              <TerminalWindow title="collaboration-log.md" className="relative z-10 transform -rotate-2 hover:rotate-0 transition-all duration-500">
+                <span className="text-gray-500"># Live collaboration session</span>{"\n"}
+                <span className="text-pink-400">@john</span> <span className="text-green-300">edited</span> <span className="text-blue-300">line 45</span>{"\n"}
+                <span className="text-pink-400">@sarah</span> <span className="text-green-300">commented</span> <span className="text-blue-300">line 23</span>{"\n"}
+                <span className="text-pink-400">@mike</span> <span className="text-green-300">is typing...</span>{"\n\n"}
+                <span className="text-gray-500"># Recent changes</span>{"\n"}
+                <span className="text-amber-400">+ Added authentication section</span>{"\n"}
+                <span className="text-amber-400">+ Updated API endpoints</span>{"\n"}
+                <span className="text-rose-400">- Removed deprecated methods</span>
+              </TerminalWindow>
+              
+              {/* Floating Badge */}
+              <div className="absolute -bottom-6 -left-6 p-4 rounded-xl theme-bg-secondary border theme-border shadow-xl flex items-center gap-4 z-20 animate-bounce" style={{ animationDuration: '3s'}}>
+                <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
                 </div>
-              </motion.article>
-            ))}
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider">Status</p>
+                  <p className="text-sm font-medium opacity-80">3 Active Users</p>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
-      </motion.section>
+      </div>
+
+      <div className="container mx-auto">
+
+      {/* Why Real-Time Collaboration Matters Section */}
+      <div className="py-16 md:py-24 px-4 sm:px-6 relative">
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-semibold mb-4 tracking-tight">
+            Why Real-Time Collaboration Matters
+          </h2>
+          <p className="text-base md:text-lg opacity-60 leading-relaxed">
+            In fast-moving teams, documentation needs to keep up with product changes, customer requirements, and developer workflows. Real-time collaboration ensures that:
+          </p>
+        </div>
+
+        <div className="space-y-12 md:space-y-24 relative">
+          {/* Vertical connector line for desktop */}
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[var(--theme-border-color)] to-transparent -translate-x-1/2"></div>
+
+          {whyMatters.map((point, index) => (
+            <div key={index} className="grid md:grid-cols-2 gap-8 md:gap-16 items-center relative z-10">
+              <div className={`${index % 2 === 0 ? 'md:text-right order-2 md:order-1' : 'order-2'}`}>
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-[var(--theme-color)]/10 text-[var(--theme-color)] mb-6 shadow-[0_0_30px_rgba(var(--theme-color-rgb),0.2)]">
+                  <CheckCircle className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4">Impact #{index + 1}</h3>
+                <p className="opacity-70 text-base leading-relaxed max-w-md ml-auto">
+                  {point}
+                </p>
+              </div>
+              <div className={`${index % 2 === 0 ? 'order-1 md:order-2' : 'order-1'} relative group`}>
+                <div className="absolute inset-0 bg-gradient-to-r from-[var(--theme-color)]/20 to-orange-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="p-8 rounded-2xl border theme-border theme-bg-secondary relative z-10 shadow-xl">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-[var(--theme-color)]/10 flex items-center justify-center">
+                      <Workspace className="w-5 h-5 text-[var(--theme-color)]" />
+                    </div>
+                    <span className="text-sm font-medium opacity-60">Key Benefit</span>
+                  </div>
+                  <p className="text-sm leading-relaxed opacity-80">{point}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* Key Features Section */}
-      <motion.section
-        className="py-8 sm:py-10 md:py-12 px-4 sm:px-5 md:px-6"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <motion.span
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-md theme-bg-secondary text-xs font-medium mb-4"
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          <span className="w-2 h-2 rounded-md theme-bg"></span>
-          Features
-        </motion.span>
+      <div className="py-16 md:py-24 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--theme-border-color)]/20 to-transparent"></div>
+        
+        <div className="relative z-10 px-4 sm:px-6">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-orange-500/10 text-orange-500 mb-4">
+              <Sparkles className="w-6 h-6" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-semibold mb-4 tracking-tight">
+              Key Features of Real-Time Collaboration
+            </h2>
+            <p className="text-base md:text-lg opacity-60 max-w-2xl mx-auto">
+              Powerful collaboration tools that transform how your team works together on documentation.
+            </p>
+          </div>
 
-        <motion.h2
-          className="text-xl sm:text-2xl md:text-3xl font-medium mb-6 leading-tight"
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-        >
-          Key Features of Real-Time Collaboration
-        </motion.h2>
-
-        <div className="space-y-4 md:space-y-5">
-          {features.map((feature, index) => (
-            <article
-              key={index}
-              className="group p-5 md:p-6 rounded-md theme-bg-secondary border-l-4 border-l-transparent hover:border-l-[var(--theme-color)] transition-all duration-300"
-            >
-              <div className="flex flex-col md:flex-row gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-md bg-opacity-10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  {feature.icon}
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-medium mb-2 leading-tight">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group relative"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-[var(--theme-color)]/20 to-orange-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="h-full p-6 md:p-8 rounded-2xl border theme-border theme-bg-secondary relative z-10 hover:-translate-y-1 transition-transform duration-300 shadow-sm">
+                  <div className="w-14 h-14 rounded-xl bg-[var(--theme-color)]/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 leading-tight">
                     {feature.title}
                   </h3>
-                  <p className="text-sm leading-snug opacity-70">
+                  <p className="text-sm opacity-70 leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Benefits Section - Premium Glowing Card */}
+      <div className="py-16 md:py-24 px-4 sm:px-6">
+        <div className="max-w-4xl mx-auto relative group">
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--theme-color)] to-orange-500 rounded-3xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-700"></div>
+          
+          <div className="relative p-8 md:p-12 rounded-3xl bg-[var(--theme-bg)] border theme-border overflow-hidden">
+            <div className="absolute top-0 right-0 p-8 opacity-10">
+              <Workspace className="w-48 h-48" />
+            </div>
+            
+            <div className="flex items-center gap-4 mb-8 relative z-10">
+              <div className="w-12 h-12 rounded-xl bg-[var(--theme-color)]/10 flex items-center justify-center">
+                <Workspace className="w-6 h-6 text-[var(--theme-color)]" />
               </div>
-            </article>
-          ))}
+              <h3 className="text-2xl md:text-3xl font-bold">Benefits for Your Team</h3>
+            </div>
+            
+            <div className="grid sm:grid-cols-2 gap-4 relative z-10">
+              {benefits.map((benefit, index) => (
+                <div key={index} className="flex items-start gap-4 p-4 rounded-xl theme-bg-secondary border theme-border hover:-translate-y-1 transition-transform duration-300 shadow-sm">
+                  {benefit.icon}
+                  <div className="flex-1">
+                    <p className="text-sm font-medium opacity-90 leading-relaxed">{benefit.title}</p>
+                    <p className="text-xs opacity-60 mt-1 leading-relaxed">{benefit.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-      </motion.section>
+      </div>
 
-      {/* Benefits Section */}
-      <motion.section
-        className="py-8 sm:py-10 md:py-12 px-4 sm:px-5 md:px-6"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <motion.span
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-md theme-bg-secondary text-xs font-medium mb-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          <span className="w-2 h-2 rounded-md theme-bg"></span>
-          Benefits
-        </motion.span>
-
-        <motion.h2
-          className="text-xl sm:text-2xl md:text-3xl font-medium leading-tight"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-        >
-          Benefits for Your Team
-        </motion.h2>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mt-6">
-          {benefits.map((benefit, index) => (
-            <article
-              key={index}
-              className="group p-5 md:p-6 rounded-md theme-bg-secondary hover:shadow-lg transition-all duration-300"
-            >
-              <div className="w-12 h-12 rounded-md bg-opacity-10 flex items-center justify-center border theme-border mb-4 group-hover:scale-110 transition-transform duration-300">
-                {benefit.icon}
-              </div>
-              <h3 className="text-base font-medium mb-1.5 leading-tight">
-                {benefit.title}
-              </h3>
-              <p className="text-sm opacity-70 leading-snug">
-                {benefit.description}
-              </p>
-            </article>
-          ))}
-        </div>
-      </motion.section>
-
-      {/* Final CTA Section */}
-      <motion.section
-        className="relative py-12 overflow-hidden"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--theme-color)] to-transparent opacity-5"></div>
-        <div className="px-6 relative max-w-4xl mx-auto text-center">
-          <motion.div
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md theme-bg-secondary border theme-border mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <Sparkles className="w-4 h-4 text-[var(--theme-color)]" />
-            <span className="text-xs font-semibold">Ready to Get Started?</span>
-          </motion.div>
-
-          <motion.h2
-            className="text-xl sm:text-2xl md:text-3xl font-medium mb-4 text-balance leading-tight"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-          >
-            Transform Collaboration into Productivity
-          </motion.h2>
-
-          <motion.p
-            className="text-sm md:text-base mb-6 leading-snug opacity-70"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            With DocStar, documentation becomes a collaborative experience
-            rather than a solo task. Empower your teams to create, edit, and
-            publish in real time, ensuring your documentation is always
-            accurate, up-to-date, and ready for your audience.
-          </motion.p>
-
-          <button
-            className="btn btn-primary mx-auto"
-            onClick={() => {
-              window.open("https://app.docstar.io/login");
-            }}
-          >
-            Start Collaborating Today
-          </button>
-        </div>
-      </motion.section>
-    </div>
+      {/* CTA Section */}
+      <CTASection
+        title="Transform Collaboration into Productivity"
+        description="With DocStar, documentation becomes a collaborative experience rather than a solo task. Empower your teams to create, edit, and publish in real time, ensuring your documentation is always accurate, up-to-date, and ready for your audience."
+        buttonText="Start Collaborating Today"
+      />
+      </div>
+    </>
   );
 };
 
