@@ -2,6 +2,7 @@
 
 import type React from "react";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import FormattingTools from "./FormattingTools";
 import MotionWrapper from "@/components/motion/MotionDivWrapper";
 import {
@@ -10,7 +11,10 @@ import {
   MousePointerClick,
   Code2,
   Zap,
+  ArrowRight,
 } from "lucide-react";
+import Link from "next/link";
+import CTASection from "@/components/CTASection";
 
 const EmbedEditorPageClient: React.FC = () => {
   const features = [
@@ -124,63 +128,76 @@ const EmbedEditorPageClient: React.FC = () => {
   return (
     <div className="w-full">
       {/* Hero Section with Floating Code Preview */}
-      <section className="relative px-4 py-8 sm:px-6 sm:py-12 md:py-16 overflow-hidden">
-        <div className="absolute inset-0 theme-bg-secondary"></div>
-        <div className="absolute top-0 right-0 w-1/3 h-full theme-bg-overlay"></div>
+      <div className="relative min-h-[75vh] flex items-center border-b theme-border overflow-hidden">
+        <div className="absolute inset-0 theme-bg-secondary">
+          {/* Subtle Grid Background */}
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-bg)] to-transparent"></div>
+        </div>
 
-        <div className="relative container mx-auto">
-          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 sm:gap-8 items-center pt-12 sm:pt-16 md:pt-20">
+        {/* Floating elements */}
+        <div className="absolute top-20 right-10 w-72 h-72 bg-[var(--theme-color)]/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 left-10 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center pt-20 pb-16">
             {/* Left: Hero Content */}
-            <div className="w-full lg:col-span-7">
-              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md border theme-border mb-3 sm:mb-4">
-                <Sparkles className="h-4 w-4" />
-                <span className="text-xs font-medium uppercase tracking-wider opacity-70">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="max-w-2xl"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border theme-border mb-6 bg-[var(--theme-bg)] shadow-sm backdrop-blur-md">
+                <Zap className="w-4 h-4 text-[var(--theme-color)]" />
+                <span className="text-xs font-semibold tracking-wide uppercase">
                   Minimal Setup, Maximum Impact
                 </span>
               </div>
 
-              <h1 className="h1">
-                Google Docs <span className="text-gradient">Inside</span> Your
-                Product
+              <h1 className="h1 mb-6 leading-tight">
+                Google Docs <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-bl from-[var(--theme-color)] to-violet-500">
+                  Inside Your Product.
+                </span>
               </h1>
 
-              <p className="text-sm sm:text-base md:text-lg mb-5 sm:mb-6 leading-relaxed opacity-70 max-w-2xl">
-                Transform any text area into a powerful, collaborative editor
-                with just{" "}
-                <span className="font-semibold">one line of code</span>. Give
-                your users the editing experience they love, without the
-                complexity.
+              <p className="text-base sm:text-lg opacity-70 mb-8 leading-relaxed max-w-xl">
+                Transform any text area into a powerful, collaborative editor with just <span className="font-semibold">one line of code</span>. Give your users the editing experience they love, without the complexity.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <button
-                  className="btn btn-primary"
-                  onClick={() =>
-                    window.open(
-                      "https://app.docstar.io/p/embed-docstar-editor?collectionId=fLMgydvRdvN7",
-                      "_blank",
-                    )
-                  }
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  href="https://app.docstar.io/p/embed-docstar-editor?collectionId=fLMgydvRdvN7"
+                  target="_blank"
+                  className="btn btn-primary shadow-lg shadow-[var(--theme-color)]/20"
                 >
                   View Documentation
-                </button>
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
               </div>
-            </div>
+            </motion.div>
 
             {/* Right: Code Preview */}
-            <div className="w-full lg:col-span-5">
-              <div className="rounded-lg border theme-border theme-bg-secondary p-3 sm:p-4 md:p-5">
-                <div className="flex items-center mb-2 sm:mb-3 pb-2 border-b theme-border">
-                  <div className="flex space-x-1.5">
-                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-red-600"></div>
-                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-yellow-600"></div>
-                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-green-600"></div>
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative hidden lg:block"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-[var(--theme-color)]/20 to-violet-500/20 rounded-2xl transform rotate-3 scale-105 blur-xl"></div>
+              <div className="rounded-xl border theme-border theme-bg-secondary p-4 md:p-6 relative z-10 transform -rotate-2 hover:rotate-0 transition-all duration-500">
+                <div className="flex items-center mb-3 pb-2 border-b theme-border">
+                  <div className="flex space-x-2">
+                    <div className="w-3 h-3 rounded-full bg-rose-500/80"></div>
+                    <div className="w-3 h-3 rounded-full bg-amber-500/80"></div>
+                    <div className="w-3 h-3 rounded-full bg-emerald-500/80"></div>
                   </div>
-                  <span className="ml-2 sm:ml-3 text-xs font-medium opacity-70">
+                  <span className="ml-3 text-xs font-mono opacity-70">
                     embed-editor.js
                   </span>
                 </div>
-                <pre className="font-mono text-[10px] sm:text-xs overflow-x-auto opacity-90">
+                <pre className="font-mono text-xs overflow-x-auto opacity-90 leading-relaxed">
                   {`<script
   id="docstar-main-script"
   defaultOpen="true"
@@ -190,80 +207,107 @@ const EmbedEditorPageClient: React.FC = () => {
 </script>`}
                 </pre>
               </div>
-            </div>
+              
+              {/* Floating Badge */}
+              <div className="absolute -bottom-6 -left-6 p-4 rounded-xl theme-bg-secondary border theme-border shadow-xl flex items-center gap-4 z-20 animate-bounce" style={{ animationDuration: '3s'}}>
+                <div className="w-10 h-10 rounded-full bg-violet-500/20 flex items-center justify-center">
+                  <Zap className="w-5 h-5 text-violet-500" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider">Setup</p>
+                  <p className="text-sm font-medium opacity-80">One Line</p>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </div>
 
       <FormattingTools />
 
       {/* Features Grid */}
-      <section className="px-4 py-8 sm:px-6 sm:py-12 md:py-16">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-8 sm:mb-10">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-2 sm:mb-3 leading-tight">
+      <div className="py-16 md:py-24 px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-violet-500/10 text-violet-500 mb-4">
+              <Zap className="w-6 h-6" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-semibold mb-4 tracking-tight">
               Everything You Need, Nothing You Don't
             </h2>
-            <p className="text-sm sm:text-base max-w-3xl mx-auto opacity-70 leading-relaxed px-4">
-              Powerful editing capabilities that integrate seamlessly into your
-              existing workflow
+            <p className="text-base md:text-lg opacity-60 max-w-2xl mx-auto">
+              Powerful editing capabilities that integrate seamlessly into your existing workflow
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, index) => (
-              <div key={index} className="p-4 sm:p-5 md:p-6 rounded-lg border theme-border">
-                <feature.icon className="h-8 w-8 sm:h-10 sm:w-10 mb-3 sm:mb-4 opacity-70" />
-                <h3 className="text-base sm:text-lg font-medium mb-2 leading-tight">
-                  {feature.title}
-                </h3>
-                <p className="leading-relaxed text-sm opacity-70">
-                  {feature.description}
-                </p>
-              </div>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group relative"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-[var(--theme-color)]/20 to-violet-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="h-full p-6 md:p-8 rounded-2xl border theme-border theme-bg-secondary relative z-10 hover:-translate-y-1 transition-transform duration-300 shadow-sm">
+                  <div className="w-14 h-14 rounded-xl bg-[var(--theme-color)]/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                    <feature.icon className="w-7 h-7" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 leading-tight">{feature.title}</h3>
+                  <p className="text-sm opacity-70 leading-relaxed">{feature.description}</p>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </div>
 
       {/* How It Works */}
-      <section className="px-4 py-8 sm:px-6 sm:py-12 md:py-16 theme-bg-secondary">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-8 sm:mb-10">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-2 sm:mb-3 leading-tight">
+      <div className="py-16 md:py-24 theme-bg-secondary px-4 sm:px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-4 tracking-tight">
               Setup in Under 60 Seconds
             </h2>
-            <p className="text-sm sm:text-base opacity-70 leading-relaxed px-4">
+            <p className="text-base md:text-lg opacity-60">
               Seriously. It's that simple.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {steps.map((step, index) => (
-              <div key={index} className="text-center">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 theme-border flex items-center justify-center text-lg sm:text-xl font-medium mx-auto mb-3 sm:mb-4">
-                  {step.step}
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group relative"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-[var(--theme-color)]/20 to-violet-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="h-full p-8 rounded-2xl border theme-border bg-[var(--theme-bg)] relative z-10 hover:-translate-y-1 transition-transform duration-300 shadow-sm text-center">
+                  <div className="w-14 h-14 rounded-xl bg-[var(--theme-color)]/10 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform duration-300 text-xl font-bold">
+                    {step.step}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">{step.title}</h3>
+                  <p className="opacity-70 text-sm leading-relaxed">{step.description}</p>
                 </div>
-                <h3 className="text-sm sm:text-base font-medium mb-2 leading-tight">
-                  {step.title}
-                </h3>
-                <p className="opacity-70 text-xs sm:text-sm leading-relaxed px-2">
-                  {step.description}
-                </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Collaboration Section */}
-      <section
+      <div
         onMouseEnter={() => setIsCollaborationHovered(true)}
         onMouseLeave={() => setIsCollaborationHovered(false)}
         onMouseMove={handleMouseMove}
-        className="px-4 py-8 sm:px-6 sm:py-12 md:py-16 relative overflow-hidden"
+        className="py-16 md:py-24 px-4 sm:px-6 relative overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Your cursor indicator */}
           {isCollaborationHovered && (
             <MotionWrapper
@@ -288,25 +332,25 @@ const EmbedEditorPageClient: React.FC = () => {
               <span className="text-sm font-medium">You</span>
             </MotionWrapper>
           )}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative order-2 lg:order-1">
               {/* Mock Document */}
-              <div className="rounded-lg border theme-border p-3 sm:p-4 md:p-5 relative overflow-hidden min-h-[250px] sm:min-h-[300px]">
+              <div className="rounded-2xl border theme-border p-6 md:p-8 relative overflow-hidden min-h-[300px]">
                 {/* Document Header */}
-                <div className="flex items-center justify-between mb-2 sm:mb-3 pb-2 border-b opacity-20 theme-border">
-                  <div className="flex items-center space-x-2">
-                    <FileText className="h-4 w-4 sm:h-5 sm:w-5" />
-                    <span className="text-xs sm:text-sm font-medium">
+                <div className="flex items-center justify-between mb-4 pb-3 border-b theme-border opacity-30">
+                  <div className="flex items-center space-x-3">
+                    <FileText className="h-5 w-5" />
+                    <span className="text-sm font-medium">
                       Product Strategy Doc
                     </span>
                   </div>
                 </div>
 
                 {/* Document Content */}
-                <div className="space-y-2">
-                  <h3 className="text-sm sm:text-base font-semibold">Q1 Planning Session</h3>
+                <div className="space-y-3">
+                  <h3 className="text-base font-semibold">Q1 Planning Session</h3>
                   <div className="relative">
-                    <p className="leading-relaxed text-xs sm:text-sm min-h-[60px] sm:min-h-[80px] opacity-90">
+                    <p className="leading-relaxed text-sm min-h-[80px] opacity-90">
                       {animatedText}
                       {isCollaborationHovered && (
                         <MotionWrapper
@@ -315,7 +359,7 @@ const EmbedEditorPageClient: React.FC = () => {
                             duration: 0.8,
                             repeat: Number.POSITIVE_INFINITY,
                           }}
-                          className="inline-block w-0.5 h-4 sm:h-5 ml-1 theme-bg opacity-80"
+                          className="inline-block w-0.5 h-5 ml-1 theme-bg opacity-80"
                         />
                       )}
                     </p>
@@ -380,39 +424,42 @@ const EmbedEditorPageClient: React.FC = () => {
             </div>
 
             {/* Content */}
-            <div className="real-time-collaboration order-1 lg:order-2">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-3 sm:mb-4 leading-tight">
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="order-1 lg:order-2"
+            >
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-violet-500/10 text-violet-500 mb-6">
+                <MousePointerClick className="w-6 h-6" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-semibold mb-4 tracking-tight">
                 Real-time Collaboration
               </h2>
-              <p className="text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed opacity-70">
-                Real-time collaboration that feels natural. See who's editing,
-                share ideas instantly, and work together seamlessly.
+              <p className="text-base md:text-lg mb-8 leading-relaxed opacity-70">
+                Real-time collaboration that feels natural. See who's editing, share ideas instantly, and work together seamlessly.
               </p>
               <button
-                className="btn btn-primary"
+                className="btn btn-primary shadow-lg shadow-[var(--theme-color)]/20"
                 onClick={() =>
                   window.open("https://app.docstar.io/login", "_blank")
                 }
               >
                 Get started
+                <ArrowRight className="w-4 h-4 ml-2" />
               </button>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Footer */}
-      <footer className="px-4 py-6 sm:px-6 sm:py-8 border-t theme-border">
-        <div className="text-center max-w-7xl mx-auto">
-          <div className="flex items-center justify-center space-x-2 mb-2 sm:mb-3">
-            <Code2 className="h-5 w-5 sm:h-6 sm:w-6 opacity-80" />
-            <span className="text-base sm:text-lg font-medium">EmbedEditor</span>
-          </div>
-          <p className="opacity-70 text-xs sm:text-sm">
-            Making rich text editing accessible to every product.
-          </p>
-        </div>
-      </footer>
+      {/* CTA Section */}
+      <CTASection
+        title="Ready to Embed Rich Text Editing?"
+        description="Making rich text editing accessible to every product. Get started in under 60 seconds."
+        buttonText="Get Started"
+      />
     </div>
   );
 };

@@ -58,6 +58,9 @@ const Footer = () => {
                 <li><Link href="https://docstar.io/help" target="_blank" className="group relative inline-block">Help Doc<div
                     className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300 w-0 group-hover:w-full theme-bg"
                   /></Link></li>
+                <li><Link href="https://docstar.io/help/changelog" target="_blank" className="group relative inline-block">Change Log<div
+                    className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300 w-0 group-hover:w-full theme-bg"
+                  /></Link></li>
                 <li><Link href="https://docstar.io/blogs" target="_blank" className="group relative inline-block">Blogs<div
                     className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300 w-0 group-hover:w-full theme-bg"
                   /></Link></li>

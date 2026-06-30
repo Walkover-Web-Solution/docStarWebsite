@@ -10,7 +10,10 @@ import {
   MessageSquare,
   CheckCircle,
   Sparkles,
+  ArrowRight,
 } from "lucide-react";
+import Link from "next/link";
+import CTASection from "@/components/CTASection";
 
 export const CustomizeLayoutsPage = () => {
   const customizationFeatures = [
@@ -126,50 +129,104 @@ export const CustomizeLayoutsPage = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="py-8 sm:py-10 md:py-12 lg:py-16 theme-bg-secondary border-b theme-border">
-        <div className="container mx-auto px-4 sm:px-5 md:px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-4 mt-20"
-          >
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-md border theme-border text-xs font-medium">
-              <Sparkles className="w-4 h-4 text-[var(--theme-color)]" />
-              Layouts & Themes
-            </span>
-          </motion.div>
-
-          <motion.h1
-            className="h1 mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Design Your Way:{" "}
-            <span className="text-gradient">Layouts & Themes</span>
-          </motion.h1>
-
-          <motion.p
-            className="text-sm md:text-base mb-6 max-w-3xl mx-auto leading-snug opacity-70"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            From themes and layouts to workflows and analytics, DocStar gives
-            you full control over your content experience.
-          </motion.p>
-
-          <button
-            className="btn btn-primary mx-auto"
-            onClick={() => {
-              window.open("https://app.docstar.io/login");
-            }}
-          >
-            Get Started with DocStar
-          </button>
+      <div className="relative min-h-[75vh] flex items-center border-b theme-border overflow-hidden">
+        <div className="absolute inset-0 theme-bg-secondary">
+          {/* Subtle Grid Background */}
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-bg)] to-transparent"></div>
         </div>
-      </section>
+
+        {/* Floating elements */}
+        <div className="absolute top-20 right-10 w-72 h-72 bg-[var(--theme-color)]/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 left-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center pt-20 pb-16">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="max-w-2xl"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border theme-border bg-[var(--theme-bg)] shadow-sm backdrop-blur-md mb-6">
+                <Palette className="w-4 h-4 text-[var(--theme-color)]" />
+                <span className="text-xs font-semibold tracking-wide uppercase">
+                  Layouts & Themes
+                </span>
+              </div>
+
+              <h1 className="h1 mb-6 leading-tight">
+                Design Your Way: <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-bl from-[var(--theme-color)] to-purple-500">
+                  Layouts & Themes.
+                </span>
+              </h1>
+
+              <p className="text-base sm:text-lg opacity-70 mb-8 leading-relaxed max-w-xl">
+                From themes and layouts to workflows and analytics, DocStar gives you full control over your content experience.
+              </p>
+
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  href="https://app.docstar.io/login"
+                  target="_blank"
+                  className="btn btn-primary shadow-lg shadow-[var(--theme-color)]/20"
+                >
+                  Get Started with DocStar
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Hero Visual */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative hidden lg:block"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-[var(--theme-color)]/20 to-purple-500/20 rounded-2xl transform rotate-3 scale-105 blur-xl"></div>
+              
+              {/* Abstract Theme Customizer Mockup */}
+              <div className="relative z-10 bg-background border theme-border rounded-xl shadow-2xl p-6 transform -rotate-2 hover:rotate-0 transition-transform duration-500 flex gap-6">
+                <div className="w-32 flex flex-col gap-4 border-r theme-border pr-6">
+                  <div className="h-6 w-16 bg-black/10 dark:bg-white/10 rounded-md mb-2"></div>
+                  <div className="space-y-3">
+                    <div className="h-4 w-full bg-[var(--theme-color)]/20 rounded-sm"></div>
+                    <div className="h-4 w-5/6 bg-black/10 dark:bg-white/10 rounded-sm"></div>
+                    <div className="h-4 w-full bg-black/10 dark:bg-white/10 rounded-sm"></div>
+                    <div className="h-4 w-4/5 bg-black/10 dark:bg-white/10 rounded-sm"></div>
+                  </div>
+                </div>
+                <div className="flex-1 space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 bg-gradient-to-br from-purple-500 to-[var(--theme-color)] rounded-lg"></div>
+                    <div>
+                      <div className="h-4 w-24 bg-black/20 dark:bg-white/20 rounded-sm mb-1"></div>
+                      <div className="h-2 w-16 bg-black/10 dark:bg-white/10 rounded-sm"></div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3 mt-4">
+                    <div className="h-16 rounded-lg bg-[var(--theme-bg)] border-2 border-[var(--theme-color)] flex items-center justify-center text-xs font-bold text-[var(--theme-color)]">Light Mode</div>
+                    <div className="h-16 rounded-lg bg-[#0d1117] border theme-border flex items-center justify-center text-xs font-bold text-white">Dark Mode</div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Floating Badge */}
+              <div className="absolute -bottom-6 -left-6 p-4 rounded-xl theme-bg-secondary border theme-border shadow-xl flex items-center gap-4 z-20 animate-bounce" style={{ animationDuration: '3s'}}>
+                <div className="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-purple-500" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider">Style</p>
+                  <p className="text-sm font-medium opacity-80">Fully Custom</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
 
       <div className="container mx-auto">
       {/* Flexible Customization Section */}
@@ -261,27 +318,10 @@ export const CustomizeLayoutsPage = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-8 sm:py-10 md:py-12 lg:py-16 px-4 sm:px-5 md:px-6">
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-4 leading-tight">
-          Design Documentation That Reflects Your Brand
-        </h2>
-
-        <p className="text-sm md:text-base mb-6 opacity-70 leading-snug">
-          Stop settling for generic documentation that doesn't represent your
-          brand. With DocStar's comprehensive customization and publishing
-          tools, create a documentation experience that's as polished and
-          professional as your product itself.
-        </p>
-
-        <button
-          className="btn btn-primary"
-          onClick={() => {
-            window.open("https://app.docstar.io/login");
-          }}
-        >
-          Get Started with DocStar
-        </button>
-      </section>
+      <CTASection
+        title="Design Documentation That Reflects Your Brand"
+        description="Stop settling for generic documentation that doesn't represent your brand. With DocStar's comprehensive customization and publishing tools, create a documentation experience that's as polished and professional as your product itself."
+      />
       </div>
     </>
   );

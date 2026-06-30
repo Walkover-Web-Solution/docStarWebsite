@@ -1,22 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { Globe, CheckCircle, Sparkles, ArrowRight, Languages, MessageSquare, Zap, Layout, Shield, Code, Workflow } from "lucide-react";
+import { Globe, CheckCircle, Sparkles, ArrowRight, Languages, MessageSquare, Zap, Layout, Shield } from "lucide-react";
 import Marquee from "react-fast-marquee";
-import CTASection from "@/components/CTASection";
 
 const MultiLanguageClient = () => {
-  const [wordIndex, setWordIndex] = useState(0);
-  const localizedWords = ["Language", "Langue", "Idioma", "Sprache", "言語", "भाषा"];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setWordIndex((prev) => (prev + 1) % localizedWords.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, [localizedWords.length]);
   const languages = [
     { flag: "🇮🇳", name: "Hindi", description: "Engage with the fastest-growing user base in India.", greeting: "नमस्ते" },
     { flag: "🇪🇸", name: "Spanish", description: "Connect across Spain and Latin America.", greeting: "Hola" },
@@ -73,7 +62,7 @@ const MultiLanguageClient = () => {
         <motion.div 
           animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-indigo-500/10 rounded-full blur-[100px]"
+          className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-[var(--theme-color)]/20 rounded-full blur-[100px]"
         />
         <motion.div 
           animate={{ scale: [1, 1.5, 1], rotate: [0, -90, 0] }}
@@ -90,12 +79,12 @@ const MultiLanguageClient = () => {
                 transition={{ duration: 0.6 }}
                 className="mb-6 inline-block"
               >
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--app-border)] bg-[var(--app-bg-secondary)] shadow-sm">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border theme-border bg-background/50 backdrop-blur-xl shadow-sm hover:border-[var(--theme-color)] transition-colors">
                   <span className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--theme-color)] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-[var(--theme-color)]"></span>
                   </span>
-                  <span className="text-sm font-semibold tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-500">
+                  <span className="text-sm font-semibold tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-r from-[var(--theme-color)] to-blue-500">
                     Global Reach Unleashed
                   </span>
                 </div>
@@ -108,20 +97,11 @@ const MultiLanguageClient = () => {
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
                 Speak your <br />
-                <span className="relative inline-flex items-center mt-2 h-[1.2em] overflow-hidden align-bottom">
-                  <span className="mr-3">Users'</span>
-                  <AnimatePresence mode="popLayout">
-                    <motion.span
-                      key={wordIndex}
-                      initial={{ y: 40, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      exit={{ y: -40, opacity: 0 }}
-                      transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
-                      className="relative text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 inline-block px-1 pb-2"
-                    >
-                      {localizedWords[wordIndex]}
-                    </motion.span>
-                  </AnimatePresence>
+                <span className="relative inline-block mt-2">
+                  <span className="absolute -inset-2 bg-gradient-to-r from-[var(--theme-color)]/20 to-blue-500/20 blur-xl rounded-full"></span>
+                  <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-[var(--theme-color)] via-blue-500 to-purple-500">
+                    Users' Language
+                  </span>
                 </span>
               </motion.h1>
 
@@ -143,140 +123,73 @@ const MultiLanguageClient = () => {
                 <Link
                   href="https://app.docstar.io/login"
                   target="_blank"
-                  className="group relative inline-flex items-center justify-center px-8 py-4 font-bold transition-all duration-200 bg-[var(--app-text)] text-[var(--app-bg)] rounded-xl hover:scale-105 shadow-lg overflow-hidden"
+                  className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-[var(--theme-color)] rounded-xl hover:scale-105 hover:shadow-[0_0_40px_rgba(var(--theme-color-rgb),0.4)] overflow-hidden"
                 >
-                  <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-10 bg-gradient-to-b from-transparent via-transparent to-[var(--app-bg)]"></span>
+                  <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black"></span>
                   <span className="relative flex items-center gap-2">
                     Go Global Today
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </Link>
                 <Link
-                  href=""
-                  className="inline-flex items-center justify-center px-8 py-4 font-bold transition-all duration-200 border-2 border-[var(--app-border)] rounded-xl hover:bg-[var(--app-bg-secondary)]"
+                  href="#features"
+                  className="inline-flex items-center justify-center px-8 py-4 font-bold transition-all duration-200 border-2 theme-border rounded-xl hover:bg-[var(--theme-color)]/5 hover:border-[var(--theme-color)]/50"
                 >
                   See Features
                 </Link>
               </motion.div>
             </div>
 
-            {/* Right Side Visuals - Complex Dashboard Mockup */}
-            <div className="relative hidden lg:flex h-[600px] items-center justify-center perspective-[2000px]">
+            {/* Right Side Visuals */}
+            <div className="relative hidden lg:block h-[500px]">
               <motion.div
-                initial={{ opacity: 0, rotateY: 15, rotateX: 10, scale: 0.8 }}
-                animate={{ opacity: 1, rotateY: -5, rotateX: 5, scale: 1 }}
-                transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
-                className="relative w-full max-w-lg"
-                style={{ transformStyle: "preserve-3d" }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="absolute inset-0 grid grid-cols-2 gap-4 p-4"
               >
-                {/* Main Editor Mockup */}
-                <div className="relative z-10 bg-background/80 backdrop-blur-2xl border theme-border rounded-2xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] overflow-hidden">
-                  {/* Browser Header */}
-                  <div className="flex items-center gap-2 px-4 py-3 border-b theme-border bg-black/5">
-                    <div className="flex gap-1.5">
-                      <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                      <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                      <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                    </div>
-                    <div className="mx-auto px-4 py-1 text-xs font-mono opacity-60 bg-black/5 rounded-md flex items-center gap-2">
-                      <Globe className="w-3 h-3" />docstar.io/help
-                    </div>
-                  </div>
-                  
-                  {/* Editor Body */}
-                  <div className="p-5 grid grid-cols-2 gap-4">
-                    {/* Source English */}
-                    <div className="space-y-3">
-                      <div className="text-xs font-semibold text-blue-500 mb-2 flex items-center gap-1">
-                        <span className="text-lg">🇺🇸</span> English (Source)
-                      </div>
-                      <div className="h-4 w-3/4 bg-black/10 dark:bg-white/10 rounded"></div>
-                      <div className="h-4 w-full bg-black/10 dark:bg-white/10 rounded"></div>
-                      <div className="h-4 w-5/6 bg-black/10 dark:bg-white/10 rounded"></div>
-                      <div className="h-4 w-2/3 bg-black/10 dark:bg-white/10 rounded"></div>
-                    </div>
-                    
-                    {/* Target Translation */}
-                    <div className="space-y-3 relative">
-                      <div className="absolute -left-5 top-1/2 -translate-y-1/2 text-[var(--theme-color)]">
-                        <Workflow className="w-5 h-5 opacity-50" />
-                      </div>
-                      <div className="text-xs font-semibold text-[var(--theme-color)] mb-2 flex items-center gap-1">
-                        <AnimatePresence mode="wait">
-                          <motion.div
-                            key={wordIndex}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: 10 }}
-                            className="flex items-center gap-1"
-                          >
-                            <span className="text-lg">{languages[wordIndex % languages.length].flag}</span> {languages[wordIndex % languages.length].name}
-                          </motion.div>
-                        </AnimatePresence>
-                      </div>
-                      <motion.div 
-                        className="h-4 w-3/4 bg-[var(--theme-color)]/20 rounded"
-                        animate={{ opacity: [0.4, 1, 0.4] }} transition={{ duration: 2, repeat: Infinity }}
-                      />
-                      <motion.div 
-                        className="h-4 w-full bg-[var(--theme-color)]/20 rounded"
-                        animate={{ opacity: [0.4, 1, 0.4] }} transition={{ duration: 2, delay: 0.2, repeat: Infinity }}
-                      />
-                      <motion.div 
-                        className="h-4 w-5/6 bg-[var(--theme-color)]/20 rounded"
-                        animate={{ opacity: [0.4, 1, 0.4] }} transition={{ duration: 2, delay: 0.4, repeat: Infinity }}
-                      />
-                      <motion.div 
-                        className="h-4 w-2/3 bg-[var(--theme-color)]/20 rounded"
-                        animate={{ opacity: [0.4, 1, 0.4] }} transition={{ duration: 2, delay: 0.6, repeat: Infinity }}
-                      />
-                    </div>
-                  </div>
-                  
-                  {/* Status Bar */}
-                  <div className="border-t theme-border p-3 flex justify-between items-center bg-black/5">
-                    <div className="flex items-center gap-2 text-xs font-semibold text-green-500">
-                      <CheckCircle className="w-4 h-4" /> AI Sync Complete
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="flex -space-x-2">
-                        <div className="w-6 h-6 rounded-full border-2 border-background bg-blue-100 flex items-center justify-center text-xs">👨‍💻</div>
-                        <div className="w-6 h-6 rounded-full border-2 border-background bg-purple-100 flex items-center justify-center text-xs">🤖</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Floating Add-ons */}
-                <motion.div
-                  animate={{ y: [-10, 10, -10], translateZ: [20, 50, 20] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute -right-12 -top-12 z-20 bg-background/80 backdrop-blur-xl border theme-border p-4 rounded-xl shadow-xl flex items-center gap-3"
+                {/* Floating Cards */}
+                <motion.div 
+                  animate={{ y: [0, -15, 0] }} 
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="col-span-2 bg-background/60 backdrop-blur-xl border theme-border rounded-2xl p-6 shadow-2xl relative overflow-hidden group"
                 >
-                  <div className="p-2 bg-gradient-to-br from-orange-400 to-red-500 rounded-lg text-white">
-                    <Zap className="w-5 h-5" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-4xl">🇫🇷</span>
+                      <div>
+                        <div className="text-sm opacity-60">Translating to French</div>
+                        <div className="font-bold">Introduction.md</div>
+                      </div>
+                    </div>
+                    <div className="px-3 py-1 bg-green-500/20 text-green-500 rounded-full text-xs font-bold">100%</div>
                   </div>
-                  <div>
-                    <div className="text-xs opacity-60">Auto-Translate</div>
-                    <div className="font-bold text-sm">Enabled</div>
+                  <div className="h-2 w-full bg-background rounded-full overflow-hidden">
+                    <div className="h-full bg-gradient-to-r from-green-400 to-emerald-500 w-full"></div>
                   </div>
                 </motion.div>
 
-                <motion.div
-                  animate={{ y: [10, -10, 10], translateZ: [0, 30, 0] }}
+                <motion.div 
+                  animate={{ y: [0, 20, 0] }} 
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                  className="absolute -left-16 -bottom-8 z-0 bg-background/80 backdrop-blur-xl border theme-border p-4 rounded-xl shadow-xl flex flex-col gap-2 w-48"
+                  className="bg-background/60 backdrop-blur-xl border theme-border rounded-2xl p-6 shadow-xl relative overflow-hidden group"
                 >
-                  <div className="text-xs font-bold opacity-70 mb-1 flex items-center gap-1"><Code className="w-3 h-3" /> SEO Metadata</div>
-                  <div className="flex justify-between items-center text-xs">
-                    <span>Title tags</span>
-                    <span className="text-green-500">100%</span>
-                  </div>
-                  <div className="w-full bg-black/10 dark:bg-white/10 h-1.5 rounded-full overflow-hidden">
-                    <div className="w-full bg-green-500 h-full"></div>
-                  </div>
+                   <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                   <span className="text-5xl block mb-2">🇯🇵</span>
+                   <div className="font-bold text-lg mb-1">Japanese</div>
+                   <div className="text-sm opacity-60">こんにちは</div>
                 </motion.div>
 
+                <motion.div 
+                  animate={{ y: [0, -20, 0] }} 
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                  className="bg-[var(--theme-color)] text-white rounded-2xl p-6 shadow-xl relative overflow-hidden group flex flex-col justify-center items-center text-center"
+                >
+                  <Sparkles className="w-10 h-10 mb-3 opacity-80" />
+                  <div className="font-bold text-xl">AI Powered</div>
+                  <div className="text-sm opacity-80 mt-1">Zero effort translation</div>
+                </motion.div>
               </motion.div>
             </div>
           </div>
@@ -354,9 +267,9 @@ const MultiLanguageClient = () => {
                 Connect with every culture.
               </h2>
             </div>
-            {/* <p className="text-lg opacity-60 max-w-md">
+            <p className="text-lg opacity-60 max-w-md">
               DocStar provides full support for the world's most widely spoken languages, handling RTL formatting, special characters, and SEO localization natively.
-            </p> */}
+            </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -372,7 +285,7 @@ const MultiLanguageClient = () => {
                 <div className="h-full p-6 rounded-3xl border theme-border theme-bg-secondary hover:border-[var(--theme-color)]/50 hover:bg-background transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-4xl group-hover:scale-125 transition-transform duration-300 origin-bottom-left">{language.flag}</span>
-                    <span className="text-normal font-bold px-2 py-1 bg-background rounded-md opacity-50 group-hover:opacity-100">{language.greeting}</span>
+                    <span className="text-xs font-bold px-2 py-1 bg-background rounded-md opacity-50 group-hover:opacity-100">{language.greeting}</span>
                   </div>
                   <h3 className="text-xl font-bold mb-2">{language.name}</h3>
                   <p className="text-sm opacity-60">{language.description}</p>
@@ -384,14 +297,45 @@ const MultiLanguageClient = () => {
       </div>
 
       {/* CTA Section */}
-      <CTASection
-        title="Ready to break language barriers?"
-        description="Join thousands of global teams using DocStar to deliver world-class documentation in every language."
-        buttonText="Start Localizing for Free"
-      />
+      <div className="py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[var(--theme-color)]"></div>
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+        
+        {/* Animated Background Rays */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+
+        <div className="container mx-auto relative px-4 sm:px-6 text-center z-10 max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center"
+          >
+            <Shield className="w-16 h-16 text-white mb-8 opacity-90" />
+            
+            <h2 className="text-4xl md:text-6xl font-extrabold mb-6 text-white tracking-tight">
+              Ready to break language barriers?
+            </h2>
+
+            <p className="text-xl text-white/80 mb-10 max-w-2xl leading-relaxed">
+              Join thousands of global teams using DocStar to deliver world-class documentation in every language.
+            </p>
+
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-10 py-5 bg-white text-[var(--theme-color)] text-lg font-bold rounded-2xl shadow-2xl flex items-center gap-3 hover:bg-gray-50 transition-colors"
+              onClick={() => window.open("https://app.docstar.io/login", "_blank")}
+            >
+              Start Localizing for Free
+              <ArrowRight className="w-6 h-6" />
+            </motion.button>
+            <p className="text-white/60 text-sm mt-6">No credit card required. Setup in minutes.</p>
+          </motion.div>
+        </div>
+      </div>
     </div>
   );
 };
 
 export default MultiLanguageClient;
-

@@ -27,10 +27,12 @@ export default function RootLayout({
       <head>
         <ThemeScript />
       </head>
-      <body className="antialiased">
+      <body className="antialiased overflow-x-hidden flex flex-col min-h-screen">
         <Navbar />
         <ScrollToTop />
-        {children}
+        <main className="flex-1 overflow-x-hidden">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

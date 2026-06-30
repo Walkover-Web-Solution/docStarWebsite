@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import {
   FileText,
   Sparkles,
@@ -13,8 +14,29 @@ import {
   Globe,
   BellRing,
   XCircle,
+  Terminal,
 } from "lucide-react";
 import Link from "next/link";
+import CTASection from "@/components/CTASection";
+
+const TerminalWindow = ({ title, children, className = "" }: { title: string, children: React.ReactNode, className?: string }) => (
+  <div className={`rounded-xl overflow-hidden border theme-border shadow-2xl bg-[#0d1117] ${className}`}>
+    <div className="flex items-center px-4 py-3 bg-[#161b22] border-b border-gray-800">
+      <div className="flex space-x-2">
+        <div className="w-3 h-3 rounded-full bg-rose-500/80"></div>
+        <div className="w-3 h-3 rounded-full bg-amber-500/80"></div>
+        <div className="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+      </div>
+      <div className="mx-auto text-xs font-mono text-gray-500 flex items-center gap-2">
+        <Terminal className="w-3 h-3" />
+        {title}
+      </div>
+    </div>
+    <div className="p-5 font-mono text-sm text-gray-300 overflow-x-auto leading-relaxed">
+      {children}
+    </div>
+  </div>
+);
 
 export const ChangelogClient = () => {
   const benefits = [
@@ -101,187 +123,249 @@ export const ChangelogClient = () => {
   return (
     <>
       {/* Hero Section */}
-      <div className="relative min-h-[60vh] sm:min-h-[65vh] md:min-h-[70vh] flex items-center">
-        <div className="absolute inset-0 theme-bg-secondary overflow-hidden">
-          <div className="absolute top-0 right-0 w-1/2 h-full theme-bg-overlay transform skew-x-12"></div>
+      <div className="relative min-h-[75vh] flex items-center border-b theme-border overflow-hidden">
+        <div className="absolute inset-0 theme-bg-secondary">
+          {/* Subtle Grid Background */}
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-bg)] to-transparent"></div>
         </div>
 
-        <div className="container mx-auto">
-          <div className="relative px-4 py-8 sm:px-5 sm:py-10 md:px-6 md:py-12 w-full z-10">
-            <div className="inline-flex items-center gap-2 mt-12 px-2.5 py-1 rounded-md border theme-border mb-3 sm:mb-3.5 md:mb-4 bg-[var(--theme-bg)]">
-              <div className="w-1.5 h-1.5 rounded-md theme-bg"></div>
-              <span className="text-xs font-medium uppercase tracking-wider opacity-70">
-                AI-Powered Changelog
-              </span>
-            </div>
+        {/* Floating elements */}
+        <div className="absolute top-20 right-10 w-72 h-72 bg-[var(--theme-color)]/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 left-10 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
 
-            <h1 className="h1 mb-4 max-w-3xl">
-              Ship Faster. <span className="opacity-60">Let AI Write the Release Notes.</span>
-            </h1>
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center pt-20 pb-16">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="max-w-2xl"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border theme-border bg-[var(--theme-bg)] shadow-sm backdrop-blur-md mb-6">
+                <History className="w-4 h-4 text-[var(--theme-color)]" />
+                <span className="text-xs font-semibold tracking-wide uppercase">
+                  AI-Powered Changelog
+                </span>
+              </div>
 
-            <p className="text-sm sm:text-[15px] md:text-base opacity-70 mb-5 sm:mb-5.5 md:mb-6 leading-relaxed max-w-2xl">
-              Keep your users informed effortlessly. DocStar tracks your documentation updates and automatically drafts polished release notes, giving you a centralized hub for all product announcements.
-            </p>
+              <h1 className="h1 mb-6 leading-tight">
+                Ship Faster. <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-bl from-[var(--theme-color)] to-orange-500">
+                  Let AI Write the Release Notes.
+                </span>
+              </h1>
 
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="https://app.docstar.io/login"
-                target="_blank"
-                className="btn btn-primary"
-              >
-                Start Tracking Updates
-              </Link>
-            </div>
+              <p className="text-base sm:text-lg opacity-70 mb-8 leading-relaxed max-w-xl">
+                Keep your users informed effortlessly. DocStar tracks your documentation updates and automatically drafts polished release notes, giving you a centralized hub for all product announcements.
+              </p>
+
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  href="https://app.docstar.io/login"
+                  target="_blank"
+                  className="btn btn-primary shadow-lg shadow-[var(--theme-color)]/20"
+                >
+                  Start Tracking Updates
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Hero Visual */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative hidden lg:block"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-[var(--theme-color)]/20 to-orange-500/20 rounded-2xl transform rotate-3 scale-105 blur-xl"></div>
+              
+              <TerminalWindow title="ai-changelog-generator.ts" className="relative z-10 transform -rotate-2 hover:rotate-0 transition-all duration-500">
+                <span className="text-pink-400">const</span> <span className="text-blue-300">generateReleaseNotes</span> <span className="text-pink-400">=</span> <span className="text-pink-400">async</span> (<span className="text-orange-300">diff</span>) <span className="text-pink-400">{`=>`}</span> {"{\n"}
+                <span className="text-gray-500">  // DocStar AI analyzes documentation changes</span>{"\n"}
+                <span className="text-pink-400">  const</span> summary <span className="text-pink-400">=</span> <span className="text-pink-400">await</span> ai.<span className="text-blue-300">summarize</span>(diff);{"\n\n"}
+                <span className="text-gray-500">  // Drafts a beautifully formatted changelog</span>{"\n"}
+                <span className="text-pink-400">  return</span> {"{\n"}
+                <span className="text-gray-300">    title: </span><span className="text-green-300">"New Authentication API & Webhooks"</span>,{"\n"}
+                <span className="text-gray-300">    type: </span><span className="text-green-300">"feature"</span>,{"\n"}
+                <span className="text-gray-300">    content: summary.markdown,</span>{"\n"}
+                <span className="text-gray-300">    status: </span><span className="text-green-300">"pending_review"</span>{"\n"}
+                <span className="text-gray-300">  </span>{"}\n"}
+                {"}"};
+              </TerminalWindow>
+              
+              {/* Floating Badge */}
+              <div className="absolute -bottom-6 -left-6 p-4 rounded-xl theme-bg-secondary border theme-border shadow-xl flex items-center gap-4 z-20 animate-bounce" style={{ animationDuration: '3s'}}>
+                <div className="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-orange-500" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider">AI Task</p>
+                  <p className="text-sm font-medium opacity-80">Draft Generated</p>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
 
       <div className="container mx-auto">
         {/* Problem vs Solution - Side by Side */}
-        <div className="py-8 sm:py-10 md:py-12 lg:py-16">
-          <div className="px-4 sm:px-5 md:px-6 text-center mb-8 sm:mb-9 md:mb-10">
-            <h2 className="text-xl sm:text-2xl md:text-3xl mb-2 sm:mb-2.5 md:mb-3 leading-tight font-medium">
+        <div className="py-16 md:py-24 px-4 sm:px-6 relative">
+          <div className="text-center mb-16 max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-4 tracking-tight">
               Why Use an Automated Changelog?
             </h2>
-            <p className="text-sm md:text-base opacity-60 leading-snug max-w-2xl mx-auto">
+            <p className="text-base md:text-lg opacity-60 leading-relaxed">
               Stop letting your hard work go unnoticed because writing release notes takes too much time.
             </p>
           </div>
 
-          <div className="px-4 sm:px-5 md:px-6 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
-            {/* The Old Way */}
-            <div className="h-full p-4 sm:p-4.5 md:p-5 lg:p-6 rounded-lg border theme-border theme-bg-secondary relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-rose-500/5 rounded-full blur-3xl -mr-10 -mt-10 transition-transform group-hover:scale-150 duration-700"></div>
-              <div className="flex items-center gap-2.5 mb-3 sm:mb-3.5 md:mb-4 relative z-10">
-                <div className="w-7 h-7 sm:w-7.5 md:w-8 md:h-8 rounded-md theme-bg-overlay flex items-center justify-center">
-                  <Edit3 className="w-3.5 h-3.5 sm:w-3.75 md:w-4 md:h-4 opacity-70" />
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="group relative"
+            >
+              <div className="absolute inset-0 bg-rose-500/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="h-full p-8 rounded-2xl border theme-border theme-bg-secondary relative z-10">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 rounded-xl bg-rose-500/10 flex items-center justify-center">
+                    <Edit3 className="w-6 h-6 text-rose-500" />
+                  </div>
+                  <h3 className="text-xl font-bold opacity-60">Manual Updates</h3>
                 </div>
-                <h3 className="text-base sm:text-[17px] md:text-lg opacity-60">Manual Updates</h3>
-              </div>
 
-              <div className="space-y-3 relative z-10">
-                {problems.map((problem, index) => (
-                  <div
-                    key={index}
-                    className="flex items-start gap-2.5 p-2.5 sm:p-2.75 md:p-3 rounded"
-                  >
-                    <div className="opacity-60 flex-shrink-0 mt-0.5 text-rose-500">
-                      {problem.icon}
+                <div className="space-y-4">
+                  {problems.map((problem, index) => (
+                    <div key={index} className="flex items-start gap-3 p-4 rounded-xl bg-[var(--theme-bg)] border theme-border">
+                      <div className="opacity-60 flex-shrink-0 mt-0.5 text-rose-500">{problem.icon}</div>
+                      <p className="opacity-70 text-sm leading-relaxed">{problem.text}</p>
                     </div>
-                    <p className="opacity-70 text-xs md:text-sm leading-snug">
-                      {problem.text}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* The DocStar Way */}
-            <div className="h-full p-4 sm:p-4.5 md:p-5 lg:p-6 rounded-lg border theme-border relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/5 rounded-full blur-3xl -mr-10 -mt-10 transition-transform group-hover:scale-150 duration-700"></div>
-              <div className="flex items-center gap-2.5 mb-3 sm:mb-3.5 md:mb-4 relative z-10">
-                <div className="w-7 h-7 sm:w-7.5 md:w-8 md:h-8 rounded-md theme-bg-overlay flex items-center justify-center">
-                  <Sparkles className="w-3.5 h-3.5 sm:w-3.75 md:w-4 md:h-4 text-[var(--theme-color)]" />
+                  ))}
                 </div>
-                <h3 className="text-base sm:text-[17px] md:text-lg font-medium">DocStar AI Changelog</h3>
               </div>
+            </motion.div>
 
-              <div className="space-y-3 relative z-10">
-                {solutions.map((solution, index) => (
-                  <div
-                    key={index}
-                    className="flex items-start gap-2.5 p-2.5 sm:p-2.75 md:p-3 rounded-md theme-bg-secondary"
-                  >
-                    <div className="flex-shrink-0 mt-0.5 text-[var(--theme-color)]">{solution.icon}</div>
-                    <p className="opacity-70 text-xs md:text-sm leading-snug">
-                      {solution.text}
-                    </p>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="group relative"
+            >
+              <div className="absolute inset-0 bg-emerald-500/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="h-full p-8 rounded-2xl border theme-border bg-[var(--theme-bg)] relative z-10">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center">
+                    <Sparkles className="w-6 h-6 text-emerald-500" />
                   </div>
-                ))}
+                  <h3 className="text-xl font-bold">DocStar AI Changelog</h3>
+                </div>
+
+                <div className="space-y-4">
+                  {solutions.map((solution, index) => (
+                    <div key={index} className="flex items-start gap-3 p-4 rounded-xl theme-bg-secondary border theme-border">
+                      <div className="flex-shrink-0 mt-0.5 text-[var(--theme-color)]">{solution.icon}</div>
+                      <p className="opacity-70 text-sm leading-relaxed">{solution.text}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
 
         {/* Why Choose Section */}
-        <div className="py-12 md:py-16 theme-bg-secondary px-6 relative overflow-hidden">
-          {/* Subtle background decoration */}
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--theme-border-color)] to-transparent opacity-50"></div>
+        <div className="py-16 md:py-24 relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--theme-border-color)]/20 to-transparent"></div>
           
-          <div className="text-center mb-10 relative z-10">
-            <h2 className="text-2xl md:text-3xl mb-2 leading-tight font-medium">
-              A Complete Update Engine
-            </h2>
-            <p className="text-sm sm:text-[15px] md:text-base opacity-60 leading-snug max-w-2xl mx-auto">
-              Everything you need to maintain a beautiful, engaging timeline of your product's evolution.
-            </p>
-          </div>
-
-          <div className="px-6 grid md:grid-cols-2 gap-6 relative z-10">
-            {whyChoose.map((item, index) => (
-              <div
-                key={index}
-                className="h-full p-4 sm:p-4.5 md:p-5 lg:p-6 rounded-lg border theme-border bg-[var(--theme-bg)] hover:border-[var(--theme-color)] transition-colors duration-300"
-              >
-                <div className="flex items-start gap-3 sm:gap-3.5 md:gap-4">
-                  <div className="w-9 h-9 sm:w-9.5 md:w-10 md:h-10 rounded-md theme-bg-secondary flex items-center justify-center flex-shrink-0 opacity-80">
-                    {item.icon}
-                  </div>
-
-                  <div className="flex-1">
-                    <h3 className="text-base sm:text-[17px] md:text-lg mb-2 leading-tight">{item.title}</h3>
-                    <p className="opacity-70 text-sm sm:text-[14.5px] leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
+          <div className="relative z-10 px-4 sm:px-6">
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-orange-500/10 text-orange-500 mb-4">
+                <Zap className="w-6 h-6" />
               </div>
-            ))}
+              <h2 className="text-3xl md:text-4xl font-semibold mb-4 tracking-tight">
+                A Complete Update Engine
+              </h2>
+              <p className="text-base md:text-lg opacity-60 max-w-2xl mx-auto">
+                Everything you need to maintain a beautiful, engaging timeline of your product's evolution.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              {whyChoose.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="group relative"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-[var(--theme-color)]/20 to-orange-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="h-full p-6 md:p-8 rounded-2xl border theme-border theme-bg-secondary relative z-10 hover:-translate-y-1 transition-transform duration-300 shadow-sm">
+                    <div className="w-14 h-14 rounded-xl bg-[var(--theme-color)]/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                      {item.icon}
+                    </div>
+                    <h3 className="text-xl font-bold mb-3 leading-tight">{item.title}</h3>
+                    <p className="text-sm opacity-70 leading-relaxed">{item.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Key Benefits Section */}
-        <div className="py-8 sm:py-10 md:py-12 lg:py-16">
-          <div className="px-4 sm:px-5 md:px-6 text-center mb-8 sm:mb-9 md:mb-10">
-            <h2 className="text-xl sm:text-2xl md:text-3xl mb-2 sm:mb-2.5 md:mb-3 leading-tight font-medium">
+        <div className="py-16 md:py-24 px-4 sm:px-6">
+          <div className="text-center mb-16 max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-4 tracking-tight">
               Features Built for Velocity
             </h2>
-            <p className="text-sm md:text-base opacity-60 leading-snug">
+            <p className="text-base md:text-lg opacity-60 leading-relaxed">
               Designed to help you ship faster and communicate better
             </p>
           </div>
 
-          <div className="px-4 sm:px-5 md:px-6 grid md:grid-cols-2 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {benefits.map((benefit, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="h-full p-4 sm:p-4.5 md:p-5 lg:p-6 rounded-lg border theme-border backdrop-blur-sm theme-bg-secondary hover:shadow-lg transition-shadow duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group relative"
               >
-                <div className="w-10 h-10 sm:w-11 md:w-12 md:h-12 rounded-md bg-[var(--theme-bg)] border theme-border flex items-center justify-center mb-3 sm:mb-3.5 md:mb-4">
-                  {benefit.icon}
+                <div className="absolute inset-0 bg-gradient-to-r from-[var(--theme-color)]/20 to-orange-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="h-full p-6 md:p-8 rounded-2xl border theme-border theme-bg-secondary relative z-10 hover:-translate-y-1 transition-transform duration-300 shadow-sm">
+                  <div className="w-14 h-14 rounded-xl bg-[var(--theme-color)]/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                    {benefit.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 leading-tight">{benefit.title}</h3>
+                  <p className="text-sm opacity-70 leading-relaxed">{benefit.description}</p>
                 </div>
-
-                <h3 className="text-base sm:text-[17px] md:text-lg mb-2 leading-tight">{benefit.title}</h3>
-                <p className="opacity-70 leading-relaxed text-sm sm:text-[14.5px]">
-                  {benefit.description}
-                </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* How It Works - Horizontal Flow */}
-        <div className="py-12 md:py-16 theme-bg-secondary px-6">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl mb-2 leading-tight font-medium">
+        <div className="py-16 md:py-24 theme-bg-secondary px-4 sm:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-4 tracking-tight">
               How the Automation Works
             </h2>
-            <p className="text-sm md:text-base opacity-60 leading-snug">
+            <p className="text-base md:text-lg opacity-60 max-w-2xl mx-auto">
               A frictionless flow from editing docs to publishing updates
             </p>
           </div>
 
-          <div className="px-4 sm:px-5 md:px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 md:gap-6 relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
               {
                 num: "01",
@@ -302,59 +386,34 @@ export const ChangelogClient = () => {
                 icon: <CheckCircle className="w-6 h-6" />,
               },
             ].map((step, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="p-4 sm:p-4.5 md:p-5 lg:p-6 rounded-lg border theme-border text-center relative z-10 bg-[var(--theme-bg)] shadow-sm hover:border-[var(--theme-color)] transition-colors duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group relative"
               >
-                <div className="w-9 h-9 sm:w-9.5 md:w-10 md:h-10 rounded-md theme-bg-overlay flex items-center justify-center mx-auto mb-2.5 sm:mb-2.75 md:mb-3 text-[var(--theme-color)]">
-                  {step.icon}
+                <div className="absolute inset-0 bg-gradient-to-r from-[var(--theme-color)]/20 to-orange-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="h-full p-8 rounded-2xl border theme-border bg-[var(--theme-bg)] relative z-10 hover:-translate-y-1 transition-transform duration-300 shadow-sm text-center">
+                  <div className="w-14 h-14 rounded-xl bg-[var(--theme-color)]/10 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform duration-300">
+                    {step.icon}
+                  </div>
+                  <div className="text-xs font-mono opacity-40 mb-3">{step.num}</div>
+                  <h3 className="text-xl font-bold mb-3">{step.title}</h3>
+                  <p className="opacity-70 text-sm leading-relaxed">{step.desc}</p>
                 </div>
-                <div className="text-[10px] sm:text-[11px] md:text-xs font-mono opacity-40 mb-1.5">
-                  {step.num}
-                </div>
-                <h3 className="text-sm sm:text-[15px] md:text-base mb-2 leading-tight font-medium">
-                  {step.title}
-                </h3>
-                <p className="opacity-70 text-xs sm:text-[13px] leading-relaxed">{step.desc}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
-        {/* CTA - Full Width */}
-        <div className="py-8 sm:py-10 md:py-12 lg:py-16 relative overflow-hidden">
-          <div className="absolute inset-0 theme-bg-secondary"></div>
-          <div className="absolute inset-0 theme-bg-overlay transform -skew-y-2"></div>
-
-          <div className="relative px-4 sm:px-5 md:px-6 text-center z-10">
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md border theme-border mb-4 bg-[var(--theme-bg)]">
-              <History className="w-3.5 h-3.5 opacity-70" />
-              <span className="text-xs font-medium uppercase tracking-wider opacity-70">
-                Start Announcing
-              </span>
-            </div>
-
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-3 sm:mb-3.5 md:mb-4 leading-tight font-medium">
-              Ready to Keep Your Users in the Loop?
-            </h2>
-
-            <p className="text-sm sm:text-[15px] md:text-base opacity-70 mb-5 sm:mb-5.5 md:mb-6 max-w-2xl mx-auto leading-relaxed">
-              Launch your integrated changelog today. Let AI handle the heavy lifting while you focus on building and documenting great products.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <button
-                className="btn btn-primary px-5 py-2.5 sm:px-5.5 sm:py-2.75 md:px-6 md:py-3 text-sm sm:text-[15px] md:text-base"
-                onClick={() => {
-                  window.open("https://app.docstar.io/login");
-                }}
-              >
-                Create Your Changelog
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </button>
-            </div>
-          </div>
-        </div>
+        {/* CTA Section */}
+        <CTASection
+          title="Ready to Keep Your Users in the Loop?"
+          description="Launch your integrated changelog today. Let AI handle the heavy lifting while you focus on building and documenting great products."
+          buttonText="Create Your Changelog"
+        />
       </div>
     </>
   );
