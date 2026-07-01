@@ -1,6 +1,8 @@
 import { TestimonialItem } from "@/types/data-types";
 import Image from "next/image";
 import Link from "next/link";
+import MotionWrapper from "../motion/MotionDivWrapper";
+import { Quote } from "lucide-react";
 
 const TestimonialSection = ({
   testimonials,
@@ -18,60 +20,66 @@ const TestimonialSection = ({
   const productLogoSrc = t?.product_logo?.[0] ?? t?.product_logo?.[index] ?? "";
 
   return (
-    <section className="w-full theme-bg-secondary py-20 px-6">
-      <div className="container mx-auto max-w-4xl">
-        <div className="flex flex-col space-y-8">
-          {/* <div className="flex justify-center"> */}
-          <svg
-            className="w-12 h-12 opacity-30"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-          </svg>
-          {/* </div> */}
+    <section className="w-full py-18 md:py-16 px-6 relative overflow-hidden dark:bg-black/20">
+      {/* Subtle Background Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--theme-color)]/5 blur-[120px] rounded-full pointer-events-none"></div>
 
-          <blockquote className="text-xl font-normal leading-relaxed">
-            {t?.testimonial}
-          </blockquote>
-
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-4 border-t theme-border">
-            <div className="flex items-center gap-4">
-              <figure className="w-16 h-16 overflow-hidden rounded-full border theme-border flex-shrink-0">
-                <img
-                  src={imageSrc}
-                  alt={t?.given_by ?? "Testimonial author"}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </figure>
-              <div className="text-left">
-                <p className="font-semibold text-base">{t?.given_by}</p>
-                <p className="text-sm opacity-70">{t?.giver_title}</p>
-              </div>
-            </div>
-
-            {productLogoSrc && (
-              <div className="flex gap-2 items-center">
-                <Image
-                  src={productLogoSrc}
-                  alt={t?.product ?? "Product logo"}
-                  className="rounded-md object-cover"
-                  loading="lazy"
-                  width={40}
-                  height={40}
-                />
-                <Link
-                  href={t?.link || "/"}
-                  target="_blank"
-                  className="text-sm opacity-70"
-                >
-                  {t?.product}
-                </Link>
-              </div>
-            )}
+      <div className="container mx-auto max-w-4xl relative z-10">
+        <MotionWrapper
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="relative rounded-3xl p-8 md:p-12 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border theme-border shadow-xl"
+        >
+          {/* Quote Icon */}
+          <div className="absolute -top-3 left-10 w-12 h-12 rounded-2xl bg-[var(--theme-bg)] border theme-border shadow-lg flex items-center justify-center">
+            <Quote className="w-6 h-6 text-[var(--theme-color)]" />
           </div>
-        </div>
+
+          <div className="flex flex-col space-y-8 mt-4">
+            <blockquote className="text-xl md:text-2xl font-semibold leading-relaxed tracking-tight text-gray-900 dark:text-white">
+              "{t?.testimonial}"
+            </blockquote>
+
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t theme-border">
+              <div className="flex items-center gap-4">
+                <figure className="w-12 h-12 overflow-hidden rounded-full border-2 border-white dark:border-gray-800 shadow-md flex-shrink-0">
+                  <img
+                    src={imageSrc}
+                    alt={t?.given_by ?? "Testimonial author"}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </figure>
+                <div className="text-left">
+                  <p className="font-semibold text-gray-900 text-sm dark:text-white">{t?.given_by}</p>
+                  <p className="text-sm font-medium text-[var(--theme-color)]">{t?.giver_title}</p>
+                </div>
+              </div>
+
+              {productLogoSrc && (
+                <div className="flex gap-3 items-center px-4 py-2 rounded-full bg-white dark:bg-gray-950 border theme-border shadow-sm hover:shadow-md transition-shadow">
+                  <Image
+                    src={productLogoSrc}
+                    alt={t?.product ?? "Product logo"}
+                    className="rounded-md object-contain"
+                    loading="lazy"
+                    width={24}
+                    height={24}
+                  />
+                  <Link
+                    href={t?.link || "/"}
+                    target="_blank"
+                    className="text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-[var(--theme-color)] transition-colors"
+                  >
+                    {t?.product}
+                  </Link>
+                </div>
+              )}
+            </div>
+          </div>
+        </MotionWrapper>
       </div>
     </section>
   );

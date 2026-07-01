@@ -61,14 +61,14 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed w-full top-0 z-50 transition-all duration-10 ${
+      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-transparent backdrop-blur-md "
-          : "bg-transparent backdrop-blur-md "
+          ? "bg-white/80 dark:bg-gray-950/80 backdrop-blur-lg border-b border-gray-200/50 dark:border-gray-800/50 shadow-sm py-1"
+          : "bg-transparent py-4"
       }`}
     >
-      <div className="mx-auto container px-2">
-        <div className="flex justify-between gap-8 items-center h-20">
+      <div className="mx-auto container px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between gap-8 items-center h-16">
           {/* Logo */}
           <div className="flex items-center ">
             <Logo size="md" className="transition-colors" />
@@ -90,11 +90,11 @@ const Navbar = () => {
                   key={item.name}
                   onClick={() => handleNavClick(item.href)}
                   aria-current={isActiveLink ? "page" : undefined}
-                  className="relative min-w-fit group cursor-pointer bg-transparent border-0 p-0"
+                  className="relative min-w-fit group cursor-pointer bg-transparent border-0 p-0 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-950 dark:hover:text-white transition-colors"
                 >
                   {item.name}
                   <div
-                    className={`absolute -bottom-1 left-0 h-0.5 theme-bg transition-all duration-300 ${isActiveLink ? "w-full" : "w-0 group-hover:w-full"}`}
+                    className={`absolute -bottom-1.5 left-0 h-0.5 bg-gradient-to-r from-[var(--theme-color)] to-blue-500 rounded-full transition-all duration-300 ${isActiveLink ? "w-full opacity-100" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"}`}
                   />
                 </button>
               ) : (
@@ -103,11 +103,11 @@ const Navbar = () => {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative min-w-fit group cursor-pointer no-underline"
+                  className="relative min-w-fit group cursor-pointer no-underline text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-950 dark:hover:text-white transition-colors"
                 >
                   {item.name}
                   <div
-                    className="absolute -bottom-1 left-0 h-0.5 theme-bg transition-all duration-300 w-0 group-hover:w-full"
+                    className="absolute -bottom-1.5 left-0 h-0.5 bg-gradient-to-r from-[var(--theme-color)] to-blue-500 rounded-full transition-all duration-300 w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
                   />
                 </a>
               );
@@ -121,7 +121,7 @@ const Navbar = () => {
               href="https://app.docstar.io/login"
               target="_blank"
               rel="noopener noreferrer"
-              className={`btn btn-primary`}
+              className="relative inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold text-white bg-gray-950 dark:bg-white dark:text-gray-950 rounded-xl transition-all shadow-md hover:scale-[1.02] hover:shadow-lg"
             >
               Sign In
             </a>
@@ -146,8 +146,8 @@ const Navbar = () => {
 
         {/* Mobile Nav */}
         {isMobileMenuOpen && (
-          <div className="md:hidden overflow-hidden">
-              <div className="px-2 pt-2 pb-3 space-y-1 backdrop-blur-md rounded-lg mt-2 shadow-lg border " style={{ opacity: 0.95 }}>
+          <div className="md:hidden overflow-hidden absolute top-full left-0 w-full px-4">
+              <div className="px-4 pt-4 pb-6 space-y-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl rounded-2xl mt-2 shadow-2xl border border-gray-200/50 dark:border-gray-800/50">
                 {dynamicNavItems.map((item, index) => {
                   const isAnchorLink = item.href.startsWith("#");
                   const isActiveLink =

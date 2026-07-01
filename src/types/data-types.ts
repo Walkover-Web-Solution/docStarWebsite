@@ -10,6 +10,9 @@ export type FeatureItem = {
   link: string;
   description: string;
   tags: string[];
+  images?: string[];
+  image?: string;
+  priority?: number;
 };
 
 export type HeroImage = {

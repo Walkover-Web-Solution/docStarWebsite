@@ -6,6 +6,7 @@ import { generateSEOMetadata } from "@/lib/seo"
 import { FeatureItem } from "@/types/data-types"
 import FeaturesList from "./FeaturesList"
 import { cache } from "react"
+import { Sparkles } from "lucide-react"
 
 export const dynamic = "force-dynamic"
 export const runtime = "edge"
@@ -81,7 +82,7 @@ export default async function FeaturesPage() {
               </h1>
             </MotionWrapper>
 
-            <MotionWrapper
+            {/* <MotionWrapper
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -90,7 +91,7 @@ export default async function FeaturesPage() {
                 Get unrestricted access to all features, no matter your choice of plan. Empower every team to publish,
                 collaborate, and scale documentation effortlessly.
               </p>
-            </MotionWrapper>
+            </MotionWrapper> */}
           </div>
         </section>
 

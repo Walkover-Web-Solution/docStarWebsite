@@ -62,18 +62,18 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
         <div className="relative">
           {/* Tabs positioned on top border */}
           <div className="flex justify-center items-start absolute top-[-18px] sm:top-[-20px] md:top-[-22px] left-0 right-0 z-10">
-            <div className="inline-flex items-center gap-1 sm:gap-2 overflow-x-auto max-w-full px-4">
+            <div className="inline-flex items-center gap-1 sm:gap-2 overflow-x-auto max-w-full px-4 no-scrollbar">
               {tabs.map((tab, index) => (
                 <button
                   key={index}
                   onClick={() => handleTabClick(index)}
                   className={`
-                    relative px-3 sm:px-4 md:px-6 cursor-pointer py-2 md:py-2.5 text-xs sm:text-sm font-medium whitespace-nowrap
-                    transition-all duration-300 rounded-lg
+                    relative px-4 sm:px-5 md:px-6 cursor-pointer py-2 md:py-2.5 text-xs sm:text-sm font-medium whitespace-nowrap
+                    transition-all duration-300 rounded-full border shadow-sm
                     ${
                       activeTab === index
-                        ? "bg-black dark:bg-white text-white dark:text-black shadow-lg"
-                        : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+                        ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900 border-gray-900 dark:border-white"
+                        : "bg-[var(--theme-bg)] border-[var(--theme-border-color)] text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-900"
                     }
                   `}
                 >
@@ -84,28 +84,28 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
           </div>
 
           {/* Main content card with border */}
-          <div className="relative bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl border border-gray-200 dark:border-gray-800 shadow-xl md:shadow-2xl overflow-hidden">
+          <div className="relative bg-[var(--theme-bg)] rounded border theme-border shadow-2xl overflow-hidden mt-6">
             {/* Browser-like header with macOS controls */}
-            <div className="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-3 border-b border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800">
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-400" />
-                <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-400" />
-                <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-400" />
+            <div className="flex items-center gap-2 px-6 py-4 border-b theme-border bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full border border-gray-300 dark:border-gray-600 bg-gray-200 dark:bg-gray-700" />
+                <div className="w-3 h-3 rounded-full border border-gray-300 dark:border-gray-600 bg-gray-200 dark:bg-gray-700" />
+                <div className="w-3 h-3 rounded-full border border-gray-300 dark:border-gray-600 bg-gray-200 dark:bg-gray-700" />
               </div>
             </div>
 
             {/* Content area with centered image and spacing on all sides */}
-            <div className="relative min-h-[300px] sm:min-h-[400px] lg:min-h-[600px] p-4 sm:p-6 md:p-8 lg:p-12">
+            <div className="relative min-h-[300px] sm:min-h-[400px] lg:min-h-[600px] bg-gray-100/50 dark:bg-gray-900/50 p-0">
               <AnimatePresence mode="wait">
                 {tabs.map((tab, tabIndex) => (
                   activeTab === tabIndex && (
                     <motion.div
                       key={tabIndex}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="absolute inset-4 sm:inset-6 md:inset-8 lg:inset-12 flex items-center justify-center"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                      className="absolute inset-0 flex items-end justify-center px-8 py-8"
                     >
                       {tab.images.map((img, index) => (
                         <Image
@@ -116,7 +116,7 @@ const ImageCarousel = ({ heroImages }: { heroImages: HeroImage[] }) => {
                           height={800}
                           priority={index === 0 && tabIndex === 0}
                           sizes="(max-width: 640px) 95vw, (max-width: 768px) 90vw, (max-width: 1024px) 85vw, (max-width: 1280px) 80vw, 1200px"
-                          className="rounded-md sm:rounded-lg w-full h-auto object-contain shadow-lg md:shadow-xl"
+                          className="rounded w-full h-auto object-cover object-top border-x border-t theme-border shadow-2xl"
                         />
                       ))}
                     </motion.div>
