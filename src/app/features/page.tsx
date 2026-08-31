@@ -69,7 +69,7 @@ export default async function FeaturesPage() {
               transition={{ duration: 0.6 }}
               className="text-sm font-semibold uppercase tracking-[0.35em] opacity-70"
             >
-              Explore DocStar
+              The DocStar Toolkit
             </MotionWrapper>
 
             <MotionWrapper
