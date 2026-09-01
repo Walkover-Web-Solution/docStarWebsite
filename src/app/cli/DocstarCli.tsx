@@ -258,12 +258,22 @@ export default function DocstarCli() {
                             </p>
 
                             <div className="flex flex-wrap items-center gap-4 mb-6">
-                                <a href="#how-it-works" className="btn btn-primary shadow-lg shadow-[var(--theme-color)]/20">
+                                <a
+                                    href="https://docstar.io/help/cli"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="btn btn-primary shadow-lg shadow-[var(--theme-color)]/20"
+                                >
                                     See how it works
                                     <ArrowRight className="w-4 h-4 ml-2" />
                                 </a>
-                                <a href="#features" className="btn btn-outline">
-                                    Explore features
+                                <a
+                                    href="https://app.docstar.io/login"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="btn btn-outline"
+                                >
+                                    Login
                                 </a>
                             </div>
 
