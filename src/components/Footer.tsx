@@ -57,7 +57,7 @@ const Footer = () => {
                 <li><Link href="https://docstar.io/help/changelog" target="_blank" className="group relative inline-block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Change Log<div
                     className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-[var(--theme-color)] to-blue-500 rounded-full transition-all duration-300 w-0 group-hover:w-full"
                   /></Link></li>
-                <li><Link href="https://docstar.io/blogs" target="_blank" className="group relative inline-block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Blogs<div
+                <li><Link href="https://docstar.io/blog" target="_blank" className="group relative inline-block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Blog<div
                     className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-[var(--theme-color)] to-blue-500 rounded-full transition-all duration-300 w-0 group-hover:w-full"
                   /></Link></li>
               </ul>

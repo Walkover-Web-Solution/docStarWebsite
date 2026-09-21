@@ -36,22 +36,24 @@ const Navbar = () => {
       href: "/features",
       isInternal: true,
     },
-    { name: "Blogs", href: "https://docstar.io/blogs", isInternal: false },
+    { name: "Blog", href: "https://docstar.io/blog", isInternal: false },
     { name: "Pricing", href: "/pricing", isInternal: true },
     { name: "Contact us", href: "/support", isInternal: true },
   ];
 
-  const handleNavClick = (href: string) => {
+  const handleAnchorClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
     setIsMobileMenuOpen(false);
     if (href.startsWith("#")) {
+      e.preventDefault();
       const el = document.querySelector(href);
       if (el) {
         el.scrollIntoView({ behavior: "smooth", block: "start" });
       } else {
         router.push(`/${href}`);
       }
-    } else {
-      router.push(href);
     }
   };
 
@@ -86,17 +88,18 @@ const Navbar = () => {
                 item.isInternal && !isAnchorLink && pathname === item.href;
 
               return item.isInternal ? (
-                <button
+                <Link
                   key={item.name}
-                  onClick={() => handleNavClick(item.href)}
+                  href={item.href}
+                  onClick={(e) => handleAnchorClick(e, item.href)}
                   aria-current={isActiveLink ? "page" : undefined}
-                  className="relative min-w-fit group cursor-pointer bg-transparent border-0 p-0 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-950 dark:hover:text-white transition-colors"
+                  className="relative min-w-fit group cursor-pointer text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-950 dark:hover:text-white transition-colors"
                 >
                   {item.name}
                   <div
                     className={`absolute -bottom-1.5 left-0 h-0.5 bg-gradient-to-r from-[var(--theme-color)] to-blue-500 rounded-full transition-all duration-300 ${isActiveLink ? "w-full opacity-100" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"}`}
                   />
-                </button>
+                </Link>
               ) : (
                 <a
                   key={item.name}
@@ -154,13 +157,14 @@ const Navbar = () => {
                     item.isInternal && !isAnchorLink && pathname === item.href;
 
                   return item.isInternal ? (
-                    <button
+                    <Link
                       key={item.name}
-                      onClick={() => handleNavClick(item.href)}
+                      href={item.href}
+                      onClick={(e) => handleAnchorClick(e, item.href)}
                       className={`block px-3 py-2 font-medium w-full text-left ${isActiveLink ? '' : 'opacity-80'}`}
                     >
                       {item.name}
-                    </button>
+                    </Link>
                   ) : (
                     <a
                       key={item.name}
