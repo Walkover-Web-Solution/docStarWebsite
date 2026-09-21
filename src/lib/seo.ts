@@ -44,6 +44,10 @@ export function generateSEOMetadata({
     description,
     keywords,
 
+    alternates: {
+      canonical: fullUrl,
+    },
+
     openGraph: {
       title,
       description,
