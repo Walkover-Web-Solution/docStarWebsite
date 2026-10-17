@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import MotionWrapper from "../motion/MotionDivWrapper";
 import ImageCarousel from "./ImageCarousel";
+import CopyAgentPrompt from "./CopyAgentPrompt";
 import { HeroImage, TestimonialItem, AppsMarqueeItem } from "@/types/data-types";
 import ContentSection from "../contentSection/ContentSection";
 import Link from "next/link";
@@ -176,32 +177,20 @@ const Hero = ({ heroImages, testimonials, appsMarquee }: HeroProps) => {
             </p>
           </MotionWrapper>
 
-          {/* Dynamic CTAs */}
+          {/* Primary CTA: copy prompt for AI agents */}
           <MotionWrapper
-            className="flex flex-col sm:flex-row gap-5 justify-center items-center w-full sm:w-auto relative z-10"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="relative z-10 flex flex-col items-center gap-4"
           >
-            <div className="relative group w-full sm:w-auto">
-              <div className="absolute -inset-1 bg-gradient-to-r from-[var(--theme-color)] to-blue-500 rounded-2xl blur-md opacity-30 group-hover:opacity-60 transition duration-500"></div>
-              <Link
-                href={loginUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-gray-950 dark:bg-white dark:text-gray-950 rounded-xl transition-all shadow-xl hover:scale-[1.02]"
-              >
-                Start Building Free
-                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-
+            <CopyAgentPrompt />
             <button
               type="button"
               onClick={openScheduler}
-              className="w-full sm:w-auto inline-flex cursor-pointer items-center justify-center px-8 py-4 text-base font-bold text-gray-700 dark:text-gray-200 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-200 dark:border-gray-800 hover:bg-white dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white rounded-xl transition-all shadow-sm hover:shadow-md hover:scale-[1.02]"
+              className="cursor-pointer text-sm font-semibold text-gray-600 dark:text-gray-300 underline-offset-4 hover:underline hover:text-gray-900 dark:hover:text-white transition-colors"
             >
-              Book a Demo
+              Prefer a walkthrough? Book a demo
             </button>
           </MotionWrapper>
 
