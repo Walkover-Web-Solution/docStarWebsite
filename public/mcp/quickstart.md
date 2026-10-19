@@ -8,7 +8,7 @@ Connect an AI client (Claude, Codex, ChatGPT, Cursor, ...) to DocStar and let it
 
 Add the MCP URL above as a remote MCP server in your client. On first use you are asked to sign in to DocStar. There is no token or key to copy.
 
-The server describes its own tools and workflow (organisation, then collection, then discover, then call). Follow what it tells you, and use `search_docstar_mcp_docs` for anything this page does not cover.
+The server describes its own tools and workflow (organisation, then collection, then discover, then call). Follow what it tells you, and use `search_docstar_docs` for anything this page does not cover. Load the `quickstart-docstar` skill before your first task.
 
 ## 2. Document a service and create its MCP
 
@@ -32,13 +32,21 @@ Then show the user a short summary of the endpoints grouped into modules (for ex
 - Keep modules to about 15-20 endpoints and use short verb-first names such as `Create Order`.
 
 ### Step 5: Build the docs
-- Call `get_docstar_mcp_api_docs` with no arguments to list the modules, then with `path` set to one module (for example `endpoints`) for exact request formats. Fetch only the module you need.
-- Create the module pages first (Pages module), then the endpoints under them (Endpoints module, Create Endpoint) with method, URL, headers, params, a body example and sample responses for success and common errors. Add sample requests where useful.
-- Make every request through `call_any_api_of_docstar_mcp`, exactly as the endpoint docs describe.
+- Use the dedicated tools: `list_collection_pages` to find the parent page, `create_page` for each module page, then `create_endpoint` for each endpoint under it, with method, URL, headers, params, a body example and sample responses for success and common errors. `get_page_content`, `update_page` and `update_endpoint` change existing docs.
+- For anything without a dedicated tool, call `get_docstar_api_docs` (no arguments lists the modules; `path` set to one module gives exact request formats) and make the request with `call_any_api_of_docstar`, exactly as the docs describe.
 
 ### Step 6: Publish and create the MCP
-- Edits put a page back into draft. When the user wants the docs live, publish them by setting the state to `2`.
+- Edits put a page back into draft. When the user wants the docs live, publish with `update_page_state` and `update_endpoint_state` (state `2`). A parent must be published before its children.
 - Ask the user whether to create the collection's MCP server. If yes, check for an existing one first (MCP Server module, Get Collection MCP Server) and only then create it (Create Collection MCP Server). Give the user the resulting MCP link.
+
+## 3. Tell DocStar what's missing
+
+Use this when DocStar is missing something you or the user needed, something in DocStar is broken, or the user has an idea for DocStar.
+
+- Use the `send_feedback_to_docstar` tool. Put the feedback in `message` in the user's words, set `type` (`bug`, `feature_request`, `docs`, `praise` or `other`), and add details in `context`: the tool or endpoint you used, what you sent, the error, and your client and model.
+- Without the MCP, send the same fields to `POST https://api.docstar.io/ideas` with the user's DocStar sign-in.
+- Tell the user what you are filing, then share the returned `#id`. They can follow its status in DocStar under Share an idea or feedback → My submissions.
+- File each problem once per session, and never include secrets, tokens or customer data.
 
 ## Rules
 

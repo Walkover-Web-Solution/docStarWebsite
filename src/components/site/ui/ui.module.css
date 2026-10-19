@@ -1,0 +1,259 @@
+/* Shared primitives for the website: marks, buttons, section heads, run log. */
+
+.mark {
+  background: linear-gradient(transparent 12%, var(--lime) 12%, var(--lime) 88%, transparent 88%);
+  color: inherit;
+  padding: 0 0.08em;
+  margin: 0 -0.04em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Buttons */
+.primary,
+.ink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 22px;
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.primary {
+  background: var(--lime);
+  color: var(--ink);
+}
+
+.ink {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.primary:hover,
+.ink:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.primary:active,
+.ink:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.link {
+  font-weight: 600;
+  font-size: 16px;
+  border-bottom: 2px solid var(--lime);
+  padding-bottom: 1px;
+  cursor: pointer;
+}
+
+.link:hover {
+  border-bottom-color: var(--ink);
+}
+
+/* Section head */
+.head {
+  max-width: 760px;
+}
+
+.head[data-center] {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.h2 {
+  margin-top: 14px;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: clamp(32px, 4.6vw, 54px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.sub {
+  margin-top: 16px;
+  font-size: clamp(16px, 1.6vw, 18px);
+  line-height: 1.55;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+/* Run log */
+.log {
+  min-width: 0;
+  background: var(--card);
+  border: var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  font-family: var(--font-mono), monospace;
+  font-size: 13.5px;
+  overflow: hidden;
+}
+
+.logHead {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 18px;
+  border-bottom: var(--border);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.lines {
+  list-style: none;
+  margin: 0;
+  padding: 14px 18px 4px;
+}
+
+.line {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) auto;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px dashed var(--rule);
+}
+
+.line:last-child {
+  border-bottom: 0;
+}
+
+.log[data-animate] .line,
+.log[data-animate] .summary {
+  opacity: 0;
+  transform: translateY(4px);
+  animation: appear 0.35s ease forwards;
+}
+
+.who {
+  color: var(--muted);
+}
+
+.line[data-who="you"] .text {
+  font-weight: 600;
+}
+
+.text {
+  overflow-wrap: anywhere;
+}
+
+.done {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--lime);
+  border: 1px solid var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.summary {
+  margin: 8px 18px 18px;
+  padding: 10px 12px;
+  background: var(--lime);
+  border: 1px solid var(--ink);
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.lines:last-child {
+  padding-bottom: 14px;
+}
+
+@keyframes appear {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .log[data-animate] .line,
+  .log[data-animate] .summary {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Markdown (prose sections) */
+.md {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.mdH1 {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: clamp(34px, 5vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+
+.mdH2 {
+  margin-top: 36px;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: -0.015em;
+}
+
+.mdH3 {
+  margin-top: 24px;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: 19px;
+}
+
+.mdP {
+  margin-top: 12px;
+  color: var(--muted);
+}
+
+.mdList {
+  margin: 12px 0 0;
+  padding-left: 22px;
+  list-style: disc;
+  color: var(--muted);
+}
+
+.mdList li + li {
+  margin-top: 6px;
+}
+
+.mdLink {
+  color: var(--ink);
+  font-weight: 600;
+  border-bottom: 2px solid var(--lime);
+}
+
+.md code {
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--lime-soft);
+  font-size: 0.9em;
+}

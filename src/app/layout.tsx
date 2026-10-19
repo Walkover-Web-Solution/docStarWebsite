@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "../scss/_import.scss";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import ScrollToTop from "@/components/ScrollToTop";
-import ThemeScript from "@/components/ThemeScript";
-import { SITE_URL } from "@/lib/structuredData";
+import { SITE_URL } from "@/lib/site";
 
 const GTM_ID = "GTM-MGFDQP68";
 
@@ -13,8 +9,8 @@ export const runtime = "edge";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Docstar: AI-Powered Documentation Platform",
-  description: "The platform that turns documentation into team culture",
+  title: "DocStar: API docs your agent writes and every agent can use",
+  description: "Paste one prompt into your coding agent. DocStar turns your code into API docs, llms.txt, a hosted MCP server and a CLI, and keeps them in sync.",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
@@ -33,7 +29,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <ThemeScript />
         <Script
           id="gtm-script"
           strategy="afterInteractive"
@@ -46,7 +41,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }}
         />
       </head>
-      <body className="antialiased overflow-x-hidden flex flex-col min-h-screen">
+      <body className="antialiased overflow-x-hidden">
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
@@ -55,12 +50,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        <Navbar />
-        <ScrollToTop />
-        <main className="flex-1 overflow-x-hidden">
-          {children}
-        </main>
-        <Footer />
+        {children}
       </body>
     </html>
   );

@@ -1,7 +1,6 @@
+import { PAGES } from '@/content/pages';
 const HELP_PUBLISHED_URLS_ENDPOINT = 'https://api.docstar.io/p/published-urls/fLMgydvRdvN7';
 const BLOG_PUBLISHED_URLS_ENDPOINT = 'https://api.docstar.io/p/published-urls/wAkjF0zqiO2E';
-const WEBSITE_TABLE_ENDPOINT = 'https://table-api.viasocket.com/68e89f851e8b7c70f10b866a/tblqjjbk2';
-const WEBSITE_TABLE_AUTH_KEY = process.env.DB_AUTH_KEY;
 const DOCSTAR_ORIGIN = 'https://docstar.io';
 const RECORD_ARRAY_KEYS = ['records', 'data', 'items', 'results', 'rows'];
 const HELP_PRIORITY = 0.74;
@@ -116,21 +115,6 @@ const normalizePriority = (value, fallback = WEBSITE_FALLBACK_PRIORITY) => {
   return fallback;
 };
 
-const extractPathsFromTablePayload = (payload) => {
-  const rows = payload?.data?.rows ?? [];
-  return rows
-    .map((row) => {
-      if (typeof row?.name !== 'string') return null;
-      const loc = sanitizeUrl(row.name);
-      if (!loc) return null;
-      return {
-        loc,
-        priority: normalizePriority(row.priority),
-      };
-    })
-    .filter(Boolean);
-};
-
 const escapeXml = (value) =>
   value
     .replace(/&/g, '&amp;')
@@ -152,17 +136,9 @@ const buildSitemapXml = (entries) => {
 };
 
 const collectSitemapUrls = async () => {
-  const [websiteEntries, helpUrls, blogUrls] = await Promise.all([
-    fetchJson(WEBSITE_TABLE_ENDPOINT, {
-      headers: {
-        'auth-key': WEBSITE_TABLE_AUTH_KEY,
-      },
-    })
-      .then((payload) => extractPathsFromTablePayload(payload))
-      .catch((error) => {
-        noopLogger('table-pages', error);
-        return [];
-      }),
+  // Website pages come from src/content (the same list that renders them).
+  const websiteEntries = PAGES.map((page) => ({ loc: `${DOCSTAR_ORIGIN}${page.path === '/' ? '' : page.path}`, priority: page.path === '/' ? 1 : WEBSITE_FALLBACK_PRIORITY }));
+  const [helpUrls, blogUrls] = await Promise.all([
     fetchJson(HELP_PUBLISHED_URLS_ENDPOINT).then(normalizeUrlList).catch((error) => {
       noopLogger('help-pages', error);
       return [];

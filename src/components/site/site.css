@@ -1,0 +1,53 @@
+/* DocStar website design tokens ("Transcript" direction). Scoped to .ds-site so
+   legacy pages and their dark theme are unaffected. */
+.ds-site {
+  --bg: #f7f7f2;
+  --ink: #0e0e0c;
+  --muted: #5c5c55;
+  --rule: rgba(14, 14, 12, 0.14);
+  --lime: #d8f347;
+  --lime-soft: #f0f9c4;
+  --card: #ffffff;
+  --border: 1.5px solid var(--ink);
+  --shadow-sm: 2px 2px 0 var(--ink);
+  --shadow: 4px 4px 0 var(--ink);
+  --shadow-lg: 6px 6px 0 var(--ink);
+  --radius: 10px;
+  --radius-lg: 14px;
+  --gutter: 16px;
+  --max: 1200px;
+
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+body:has(.ds-site) {
+  background: #f7f7f2;
+  color: #0e0e0c;
+}
+
+.ds-site ::selection {
+  background: var(--lime);
+  color: var(--ink);
+}
+
+.ds-site :focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.ds-site code,
+.ds-site pre,
+.ds-site kbd {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+@media (min-width: 720px) {
+  .ds-site {
+    --gutter: 24px;
+  }
+}
