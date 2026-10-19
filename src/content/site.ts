@@ -4,8 +4,9 @@ const APP_LOGIN = "https://app.docstar.io/login";
 
 export const SITE: SiteSettings = {
   // Same prompt as components/homeSection/CopyAgentPrompt.tsx.
-  prompt: `Use the DocStar MCP (https://mcp.docstar.io/mcp) to do my work in DocStar.
-First read https://docstar.io/mcp/quickstart.md and follow it step by step.`,
+  prompt: `Use the DocStar MCP (https://mcp.docstar.io/mcp) to turn my app's API into an MCP server, so my users can use my product from their AI assistants.
+First read https://docstar.io/mcp/quickstart.md and follow it step by step.
+Work from my latest code. Document each endpoint, then give me the MCP URL to share with my users. Ask me before you create or publish anything.`,
   nav: [
     { label: "MCP", href: "/mcp" },
     { label: "CLI", href: "/cli" },
