@@ -3,10 +3,9 @@ import type { SiteSettings } from "./types";
 const APP_LOGIN = "https://app.docstar.io/login";
 
 export const SITE: SiteSettings = {
-  // Same prompt as components/homeSection/CopyAgentPrompt.tsx.
-  prompt: `Use the DocStar MCP (https://mcp.docstar.io/mcp) to turn my app's API into an MCP server, so my users can use my product from their AI assistants.
-First read https://docstar.io/mcp/quickstart.md and follow it step by step.
-Work from my latest code. Document each endpoint, then give me the MCP URL to share with my users. Ask me before you create or publish anything.`,
+  // The only copy-prompt text: CtaButton, markdown.ts and llms.txt all read it from here. Keep it goal-only; the steps live in the quickstart.
+  prompt: `Use DocStar to let my users use my app from their AI assistants.
+Follow https://docstar.io/mcp/quickstart.md, document my app's user-facing APIs from my latest code, and set up MCP.`,
   nav: [
     { label: "MCP", href: "/mcp" },
     { label: "CLI", href: "/cli" },
