@@ -1,0 +1,22 @@
+import type { SitePage } from "../types";
+
+// Copied word for word from the previous site.
+export const DATA_RETENTION: SitePage = {
+  "slug": "data-retention-policy",
+  "path": "/data-retention-policy",
+  "meta": {
+    "title": "Data Retention and Deletion Policy | DocStar",
+    "description": "How DocStar retains and deletes your data, and how to request deletion.",
+    "keywords": [
+      "DocStar data retention",
+      "data deletion"
+    ]
+  },
+  "sections": [
+    {
+      "type": "prose",
+      "key": "policy",
+      "body": "# Data Retention and Deletion Policy\n\nAt DocStar, we prioritize the security and privacy of your data. This Data Retention and Deletion Policy outlines how we manage, retain, and delete your data to ensure transparency and clarity in our practices.\n\n## 1. Scope of Policy\n\nThis policy applies to all data processed by DocStar related to documentation, workflows, and integrations created by our users.\n\n## 2. Data Retention Practices\n\n### Documentation Content\n\nDocumentation Content refers to the data and documents created, edited, and stored within DocStar. We retain this data as long as your account remains active and for the duration specified in your subscription plan.\n\n### Activity Logs\n\nActivity Logs include metadata such as document names, creation dates, modification times, and user actions. These logs are retained for a period of 30 days for troubleshooting and security purposes and are archived after this period.\n\n### Usage Metrics\n\nUsage Metrics include aggregated statistics about platform usage, such as the number of documents created, user engagement patterns, and feature utilization. Only statistical data is retained, and no detailed personal content is stored in these metrics.\n\n## 3. Data Deletion Process\n\nTo request the deletion of your data, you can follow these steps:\n\nContact Support:\n\nSend an email to [support@docstar.io](mailto:support@docstar.io) with the subject line \"Data Deletion Request.\"\n\nProvide Information:\n\nInclude the following details in your request:\n\n- Registered email address\n\n- Account username or workspace name\n\n- Brief description of the data to be deleted\n\n## 4. Verification Process\n\nFor security and to prevent unauthorized data deletion requests, we may ask for:\n\n- Verification of your identity\n\n- Confirmation of account ownership linked to the data request\n\n## 5. Data Deletion Timeline\n\nOnce your request is verified:\n\n- We will process and delete the specified data within 30 days\n\n- You will receive a notification confirming the deletion completion\n\n- Backup systems will be purged within 90 days of the deletion request\n\n## 6. Retention Periods\n\nUser Data:\n\nPersonal information and account data are retained for the duration of your account's active status and for 12 months after account closure, unless deletion is specifically requested.\n\nDocumentation Data:\n\nDocuments and content are retained for 30 days after deletion and then archived for an additional 30 days. Archived data is not actively accessible through the platform.\n\nIf no deletion request is made, data is retained as per our Privacy Policy to enhance our services and meet legal obligations.\n\n## 7. Data Deletion Limitations\n\nCertain data may not be eligible for deletion in cases where:\n\n- It is required to comply with legal obligations\n\n- It is necessary for resolving disputes or enforcing agreements\n\n- It forms part of anonymized datasets that cannot be traced back to you\n\n- It is essential for maintaining platform security and preventing fraud\n\n## 8. Impact of Data Deletion\n\nAfter data deletion:\n\n- The data cannot be recovered\n\n- Any shared documents or collaborations relying on the deleted data will no longer function\n\n- Your account access may be terminated if all associated data is deleted\n\n- Integration with third-party services may be affected\n\n## 9. Updates to This Policy\n\nWe may update this policy periodically to reflect changes in our data retention and deletion practices or for legal/regulatory reasons. Any changes will be reflected here with the updated date. We will notify users of significant changes via email or platform notifications.\n\nLast Updated: January 10, 2025\n\n## Contact Us\n\nFor any questions or concerns about this policy, please contact us at [support@docstar.io](mailto:support@docstar.io)."
+    }
+  ]
+};

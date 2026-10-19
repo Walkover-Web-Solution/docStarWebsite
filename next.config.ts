@@ -46,18 +46,39 @@ const nextConfig = {
     ],
   },
   async redirects() {
-    return [
-      {
-        source: "/white-labelling",
-        destination: "/custom-domain",
-        permanent: true,
-      },
-      {
-        source: "/editor",
-        destination: "/embed-editor",
-        permanent: true,
-      },
-    ];
+    // Pages from the previous (help-docs era) site, moved permanently to the closest new page.
+    const retired: Record<string, string> = {
+      "/ai-powered-search": "/api-docs",
+      "/api-playground": "/api-docs",
+      "/api-token": "/api-docs",
+      "/changelog-generator": "/api-docs",
+      "/collaborate-in-real-time": "/",
+      "/custom-domain": "/white-label",
+      "/documentation-with-ai": "/",
+      "/edit-via-link": "/",
+      "/embed-editor": "/",
+      "/faq-generator": "/",
+      "/features": "/",
+      "/gallery-view": "/",
+      "/github-actions-integration": "/api-docs",
+      "/ideas-with-ai": "/",
+      "/last-updated": "/api-docs",
+      "/logs": "/analytics",
+      "/meta-tags": "/api-docs",
+      "/multi-language": "/api-docs",
+      "/page-analytics": "/analytics",
+      "/public-home-page": "/api-docs",
+      "/revision-history": "/api-docs",
+      "/search-sdk": "/api-docs",
+      "/simple-website": "/",
+      "/sso-authentication": "/white-label",
+      "/table-of-content-in-public-view": "/api-docs",
+      "/themes": "/white-label",
+      "/webhook": "/api-docs",
+      "/white-labelling": "/white-label",
+      "/editor": "/",
+    };
+    return Object.entries(retired).map(([source, destination]) => ({ source, destination, permanent: true }));
   },
 };
 
