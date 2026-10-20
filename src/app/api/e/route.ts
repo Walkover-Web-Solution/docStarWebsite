@@ -5,21 +5,19 @@ import { requestContext, sendEvents, type ServerEvent } from "@/lib/events-serve
 export const runtime = "edge";
 
 // Browser beacons (src/lib/analytics.ts). Same-origin, so ad-blockers rarely drop them.
-// Who sent it (human or not), country and UA hash are decided here, never by the client.
-const BROWSER_EVENTS = new Set([
-  "page.viewed",
-  "section.viewed",
-  "cta.clicked",
-  "prompt.copied",
-  "snippet.copied",
-  "faq.opened",
-  "nav.clicked",
-  "signup.clicked",
-  "demo.clicked",
-  "early_access.requested",
-  "scroll.depth",
-  "experiment.exposed",
-]);
+// Whether the sender is human is decided here, never by the client.
+const BROWSER_EVENTS = new Set(["page.viewed", "section.viewed", "cta.clicked", "prompt.copied", "signup.clicked"]);
+
+// Test key → variant (A/B/C) only; anything else is dropped.
+function cleanArms(v: unknown): Record<string, string> | null {
+  if (!v || typeof v !== "object") return null;
+  const out = Object.fromEntries(
+    Object.entries(v as Record<string, unknown>)
+      .filter(([k, x]) => k.length <= 64 && typeof x === "string" && /^[ABC]$/.test(x))
+      .slice(0, 10)
+  ) as Record<string, string>;
+  return Object.keys(out).length ? out : null;
+}
 
 export async function POST(request: NextRequest) {
   const ctx = await requestContext(request);
@@ -41,14 +39,10 @@ export async function POST(request: NextRequest) {
       ts: typeof e.ts === "string" ? e.ts : undefined,
       actorType: "human",
       anonId: ctx.anonId || (typeof e.anonId === "string" ? e.anonId.slice(0, 64) : null),
-      sessionId: typeof e.sessionId === "string" ? e.sessionId.slice(0, 64) : null,
       path: typeof e.path === "string" ? e.path : null,
-      referrer: typeof e.referrer === "string" ? e.referrer : null,
       ref: typeof e.ref === "string" ? e.ref : null,
-      arms: e.arms && typeof e.arms === "object" ? e.arms : null,
+      arms: cleanArms(e.arms),
       props: e.props && typeof e.props === "object" ? e.props : null,
-      country: ctx.country,
-      uaHash: ctx.uaHash,
     }));
 
   await sendEvents(events);

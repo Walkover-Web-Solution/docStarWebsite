@@ -46,6 +46,21 @@ export async function getSitePage(slug: string): Promise<SitePage> {
   }
 }
 
+// One version of a page that is in a running A/B test; null when no running test uses it.
+export async function getVariantPage(slug: string, revisionId: number): Promise<SitePage | null> {
+  if (!API) return null;
+  try {
+    const res = await fetch(`${API.replace(/\/$/, "")}/site/pages/${encodeURIComponent(slug)}?variant=${revisionId}`, {
+      next: { tags: [`site:${slug}`, "site:pages"], revalidate: REVALIDATE_SECONDS },
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return { slug: data.slug, path: data.path, meta: data.meta, sections: data.sections };
+  } catch {
+    return null;
+  }
+}
+
 export async function getSitePages(): Promise<SitePage[]> {
   return Promise.all(PAGES.map((p) => getSitePage(p.slug)));
 }

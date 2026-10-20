@@ -44,8 +44,8 @@ Then show the user a short summary of the endpoints grouped into modules (for ex
 Use this when DocStar is missing something you or the user needed, something in DocStar is broken, or the user has an idea for DocStar.
 
 - Use the `send_feedback_to_docstar` tool. Put the feedback in `message` in the user's words, set `type` (`bug`, `feature_request`, `docs`, `praise` or `other`), and add details in `context`: the tool or endpoint you used, what you sent, the error, and your client and model.
-- Without the MCP, send the same fields to `POST https://api.docstar.io/ideas` with the user's DocStar sign-in.
-- Tell the user what you are filing, then share the returned `#id`. They can follow its status in DocStar under Share an idea or feedback → My submissions.
+- Without the MCP, send the same fields to `POST https://api.docstar.io/ideas`. No sign-in is needed. With the user's DocStar sign-in, the idea is linked to their account; without it, add `contactEmail` if the user wants a reply.
+- Tell the user what you are filing, then share the returned `#id`. Signed in, you can check its status and the team's replies with `GET https://api.docstar.io/ideas/mine`. Without sign-in, the response has a private `followUpUrl` that shows the status and the team's replies; give it to the user.
 - File each problem once per session, and never include secrets, tokens or customer data.
 
 ## Rules

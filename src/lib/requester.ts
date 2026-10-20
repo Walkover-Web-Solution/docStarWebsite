@@ -66,9 +66,3 @@ export function classify(userAgent: string | null | undefined, headers?: Headers
   if (/Mozilla\/5\.0/.test(ua)) return { actorType: "human", agentName: null };
   return { actorType: "http_client", agentName: ua.split(/[\s/]/)[0].slice(0, 40) || "unknown" };
 }
-
-export async function hashUserAgent(userAgent: string | null): Promise<string | null> {
-  if (!userAgent) return null;
-  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(userAgent));
-  return Array.from(new Uint8Array(digest).slice(0, 16), (b) => b.toString(16).padStart(2, "0")).join("");
-}

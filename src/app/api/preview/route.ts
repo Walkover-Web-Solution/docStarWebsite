@@ -5,7 +5,7 @@ import { pageByPath } from "@/content/pages";
 // Cloudflare Pages runs dynamic routes on the edge runtime.
 export const runtime = "edge";
 
-// Admin preview (app.docstar.io/admin → "Preview"). hitman-api issues a 10-minute link:
+// Admin preview (docstar.io/admin → "Preview"). hitman-api issues a 10-minute link:
 // /api/preview?token=<base64url payload>.<base64url HMAC-SHA256>, signed with SITE_PREVIEW_SECRET.
 // A valid token turns on draft mode for this browser and opens the page with its newest draft.
 // /api/preview?exit=1 turns preview off again.

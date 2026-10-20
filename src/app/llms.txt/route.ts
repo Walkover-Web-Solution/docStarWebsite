@@ -19,7 +19,7 @@ export async function GET() {
     "",
     `- [MCP quickstart for agents](${SITE_ORIGIN}/mcp/quickstart.md): how an agent connects to the DocStar MCP and documents an API`,
     `- [Full site as markdown](${SITE_ORIGIN}/llms-full.txt)`,
-    `- Missing a DocStar feature or hit a bug? File it with the DocStar MCP tool send_feedback_to_docstar, or POST https://api.docstar.io/ideas (signed in). See the quickstart, section 3.`,
+    `- Missing a DocStar feature or hit a bug? File it with the DocStar MCP tool send_feedback_to_docstar, or POST https://api.docstar.io/ideas (no sign-in needed). See the quickstart, section 3.`,
     "",
     "## Pages",
     "",

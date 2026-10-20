@@ -13,9 +13,17 @@ export type RunLine = { who: "you" | "agent"; text: string; done?: boolean };
 
 export type CodePanel = { title: string; body: string };
 
+// Built-in looks a section can switch between (A/B testable; the first is the default).
+export const LAYOUTS = {
+  hero: ["split", "centered", "ink"],
+  steps: ["cards", "timeline"],
+  channels: ["grid", "list"],
+} as const;
+
 export type HeroSection = {
   type: "hero";
   key: string;
+  layout?: (typeof LAYOUTS.hero)[number];
   kicker: string;
   title: string;
   sub: string;
@@ -37,6 +45,7 @@ export type WorksWithSection = {
 export type StepsSection = {
   type: "steps";
   key: string;
+  layout?: (typeof LAYOUTS.steps)[number];
   kicker: string;
   title: string;
   sub?: string;
@@ -46,6 +55,7 @@ export type StepsSection = {
 export type ChannelsSection = {
   type: "channels";
   key: string;
+  layout?: (typeof LAYOUTS.channels)[number];
   kicker: string;
   title: string;
   sub?: string;

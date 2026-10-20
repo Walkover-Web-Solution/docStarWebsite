@@ -1,4 +1,4 @@
-import { classify, hashUserAgent, type ActorType } from "./requester";
+import { classify, type ActorType } from "./requester";
 
 // Server-side half of website analytics: enriches events with who sent them and forwards
 // them to hitman-api. Used by middleware (agent fetches) and /api/e (browser beacons).
@@ -12,14 +12,10 @@ export type ServerEvent = {
   actorType: ActorType;
   agentName?: string | null;
   anonId?: string | null;
-  sessionId?: string | null;
   path?: string | null;
-  referrer?: string | null;
   ref?: string | null;
   arms?: Record<string, string> | null;
   props?: Record<string, unknown> | null;
-  country?: string | null;
-  uaHash?: string | null;
 };
 
 const clip = (v: string | null | undefined, max: number) => (v ? v.slice(0, max) : null);
@@ -29,8 +25,6 @@ export async function requestContext(request: Request & { cookies?: { get(name: 
   const who = classify(ua, request.headers);
   return {
     ...who,
-    country: request.headers.get("cf-ipcountry"),
-    uaHash: await hashUserAgent(ua),
     anonId: request.cookies?.get(ANON_COOKIE)?.value || null,
   };
 }
@@ -42,7 +36,6 @@ export async function sendEvents(events: ServerEvent[]) {
   const body = events.slice(0, 50).map((e) => ({
     ...e,
     path: clip(e.path, 512),
-    referrer: clip(e.referrer, 512),
     ref: clip(e.ref, 64),
     agentName: clip(e.agentName, 64),
   }));

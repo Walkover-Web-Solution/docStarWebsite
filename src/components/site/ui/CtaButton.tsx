@@ -49,7 +49,6 @@ export default function CtaButton({ cta, variant = "primary", id, placement }: {
         const ref = makeRef();
         if (await copy(textFor(ref))) {
           if (cta.kind === "copy-prompt") track("prompt.copied", { cta_id: id || cta.label, placement: placement || null }, { ref });
-          else track("snippet.copied", { cta_id: id || cta.label, placement: placement || null });
           setCopied(true);
           setTimeout(() => setCopied(false), 2200);
         }
