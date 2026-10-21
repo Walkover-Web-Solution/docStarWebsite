@@ -1,0 +1,8 @@
+{
+  "skill": "ai-docs",
+  "skill_version": "2.0.0",
+  "created": "2026-10-21",
+  "last_run": { "mode": "init", "commit": "b8f8ce7", "date": "2026-10-21" },
+  "canonical_docs": ["AGENTS.md", "docs/VISION.md", "docs/ARCHITECTURE.md", "docs/FLOWS.md", "docs/DESIGN.md", "docs/CONTRACTS.md", "docs/DEVELOPMENT.md", "docs/DECISIONS.md", "docs/OPEN_QUESTIONS.md"],
+  "superseded": []
+}
