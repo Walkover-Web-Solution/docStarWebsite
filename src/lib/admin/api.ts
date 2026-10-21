@@ -43,7 +43,6 @@ export const getIdeaStats = () => request("/admin/ideas/stats");
 export const getIdea = (id: number) => request(`/admin/ideas/${id}`);
 export const updateIdea = (id: number, changes: Record<string, unknown>) => request(`/admin/ideas/${id}`, { method: "PATCH", body: changes });
 export const mergeIdea = (id: number, intoId: number) => request(`/admin/ideas/${id}/merge`, { method: "POST", body: { intoId } });
-export const commentOnIdea = (id: number, body: string, visibility: string) => request(`/admin/ideas/${id}/comments`, { method: "POST", body: { body, visibility } });
 
 export const KIND_LABELS: Record<string, string> = { feature: "Feature request", idea: "Idea", bug: "Bug", feedback: "Feedback" };
 export const IDEA_STATUS_LABELS: Record<string, string> = {

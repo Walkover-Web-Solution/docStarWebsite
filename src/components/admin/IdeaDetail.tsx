@@ -1,29 +1,19 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { toast } from "./toast";
 import { X } from "lucide-react";
-import { KIND_LABELS, IDEA_STATUS_LABELS as STATUS_LABELS, commentOnIdea, getIdea, mergeIdea, updateIdea } from "@/lib/admin/api";
+import { KIND_LABELS, IDEA_STATUS_LABELS as STATUS_LABELS, getIdea, mergeIdea, updateIdea } from "@/lib/admin/api";
 import StatusPill from "./StatusPill";
 import Submitter from "./Submitter";
 
 const PRIORITIES = ["", "low", "medium", "high", "urgent"];
-const EVENT_TEXT: Record<string, (e: any) => string> = {
-  created: () => "submitted",
-  status_changed: (e) => `status ${STATUS_LABELS[e.fromValue] || e.fromValue} → ${STATUS_LABELS[e.toValue] || e.toValue}`,
-  priority_changed: (e) => `priority ${e.fromValue || "none"} → ${e.toValue || "none"}`,
-  kind_changed: (e) => `type ${KIND_LABELS[e.fromValue] || e.fromValue} → ${KIND_LABELS[e.toValue] || e.toValue}`,
-  merged: (e) => `merged into ${e.toValue}`,
-  merged_in: (e) => `${e.fromValue} merged in (${e.toValue} asking now)`,
-};
-
 type Props = { id: number; onClose: () => void; onChanged: () => void; onOpen: (id: number) => void };
 
 export default function IdeaDetail({ id, onClose, onChanged, onOpen }: Props) {
   const [item, setItem] = useState<any>(null);
   const [tags, setTags] = useState("");
-  const [comment, setComment] = useState("");
-  const [visibility, setVisibility] = useState("internal");
+  const [note, setNote] = useState("");
   const [mergeInto, setMergeInto] = useState("");
   const [busy, setBusy] = useState(false);
 
@@ -32,6 +22,7 @@ export default function IdeaDetail({ id, onClose, onChanged, onOpen }: Props) {
       .then((x) => {
         setItem(x);
         setTags((x.tags || []).join(", "));
+        setNote(x.note || "");
       })
       .catch((e) => toast.error(e.message));
   }, [id]);
@@ -48,6 +39,7 @@ export default function IdeaDetail({ id, onClose, onChanged, onOpen }: Props) {
       if (next?.id === id) {
         setItem(next);
         setTags((next.tags || []).join(", "));
+        setNote(next.note || "");
       } else if (next?.id) {
         onOpen(next.id);
       }
@@ -59,13 +51,6 @@ export default function IdeaDetail({ id, onClose, onChanged, onOpen }: Props) {
       setBusy(false);
     }
   };
-
-  const timeline = useMemo(() => {
-    if (!item) return [];
-    const events = (item.events || []).map((e: any) => ({ at: e.createdAt, kind: "event", e }));
-    const comments = (item.comments || []).map((c: any) => ({ at: c.createdAt, kind: "comment", c }));
-    return [...events, ...comments].sort((a: any, b: any) => new Date(a.at).getTime() - new Date(b.at).getTime());
-  }, [item]);
 
   if (!item) return <div className="a-card p-6 text-sm text-[var(--a-muted)]">Loading…</div>;
 
@@ -208,50 +193,21 @@ export default function IdeaDetail({ id, onClose, onChanged, onOpen }: Props) {
           </div>
         )}
 
-        <div>
-          <p className="text-xs font-medium text-[var(--a-muted)]">Timeline</p>
-          <ol className="mt-2 grid gap-2">
-            {timeline.map((t: any, i: number) =>
-              t.kind === "event" ? (
-                <li key={`e${i}`} className="text-xs text-[var(--a-muted)]">
-                  {new Date(t.at).toLocaleString()} · {t.e.actorName}: {(EVENT_TEXT[t.e.type] || (() => t.e.type))(t.e)}
-                </li>
-              ) : (
-                <li key={`c${i}`} className={`rounded-lg p-2 text-sm ${t.c.visibility === "public" ? "bg-[var(--a-accent-soft)]" : "bg-[var(--a-note-soft)]"}`}>
-                  <p className="text-xs text-[var(--a-muted)]">
-                    {t.c.authorType === "team" ? t.c.authorName : t.c.authorType === "agent" ? `agent · ${t.c.authorName}` : t.c.authorName} · {new Date(t.at).toLocaleString()} · {t.c.visibility === "public" ? "visible to submitter" : "internal note"}
-                  </p>
-                  <p className="mt-1 whitespace-pre-wrap">{t.c.body}</p>
-                </li>
-              )
-            )}
-          </ol>
+        <label className="grid gap-1 text-xs font-medium text-[var(--a-muted)]">
+          Team note (the sender sees it too)
+          <textarea
+            className="border border-[var(--a-border)] rounded-lg px-3 py-1.5 min-w-0 box-border w-full text-sm"
+            rows={3}
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+            placeholder="e.g. Planned for November"
+          />
+        </label>
+        <div className="flex justify-end">
+          <button type="button" className="btn btn-sm btn-primary" disabled={busy || note === (item.note || "")} onClick={() => act(() => updateIdea(id, { note }), "Note saved")}>
+            Save note
+          </button>
         </div>
-
-        <form
-          className="grid gap-2"
-          onSubmit={(e) => {
-            e.preventDefault();
-            act(() => commentOnIdea(id, comment, visibility), visibility === "public" ? "Reply sent" : "Note added").then(() => setComment(""));
-          }}
-        >
-          <textarea className="border border-[var(--a-border)] rounded-lg px-3 py-1.5 min-w-0 box-border w-full text-sm" rows={3} value={comment} onChange={(e) => setComment(e.target.value)} placeholder={visibility === "public" ? "Reply to the submitter (they will see this)" : "Internal note (team only)"} />
-          <div className="flex items-center justify-between gap-2">
-            <div className="flex gap-1 rounded-md border border-[var(--a-border)] p-0.5 text-xs">
-              {[
-                ["internal", "Internal note"],
-                ["public", "Reply to submitter"],
-              ].map(([v, l]) => (
-                <button key={v} type="button" onClick={() => setVisibility(v)} className={`rounded px-2 py-1 ${visibility === v ? "bg-[var(--ink)] text-[var(--card)]" : "text-[var(--a-muted)]"}`}>
-                  {l}
-                </button>
-              ))}
-            </div>
-            <button type="submit" className="btn btn-sm btn-primary" disabled={busy || !comment.trim()}>
-              {visibility === "public" ? "Send reply" : "Add note"}
-            </button>
-          </div>
-        </form>
       </div>
     </div>
   );
