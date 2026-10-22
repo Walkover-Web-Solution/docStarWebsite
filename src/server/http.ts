@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { ZodError, type ZodType } from "zod";
 import { AdminError } from "./adminTypes";
-import { DbNotConfigured } from "./db";
+import { DbNotConfigured, DbUnavailable } from "./db";
 import { describeIssues } from "./siteSchema";
 
 // Small helpers shared by every API route: JSON answers, errors with a status, body parsing.
@@ -22,7 +22,16 @@ export function handle<A extends unknown[]>(fn: (...args: A) => Promise<Response
     } catch (error: any) {
       if (error instanceof HttpError || error instanceof AdminError) return json({ message: error.message }, error.status);
       if (error instanceof ZodError) return json({ message: describeIssues(error) }, 400);
-      if (error instanceof DbNotConfigured) return json({ message: "The database isn't set up on this server." }, 503);
+      if (error instanceof DbNotConfigured) return json({ message: "The database isn't set up on this server: DATABASE_URL is missing.", code: "db_not_configured" }, 503);
+      if (error instanceof DbUnavailable) {
+        console.error("[api] database connection failed:", error.reason, error.original);
+        return json({ message: error.message, code: "db_unavailable" }, 503);
+      }
+      // Postgres "undefined_table": the migration hasn't been run on this database.
+      if (error?.code === "42P01") {
+        console.error("[api]", error?.stack || error);
+        return json({ message: "The database tables are missing: run the migration (npm run migrate).", code: "db_not_migrated" }, 503);
+      }
       console.error("[api]", error?.stack || error);
       return json({ message: "Something went wrong on the server." }, 500);
     }
