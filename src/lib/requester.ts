@@ -1,6 +1,6 @@
 // Classifies who is making a request: a person in a browser, or an agent, crawler or
 // HTTP client. Agents don't run JavaScript, so this runs on the server (middleware and
-// /api/e). Shared shape with hitman-api's site_events.actorType.
+// /api/e). Same values as admin_events.actor_type.
 
 export type ActorType = "human" | "ai_agent" | "ai_crawler" | "ai_search" | "http_client" | "bot";
 export type Requester = { actorType: ActorType; agentName: string | null };
@@ -65,10 +65,4 @@ export function classify(userAgent: string | null | undefined, headers?: Headers
   if (headers?.get("accept")?.toLowerCase().includes("text/markdown")) return { actorType: "ai_agent", agentName: "markdown client" };
   if (/Mozilla\/5\.0/.test(ua)) return { actorType: "human", agentName: null };
   return { actorType: "http_client", agentName: ua.split(/[\s/]/)[0].slice(0, 40) || "unknown" };
-}
-
-export async function hashUserAgent(userAgent: string | null): Promise<string | null> {
-  if (!userAgent) return null;
-  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(userAgent));
-  return Array.from(new Uint8Array(digest).slice(0, 16), (b) => b.toString(16).padStart(2, "0")).join("");
 }

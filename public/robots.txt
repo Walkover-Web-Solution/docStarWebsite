@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /xv/
 
 # AI crawlers and agents are welcome. Every page has a markdown twin, see /llms.txt.
 User-agent: GPTBot
@@ -12,6 +14,8 @@ User-agent: PerplexityBot
 User-agent: Perplexity-User
 User-agent: Google-Extended
 Allow: /
+Disallow: /admin
+Disallow: /xv/
 
 Sitemap: https://docstar.io/sitemap.xml
 # LLM index: https://docstar.io/llms.txt

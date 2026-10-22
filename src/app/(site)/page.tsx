@@ -4,7 +4,7 @@ import { getSitePage } from "@/content/source";
 import type { SitePage } from "@/content/types";
 import { SITE_URL } from "@/lib/site";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { meta } = await getSitePage("home");

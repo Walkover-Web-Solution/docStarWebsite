@@ -2,8 +2,6 @@ import { renderPageMarkdown } from "@/content/markdown";
 import { pageBySlug } from "@/content/pages";
 import { getSitePage } from "@/content/source";
 
-// Cloudflare Pages runs dynamic routes on the edge runtime.
-export const runtime = "edge";
 export const revalidate = 60;
 
 // Markdown twin of any page. Middleware rewrites /<page>.md and `Accept: text/markdown` here.

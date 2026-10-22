@@ -21,7 +21,7 @@ import s from "./sections.module.css";
 
 export function Hero({ section: x }: { section: HeroSection }) {
   return (
-    <section className={`${s.wrap} ${s.hero}`} data-section={x.key} data-visual={x.run || x.code ? undefined : "none"}>
+    <section className={`${s.wrap} ${s.hero}`} data-section={x.key} data-layout={x.layout || "split"} data-visual={x.run || x.code ? undefined : "none"}>
       <div className={s.heroCopy}>
         <p className={s.kicker}>{x.kicker}</p>
         <h1 className={s.h1}>
@@ -64,7 +64,7 @@ export function Steps({ section: x }: { section: StepsSection }) {
   return (
     <section id={x.key} className={s.wrap} data-section={x.key}>
       <SectionHead kicker={x.kicker} title={x.title} sub={x.sub} />
-      <ol className={s.steps}>
+      <ol className={s.steps} data-layout={x.layout || "cards"}>
         {x.steps.map((step, i) => (
           <li key={step.title} className={s.card}>
             <span className={s.stepNo}>{i + 1}</span>
@@ -82,7 +82,7 @@ export function Channels({ section: x }: { section: ChannelsSection }) {
   return (
     <section id={x.key} className={s.wrap} data-section={x.key}>
       <SectionHead kicker={x.kicker} title={x.title} sub={x.sub} />
-      <ul className={s.channels}>
+      <ul className={s.channels} data-layout={x.layout || "grid"}>
         {x.items.map((c) => (
           <li key={c.name} className={s.card}>
             <p className={s.reader}>{c.reader}</p>

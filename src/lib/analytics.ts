@@ -2,30 +2,18 @@
 
 // Browser half of first-party website analytics. Events queue up and are flushed to our
 // own /api/e with sendBeacon; the server decides whether the sender is human. Event names
-// must also be allowed in /api/e and hitman-api services/site/siteEventsService.ts.
+// must also be allowed in /api/e and src/server/events.ts.
 
-export type BrowserEvent =
-  | "page.viewed"
-  | "section.viewed"
-  | "cta.clicked"
-  | "prompt.copied"
-  | "snippet.copied"
-  | "faq.opened"
-  | "nav.clicked"
-  | "signup.clicked"
-  | "demo.clicked"
-  | "early_access.requested"
-  | "scroll.depth"
-  | "experiment.exposed";
+// Only what the admin's Analytics tab and A/B tests use.
+export type BrowserEvent = "page.viewed" | "section.viewed" | "cta.clicked" | "prompt.copied" | "signup.clicked";
 
 type Queued = {
   event: BrowserEvent;
   ts: string;
   anonId: string | null;
-  sessionId: string | null;
   path: string;
-  referrer: string | null;
   ref?: string | null;
+  arms?: Record<string, string> | null;
   props?: Record<string, unknown>;
 };
 
@@ -45,14 +33,11 @@ function anonId() {
   return id;
 }
 
-function sessionId() {
+// A/B variants the visitor is in (set by the middleware), so results can be split by variant.
+function arms() {
   try {
-    let id = sessionStorage.getItem("ds_sid");
-    if (!id) {
-      id = crypto.randomUUID();
-      sessionStorage.setItem("ds_sid", id);
-    }
-    return id;
+    const raw = readCookie("ds_x");
+    return raw ? JSON.parse(decodeURIComponent(raw)) : null;
   } catch {
     return null;
   }
@@ -73,9 +58,8 @@ export function track(event: BrowserEvent, props?: Record<string, unknown>, extr
     event,
     ts: new Date().toISOString(),
     anonId: anonId(),
-    sessionId: sessionId(),
     path: location.pathname,
-    referrer: document.referrer || null,
+    arms: arms(),
     ref: extra?.ref ?? null,
     props,
   });

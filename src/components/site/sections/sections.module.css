@@ -586,3 +586,149 @@
     gap: 64px;
   }
 }
+
+/* ---------- Built-in looks (content field `layout`; the AI can A/B test them) ---------- */
+
+/* Hero · centered: one column, everything centred, the visual below */
+.hero[data-layout="centered"] {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  text-align: center;
+}
+
+.hero[data-layout="centered"] .heroSub {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero[data-layout="centered"] .ctas {
+  justify-content: center;
+}
+
+.hero[data-layout="centered"] > :not(.heroCopy) {
+  width: 100%;
+  max-width: 760px;
+  text-align: left;
+}
+
+/* Hero · ink: a full-width dark band, light text, lime buttons */
+.hero[data-layout="ink"] {
+  position: relative;
+  color: var(--bg);
+  background: var(--ink);
+  box-shadow: 0 0 0 100vmax var(--ink);
+  clip-path: inset(0 -100vmax);
+  padding-bottom: 72px;
+}
+
+.hero[data-layout="ink"] .kicker,
+.hero[data-layout="ink"] .heroSub,
+.hero[data-layout="ink"] .works {
+  color: rgba(247, 247, 242, 0.72);
+}
+
+.hero[data-layout="ink"] .ctas > :nth-child(2) {
+  color: var(--bg);
+}
+
+/* the highlight keeps dark text, and the visual card keeps its own colours */
+.hero[data-layout="ink"] .h1 mark {
+  color: var(--ink);
+}
+
+.hero[data-layout="ink"] > :not(.heroCopy) {
+  color: var(--ink);
+}
+
+/* Steps · timeline: a vertical numbered line instead of cards */
+.steps[data-layout="timeline"] {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 760px;
+  gap: 0;
+}
+
+.steps[data-layout="timeline"] > li {
+  position: relative;
+  padding: 0 0 36px 60px;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.steps[data-layout="timeline"] > li::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  top: 34px;
+  bottom: 0;
+  border-left: 1.5px dashed var(--ink);
+}
+
+.steps[data-layout="timeline"] > li:last-child {
+  padding-bottom: 0;
+}
+
+.steps[data-layout="timeline"] > li:last-child::before {
+  display: none;
+}
+
+.steps[data-layout="timeline"] .stepNo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+}
+
+/* Channels · list: compact rows instead of cards */
+.channels[data-layout="list"] {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  border-top: var(--border);
+}
+
+.channels[data-layout="list"] > li {
+  grid-column: auto;
+  padding: 20px 0;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.channels[data-layout="list"] .sample {
+  margin-top: 12px;
+}
+
+@media (min-width: 1000px) {
+  .channels[data-layout="list"] > li,
+  .channels[data-layout="list"] > li:nth-child(4),
+  .channels[data-layout="list"] > li:nth-child(5) {
+    display: grid;
+    grid-column: auto;
+    grid-template-columns: 150px minmax(0, 220px) minmax(0, 1fr) minmax(0, 300px);
+    align-items: baseline;
+    gap: 24px;
+  }
+
+  .channels[data-layout="list"] .reader {
+    order: 2;
+    margin: 0;
+  }
+
+  .channels[data-layout="list"] .h3 {
+    order: 1;
+  }
+
+  .channels[data-layout="list"] .body {
+    order: 3;
+    margin: 0;
+  }
+
+  .channels[data-layout="list"] .sample {
+    order: 4;
+    margin: 0;
+  }
+}
+

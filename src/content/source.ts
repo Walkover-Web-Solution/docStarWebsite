@@ -1,14 +1,14 @@
 import { draftMode } from "next/headers";
 import type { SitePage } from "./types";
 import { PAGES } from "./pages";
+import { hasDb, withDb } from "@/server/db";
+import { getPageContent, pageCache } from "@/server/content";
 
-// Where page content comes from: the published revision in hitman-api (/site/pages/:slug),
-// cached for a minute. Publishing also calls /api/revalidate, but tag revalidation does not
-// reach edge-runtime pages on every host, so the short time window is what guarantees
-// freshness. In draft mode (admin preview) the newest draft is fetched uncached. If the API
-// is unset or unreachable, the copy in src/content is used, so the site never renders empty.
+// Where page content comes from: the published version in the website's own database, cached for a
+// minute per server instance (publishing clears that instance's copy at once). In draft mode (admin
+// preview) the newest draft is read uncached. If the database is unset or unreachable, or a page
+// hasn't been added to it yet, the copy bundled in src/content is used, so the site never renders empty.
 
-const API = process.env.DOCSTAR_API_URL;
 export const REVALIDATE_SECONDS = 60;
 
 const local = (slug: string) => PAGES.find((p) => p.slug === slug);
@@ -21,28 +21,44 @@ async function isPreview() {
   }
 }
 
+const asPage = (data: any): SitePage => ({ slug: data.slug, path: data.path, meta: data.meta, sections: data.sections });
+
+async function cached<T>(key: string, load: () => Promise<T>): Promise<T> {
+  const hit = pageCache.get(key);
+  if (hit && Date.now() - hit.at < REVALIDATE_SECONDS * 1000) return hit.value as T;
+  const value = await load();
+  pageCache.set(key, { at: Date.now(), value });
+  return value;
+}
+
 export async function getSitePage(slug: string): Promise<SitePage> {
   const fallback = local(slug);
-  if (!API) {
+  if (!hasDb()) {
     if (!fallback) throw new Error(`No content for page "${slug}"`);
     return fallback;
   }
 
   const preview = await isPreview();
   try {
-    const res = await fetch(`${API.replace(/\/$/, "")}/site/pages/${encodeURIComponent(slug)}${preview ? "?draft=1" : ""}`, {
-      headers: preview && process.env.SITE_PREVIEW_SECRET ? { "x-preview-secret": process.env.SITE_PREVIEW_SECRET } : {},
-      ...(preview ? { cache: "no-store" as const } : { next: { tags: [`site:${slug}`, "site:pages"], revalidate: REVALIDATE_SECONDS } }),
-    });
-    // 404: the page hasn't been added to the content store yet; the bundled copy is the source.
-    if (res.status === 404 && fallback) return fallback;
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    return { slug: data.slug, path: data.path, meta: data.meta, sections: data.sections };
-  } catch (error) {
-    if (!fallback) throw error;
-    console.error(`[content] using bundled copy of "${slug}":`, (error as Error).message);
-    return fallback;
+    const load = () => withDb((db) => getPageContent(db, slug, { draft: preview }).then(asPage));
+    return preview ? await load() : await cached(`page:${slug}`, load);
+  } catch (error: any) {
+    // 404: the page hasn't been added to the database yet; the bundled copy is the source.
+    if (fallback) {
+      if (error?.status !== 404) console.error(`[content] using bundled copy of "${slug}":`, error?.message);
+      return fallback;
+    }
+    throw error;
+  }
+}
+
+// One version of a page that is in a running A/B test; null when no running test uses it.
+export async function getVariantPage(slug: string, revisionId: number): Promise<SitePage | null> {
+  if (!hasDb()) return null;
+  try {
+    return await cached(`variant:${revisionId}`, () => withDb((db) => getPageContent(db, slug, { variant: revisionId }).then(asPage)));
+  } catch {
+    return null;
   }
 }
 

@@ -1,8 +1,8 @@
 import { renderPageMarkdown } from "@/content/markdown";
 import { getSitePages } from "@/content/source";
 
-// Cloudflare Pages runs dynamic routes on the edge runtime.
-export const runtime = "edge";
+// Read from the database on every request (cached for a minute), so admin edits reach agents.
+export const dynamic = "force-dynamic";
 
 export const revalidate = 60;
 
