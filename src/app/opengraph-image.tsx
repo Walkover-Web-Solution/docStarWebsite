@@ -1,7 +1,6 @@
 import { ImageResponse } from "next/og";
 
 // Share image for every page (link previews in Slack, X, LinkedIn…), in the site's style.
-export const runtime = "edge";
 export const alt = "DocStar: your agent writes the docs. Every agent can use them.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

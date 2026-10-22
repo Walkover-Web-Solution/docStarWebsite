@@ -52,7 +52,7 @@ export const AGENTS: SitePage = {
           label: "report",
           title: "Tell DocStar what's missing",
           body: "If DocStar lacks something you needed or something is broken, file it with the send_feedback_to_docstar tool. Show your user the message first.",
-          code: 'send_feedback_to_docstar\n{ "type": "feature_request", "message": "…",\n  "context": { "tool": "…", "client": "…", "model": "…" } }\n\nNo MCP? POST https://api.docstar.io/ideas',
+          code: 'send_feedback_to_docstar\n{ "type": "feature_request", "message": "…",\n  "context": { "tool": "…", "client": "…", "model": "…" } }\n\nNo MCP? POST https://docstar.io/api/ideas (no sign-in needed)',
         },
       ],
     },

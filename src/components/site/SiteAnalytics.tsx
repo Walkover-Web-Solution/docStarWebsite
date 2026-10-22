@@ -4,15 +4,13 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { flush, track } from "@/lib/analytics";
 
-// Page views, section views, scroll depth, CTA/nav clicks and FAQ opens for the website.
+// Page views, sections seen, CTA clicks and sign-up clicks: only what the admin's Analytics tab uses.
 // Clicks are picked up from data-cta / data-placement attributes, so content stays the source.
 export default function SiteAnalytics() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const utm = Object.fromEntries([...params].filter(([k]) => k.startsWith("utm_")));
-    track("page.viewed", { title: document.title, ...(Object.keys(utm).length ? { utm } : {}) });
+    track("page.viewed");
 
     // sections seen: at least half visible for 800ms, once per page view
     const seen = new Set<string>();
@@ -39,20 +37,9 @@ export default function SiteAnalytics() {
     );
     document.querySelectorAll("[data-section]").forEach((el) => io.observe(el));
 
-    // scroll depth milestones
-    const marks = [25, 50, 75, 100];
-    const hit = new Set<number>();
-    const onScroll = () => {
-      const max = document.documentElement.scrollHeight - innerHeight;
-      const pct = max <= 0 ? 100 : Math.round((scrollY / max) * 100);
-      for (const m of marks) if (pct >= m && !hit.has(m)) (hit.add(m), track("scroll.depth", { percent: m }));
-    };
-    addEventListener("scroll", onScroll, { passive: true });
-
     return () => {
       io.disconnect();
       timers.forEach(clearTimeout);
-      removeEventListener("scroll", onScroll);
     };
   }, [pathname]);
 
@@ -61,26 +48,16 @@ export default function SiteAnalytics() {
       const el = (e.target as HTMLElement).closest<HTMLElement>("a, button");
       if (!el) return;
       const href = el instanceof HTMLAnchorElement ? el.href : undefined;
-      const label = el.textContent?.trim().slice(0, 80);
       const cta = el.dataset.cta;
-      if (cta) track("cta.clicked", { cta_id: cta, placement: el.dataset.placement || null, label, href });
-      else if (el.closest("header nav, footer")) track("nav.clicked", { label, href });
+      if (cta) track("cta.clicked", { cta_id: cta, placement: el.dataset.placement || null });
       if (href?.includes("app.docstar.io/login")) track("signup.clicked", { cta_id: cta || null, placement: el.dataset.placement || null });
-      if (href?.includes("cal.com")) track("demo.clicked", { cta_id: cta || null });
-    };
-    // details toggle doesn't bubble; listen in the capture phase
-    const onToggle = (e: Event) => {
-      const d = e.target as HTMLDetailsElement;
-      if (d.tagName === "DETAILS" && d.open && d.closest('[data-section="faq"]')) track("faq.opened", { q: d.querySelector("summary")?.textContent?.slice(0, 200) });
     };
     const onHide = () => document.visibilityState === "hidden" && flush();
     document.addEventListener("click", onClick, true);
-    document.addEventListener("toggle", onToggle, true);
     document.addEventListener("visibilitychange", onHide);
     addEventListener("pagehide", flush);
     return () => {
       document.removeEventListener("click", onClick, true);
-      document.removeEventListener("toggle", onToggle, true);
       document.removeEventListener("visibilitychange", onHide);
       removeEventListener("pagehide", flush);
     };

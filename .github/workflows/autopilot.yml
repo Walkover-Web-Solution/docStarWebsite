@@ -1,0 +1,20 @@
+name: Website autopilot
+
+# Starts the AI autopilot every day at 09:00 India time (03:30 UTC). It does nothing while the autopilot is
+# switched off in Admin > Website > Autopilot, or if it already ran today.
+# Needs the repository secrets SITE_URL (https://docstar.io) and CRON_SECRET (same value as the site's CRON_SECRET).
+# Note: GitHub pauses scheduled workflows after 60 days without repository activity; "Run workflow" restarts it.
+on:
+  schedule:
+    - cron: "30 3 * * *"
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start the autopilot
+        run: |
+          curl --fail-with-body --silent --show-error --max-time 600 -X POST \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            "${{ secrets.SITE_URL }}/api/cron/autopilot"

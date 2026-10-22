@@ -1,0 +1,98 @@
+/* docstar.io/admin: the website's "Transcript" look (tokens from .ds-site), tuned for dense
+   tables and forms. Components use the --a-* variables below. Light only, like the site. */
+.ds-admin {
+  --a-surface: var(--card);
+  --a-bg: var(--bg);
+  --a-text: var(--ink);
+  --a-muted: var(--muted);
+  --a-border: rgba(14, 14, 12, 0.18);
+  --a-hover: rgba(14, 14, 12, 0.05);
+  --a-accent-soft: var(--lime-soft);
+  --a-note-soft: #fff3d6;
+  --primary-color: var(--ink);
+  /* Chart bars, validated on white. */
+  --a-s1: #2a78d6;
+}
+
+.ds-admin h1,
+.ds-admin h2 {
+  font-family: var(--font-display), system-ui, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Resets sit in the base layer so Tailwind utilities (utilities layer) always win over them. */
+@layer base {
+  .ds-admin :where(input, select, textarea) {
+    background: var(--card);
+    color: var(--ink);
+  }
+
+  .ds-admin :where(button) {
+    cursor: pointer;
+  }
+
+  .ds-admin :where(button:disabled) {
+    cursor: not-allowed;
+  }
+
+  .ds-admin :where(a) {
+    color: inherit;
+  }
+}
+
+/* Buttons: ink outline with an offset shadow; primary is lime. */
+.ds-admin .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: var(--border);
+  border-radius: 8px;
+  padding: 6px 14px;
+  background: var(--card);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.ds-admin .btn:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.ds-admin .btn:active:not(:disabled) {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+.ds-admin .btn:disabled {
+  opacity: 0.45;
+  box-shadow: none;
+}
+
+.ds-admin .btn-sm {
+  padding: 3px 10px;
+  font-size: 13px;
+}
+
+.ds-admin .btn-primary {
+  background: var(--lime);
+}
+
+/* Main cards get the site's ink border and offset shadow. */
+.ds-admin .a-card {
+  border: var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-admin .btn {
+    transition: none;
+  }
+}

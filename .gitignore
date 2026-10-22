@@ -42,3 +42,6 @@ vite.config.ts.timestamp*
 vite.config.js.timestamp*
 .next
 next-env.d.ts
+
+.open-next
+.wrangler

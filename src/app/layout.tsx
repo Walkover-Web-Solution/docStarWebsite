@@ -5,8 +5,6 @@ import { SITE_URL } from "@/lib/site";
 
 const GTM_ID = "GTM-MGFDQP68";
 
-export const runtime = "edge";
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "DocStar: API docs your agent writes and every agent can use",

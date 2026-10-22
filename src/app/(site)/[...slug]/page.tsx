@@ -6,8 +6,8 @@ import { getSitePage } from "@/content/source";
 import type { SitePage } from "@/content/types";
 import { SITE_URL } from "@/lib/site";
 
-// Every website page except the homepage renders here, from src/content (or hitman-api).
-export const revalidate = 60;
+// Every website page except the homepage renders here, from the database (or the bundled copy in src/content).
+export const dynamic = "force-dynamic";
 
 type Params = { params: Promise<{ slug: string[] }> };
 

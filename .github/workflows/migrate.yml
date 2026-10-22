@@ -1,0 +1,29 @@
+name: Database migrations
+
+# Creates or updates the website's Postgres tables whenever migrations change on main.
+# Needs the repository secret DATABASE_URL (postgres://user:password@host:5432/docstar-website).
+on:
+  push:
+    branches: [main]
+    paths:
+      - "db/migrations/**"
+      - "scripts/migrate.mjs"
+  workflow_dispatch:
+
+concurrency:
+  group: website-migrations
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --omit=dev --ignore-scripts
+      - run: node scripts/migrate.mjs
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
