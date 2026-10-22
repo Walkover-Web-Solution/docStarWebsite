@@ -42,6 +42,7 @@ Follow https://docstar.io/mcp/quickstart.md, document my app's user-facing APIs 
       links: [
         { label: "Support", href: "/support" },
         { label: "Help docs", href: "https://docstar.io/help" },
+        { label: "Terms of service", href: "/terms" },
         { label: "Privacy policy", href: "/privacy-policy" },
         { label: "Data retention", href: "/data-retention-policy" },
       ],
