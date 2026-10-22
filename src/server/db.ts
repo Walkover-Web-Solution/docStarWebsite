@@ -1,8 +1,10 @@
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { Client, type QueryResultRow } from "pg";
 
 // Postgres access for the website's own backend. One connection per request (`withDb`): that works
 // on Node and on Cloudflare Workers, where connections can't be shared between requests. With
-// Cloudflare Hyperdrive, point DATABASE_URL at the Hyperdrive connection string and nothing else changes.
+// Cloudflare Hyperdrive (the HYPERDRIVE binding in wrangler.jsonc), the Worker connects through it; everywhere
+// else (local dev, scripts) it uses DATABASE_URL.
 
 export type Db = {
   /** Runs a query and returns its rows. Use $1, $2… for values, never string concatenation. */
@@ -42,12 +44,23 @@ function connectionReason(error: any): string {
   return `unexpected error${error?.code ? ` (${error.code})` : ""}${detail ? `: ${detail}` : ""}. The full details are in the Worker logs.`;
 }
 
-export const hasDb = () => !!process.env.DATABASE_URL;
+// On Cloudflare the Hyperdrive binding wins: it holds the real database login and TLS, and reuses connections.
+function connectionString(): string | undefined {
+  try {
+    const hyperdrive = (getCloudflareContext().env as { HYPERDRIVE?: { connectionString: string } }).HYPERDRIVE;
+    if (hyperdrive?.connectionString) return hyperdrive.connectionString;
+  } catch {
+    // not running on Cloudflare (local dev, build): fall through to DATABASE_URL
+  }
+  return process.env.DATABASE_URL;
+}
+
+export const hasDb = () => !!connectionString();
 
 export async function withDb<T>(fn: (db: Db) => Promise<T>): Promise<T> {
-  const connectionString = process.env.DATABASE_URL;
-  if (!connectionString) throw new DbNotConfigured();
-  const client = new Client({ connectionString, connectionTimeoutMillis: 10_000, statement_timeout: 20_000 });
+  const url = connectionString();
+  if (!url) throw new DbNotConfigured();
+  const client = new Client({ connectionString: url, connectionTimeoutMillis: 10_000, statement_timeout: 20_000 });
   try {
     await client.connect();
   } catch (error) {
