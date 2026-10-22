@@ -4,5 +4,10 @@
   "main": ".open-next/worker.js",
   "compatibility_date": "2025-09-01",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
-  "assets": { "directory": ".open-next/assets", "binding": "ASSETS" }
+  "assets": { "directory": ".open-next/assets", "binding": "ASSETS" },
+  // Not secret: identifiers of the viaSocket project. VIASOCKET_EMBED_SECRET is a Worker secret (dashboard or `wrangler secret put`).
+  "vars": {
+    "VIASOCKET_ORG_ID": "4255",
+    "VIASOCKET_PROJECT_ID": "projgKgoIAH2"
+  }
 }
