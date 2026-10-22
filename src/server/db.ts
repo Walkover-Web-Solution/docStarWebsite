@@ -33,7 +33,13 @@ function connectionReason(error: any): string {
   if (/ECONNREFUSED/i.test(text)) return "the server refused the connection (wrong port, or Postgres isn't listening).";
   if (/ETIMEDOUT|timeout|timed out/i.test(text)) return "no answer from the server (a firewall is blocking it, or it isn't reachable from the internet).";
   if (/SSL|TLS|certificate/i.test(text)) return "SSL/TLS problem (try ?sslmode=require, or check the server's certificate).";
-  return `unexpected error${error?.code ? ` (${error.code})` : ""}. The details are in the Worker logs.`;
+  // Hosts, IPs and anything that looks like a connection string are removed before the text leaves the server.
+  const detail = String(error?.message || error || "")
+    .replace(/\b[a-z][a-z0-9+.-]*:\/\/\S+/gi, "<url>")
+    .replace(/\b\d{1,3}(\.\d{1,3}){3}(:\d+)?\b/g, "<host>")
+    .replace(/\s+/g, " ")
+    .slice(0, 160);
+  return `unexpected error${error?.code ? ` (${error.code})` : ""}${detail ? `: ${detail}` : ""}. The full details are in the Worker logs.`;
 }
 
 export const hasDb = () => !!process.env.DATABASE_URL;
