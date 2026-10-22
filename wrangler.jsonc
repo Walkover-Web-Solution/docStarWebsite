@@ -11,7 +11,15 @@
   "preview_urls": false,
   "observability": { "enabled": true },
   // The database goes through Hyperdrive (db.ts uses env.HYPERDRIVE.connectionString). The id isn't secret.
-  "hyperdrive": [{ "binding": "HYPERDRIVE", "id": "dc5b5fac8c4a4ec1b222ab4390b6992d" }],
+  // localConnectionString is a placeholder, never used in production: the OpenNext deploy step and
+  // `wrangler dev` insist on one to emulate the binding. `npm run dev` uses DATABASE_URL instead.
+  "hyperdrive": [
+    {
+      "binding": "HYPERDRIVE",
+      "id": "dc5b5fac8c4a4ec1b222ab4390b6992d",
+      "localConnectionString": "postgres://user:password@localhost:5432/docstar-website"
+    }
+  ],
   // Not secret: identifiers of the viaSocket project. VIASOCKET_EMBED_SECRET is a Worker secret (dashboard or `wrangler secret put`).
   "vars": {
     "VIASOCKET_ORG_ID": "4255",
