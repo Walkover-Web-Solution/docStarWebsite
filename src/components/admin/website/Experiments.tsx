@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "../toast";
-import { concludeExperiment, getExperiment, listExperiments, stopExperiment } from "@/lib/admin/api";
+import { concludeExperiment, createExperiment, getExperiment, getExperimentBrief, getSitePage, listExperiments, listSitePages, startExperiment, stopExperiment, updateExperimentDraft } from "@/lib/admin/api";
 import RevisionBadge, { timeAgo } from "./RevisionBadge";
 import WebsiteNav from "./WebsiteNav";
 
@@ -73,6 +73,117 @@ function Results({ r }: { r: any }) {
   );
 }
 
+function Previews({ x }: { x: any }) {
+  if (!x.previews?.length) return null;
+  return (
+    <p className="flex flex-wrap items-center gap-2 text-xs text-[var(--a-muted)]">
+      Preview (signed-in only):
+      {x.previews.map((p: any) => (
+        <a key={p.key} href={p.path} target="_blank" rel="noreferrer" className="underline">
+          {p.key}
+        </a>
+      ))}
+    </p>
+  );
+}
+
+function Draft({ x, busy, act }: { x: any; busy: string; act: (label: string, fn: () => Promise<any>, done: string) => void }) {
+  const [f, setF] = useState({ hypothesis: x.hypothesis || "", reviewBy: x.reviewBy || "", rollbackPlan: x.rollbackPlan || "" });
+  const [brief, setBrief] = useState("");
+  const input = "box-border w-full rounded-lg border border-[var(--a-border)] px-2 py-1 text-sm";
+  return (
+    <div className="grid gap-2 text-sm">
+      <p className="flex flex-wrap items-center gap-2 text-xs text-[var(--a-muted)]">
+        {x.variants.map((v: any) => (
+          <span key={v.key}>
+            {v.key}: version #{v.revisionId} · {v.weight}%
+          </span>
+        ))}
+        <RevisionBadge status="draft" />
+      </p>
+      <label className="grid gap-1 text-xs text-[var(--a-muted)]">
+        Hypothesis (what changes, for whom, why it should help)
+        <textarea className={input} rows={2} value={f.hypothesis} onChange={(e) => setF({ ...f, hypothesis: e.target.value })} />
+      </label>
+      <div className="grid gap-2 sm:grid-cols-2">
+        <label className="grid gap-1 text-xs text-[var(--a-muted)]">
+          Review by (decide or retire on this date)
+          <input type="date" className={input} value={f.reviewBy} onChange={(e) => setF({ ...f, reviewBy: e.target.value })} />
+        </label>
+        <label className="grid gap-1 text-xs text-[var(--a-muted)]">
+          Rollback plan
+          <input className={input} value={f.rollbackPlan} onChange={(e) => setF({ ...f, rollbackPlan: e.target.value })} />
+        </label>
+      </div>
+      {x.missingForLaunch.length > 0 && <p className="rounded-md bg-amber-100 p-2 text-xs text-amber-900">Before launch: {x.missingForLaunch.join("; ")}.</p>}
+      <div className="flex flex-wrap gap-2">
+        <button type="button" className="btn btn-sm" disabled={!!busy} onClick={() => act("save", () => updateExperimentDraft(x.id, f), "Saved")}>Save</button>
+        <button type="button" className="btn btn-sm btn-primary" disabled={!!busy || x.missingForLaunch.length > 0} onClick={() => act("start", () => startExperiment(x.id), "Test started")}>Launch</button>
+        <button type="button" className="btn btn-sm" onClick={() => getExperimentBrief(x.id).then((r) => setBrief(r.brief))}>Change brief</button>
+      </div>
+      {brief && (
+        <div className="grid gap-1">
+          <pre className="whitespace-pre-wrap rounded-md border border-[var(--a-border)] p-2 text-xs">{brief}</pre>
+          <p className="text-xs text-[var(--a-muted)]">Generating a challenger from this brief is not connected: a person or coding agent writes the draft version in Website → Pages, then adds it here.</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function NewTest({ onCreated }: { onCreated: () => void }) {
+  const [open, setOpen] = useState(false);
+  const [pages, setPages] = useState<any[]>([]);
+  const [revs, setRevs] = useState<any[]>([]);
+  const [f, setF] = useState<any>({ slug: "", title: "", hypothesis: "", b: "", c: "", split: 50 });
+  const [busy, setBusy] = useState(false);
+  useEffect(() => {
+    if (open && !pages.length) listSitePages().then((r: any) => setPages(r.pages));
+  }, [open, pages.length]);
+  useEffect(() => {
+    setRevs([]);
+    if (f.slug) getSitePage(f.slug).then((r: any) => setRevs(r.revisions.filter((v: any) => v.status === "draft")));
+  }, [f.slug]);
+  const input = "box-border w-full rounded-lg border border-[var(--a-border)] px-2 py-1 text-sm";
+  if (!open) return <div><button type="button" className="btn" onClick={() => setOpen(true)}>New experiment</button></div>;
+  const variants = [f.b && { revisionId: Number(f.b) }, f.c && { revisionId: Number(f.c) }].filter(Boolean);
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setBusy(true);
+    try {
+      // the share of visitors who see the challengers is split evenly between them
+      const each = Math.floor(Number(f.split) / variants.length);
+      await createExperiment({ slug: f.slug, title: f.title, hypothesis: f.hypothesis || undefined, variants: variants.map((v: any) => ({ ...v, weight: each })), controlWeight: 100 - each * variants.length });
+      toast.success("Draft created. Add the launch details, then launch.");
+      setOpen(false);
+      onCreated();
+    } catch (err: any) {
+      toast.error(err.message);
+    } finally {
+      setBusy(false);
+    }
+  };
+  return (
+    <form onSubmit={submit} className="a-card grid gap-2 p-4 text-sm">
+      <h2 className="font-bold">New experiment</h2>
+      <p className="text-xs text-[var(--a-muted)]">A is always the live page. B and C are draft versions of the same page (create them in Website → Pages first). Nothing starts until you launch it.</p>
+      <select aria-label="Page" className={input} value={f.slug} onChange={(e) => setF({ ...f, slug: e.target.value, b: "", c: "" })} required>
+        <option value="">Choose the page to test…</option>
+        {pages.map((p) => <option key={p.slug} value={p.slug}>{p.path}</option>)}
+      </select>
+      <input aria-label="Title" className={input} placeholder="Title, e.g. Home hero names the outcome" value={f.title} onChange={(e) => setF({ ...f, title: e.target.value })} required minLength={3} />
+      <textarea aria-label="Hypothesis" className={input} rows={2} placeholder="Hypothesis" value={f.hypothesis} onChange={(e) => setF({ ...f, hypothesis: e.target.value })} />
+      <div className="grid gap-2 sm:grid-cols-3">
+        <select aria-label="Challenger B" className={input} value={f.b} onChange={(e) => setF({ ...f, b: e.target.value })} required><option value="">Challenger B (draft version)…</option>{revs.map((r) => <option key={r.id} value={r.id}>v{r.version} · {r.note || "no note"}</option>)}</select>
+        <select aria-label="Challenger C (optional)" className={input} value={f.c} onChange={(e) => setF({ ...f, c: e.target.value })}><option value="">Challenger C (optional)</option>{revs.filter((r) => String(r.id) !== f.b).map((r) => <option key={r.id} value={r.id}>v{r.version} · {r.note || "no note"}</option>)}</select>
+        <label className="flex items-center gap-2 text-xs text-[var(--a-muted)]">Visitors in challengers
+          <input type="number" min={2} max={90} className={`${input} w-20`} value={f.split} onChange={(e) => setF({ ...f, split: e.target.value })} />%</label>
+      </div>
+      <div><button type="submit" className="btn btn-primary" disabled={busy || !variants.length}>Create draft</button> <button type="button" className="btn" onClick={() => setOpen(false)}>Cancel</button></div>
+    </form>
+  );
+}
+
 function TestCard({ x, onChanged }: { x: any; onChanged: () => void }) {
   const [detail, setDetail] = useState<any>(null);
   const [busy, setBusy] = useState("");
@@ -127,18 +238,8 @@ function TestCard({ x, onChanged }: { x: any; onChanged: () => void }) {
             ))}
         </div>
       </div>
-      {x.status === "draft" ? (
-        <p className="flex flex-wrap items-center gap-2 text-xs text-[var(--a-muted)]">
-          {x.variants.map((v: any) => (
-            <span key={v.key}>
-              {v.key}: version #{v.revisionId} · {v.weight}%
-            </span>
-          ))}
-          <RevisionBadge status="draft" />
-        </p>
-      ) : (
-        <Results r={detail?.results} />
-      )}
+      {x.status === "draft" ? <Draft x={x} busy={busy} act={act} /> : <Results r={detail?.results} />}
+      <Previews x={x} />
     </li>
   );
 }
@@ -156,13 +257,19 @@ export default function Experiments() {
     <div className="grid max-w-5xl gap-4">
       <div>
         <h1 className="text-2xl font-bold">Website</h1>
-        <p className="text-sm text-[var(--a-muted)]">A/B tests the AI runs: part of the visitors see a different version of a page, and the one that gets more people to copy the prompt is kept. Agents and crawlers always see the live page.</p>
+        <p className="text-sm text-[var(--a-muted)]">A/B/C tests, created by operators or the autopilot: part of the visitors see a different version of a page, and the one that gets more people to copy the prompt is kept. Agents and crawlers always see the live page. Stop = pause and return everyone to A; Make B/C live = promote; Keep A = retire. Low traffic stays “collecting data”, never a winner.</p>
         <div className="mt-3">
           <WebsiteNav />
         </div>
       </div>
+      {list?.[0]?.design && (
+        <p className="text-xs text-[var(--a-muted)]">
+          Assignment: {list[0].design.assignmentUnit}. Exposure: {list[0].design.exposure}. Excluded: {list[0].design.excluded}.
+        </p>
+      )}
+      <NewTest onCreated={load} />
       {!list && <p className="text-sm text-[var(--a-muted)]">Loading…</p>}
-      {list?.length === 0 && <p className="text-sm text-[var(--a-muted)]">No tests yet. The AI starts them once the autopilot is on.</p>}
+      {list?.length === 0 && <p className="text-sm text-[var(--a-muted)]">No tests yet.</p>}
       <ul className="grid gap-3">
         {list?.map((x) => (
           <TestCard key={`${x.id}-${x.status}`} x={x} onChanged={load} />

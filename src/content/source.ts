@@ -53,8 +53,16 @@ export async function getSitePage(slug: string): Promise<SitePage> {
 }
 
 // One version of a page that is in a running A/B test; null when no running test uses it.
-export async function getVariantPage(slug: string, revisionId: number): Promise<SitePage | null> {
+export async function getVariantPage(slug: string, revisionId: number, opts: { preview?: boolean } = {}): Promise<SitePage | null> {
   if (!hasDb()) return null;
+  if (opts.preview) {
+    // operator preview: never cached, may be a draft
+    try {
+      return await withDb((db) => getPageContent(db, slug, { variant: revisionId, preview: true }).then(asPage));
+    } catch {
+      return null;
+    }
+  }
   try {
     return await cached(`variant:${revisionId}`, () => withDb((db) => getPageContent(db, slug, { variant: revisionId }).then(asPage)));
   } catch {

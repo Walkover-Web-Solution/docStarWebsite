@@ -99,3 +99,15 @@ export async function signIn(db: Db, req: NextRequest, email: string, password: 
   await updateRow(db, user, { data: { lastLoginAt: new Date() } });
   return { email: user.key as string, name: user.title as string };
 }
+
+/** For server components (no NextRequest): is the viewer a signed-in operator? */
+export async function hasAdminSession(): Promise<boolean> {
+  const token = (await cookies()).get(COOKIE)?.value;
+  if (!token) return false;
+  try {
+    await jwtVerify(token, secretKey(), { algorithms: ["HS256"] });
+    return true;
+  } catch {
+    return false;
+  }
+}

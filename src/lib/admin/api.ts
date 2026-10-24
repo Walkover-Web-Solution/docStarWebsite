@@ -76,6 +76,36 @@ export const setAutopilotEnabled = (enabled: boolean) => request("/autopilot/ena
 export const runAutopilotNow = () => request("/autopilot/run", { method: "POST" });
 export const rollbackAutopilotAction = (id: number) => request(`/autopilot/actions/${id}/rollback`, { method: "POST" });
 
+// ---------- overview, settings ----------
+export const getOverview = () => request("/overview");
+export const getSettings = () => request("/settings");
+
+// ---------- knowledge ----------
+export const listKnowledge = () => request("/knowledge");
+export const getKnowledgeDoc = (path: string) => request(`/knowledge${query({ path })}`);
+export const saveKnowledgeEdit = (body: { path: string; content: string; baseSha: string; note?: string; submit: boolean }) => request("/knowledge/edits", { method: "POST", body });
+export const actOnKnowledgeEdit = (id: number, action: "submit" | "refresh" | "discard") => request(`/knowledge/edits/${id}`, { method: "POST", body: { action } });
+
+// ---------- research ----------
+export const getResearch = () => request("/research");
+export const addCompetitor = (body: unknown) => request("/research", { method: "POST", body });
+export const updateCompetitor = (id: number, body: unknown) => request(`/research/${id}`, { method: "PATCH", body });
+export const runResearch = (ids?: number[]) => request("/research/run", { method: "POST", body: { force: true, ids } });
+export const saveResearchSettings = (body: unknown) => request("/research/settings", { method: "POST", body });
+
+// ---------- analyses ----------
+export const getAnalyses = () => request("/analyses");
+export const getAnalysisRuns = (id: string) => request(`/analyses/${id}`);
+export const runAnalysisNow = (id: string) => request(`/analyses/${id}/run`, { method: "POST" });
+export const saveAnalysisSettings = (body: unknown) => request("/analyses/settings", { method: "POST", body });
+export const interpretRun = (runId: number) => request(`/analyses/runs/${runId}/interpret`, { method: "POST" });
+
+// ---------- experiments (create and launch) ----------
+export const createExperiment = (body: unknown) => request("/experiments", { method: "POST", body });
+export const updateExperimentDraft = (id: number, body: unknown) => request(`/experiments/${id}`, { method: "PATCH", body });
+export const startExperiment = (id: number) => request(`/experiments/${id}/start`, { method: "POST" });
+export const getExperimentBrief = (id: number) => request(`/experiments/${id}/brief`);
+
 // This website's bundled copy of every page, used to add pages that aren't in the editor yet.
 export async function getBundledPages() {
   const res = await fetch("/content.json");
