@@ -1,5 +1,5 @@
-import IdeasInbox from "@/components/admin/IdeasInbox";
+import Overview from "@/components/admin/sections/Overview";
 
-export default function AdminIdeasPage() {
-  return <IdeasInbox />;
+export default function AdminOverviewPage() {
+  return <Overview />;
 }

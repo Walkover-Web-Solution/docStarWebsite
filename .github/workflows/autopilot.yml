@@ -1,7 +1,9 @@
-name: Website autopilot
+name: Website autopilot and analyses
 
 # Starts the AI autopilot every day at 09:00 India time (03:30 UTC). It does nothing while the autopilot is
 # switched off in Admin > Website > Autopilot, or if it already ran today.
+# The second step runs the scheduled analyses and competitor-source checks (admin > Analyses / Research); each has its own
+# interval, honours its pause switch and daily budget, and does nothing when nothing is due.
 # Needs the repository secrets SITE_URL (https://docstar.io) and CRON_SECRET (same value as the site's CRON_SECRET).
 # Note: GitHub pauses scheduled workflows after 60 days without repository activity; "Run workflow" restarts it.
 on:
@@ -18,3 +20,9 @@ jobs:
           curl --fail-with-body --silent --show-error --max-time 600 -X POST \
             -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
             "${{ secrets.SITE_URL }}/api/cron/autopilot"
+      - name: Run due analyses and research checks
+        if: always()
+        run: |
+          curl --fail-with-body --silent --show-error --max-time 600 -X POST \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            "${{ secrets.SITE_URL }}/api/cron/analyses"

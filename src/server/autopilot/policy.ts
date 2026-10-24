@@ -18,7 +18,7 @@ export const STORY_SECTIONS = ["hero"];
 // (A section's `layout`, its look, can also change only through a test; see applyChanges.)
 
 // Words that over-promise. A change containing one is refused.
-const BANNED = [/\bguarantee/i, /\b#\s?1\b/i, /\bnumber one\b/i, /\bbest in the world\b/i, /\bworld'?s best\b/i, /\b100% (accurate|uptime|secure)\b/i, /\bnever fails?\b/i, /\brevolutionary\b/i, /\bunlimited\b/i, /\bfree forever\b/i];
+export const BANNED = [/\bguarantee/i, /\b#\s?1\b/i, /\bnumber one\b/i, /\bbest in the world\b/i, /\bworld'?s best\b/i, /\b100% (accurate|uptime|secure)\b/i, /\bnever fails?\b/i, /\brevolutionary\b/i, /\bunlimited\b/i, /\bfree forever\b/i];
 
 // Links the AI may use: DocStar's own sites, relative paths and anchors.
 const ALLOWED_LINK = /^(\/|#|https:\/\/([a-z0-9-]+\.)*docstar\.io(\/|$))/i;

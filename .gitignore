@@ -45,3 +45,6 @@ next-env.d.ts
 
 .open-next
 .wrangler
+
+# Generated knowledge bundle (npm run knowledge:build)
+src/content/knowledge.generated.ts

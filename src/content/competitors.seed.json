@@ -1,0 +1,12 @@
+[
+{"name":"Mintlify","url":"https://www.mintlify.com","category":"direct","why":"Closest messaging overlap: agent-era documentation platform.","sources":[{"label":"pricing","url":"https://www.mintlify.com/pricing"}]},
+{"name":"ReadMe","url":"https://readme.com","category":"direct","why":"API docs with MCP, llms.txt and CLI on official pages: the bundle is not unique to DocStar.","sources":[{"label":"pricing","url":"https://readme.com/pricing"}]},
+{"name":"GitBook","url":"https://www.gitbook.com","category":"indirect","why":"General docs tool that contests the 'docs never drift' message.","sources":[{"label":"pricing","url":"https://www.gitbook.com/pricing"}]},
+{"name":"Redocly","url":"https://redocly.com","category":"direct","why":"OpenAPI-based docs with MCP and agent-readiness; strong with teams that have clean specs.","sources":[{"label":"pricing","url":"https://redocly.com/pricing"}]},
+{"name":"Scalar","url":"https://scalar.com","category":"direct","why":"Low-priced, open-source-backed OpenAPI docs with hosted MCP servers.","sources":[{"label":"pricing","url":"https://scalar.com/pricing"}]},
+{"name":"Postman (API docs)","url":"https://www.postman.com/api-platform/api-documentation/","category":"indirect","why":"Incumbent with a large installed base and an MCP server product.","sources":[{"label":"pricing","url":"https://www.postman.com/pricing/"}]},
+{"name":"Swagger / SwaggerHub","url":"https://swagger.io/tools/swaggerhub/","category":"indirect","why":"Enterprise spec-first design and docs portal.","sources":[{"label":"pricing","url":"https://swagger.io/tools/swaggerhub/pricing/"}]},
+{"name":"Stoplight","url":"https://stoplight.io","category":"indirect","why":"Design-first docs; low agent focus seen, overlap shrinking.","sources":[{"label":"pricing","url":"https://stoplight.io/pricing"}]},
+{"name":"Docusaurus / static-site generators","url":"https://docusaurus.io","category":"substitute","why":"Hand-written Markdown docs: the do-it-yourself alternative.","sources":[]},
+{"name":"OpenAPI file + Swagger UI","url":"https://swagger.io/tools/swagger-ui/","category":"substitute","why":"Free rendered reference for teams that already maintain a spec.","sources":[]}
+]

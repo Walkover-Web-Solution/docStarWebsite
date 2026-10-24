@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import SectionRenderer from "@/components/site/SectionRenderer";
 import { PATH_TO_SLUG } from "@/content/pages";
 import { getSitePage, getVariantPage } from "@/content/source";
+import { hasAdminSession } from "@/server/auth";
 
 // One version of a page in a running A/B test. The middleware rewrites people in that variant here,
 // so the address bar keeps the real path; each version is cached on its own. Never indexed. If the
@@ -17,6 +18,11 @@ async function load({ params }: Params) {
   const pageSlug = PATH_TO_SLUG[path];
   const revisionId = Number(rev);
   if (!pageSlug || !Number.isInteger(revisionId)) return null;
+  // A signed-in operator can open any version of the page (including drafts) here, to preview a challenger.
+  if (await hasAdminSession().catch(() => false)) {
+    const previewed = await getVariantPage(pageSlug, revisionId, { preview: true });
+    if (previewed) return previewed;
+  }
   return (await getVariantPage(pageSlug, revisionId)) || (await getSitePage(pageSlug));
 }
 

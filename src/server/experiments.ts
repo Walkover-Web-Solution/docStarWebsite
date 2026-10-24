@@ -16,6 +16,18 @@ export const GUARDRAILS = ["agent.arrived", "signup.clicked"];
 // A winner needs all of these (shown in the admin; the autopilot decides with them).
 export const DECISION = { minDays: 14, minVisitorsPerVariant: 300, winProbability: 0.95, guardrailHarm: 0.9 };
 
+// At most this many tests run at once across the site (each page can run one). Starting takes a global lock,
+// so concurrent jobs (the autopilot, two operators) cannot exceed it.
+export const MAX_RUNNING = 2;
+export const DEFAULT_REVIEW_DAYS = 42;
+export const DEFAULT_ROLLBACK = "Stop the test: every visitor gets the live page (A) again. If a winner was promoted, roll the page back to the previous version in Website > Pages.";
+// What every test measures and how, shown to operators; the code that implements it is in RESULTS_SQL and the middleware.
+export const DESIGN = {
+  assignmentUnit: "Anonymous visitor (ds_aid cookie), hashed with the test key; sticky for the test",
+  exposure: "A human page.viewed on the tested path while assigned to a variant (assignment alone is not exposure)",
+  excluded: "Agents, crawlers and HTTP clients; events with props.synthetic = true",
+};
+
 export const createSchema = z.object({
   slug: z.string().max(64),
   title: z.string().trim().min(3).max(200),
@@ -23,6 +35,11 @@ export const createSchema = z.object({
   // B (and C): versions of the page to test against the live one. A is always the live version.
   variants: z.array(z.object({ revisionId: z.number().int().positive(), weight: z.number().int().min(1).max(98).optional() })).min(1).max(2),
   controlWeight: z.number().int().min(1).max(99).optional(),
+  // launch requirements: hypothesis, review date and rollback plan are checked again at start
+  audience: z.string().trim().max(300).optional(),
+  reviewBy: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+  rollbackPlan: z.string().trim().max(1000).optional(),
+  synthetic: z.boolean().optional(),
 });
 export type CreateExperiment = z.infer<typeof createSchema>;
 
@@ -40,6 +57,16 @@ async function findExperiment(db: Db, id: number, lock = false) {
   return mapRow(row);
 }
 
+/** What is still missing before this draft may start. */
+export function launchGaps(row: AdminRow) {
+  const gaps: string[] = [];
+  if (String(row.data.hypothesis || "").trim().length < 10) gaps.push("A hypothesis (what changes, for whom, and why it should help)");
+  if (!row.data.rollbackPlan) gaps.push("A rollback plan");
+  if (!row.data.reviewBy) gaps.push("A review date");
+  else if (Date.parse(row.data.reviewBy) <= Date.now()) gaps.push("A review date in the future");
+  return gaps;
+}
+
 function view(row: AdminRow, page?: AdminRow | null) {
   return {
     id: row.id,
@@ -55,6 +82,15 @@ function view(row: AdminRow, page?: AdminRow | null) {
     startedAt: row.data.startedAt as string | null,
     endedAt: row.data.endedAt as string | null,
     winner: row.data.winner as string | null,
+    reviewBy: (row.data.reviewBy ?? null) as string | null,
+    rollbackPlan: (row.data.rollbackPlan ?? null) as string | null,
+    audience: (row.data.audience ?? null) as string | null,
+    synthetic: !!row.data.synthetic,
+    phase: (row.data.phase ?? 1) as number,
+    missingForLaunch: row.status === "draft" ? launchGaps(row) : [],
+    design: DESIGN,
+    // admin-only preview of each version on the real page (signed-in operators can open drafts)
+    previews: page ? (row.data.variants as { key: string; revisionId: number }[]).map((v) => ({ key: v.key, path: `/xv/${v.revisionId}${page.data.path === "/" ? "" : page.data.path}` })) : [],
     actorType: row.actorType,
     actorName: row.actorName,
     createdAt: row.createdAt,
@@ -87,7 +123,16 @@ export async function create(db: Db, input: CreateExperiment, actor: Actor) {
     key: keyOf(page.key as string),
     title: input.title,
     actor,
-    data: { variants, goal: GOAL, guardrails: GUARDRAILS, hypothesis: input.hypothesis || null },
+    data: {
+      variants,
+      goal: GOAL,
+      guardrails: GUARDRAILS,
+      hypothesis: input.hypothesis || null,
+      audience: input.audience || "All human visitors to the page",
+      reviewBy: input.reviewBy || new Date(Date.now() + DEFAULT_REVIEW_DAYS * 86400000).toISOString().slice(0, 10),
+      rollbackPlan: input.rollbackPlan || DEFAULT_ROLLBACK,
+      synthetic: !!input.synthetic,
+    },
   });
   return view(row, page);
 }
@@ -105,10 +150,25 @@ export async function get(db: Db, id: number) {
   return { ...view(row, page), results: row.status === "draft" ? null : await results(db, row, page) };
 }
 
+/** Edits the launch fields of a draft. A running test's treatment is never edited; a changed treatment is a new test. */
+export async function updateDraft(db: Db, id: number, input: { hypothesis?: string; audience?: string; reviewBy?: string; rollbackPlan?: string }) {
+  const row = await findExperiment(db, id);
+  if (row.status !== "draft") throw new AdminError(409, "Only a draft can be edited. Material changes to a started test need a new test (a new phase).");
+  const data: Record<string, any> = {};
+  for (const k of ["hypothesis", "audience", "reviewBy", "rollbackPlan"] as const) if (input[k] !== undefined) data[k] = input[k] || null;
+  await updateRow(db, row, { data });
+  return get(db, id);
+}
+
 export async function start(db: Db, id: number) {
   await withTx(db, async () => {
     const row = await findExperiment(db, id, true);
     if (row.status !== "draft") throw new AdminError(409, `This test is already ${row.status}`);
+    const gaps = launchGaps(row);
+    if (gaps.length) throw new AdminError(400, `Before launch: ${gaps.join("; ")}.`);
+    await db.query("SELECT pg_advisory_xact_lock(4255003)"); // one slot decision at a time, site-wide
+    const active = await db.one<{ n: number }>("SELECT count(*)::int AS n FROM admin WHERE type = 'experiment' AND status = 'running'");
+    if ((active?.n || 0) >= MAX_RUNNING) throw new AdminError(409, `${MAX_RUNNING} tests are already running, the site-wide limit. Stop or conclude one first.`);
     await db.query("SELECT 1 FROM admin WHERE id = $1 FOR UPDATE", [row.parentId]); // one start per page at a time
     const running = await db.one("SELECT 1 AS ok FROM admin WHERE type = 'experiment' AND parent_id = $1 AND status = 'running'", [row.parentId]);
     if (running) throw new AdminError(409, "This page already has a test running. Stop it first.");
@@ -124,6 +184,21 @@ async function dropUnused(db: Db, row: AdminRow, keep?: string) {
     const rev = await getRow(db, v.revisionId, "page_revision");
     if (rev?.status === "draft") await updateRow(db, rev, { status: "rejected" });
   }
+}
+
+/** A change brief for whoever (or whatever) builds the challenger. Generation itself is not connected. */
+export async function brief(db: Db, id: number) {
+  const row = await findExperiment(db, id);
+  const page = await getRow(db, row.parentId as number);
+  return [
+    `# Challenger brief: ${row.title}`,
+    `Page: ${page?.data.path} (slug ${page?.key})`,
+    `Hypothesis: ${row.data.hypothesis || "(missing: write it before launch)"}`,
+    `Audience: ${row.data.audience || "All human visitors to the page"}`,
+    `Primary outcome: visitors who copied the prompt (${GOAL}). Guardrails: ${GUARDRAILS.join(", ")}.`,
+    `Constraints: change copy, layout (a section's built-in layout) or CTA wording only; keep data-section / data-cta attributes, links and facts; follow docs/POSITIONING.md approved claims and docs/BRAND.md voice. No new claims, prices or testimonials.`,
+    `Deliver: a draft page version (Website > Pages > save as draft), then add it as variant B or C here. Do not publish it.`,
+  ].join("\n");
 }
 
 export async function stop(db: Db, id: number) {
@@ -193,12 +268,12 @@ const RESULTS_SQL = `
   WITH exposed AS (
     SELECT anon_id, MIN(ts) AS first_ts, MIN(variants->>$1) AS variant
       FROM admin_events
-     WHERE event = 'page.viewed' AND actor_type = 'human' AND path = $2
+     WHERE event = 'page.viewed' AND actor_type = 'human' AND path = $2 AND COALESCE(props->>'synthetic', '') <> 'true'
        AND variants->>$1 IS NOT NULL AND anon_id IS NOT NULL AND ts BETWEEN $3 AND $4
      GROUP BY anon_id
   ), later AS (
     SELECT e.event, e.anon_id, e.ref FROM admin_events e JOIN exposed x ON x.anon_id = e.anon_id
-     WHERE e.event IN ('prompt.copied', 'signup.clicked') AND e.ts >= x.first_ts AND e.ts <= $4
+     WHERE e.event IN ('prompt.copied', 'signup.clicked') AND COALESCE(e.props->>'synthetic', '') <> 'true' AND e.ts >= x.first_ts AND e.ts <= $4
   ), arrived AS (
     SELECT DISTINCT l.anon_id FROM later l
      WHERE l.event = 'prompt.copied' AND l.ref IN (SELECT ref FROM admin_events WHERE event = 'agent.quickstart_fetched' AND ref IS NOT NULL AND ts >= $3)

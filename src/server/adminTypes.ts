@@ -6,7 +6,7 @@ import type { Db } from "./db";
 // may have, whether it needs a parent or key, and what `data` holds. Keep ADMIN_TYPES in step with the
 // CHECK constraint in db/migrations/001_init.sql.
 
-export const ADMIN_TYPES = ["user", "page", "page_revision", "idea", "experiment", "ai_proposal", "ai_run", "setting"] as const;
+export const ADMIN_TYPES = ["user", "page", "page_revision", "idea", "experiment", "ai_proposal", "ai_run", "setting", "knowledge_edit", "competitor", "analysis_run"] as const;
 export type AdminType = (typeof ADMIN_TYPES)[number];
 
 export type ActorType = "human" | "agent" | "system";
@@ -131,6 +131,12 @@ export const SPECS: Record<AdminType, Spec> = {
         startedAt: when,
         endedAt: when,
         winner: nullableStr(32),
+        // launch requirements (see EXPERIMENTS.md); old rows have none of these
+        reviewBy: nullableStr(32),
+        rollbackPlan: nullableStr(1000),
+        audience: nullableStr(300),
+        synthetic: z.boolean().default(false),
+        phase: z.number().int().min(1).default(1),
       })
       .strict(),
   },
@@ -162,6 +168,60 @@ export const SPECS: Record<AdminType, Spec> = {
         toolCalls: z.array(z.record(z.string(), z.any())).max(200).default([]),
         answer: nullableStr(50000),
         error: nullableStr(5000),
+        finishedAt: when,
+      })
+      .strict(),
+  },
+  // An edit of a repository document made in the admin. key = doc path (docs/VISION.md). The repository
+  // stays the source of truth: `pending` means a pull request is open, `effective` that it is merged and deployed.
+  knowledge_edit: {
+    statuses: ["draft", "pending", "effective", "sync_failed", "conflict", "discarded"],
+    key: true,
+    data: z
+      .object({
+        content: str(400000),
+        baseSha: str(64),
+        note: nullableStr(500),
+        prUrl: nullableStr(300),
+        prNumber: z.number().int().nullable().default(null),
+        branch: nullableStr(200),
+        error: nullableStr(1000),
+        resultSha: nullableStr(64),
+      })
+      .strict(),
+  },
+  // A competitor or substitute on the watchlist. key = name. Findings live in docs/COMPETITORS.md and docs/research/.
+  competitor: {
+    statuses: ["candidate", "confirmed", "dropped"],
+    key: true,
+    data: z
+      .object({
+        url: str(300),
+        category: z.enum(["direct", "indirect", "substitute"]),
+        why: nullableStr(600),
+        sources: z.array(z.object({ label: str(60), url: str(400) }).strict()).max(6).default([]),
+        approvedBy: nullableStr(64),
+        lastCheck: z
+          .object({ at: z.string(), results: z.array(z.record(z.string(), z.any())).max(6), changed: z.boolean() })
+          .nullable()
+          .default(null),
+      })
+      .strict(),
+  },
+  // One run of an analysis. key = analysis id. At most one queued/running per analysis (unique index).
+  analysis_run: {
+    statuses: ["queued", "running", "succeeded", "failed", "skipped"],
+    key: true,
+    data: z
+      .object({
+        trigger: z.enum(["manual", "schedule", "event"]),
+        attempts: z.number().int().min(0).default(0),
+        revision: nullableStr(64),
+        window: z.object({ from: z.string(), to: z.string() }).nullable().default(null),
+        state: z.enum(["ok", "attention", "insufficient_data", "not_connected", "stale"]).nullable().default(null),
+        facts: z.array(z.record(z.string(), z.any())).max(200).default([]),
+        interpretation: z.record(z.string(), z.any()).nullable().default(null),
+        error: nullableStr(2000),
         finishedAt: when,
       })
       .strict(),

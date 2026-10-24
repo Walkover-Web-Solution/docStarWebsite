@@ -52,10 +52,14 @@ const latestRevision = async (db: Db, pageId: number, onlyDrafts = false) => {
  * A page's content: the published version; with `draft` the newest draft (admin preview); with
  * `variant` a version that is part of a running A/B test on this page (anything else is not found).
  */
-export async function getPageContent(db: Db, slug: string, { draft = false, variant }: { draft?: boolean; variant?: number } = {}) {
+export async function getPageContent(db: Db, slug: string, { draft = false, variant, preview = false }: { draft?: boolean; variant?: number; preview?: boolean } = {}) {
   const page = pageView(await findPage(db, slug));
   let revision: AdminRow | null = null;
-  if (variant) {
+  if (variant && preview) {
+    // signed-in operator previewing any version of this page, including drafts
+    revision = await findRevision(db, variant);
+    if (!revision || revision.parentId !== page.id) throw new AdminError(404, "That version is not part of this page");
+  } else if (variant) {
     const running = await db.one(
       "SELECT 1 AS ok FROM admin WHERE type = 'experiment' AND status = 'running' AND parent_id = $1 AND data->'variants' @> jsonb_build_array(jsonb_build_object('revisionId', $2::int))",
       [page.id, variant]

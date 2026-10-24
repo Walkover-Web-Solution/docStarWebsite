@@ -6,12 +6,18 @@ import { usePathname } from "next/navigation";
 import { getMe, login, logout, setSignedOutHandler, type Me } from "@/lib/admin/api";
 import { Toaster } from "./toast";
 
-// DocStar admin, on the website: ideas & feedback, website content and website analytics.
+// DocStar admin, on the website: overview, knowledge, research, analyses, website content and experiments,
+// analytics, ideas & feedback, settings.
 // Team members sign in with the email and password made by `npm run admin:user`.
 const TABS = [
-  { href: "/admin", label: "Ideas & feedback", match: (p: string) => p === "/admin" },
-  { href: "/admin/website", label: "Website", match: (p: string) => p.startsWith("/admin/website") },
+  { href: "/admin", label: "Overview", match: (p: string) => p === "/admin" },
+  { href: "/admin/knowledge", label: "Knowledge", match: (p: string) => p.startsWith("/admin/knowledge") },
+  { href: "/admin/research", label: "Research", match: (p: string) => p.startsWith("/admin/research") },
+  { href: "/admin/analyses", label: "Analyses", match: (p: string) => p.startsWith("/admin/analyses") },
+  { href: "/admin/website", label: "Website & experiments", match: (p: string) => p.startsWith("/admin/website") },
   { href: "/admin/analytics", label: "Analytics", match: (p: string) => p.startsWith("/admin/analytics") },
+  { href: "/admin/ideas", label: "Ideas & feedback", match: (p: string) => p.startsWith("/admin/ideas") },
+  { href: "/admin/settings", label: "Settings", match: (p: string) => p.startsWith("/admin/settings") },
 ];
 
 type State = "checking" | "signed-out" | "ready";
