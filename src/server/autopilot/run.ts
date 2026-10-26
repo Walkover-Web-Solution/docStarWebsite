@@ -18,6 +18,7 @@ import { LIMITS, PROTECTED_PAGES, PolicyError, applyChanges } from "./policy";
 export const AUTOPILOT: Actor = { type: "agent", id: "autopilot", name: "DocStar autopilot" };
 const SETTING = "autopilot";
 const MAX_ACTIONS_PER_RUN = 3;
+const MAX_MESSAGE_CHARS = 48_000;
 const NO_DIFFERENCE_AFTER_DAYS = 42; // a test that shows nothing after 6 weeks ends, keeping A
 const STALE_RUN_MINUTES = 15; // a run still "running" after this crashed; it no longer blocks
 const LOCK_KEY = 4255001; // Postgres advisory lock: one run at a time, however many servers are running
@@ -314,7 +315,10 @@ export async function run(trigger: "schedule" | "request") {
       if (!isConfigured()) throw new Error("viaSocket is not configured");
       return { judged, input: await signals(db) };
     });
-    const raw = await askJson({ threadId: `autopilot-run-${runId}`, prompt: PROMPT, message: JSON.stringify(input), schemaName: "autopilot_actions", schema: SCHEMA });
+    const message = JSON.stringify(input);
+    // viaSocket refuses a message over 50,000 characters; fail with a clear reason before sending.
+    if (message.length > MAX_MESSAGE_CHARS) throw new Error(`The site is too large to send to the AI (${message.length} characters, limit ${MAX_MESSAGE_CHARS}). Protect or shorten some pages.`);
+    const raw = await askJson({ threadId: `autopilot-run-${runId}`, prompt: PROMPT, message, schemaName: "autopilot_actions", schema: SCHEMA });
     const answer = answerSchema.parse(raw);
     const actions = answer.actions.slice(0, MAX_ACTIONS_PER_RUN);
     const results = await withDb(async (db) => {

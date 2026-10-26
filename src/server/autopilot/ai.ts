@@ -6,7 +6,7 @@ import { SignJWT } from "jose";
 
 const API = "https://flow-api.viasocket.com";
 export const AI_SERVICE = process.env.AUTOPILOT_AI_SERVICE || "anthropic";
-export const AI_MODEL = process.env.AUTOPILOT_AI_MODEL || "claude-sonnet-4-6";
+export const AI_MODEL = process.env.AUTOPILOT_AI_MODEL || "claude-opus-4-7";
 
 export const isConfigured = () => !!(process.env.VIASOCKET_ORG_ID && process.env.VIASOCKET_PROJECT_ID && process.env.VIASOCKET_EMBED_SECRET);
 

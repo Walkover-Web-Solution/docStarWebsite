@@ -76,7 +76,7 @@ export async function overview(db: Db, days: number) {
     q(`SELECT COALESCE(agent_name, 'unknown') AS name, COUNT(*)::int AS fetches
          FROM admin_events WHERE ${W} AND actor_type <> 'human' AND event LIKE 'agent.%' GROUP BY 1 ORDER BY fetches DESC LIMIT 5`),
     q(`SELECT path, COUNT(*)::int AS fetches FROM admin_events
-        WHERE ${W} AND actor_type <> 'human' AND event LIKE 'agent.%' GROUP BY path ORDER BY fetches DESC LIMIT 10`),
+        WHERE ${W} AND actor_type <> 'human' AND event LIKE 'agent.%' AND path !~ '^/(\\.|wp-|@fs|__|xmlrpc)' GROUP BY path ORDER BY fetches DESC LIMIT 10`),
     q(`SELECT props->>'cta_id' AS cta, props->>'placement' AS placement, COUNT(*)::int AS clicks, COUNT(DISTINCT anon_id)::int AS visitors
          FROM admin_events WHERE ${W} AND event = 'cta.clicked' AND actor_type = 'human'
         GROUP BY 1, 2 ORDER BY clicks DESC LIMIT 15`),

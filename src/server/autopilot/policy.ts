@@ -2,8 +2,9 @@ import { LAYOUTS, describeIssues, pageContentSchema } from "../siteSchema";
 
 // The autopilot's rules. The server enforces these on every action; the AI only proposes.
 
-// Pages the AI never changes (everything except pricing is open).
-export const PROTECTED_PAGES = ["pricing"];
+// Pages the AI never changes (everything else is open).
+// Pricing and the legal pages are never edited or tested by the autopilot, and their text is not sent to the AI.
+export const PROTECTED_PAGES = ["pricing", "privacy-policy", "terms", "data-retention-policy"];
 
 export const LIMITS = {
   testsRunningAtOnce: 1, // our traffic supports one test at a time
