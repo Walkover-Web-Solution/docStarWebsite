@@ -30,7 +30,7 @@ graph TD
 ## Content model (single source of truth)
 - Types: `src/content/types.ts` (`Section` union, `SitePage`, `Cta`).
 - Pages: one file per page in `src/content/pages/`, home in `src/content/home.ts`; registered in `PAGES` in `src/content/pages.ts`. Adding a page means adding it to `PAGES`; routing, sitemap, `llms.txt`, markdown twins and middleware all derive from it.
-- Site chrome and the shared agent prompt: `src/content/site.ts` (`SITE`). The prompt text lives only here.
+- Site chrome and the shared agent prompt: `src/content/site.ts` (`SITE`). The prompt text lives only here. Footer columns are `SITE.footer` (`FooterLink`). A footer link with `newTab: true` opens in a new tab (`target="_blank"` `rel="noopener"`). Other footer links stay in the same tab. Nav links are unchanged.
 - Rendering: `src/components/site/SectionRenderer.tsx` switches on `section.type` to components in `src/components/site/sections/Sections.tsx`. A new section type needs the type, a component, a renderer case and a markdown branch in `src/content/markdown.ts`.
 
 ## Content sourcing

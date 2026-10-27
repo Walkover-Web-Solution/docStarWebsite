@@ -169,11 +169,13 @@ export type SitePage = {
 
 export type NavLink = { label: string; href: string };
 
+export type FooterLink = NavLink & { newTab?: boolean };
+
 export type SiteSettings = {
   prompt: string;
   nav: NavLink[];
   signIn: NavLink;
   start: NavLink;
-  footer: { title: string; links: NavLink[] }[];
+  footer: { title: string; links: FooterLink[] }[];
   tagline: string;
 };
