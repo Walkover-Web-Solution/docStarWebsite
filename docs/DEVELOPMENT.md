@@ -16,12 +16,13 @@ verified_on: 2026-10-21
 There is no lint, test or typecheck script. Type check manually with `npx tsc --noEmit`.
 
 ## Running without a backend
-Leave `DOCSTAR_API_URL` unset: pages render from `src/content`. Copy `.env.example` to `.env.local` to point at hitman-api; secrets are shared with hitman-api and not stored here.
+Leave `DOCSTAR_API_URL` unset: pages render from `src/content`. Copy `.env.example` to `.env.local` to point at hitman-api; secrets are shared with hitman-api and not stored here. `NEXT_PUBLIC_MW_EVENTS_KEY` is the publishable middleware events key; `next.config.ts` reads `.env.example` when the build environment does not set it.
 
 ## Verifying a content change
 1. `npm run dev`, open the page, check the `/<path>.md` twin and `/llms.txt`.
 2. Confirm a new page appears in `PAGES` (`src/content/pages.ts`) and in `/sitemap.xml`.
 3. For analytics changes, watch `POST /api/e` in the browser network tab (204 expected).
+4. `src/lib/mw-experiments.ts` does not post to `/api/e`. With no middleware experiment started, loading a page must not request `cursor-slack-bot.embarko.app`.
 
 ## PR and deployment flow
 - Branch from `prod`; open the PR against `prod`. Production hosting is Cloudflare Pages (edge runtime comments in routes, `.npmrc` note).

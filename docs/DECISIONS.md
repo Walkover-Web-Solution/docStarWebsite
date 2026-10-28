@@ -1,5 +1,5 @@
 ---
-covers: [src/content/source.ts, src/middleware.ts, next.config.ts, src/content/pages.ts]
+covers: [src/content/source.ts, src/middleware.ts, next.config.ts, src/content/pages.ts, src/lib/mw-experiments.ts]
 verified_at: b8f8ce7
 verified_on: 2026-10-21
 ---
@@ -16,3 +16,4 @@ Rationale below comes from code comments and git history; items marked inferred 
 7. **Hidden pages** `hub` and `drift` kept in the repo but out of `PAGES` until launch.
 8. **Permanent redirects** from retired help-era URLs (`next.config.ts`).
 9. **`legacy-peer-deps`** added for the Cloudflare Pages build (commit `858a8c9`).
+10. **External A/B recording stays in the browser (2026-10-28).** Tests defined in the external middleware are assigned with `mwVariant()` and recorded with `mwSend()` in `src/lib/mw-experiments.ts`. The request is fire-and-forget (`sendBeacon`, then `fetch` with a 3 second abort) so a slow or down middleware cannot block or blank a page. This is separate from revision tests assigned in `src/middleware.ts`. The site does not start a test; the owner does that in the middleware. The append-only key is `NEXT_PUBLIC_MW_EVENTS_KEY` in `.env.example`, not a literal in the module.

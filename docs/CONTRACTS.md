@@ -1,5 +1,5 @@
 ---
-covers: [src/content/source.ts, src/lib/events-server.ts, src/lib/analytics.ts, src/app/api/**, src/content/types.ts]
+covers: [src/content/source.ts, src/lib/events-server.ts, src/lib/analytics.ts, src/lib/mw-experiments.ts, src/app/api/**, src/content/types.ts]
 verified_at: b8f8ce7
 verified_on: 2026-10-21
 ---
@@ -24,6 +24,16 @@ verified_on: 2026-10-21
 
 Server events (middleware): `agent.quickstart_fetched`, `agent.llms_fetched`, `agent.markdown_fetched`, `agent.page_fetched`.
 
+## Middleware experiment events (browser)
+`src/lib/mw-experiments.ts` is the only copy of the external middleware's experiment snippet. Any client component can import `mwVariant` and `mwSend`. No page does yet.
+
+- `mwVariant(experiment, variants)` hashes `experiment:visitorId` (FNV-1a) into the weighted list, in the order the middleware defined. It is synchronous. On any error it returns the first variant, the control, or `undefined` when the list is empty.
+- `mwSend({ event, experiment, variant, goal? })` appends one `exposure` or `conversion` and returns immediately. Callers must not await it, retry it, read the response, or call it during render.
+- `POST https://cursor-slack-bot.embarko.app/repos/docstarwebsite/events` with body `{ key, visitor_id, event, experiment, variant, goal? }`. `key` is `NEXT_PUBLIC_MW_EVENTS_KEY` from `.env.example` (publishable, append-only), inlined at build by `next.config.ts`. A missing key skips the send. `visitor_id` is `localStorage` `mw_visitor`, created on first use.
+- Transport is `navigator.sendBeacon`, then `fetch` with `keepalive`, `credentials: "omit"`, and a 3 second abort. A failure stops later sends on that page. The page does not wait on this host.
+- An event for a test the middleware is not running is refused. Do not call `mwSend` until that test is defined and started there.
+- This is not `POST /api/e` and not the revision tests in `src/lib/experiments.ts`.
+
 ## Cookies
 `ds_aid`: random anonymous id, 1 year. `isLogin` is set by the app and only read here.
 
@@ -36,5 +46,6 @@ Server events (middleware): `agent.quickstart_fetched`, `agent.llms_fetched`, `a
 | `SITE_EVENTS_SECRET` | authorizes event forwarding |
 | `NEXT_PUBLIC_SITE_URL` | canonical origin, default `https://docstar.io` |
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | optional Search Console tag |
+| `NEXT_PUBLIC_MW_EVENTS_KEY` | publishable append-only key for middleware A/B events; in `.env.example` |
 
 Values live in `.env*` (git-ignored); only `.env.example` is committed. Never print or commit secrets.

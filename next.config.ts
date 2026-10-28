@@ -1,6 +1,27 @@
 // next.config.js
+const { readFileSync } = require("fs");
+const { join } = require("path");
+
+// Next does not load .env.example. This publishable key lives there; .env.local / the build env win when set.
+function middlewareEventsKey() {
+  if (process.env.NEXT_PUBLIC_MW_EVENTS_KEY) return process.env.NEXT_PUBLIC_MW_EVENTS_KEY;
+  try {
+    for (const line of readFileSync(join(process.cwd(), ".env.example"), "utf8").split("\n")) {
+      const trimmed = line.trim();
+      if (!trimmed.startsWith("NEXT_PUBLIC_MW_EVENTS_KEY=")) continue;
+      return trimmed.slice("NEXT_PUBLIC_MW_EVENTS_KEY=".length).trim().replace(/^["']|["']$/g, "");
+    }
+  } catch {
+    /* no example file */
+  }
+  return "";
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  env: {
+    NEXT_PUBLIC_MW_EVENTS_KEY: middlewareEventsKey(),
+  },
   images: {
     remotePatterns: [
       {
