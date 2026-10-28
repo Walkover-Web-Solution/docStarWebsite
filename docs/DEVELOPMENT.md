@@ -22,6 +22,7 @@ Leave `DOCSTAR_API_URL` unset: pages render from `src/content`. Copy `.env.examp
 1. `npm run dev`, open the page, check the `/<path>.md` twin and `/llms.txt`.
 2. Confirm a new page appears in `PAGES` (`src/content/pages.ts`) and in `/sitemap.xml`.
 3. For analytics changes, watch `POST /api/e` in the browser network tab (204 expected).
+4. `src/lib/mw-experiments.ts` does not post to `/api/e`. With no middleware experiment started, loading a page must not request `cursor-slack-bot.embarko.app`.
 
 ## PR and deployment flow
 - Branch from `prod`; open the PR against `prod`. Production hosting is Cloudflare Pages (edge runtime comments in routes, `.npmrc` note).

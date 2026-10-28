@@ -41,7 +41,9 @@ graph TD
 - `/llms.txt`, `/llms-full.txt`, `/content.json`, `/sitemap.xml` (merges site pages with published help and blog URLs from api.docstar.io), `/mcp/quickstart.md` (static file in `public/mcp`).
 
 ## State ownership
-No client state library. Only local component state (copy-button feedback in `CtaButton`) and the analytics queue in `src/lib/analytics.ts`.
+No client state library. Only local component state (copy-button feedback in `CtaButton`), the analytics queue in `src/lib/analytics.ts`, and the middleware-experiment visitor id in `localStorage` (`mw_visitor`) once a page calls `src/lib/mw-experiments.ts`.
+
+Two A/B mechanisms stay separate. `src/lib/experiments.ts` plus `src/middleware.ts` assign a variant for a revision test stored in this site's database and rewrite the page. `src/lib/mw-experiments.ts` is the browser recorder for a test the owner defines in the external middleware: `mwVariant()` picks locally, `mwSend()` appends an exposure or conversion and does not wait. No page calls it, and it does not change what is rendered.
 
 ## Styling layers
 See [DESIGN.md](DESIGN.md). Website UI uses CSS modules plus `src/components/site/site.css`; `src/scss/*` and Tailwind are legacy global layers.

@@ -1,5 +1,5 @@
 ---
-covers: [src/middleware.ts, src/app/api/**, src/components/site/ui/CtaButton.tsx, src/components/site/SiteAnalytics.tsx]
+covers: [src/middleware.ts, src/app/api/**, src/components/site/ui/CtaButton.tsx, src/components/site/SiteAnalytics.tsx, src/lib/mw-experiments.ts]
 verified_at: b8f8ce7
 verified_on: 2026-10-21
 ---
@@ -28,3 +28,6 @@ hitman-api calls `POST /api/revalidate` with `x-revalidate-secret` and `tags` st
 
 ## 6. Retired URL
 `next.config.ts` `redirects()` maps old help-era paths to the closest new page with permanent redirects.
+
+## 7. Middleware experiment (not started)
+No page reads a variant or sends an exposure. When the owner starts a test in the external middleware, the page that runs it imports `mwVariant` and `mwSend` from `src/lib/mw-experiments.ts`, renders with `mwVariant()` during that render, then calls `mwSend()` for the exposure and, on the goal, the conversion. The call returns immediately. Flow 1 (first-party `/api/e` analytics) is unchanged.
