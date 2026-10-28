@@ -24,8 +24,8 @@ graph TD
 ## Entry points
 - `src/app/layout.tsx`: root layout. Sets `runtime = "edge"`, global SCSS, Google Tag Manager.
 - `src/app/(site)/layout.tsx`: wraps pages in `SiteNav`, `SiteFooter`, `SiteAnalytics` and the `.ds-site` scope.
-- `src/app/(site)/page.tsx`: home (slug `home`). `src/app/(site)/[...slug]/page.tsx`: every other page, resolved through `PATH_TO_SLUG`.
-- `src/middleware.ts`: markdown twins, server-side agent analytics, anonymous-visitor cookie, logged-in redirect from `/` to the app.
+- `src/app/(site)/page.tsx`: home (slug `home`). `src/app/(site)/home/page.tsx`: the same homepage at `/home` (not a second entry in `PAGES`). `src/app/(site)/[...slug]/page.tsx`: every other page, resolved through `PATH_TO_SLUG`.
+- `src/middleware.ts`: markdown twins, server-side agent analytics, anonymous-visitor cookie, logged-in redirect from `/` and `/home` to the app.
 
 ## Content model (single source of truth)
 - Types: `src/content/types.ts` (`Section` union, `SitePage`, `Cta`).

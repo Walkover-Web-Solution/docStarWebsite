@@ -7,7 +7,7 @@ verified_on: 2026-10-21
 
 ## 1. Human visits a page
 1. Middleware matches the path (static assets, `_next` and `api` are excluded), sets `Vary: Accept` on page paths, and sets the `ds_aid` cookie for browsers that accept HTML.
-2. If the cookie `isLogin=true` is present on `/` for a human, middleware redirects to `https://app.docstar.io/login`.
+2. If the cookie `isLogin=true` is present on `/` or `/home` for a human, middleware redirects to `https://app.docstar.io/login`. `/home` renders the homepage. Its markdown twin is `/md/home`, also reachable at `/home.md`. It is not a separate page in `PAGES`, so the sitemap and `llms.txt` keep a single home URL.
 3. The page renders from `getSitePage`; `SiteAnalytics` sends `page.viewed`, `section.viewed`, `scroll.depth`, `cta.clicked` through `/api/e`.
 
 ## 2. Visitor copies the prompt (core conversion)
