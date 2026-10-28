@@ -21,7 +21,8 @@ export type MwExperimentEvent = {
 };
 
 const MW_EVENTS = "https://cursor-slack-bot.embarko.app/repos/docstarwebsite/events";
-const MW_KEY = "pk_11cbbaeffd9424ac6a200658401786b4"; // publishable: it can only append events
+// Publishable append-only key. Set NEXT_PUBLIC_MW_EVENTS_KEY (.env.example); next.config inlines it.
+const MW_KEY = process.env.NEXT_PUBLIC_MW_EVENTS_KEY;
 
 let mwId: string | undefined;
 let mwOff = false;
@@ -74,7 +75,7 @@ export function mwVariant(experiment: string, variants: readonly MwWeightedVaria
 
 // Fire and forget: returns nothing, never throws, never waits. Do not await it or chain on it.
 export function mwSend(event: MwExperimentEvent): void {
-  if (mwOff) return;
+  if (mwOff || !MW_KEY) return;
   try {
     const body = JSON.stringify({ key: MW_KEY, visitor_id: mwVisitor(), ...event });
     if (navigator.sendBeacon?.(MW_EVENTS, body)) return;

@@ -16,7 +16,7 @@ verified_on: 2026-10-21
 There is no lint, test or typecheck script. Type check manually with `npx tsc --noEmit`.
 
 ## Running without a backend
-Leave `DOCSTAR_API_URL` unset: pages render from `src/content`. Copy `.env.example` to `.env.local` to point at hitman-api; secrets are shared with hitman-api and not stored here.
+Leave `DOCSTAR_API_URL` unset: pages render from `src/content`. Copy `.env.example` to `.env.local` to point at hitman-api; secrets are shared with hitman-api and not stored here. `NEXT_PUBLIC_MW_EVENTS_KEY` is the publishable middleware events key; `next.config.ts` reads `.env.example` when the build environment does not set it.
 
 ## Verifying a content change
 1. `npm run dev`, open the page, check the `/<path>.md` twin and `/llms.txt`.

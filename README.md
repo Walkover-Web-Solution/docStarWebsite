@@ -4,7 +4,7 @@ Next.js site with its own backend and admin panel (`/admin`). Fully separate fro
 
 ## Setup
 1. Postgres database (local: `createdb docstar-website`).
-2. `cp .env.example .env.local` and fill `DATABASE_URL`, `JWT_SECRET`, `CRON_SECRET`, `VIASOCKET_*`.
+2. `cp .env.example .env.local` and fill `DATABASE_URL`, `JWT_SECRET`, `CRON_SECRET`, `VIASOCKET_*`. `NEXT_PUBLIC_MW_EVENTS_KEY` is already set in the example (publishable, append-only).
 3. `npm install && npm run migrate` (creates tables; idempotent).
 4. `npm run admin:user -- <email>` prints a generated password for a team member.
 5. `npm run dev`.
