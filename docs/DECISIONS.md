@@ -16,3 +16,4 @@ Rationale below comes from code comments and git history; items marked inferred 
 7. **Hidden pages** `hub` and `drift` kept in the repo but out of `PAGES` until launch.
 8. **Permanent redirects** from retired help-era URLs (`next.config.ts`).
 9. **`legacy-peer-deps`** added for the Cloudflare Pages build (commit `858a8c9`).
+10. **`/home` is a route alias of the homepage.** It renders the `home` page only. It is not added to `PAGES`, so sitemap, `llms.txt` and the canonical stay on `/`.

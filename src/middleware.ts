@@ -6,13 +6,16 @@ import { ARMS_COOKIE, assign, readArms, runningExperiments, variantPath } from '
 
 // Every page has a markdown twin at /<page>.md (/index.md for the homepage), also served
 // when a client asks for text/markdown. Both are rewritten to /md/<slug>.
+// /home is the homepage. Its markdown twin is the homepage twin (/index.md and /home.md).
+const HOME_ROUTE = '/home'
+
 function markdownTwin(pathname: string, wantsMd: boolean): string | null {
-    if (pathname === '/index.md') return '/md/home'
+    if (pathname === '/index.md' || pathname === '/home.md') return '/md/home'
     if (pathname.endsWith('.md')) {
         const slug = PATH_TO_SLUG[pathname.slice(0, -3)]
         return slug ? `/md/${slug}` : null
     }
-    const slug = PATH_TO_SLUG[pathname]
+    const slug = pathname === HOME_ROUTE ? 'home' : PATH_TO_SLUG[pathname]
     return slug && wantsMd ? `/md/${slug}` : null
 }
 
@@ -39,7 +42,9 @@ async function handle(request: NextRequest, event: NextFetchEvent) {
         return response
     }
     const twin = markdownTwin(pathname, wantsMarkdown(request))
-    const isPage = pathname in PATH_TO_SLUG
+    // /home renders the homepage, so page detection and tests follow /.
+    const contentPath = pathname === HOME_ROUTE ? '/' : pathname
+    const isPage = contentPath in PATH_TO_SLUG
     const servedMarkdown = !!twin
     const ctx = await requestContext(request)
     const isHuman = ctx.actorType === 'human'
@@ -75,7 +80,7 @@ async function handle(request: NextRequest, event: NextFetchEvent) {
                 const kept = x.variants.find((v) => v.key === saved[x.key])
                 const v = kept || (await assign(anonId, x))
                 arms[x.key] = v.key
-                if (x.path === pathname) variantUrl = variantPath(v.revisionId, pathname)
+                if (x.path === contentPath) variantUrl = variantPath(v.revisionId, contentPath)
             }
         } else if (request.cookies.get(ARMS_COOKIE)) {
             arms = {}
@@ -85,7 +90,7 @@ async function handle(request: NextRequest, event: NextFetchEvent) {
     let response: NextResponse
     if (twin) {
         response = NextResponse.rewrite(new URL(twin, request.url))
-    } else if (pathname === '/' && isHuman && request.cookies.get('isLogin')?.value === 'true') {
+    } else if ((pathname === '/' || pathname === HOME_ROUTE) && isHuman && request.cookies.get('isLogin')?.value === 'true') {
         return NextResponse.redirect(new URL('https://app.docstar.io/login', request.url))
     } else if (variantUrl) {
         response = NextResponse.rewrite(new URL(variantUrl, request.url))
