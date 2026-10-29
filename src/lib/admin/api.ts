@@ -76,6 +76,12 @@ export const setAutopilotEnabled = (enabled: boolean) => request("/autopilot/ena
 export const runAutopilotNow = () => request("/autopilot/run", { method: "POST" });
 export const rollbackAutopilotAction = (id: number) => request(`/autopilot/actions/${id}/rollback`, { method: "POST" });
 
+// ---------- blog autopilot ----------
+export const getBlog = () => request("/blog");
+export const setBlogEnabled = (enabled: boolean) => request("/blog/enabled", { method: "POST", body: { enabled } });
+export const runBlogNow = () => request("/blog/run", { method: "POST" });
+export const approveBlogPost = (id: number) => request(`/blog/${id}/approve`, { method: "POST" });
+export const rejectBlogPost = (id: number, reason: string) => request(`/blog/${id}/reject`, { method: "POST", body: { reason } });
 // This website's bundled copy of every page, used to add pages that aren't in the editor yet.
 export async function getBundledPages() {
   const res = await fetch("/content.json");

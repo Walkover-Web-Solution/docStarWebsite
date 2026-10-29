@@ -6,7 +6,7 @@ import type { Db } from "./db";
 // may have, whether it needs a parent or key, and what `data` holds. Keep ADMIN_TYPES in step with the
 // CHECK constraint in db/migrations/001_init.sql.
 
-export const ADMIN_TYPES = ["user", "page", "page_revision", "idea", "experiment", "ai_proposal", "ai_run", "setting"] as const;
+export const ADMIN_TYPES = ["user", "page", "page_revision", "idea", "experiment", "ai_proposal", "ai_run", "setting", "blog_post"] as const;
 export type AdminType = (typeof ADMIN_TYPES)[number];
 
 export type ActorType = "human" | "agent" | "system";
@@ -168,6 +168,33 @@ export const SPECS: Record<AdminType, Spec> = {
   },
   // Admin configuration. key = setting name.
   setting: { key: true, data: z.object({ value: z.any() }).strict() },
+  // One run of the blog autopilot: the AI's post, a draft page in DocStar Blogs until a person approves it.
+  // key = the DocStar page id (set once the draft exists).
+  blog_post: {
+    statuses: ["writing", "draft", "published", "rejected", "skipped", "failed"],
+    data: z
+      .object({
+        trigger: z.enum(["schedule", "request"]),
+        model: str(64),
+        // the post type, used in turn: news | how-to | explainer
+        format: nullableStr(32),
+        topic: nullableStr(300),
+        whyNow: nullableStr(2000),
+        sources: z.array(z.object({ title: str(300), url: str(1000) }).strict()).max(10).default([]),
+        slug: nullableStr(200),
+        metaDescription: nullableStr(500),
+        tags: z.array(str(60)).max(10).default([]),
+        markdown: nullableStr(60000),
+        coverUrl: nullableStr(1000),
+        publicUrl: nullableStr(1000),
+        // why the AI skipped, why the run failed, or why a person rejected it
+        reason: nullableStr(5000),
+        decidedBy: nullableStr(255),
+        decidedAt: when,
+        finishedAt: when,
+      })
+      .strict(),
+  },
 };
 
 function check(type: AdminType, row: { status: string | null; key: string | null; title: string | null; parentId: number | null; data: any }) {
