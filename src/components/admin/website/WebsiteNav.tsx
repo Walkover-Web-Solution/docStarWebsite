@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-// Pages | Experiments | Autopilot, under the Website tab.
+// Pages | Experiments | Autopilot | Blog, under the Website tab.
 export default function WebsiteNav() {
   const pathname = usePathname();
   const tabs = [
-    { href: "/admin/website", label: "Pages", on: !/^\/admin\/website\/(experiments|autopilot)/.test(pathname) },
+    { href: "/admin/website", label: "Pages", on: !/^\/admin\/website\/(experiments|autopilot|blog)/.test(pathname) },
     { href: "/admin/website/experiments", label: "Experiments", on: pathname.startsWith("/admin/website/experiments") },
     { href: "/admin/website/autopilot", label: "Autopilot", on: pathname.startsWith("/admin/website/autopilot") },
+    { href: "/admin/website/blog", label: "Blog", on: pathname.startsWith("/admin/website/blog") },
   ];
   return (
     <nav className="flex gap-1 text-sm" aria-label="Website sections">
