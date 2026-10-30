@@ -1,21 +1,23 @@
 import type { SitePage } from "../types";
-import { copyPrompt, finalCta } from "./shared";
+import { copyPrompt, finalCta, related } from "./shared";
 
 export const MCP: SitePage = {
   slug: "mcp",
   path: "/mcp",
+  label: "MCP server",
+  updated: "2026-10-30",
   meta: {
-    title: "Hosted MCP server for your API | DocStar",
-    description: "DocStar hosts an MCP server for every API you document. Agents search your docs, read the exact contract and make real calls, with OAuth sign-in. No server to build or keep in sync.",
-    keywords: ["MCP server", "hosted MCP", "MCP for API", "Model Context Protocol", "API for AI agents"],
+    title: "Hosted MCP server for your API, with OAuth | DocStar",
+    description: "Get a hosted MCP server for your API without writing one. Agents search your docs, read the exact contract and call your API with each user's OAuth sign-in.",
+    keywords: ["hosted MCP server", "MCP server for API", "remote MCP server", "MCP server OAuth", "MCP server custom domain"],
   },
   sections: [
     {
       type: "hero",
       key: "hero",
       kicker: "MCP server",
-      title: "Your API, as an ==MCP server==.",
-      sub: "DocStar hosts an MCP server for every API you document. Agents search your docs, read the exact contract and make real calls. No server to build, host or keep in sync.",
+      title: "A hosted ==MCP server== for your API.",
+      sub: "DocStar hosts an MCP server for every API you document. Agents search your docs, read the exact contract and make real calls, signed in with each user's own access through OAuth. No server to build, host or keep in sync.",
       primary: copyPrompt,
       secondary: { kind: "link", label: "What agents can do", href: "#tools" },
       works: "Claude Code · Claude Desktop · ChatGPT · Cursor · VS Code · any MCP client",
@@ -76,14 +78,19 @@ export const MCP: SitePage = {
       type: "faq",
       key: "faq",
       kicker: "FAQ",
-      title: "MCP questions.",
+      title: "Hosted MCP server ==questions==.",
       items: [
+        { q: "What is an MCP server for an API?", a: "An MCP (Model Context Protocol) server gives AI agents tools they can call. For an API, those tools let an agent find the right endpoint, read its contract and make the request, instead of guessing from copied docs." },
         { q: "Do I need to build or host anything?", a: "No. DocStar creates and hosts the MCP server for each API docs project. You publish your docs; the server follows them." },
         { q: "How do the tools stay up to date?", a: "The tools read your published docs. Republish and every connected agent sees the new contract." },
         { q: "How do users authenticate?", a: "The hosted server supports OAuth sign-in, so each user's agent calls your API with that user's own access." },
         { q: "Can it run on my own domain?", a: "Yes. The MCP server can run on your domain, for example mcp.acme.com, with DNS and certificate set up from DocStar." },
+        { q: "Can agents change data through it?", a: "Only through the write tools, which are separate from the read tools, so agents can ask the user before anything that changes data. Read-only GET requests have their own tool." },
+        { q: "Can I give important endpoints their own tools?", a: "Yes. Turn key endpoints into named tools, like create_refund, edit the tool descriptions and the server's skill, and add instructions that tell agents how your API works." },
+        { q: "Hosted server or docstar-cli mcp: which should I use?", a: "The hosted server is for sharing your API with every customer's agents, with OAuth sign-in. docstar-cli mcp runs on one machine over stdio with one tool per endpoint, for scripting and testing." },
       ],
     },
+    related("Built from ==the same docs==.", ["api-docs", "cli", "analytics"]),
     finalCta("Your API, ready for ==every agent==."),
   ],
 };

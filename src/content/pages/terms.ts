@@ -3,9 +3,11 @@ import type { SitePage } from "../types";
 export const TERMS: SitePage = {
   slug: "terms",
   path: "/terms",
+  label: "Terms of service",
+  updated: "2026-10-22",
   meta: {
-    title: "Terms of Service | DocStar",
-    description: "The terms that govern your use of DocStar, including accounts, content, acceptable use and billing.",
+    title: "Terms of service: accounts, content and billing | DocStar",
+    description: "The terms for using DocStar: the website, app, API, CLI and MCP servers. Covers accounts, your content, acceptable use, billing, liability and how terms change.",
     keywords: ["DocStar terms of service", "DocStar terms"],
   },
   sections: [

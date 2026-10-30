@@ -1,21 +1,23 @@
 import type { SitePage } from "./types";
+import { APP_SIGNUP, related, startFree } from "./pages/shared";
 
 export const HOME: SitePage = {
   slug: "home",
   path: "/",
+  label: "Home",
+  updated: "2026-10-30",
   meta: {
-    title: "DocStar: API docs your agent writes and every agent can use",
-    description:
-      "Paste one prompt into your coding agent. DocStar turns your code into API docs, llms.txt, a hosted MCP server and a CLI, and keeps them in sync.",
-    keywords: ["API documentation", "MCP server", "llms.txt", "API docs for AI agents", "CLI from API", "OpenAPI"],
+    title: "API documentation for people and AI agents | DocStar",
+    description: "DocStar turns your code into API docs, llms.txt, a hosted MCP server and a CLI. Paste one prompt into your coding agent; DocStar keeps every channel in sync.",
+    keywords: ["API documentation for AI agents", "agent-ready API docs", "MCP server", "llms.txt", "API docs for AI agents", "CLI from API"],
   },
   sections: [
     {
       type: "hero",
       key: "hero",
-      kicker: "API documentation for the agent era",
+      kicker: "API documentation for people and AI agents",
       title: "Your agent writes the docs. ==Every agent== can use them.",
-      sub: "Paste one prompt into your coding agent. DocStar turns your code into API docs, an MCP server and a CLI, and keeps them in sync.",
+      sub: "DocStar is API documentation for people and AI agents. Paste one prompt into your coding agent: it documents your API from your code, and DocStar publishes the docs, llms.txt, an MCP server and a CLI, and keeps them in sync.",
       primary: { kind: "copy-prompt", label: "Copy prompt" },
       secondary: { kind: "link", label: "See how it works", href: "#how-it-works" },
       works: "Claude Code · Cursor · Codex · VS Code · any MCP client",
@@ -81,7 +83,7 @@ export const HOME: SitePage = {
         {
           name: "llms.txt + markdown",
           reader: "for models",
-          body: "Every page has a .md twin, and your site has llms.txt and llms-full.txt. Models read clean text, not HTML.",
+          body: "Every page has a .md twin, and your site has llms.txt. Models read clean text, not HTML.",
           sample: "GET docs.acme.com/llms.txt",
         },
         {
@@ -141,11 +143,12 @@ export const HOME: SitePage = {
         },
       ],
     },
+    related("Every part of DocStar, ==in detail==.", ["mcp", "cli", "api-docs", "analytics", "white-label", "integrators"]),
     {
       type: "hub",
       key: "for-integrators",
       kicker: "For developers using APIs",
-      title: "Give ==any API== to your agent.",
+      title: "Using someone else's API? ==Hand it to your agent==.",
       sub: "Install the DocStar MCP once. Your agent can find, read and call every API documented on DocStar, always at the current version.",
       primary: {
         kind: "copy-text",
@@ -153,7 +156,7 @@ export const HOME: SitePage = {
         text: "claude mcp add --transport http docstar https://mcp.docstar.io/mcp",
         copiedLabel: "Copied. Run it in your terminal",
       },
-      secondary: { kind: "link", label: "List your API", href: "https://app.docstar.io/login" },
+      secondary: { kind: "link", label: "List your API on DocStar", href: APP_SIGNUP },
       run: {
         title: "agent run",
         lines: [
@@ -213,7 +216,7 @@ export const HOME: SitePage = {
       title: "Take the first step. ==Let your agent== write your API docs.",
       sub: "One prompt. Your docs, MCP server and CLI, live.",
       primary: { kind: "copy-prompt", label: "Copy prompt" },
-      secondary: { kind: "link", label: "Start free", href: "https://app.docstar.io/login" },
+      secondary: startFree,
     },
   ],
 };

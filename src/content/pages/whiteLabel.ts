@@ -1,21 +1,23 @@
 import type { SitePage } from "../types";
-import { finalCta, startFree, talkToUs } from "./shared";
+import { finalCta, related, startFree, talkToUs } from "./shared";
 
 export const WHITE_LABEL: SitePage = {
   slug: "white-label",
   path: "/white-label",
+  label: "White-label",
+  updated: "2026-10-30",
   meta: {
     title: "White-label API docs, MCP server and CLI | DocStar",
-    description: "Your domain on the docs and the MCP server, your name on the CLI, your logo, colours and fonts. DocStar stays in the background.",
-    keywords: ["white-label API docs", "branded MCP server", "custom domain docs", "branded CLI"],
+    description: "Publish white-label API docs on your domain, run the MCP server at mcp.yourcompany.com and ship the CLI under your name, with your logo, colours and fonts.",
+    keywords: ["white-label API documentation", "custom domain API docs", "branded MCP server", "branded CLI"],
   },
   sections: [
     {
       type: "hero",
       key: "hero",
       kicker: "White-label",
-      title: "Your brand, ==every channel==.",
-      sub: "Your domain on the docs and the MCP server, your name on the CLI, your logo, colours and fonts. DocStar stays in the background.",
+      title: "White-label API docs, ==on every channel==.",
+      sub: "DocStar publishes your API docs, MCP server and CLI under your brand: your domain on the docs and the MCP server, your name on the CLI, your logo, colours and fonts. DocStar stays in the background.",
       primary: startFree,
       secondary: talkToUs,
       code: {
@@ -37,16 +39,29 @@ export const WHITE_LABEL: SitePage = {
       ],
     },
     {
+      type: "steps",
+      key: "setup",
+      kicker: "Set up",
+      title: "Your domain, ==live in three steps==.",
+      steps: [
+        { title: "Add your domain in DocStar", body: "Choose a custom domain, subdomain or sub-path for the docs, and a domain such as mcp.acme.com for the MCP server." },
+        { title: "Point a DNS record at DocStar", body: "DocStar checks the record and issues the certificate, so the docs and the MCP server are served over HTTPS on your domain." },
+        { title: "Publish under your brand", body: "Set your logo, favicon, colours, fonts, header and footer. Connect URLs and CLI commands carry your name." },
+      ],
+    },
+    {
       type: "faq",
       key: "faq",
       kicker: "FAQ",
-      title: "White-label questions.",
+      title: "White-label ==questions==.",
       items: [
         { q: "Can I use my own domain for the MCP server?", a: "Yes. Point a DNS record at DocStar; it verifies the record and issues the certificate." },
         { q: "Can I remove DocStar branding?", a: "Yes. Docs, MCP tools and CLI can all carry only your brand." },
         { q: "Does white-label change how agents connect?", a: "No. Agents connect the same way; they just see your name and domain." },
+        { q: "Can the docs live on a sub-path of my site?", a: "Yes. Publish on a custom domain, a subdomain or a sub-path such as acme.com/docs." },
       ],
     },
+    related("What ==carries your brand==.", ["api-docs", "mcp", "cli"]),
     finalCta("Your API, ==your brand==, every channel."),
   ],
 };
