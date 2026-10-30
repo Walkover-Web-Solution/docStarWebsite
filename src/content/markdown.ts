@@ -65,6 +65,20 @@ function section(x: Section, path: string): string {
         `## ${x.free.title}\n\n${x.free.sub}\n\n${x.free.features.map((f) => `- ${f}`).join("\n")}`,
         ...x.plans.map((p) => `## ${p.title}: ${p.price}${p.priceNote ? ` (${p.priceNote})` : ""}\n\n${p.description}\n\n${p.features.map((f) => `- ${f}`).join("\n")}\n\n${cta(p.cta, path)}`),
       ].join("\n\n");
+    case "table": {
+      const cell = (t: string) => t.replace(/\|/g, "\\|").replace(/\n/g, " ");
+      const rows = [`| | ${x.columns.map(cell).join(" | ")} |`, `|---|${x.columns.map(() => "---").join("|")}|`, ...x.rows.map((r) => `| **${cell(r.label)}** | ${r.cells.map(cell).join(" | ")} |`)];
+      return [head(x.kicker, x.title, x.sub), rows.join("\n"), x.note ? `_${x.note}_` : ""].filter(Boolean).join("\n\n");
+    }
+    case "changelog":
+      return [
+        head(x.kicker, x.title, x.sub),
+        x.entries
+          .map((e) => [`### ${e.date}: ${e.title}`, e.body, e.items ? e.items.map((i) => `- ${i}`).join("\n") : "", e.link ? cta(e.link, path) : ""].filter(Boolean).join("\n\n"))
+          .join("\n\n"),
+      ].join("\n\n");
+    case "tool":
+      return [head(x.kicker, x.title, x.sub), x.tool === "llms-txt-checker" ? `Agents can call the checker directly: \`GET ${SITE_ORIGIN}/api/tools/llms-check?url=<site>\` returns JSON.` : ""].filter(Boolean).join("\n\n");
     case "prose":
       return x.body.replace(/\]\(((?:\/|#)[^)]*)\)/g, (_, href) => `](${abs(href, path)})`);
     default:

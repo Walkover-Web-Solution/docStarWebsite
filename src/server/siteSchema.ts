@@ -129,6 +129,38 @@ const sectionSchemas = [
       .max(6),
   }).strict(),
   z.object({ ...base, type: z.literal("prose"), body: text(30000) }).strict(),
+  z.object({
+    ...base,
+    type: z.literal("table"),
+    kicker: text(80).optional(),
+    title: text(160),
+    sub: text(400).optional(),
+    columns: z.array(text(60)).min(1).max(6),
+    rows: z.array(z.object({ label: text(80), cells: z.array(text(300)).min(1).max(6) }).strict()).min(1).max(40),
+    note: text(600).optional(),
+  })
+    .strict()
+    .refine((t) => t.rows.every((r) => r.cells.length === t.columns.length), { message: "every row needs one cell per column" }),
+  z.object({
+    ...base,
+    type: z.literal("changelog"),
+    kicker: text(80).optional(),
+    title: text(160),
+    sub: text(400).optional(),
+    entries: z
+      .array(
+        z.object({
+          date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "use YYYY-MM-DD"),
+          title: text(120),
+          body: text(1000),
+          items: z.array(text(300)).max(20).optional(),
+          link: cta.optional(),
+        }).strict()
+      )
+      .min(1)
+      .max(100),
+  }).strict(),
+  z.object({ ...base, type: z.literal("tool"), tool: z.enum(["llms-txt-checker"]), kicker: text(80).optional(), title: text(160), sub: text(600).optional() }).strict(),
 ] as const;
 
 const section = z.discriminatedUnion("type", [...sectionSchemas]);
