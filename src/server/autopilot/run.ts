@@ -134,7 +134,7 @@ async function signals(db: Db) {
     const isProtected = PROTECTED_PAGES.includes(p.slug);
     const entry: any = { slug: p.slug, path: p.path, protected: isProtected };
     if (!isProtected) {
-      const { slug, path, version, status, ...rest } = await content.getPageContent(db, p.slug);
+      const { slug, path, version, status, updatedAt, ...rest } = await content.getPageContent(db, p.slug);
       entry.content = rest;
     }
     pages.push(entry);
@@ -174,7 +174,8 @@ ${Object.entries(LAYOUTS)
 hero "split" = text left, agent run right · "centered" = everything centred, the run below · "ink" = a dark band with light text and lime buttons. steps "cards" = three cards · "timeline" = a vertical numbered line. channels "grid" = cards · "list" = compact rows. A section without "layout" uses its default. Test a look on its own (no text changes in the same test), so the result says whether the look helped.
 
 Rules (the server enforces them and blocks anything else):
-- Change only existing text fields, by section key and field path (e.g. section "hero", field "title"; section "faq", field "items.2.a"; section "meta", field "title"). You can't add sections, links to other sites, or new fields.
+- Change only existing text fields, by section key and field path (e.g. section "hero", field "title"; section "faq", field "items.2.a"). You can't add sections, links to other sites, or new fields.
+- Never change a page's meta (its search title and description); people edit those.
 - Pages with "protected": true can't be changed.
 - Only ${LIMITS.testsRunningAtOnce} test at a time on the whole site, ${LIMITS.newTestsPerWeek} new tests and ${LIMITS.editsPerWeek} edits per week, at most ${LIMITS.changesPerAction} text changes per action.
 - Never claim a feature, number or customer that isn't already on the site. No over-promising ("guaranteed", "#1", "best in the world", "unlimited").
@@ -249,7 +250,7 @@ async function act(db: Db, a: Action, runId: number) {
     if (PROTECTED_PAGES.includes(a.page)) throw new PolicyError(`"${a.page}" is protected`);
     const page = await db.one("SELECT * FROM admin WHERE type = 'page' AND key = $1", [a.page]).then((r) => (r ? mapRow(r) : null));
     if (!page?.data?.publishedRevisionId) throw new PolicyError(`"${a.page}" isn't a live page in the editor`);
-    const { slug, path, version, status, ...live } = await content.getPageContent(db, a.page);
+    const { slug, path, version, status, updatedAt, ...live } = await content.getPageContent(db, a.page);
 
     if (a.kind === "start_test") {
       if ((await experiments.listRunning(db)).length >= LIMITS.testsRunningAtOnce) throw new PolicyError("A test is already running");

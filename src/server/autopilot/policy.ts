@@ -65,11 +65,9 @@ export function applyChanges(live: any, changes: TextChange[], order: string[], 
 
   for (const c of changes) {
     checkText(c.value);
-    if (c.section === "meta") {
-      if (!["title", "description"].includes(c.field)) throw new PolicyError(`meta.${c.field} can't be changed`);
-      setText(content.meta, c.field, c.value);
-      continue;
-    }
+    // The title and description are what search results show; they follow the SEO keyword map
+    // (seo/PLAN.md) and change only when a person edits them.
+    if (c.section === "meta") throw new PolicyError("The page title and description (meta) are edited by people only");
     const section = byKey.get(c.section);
     if (!section) throw new PolicyError(`No section "${c.section}" on this page`);
     // A section's look: one of its built-in layouts, and only through an A/B test.
