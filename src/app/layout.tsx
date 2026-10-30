@@ -1,22 +1,29 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "../scss/_import.scss";
 import { SITE_URL } from "@/lib/site";
 
 const GTM_ID = "GTM-MGFDQP68";
 
+// Defaults for every route; website pages set their own tags in src/lib/seo.ts. Icons are file
+// conventions in this folder: favicon.ico, icon.png (192px) and apple-icon.png (180px).
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "DocStar: API docs your agent writes and every agent can use",
+  applicationName: "DocStar",
+  title: "DocStar: API documentation for people and AI agents",
   description: "Paste one prompt into your coding agent. DocStar turns your code into API docs, llms.txt, a hosted MCP server and a CLI, and keeps them in sync.",
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
-  },
+  openGraph: { type: "website", siteName: "DocStar", locale: "en_US" },
+  twitter: { card: "summary_large_image" },
   ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
     ? { verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } }
     : {}),
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#f7f7f2",
 };
 
 export default function RootLayout({

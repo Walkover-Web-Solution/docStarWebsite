@@ -163,6 +163,11 @@ export type Section =
 export type SitePage = {
   slug: string;
   path: string;
+  // Short name for breadcrumbs and links, e.g. "MCP server". Structural, so it lives in code only (not the database).
+  label?: string;
+  // When the page last changed: in code, the date the bundled copy was edited (YYYY-MM-DD); from the
+  // database, when the live version was published. Used for the sitemap's lastmod and dateModified.
+  updated?: string;
   meta: { title: string; description: string; keywords?: string[] };
   sections: Section[];
 };
@@ -174,6 +179,10 @@ export type SiteSettings = {
   nav: NavLink[];
   signIn: NavLink;
   start: NavLink;
+  // Footer links to website pages that aren't live yet (see DRAFT_PAGES) are left out automatically.
   footer: { title: string; links: NavLink[] }[];
   tagline: string;
+  supportEmail: string;
+  // The company's public profiles: footer icons and Organization.sameAs in the JSON-LD.
+  social: NavLink[];
 };
