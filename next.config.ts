@@ -1,6 +1,25 @@
 // next.config.js
+
+// Sent with every response the Worker renders; public/_headers sends the same for static files.
+// HSTS has no includeSubDomains: not every *.docstar.io host is confirmed HTTPS-only. The CSP only sets
+// directives that can't break Google Tag Manager; a script-src policy needs the GTM container's tag list.
+const SECURITY_HEADERS = [
+  { key: "Strict-Transport-Security", value: "max-age=31536000" },
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), browsing-topics=()" },
+  { key: "Content-Security-Policy", value: "frame-ancestors 'self'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests" },
+];
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Put <title>, meta and link tags in the initial <head> for every client, not streamed into <body>.
+  // Crawlers and agents that don't run JavaScript would otherwise miss or ignore them.
+  htmlLimitedBots: /.*/,
+  async headers() {
+    return [{ source: "/:path*", headers: SECURITY_HEADERS }];
+  },
   images: {
     remotePatterns: [
       {
