@@ -1,6 +1,6 @@
 # docstar.io SEO plan
 
-Based on [AUDIT.md](AUDIT.md). Items are ticked as they ship on branch `seo/overhaul`. Results are in [REPORT.md](REPORT.md).
+Based on [AUDIT.md](AUDIT.md). Items are ticked as they ship on branch `seo/overhaul`; unticked items are manual. Results are in [REPORT.md](REPORT.md).
 
 How changes reach production:
 - Live page copy comes from the database (Admin), so code edits to existing pages go live only when someone clicks **Publish code version** in Admin for that page.
@@ -8,50 +8,50 @@ How changes reach production:
 - New pages are built but hidden (`DRAFT_PAGES`) until their copy is approved.
 
 ## 1. Critical fixes
-- [ ] Remove `noindex` from A/B variant HTML. It is served at the real URL; today every human visitor and Google's inspection tools get `noindex` on `/`.
-- [ ] Classify Google-InspectionTool, GoogleOther, Storebot-Google, AdsBot and other crawlers as bots (never bucketed into tests).
-- [ ] Always render metadata in `<head>` (`htmlLimitedBots`).
+- [x] Remove `noindex` from A/B variant HTML. It is served at the real URL; today every human visitor and Google's inspection tools get `noindex` on `/`.
+- [x] Classify Google-InspectionTool, GoogleOther, Storebot-Google, AdsBot and other crawlers as bots (never bucketed into tests).
+- [x] Always render metadata in `<head>` (`htmlLimitedBots`).
 - [ ] *(manual, Cloudflare)* `www.docstar.io` → 301 to `https://docstar.io`; it returns 522 today.
 - [ ] *(manual, Cloudflare)* Zone HSTS max-age is 0; set it to 6 months or more.
 
 ## 2. Quick wins
-- [ ] Per-page OG images (`/og/<slug>.png`) and complete OpenGraph and Twitter tags.
-- [ ] Shared metadata helper (`src/lib/seo.ts`): absolute canonical, markdown alternate, robots `max-image-preview:large`.
-- [ ] JSON-LD: Organization (every page), WebSite (home), BreadcrumbList, SoftwareApplication with real offers. Drop FAQPage.
-- [ ] Rewrite all titles (50–60 characters) and descriptions (140–160) from the keyword map (section K).
-- [ ] `/pricing`: agent-era positioning, "DocStar" spelling, final CTA, consistent "Talk to us".
-- [ ] Sitemap: real `lastmod`; no `changefreq` or `priority`.
-- [ ] `robots.ts`: served by the Worker (the test-host override works), disallow `/api/`, `/md/` and `/content.json`.
-- [ ] Markdown twins: `Link: rel="canonical"` header, `Vary: Accept`; `/md/*` → 301 to the public `.md` URL.
-- [ ] Fix markdown anchors (`#tools` → `/mcp#tools`, not `/#tools`).
-- [ ] Security headers (HSTS, nosniff, Referrer-Policy, Permissions-Policy, X-Frame-Options, a minimal CSP).
-- [ ] Icons: `apple-icon.png`, `icon.png`, `manifest.ts`, `logo.png`; `viewport` and `theme-color`.
-- [ ] "Start free" goes to `login?intent=signup`, separate from "Sign in".
-- [ ] Redirect uppercase paths to lowercase (`/MCP` → `/mcp`).
+- [x] Per-page OG images (`/og/<slug>.png`) and complete OpenGraph and Twitter tags.
+- [x] Shared metadata helper (`src/lib/seo.ts`): absolute canonical, markdown alternate, robots `max-image-preview:large`.
+- [x] JSON-LD: Organization (every page), WebSite (home), BreadcrumbList, SoftwareApplication with real offers. Drop FAQPage.
+- [x] Rewrite all titles (50–60 characters) and descriptions (140–160) from the keyword map (section K).
+- [x] `/pricing`: agent-era positioning, "DocStar" spelling, final CTA, consistent "Talk to us".
+- [x] Sitemap: real `lastmod`; no `changefreq` or `priority`.
+- [x] `robots.ts`: served by the Worker (the test-host override works), disallow `/api/`, `/md/` and `/content.json`.
+- [x] Markdown twins: `Link: rel="canonical"` header, `Vary: Accept`; `/md/*` → 301 to the public `.md` URL.
+- [x] Fix markdown anchors (`#tools` → `/mcp#tools`, not `/#tools`).
+- [x] Security headers (HSTS, nosniff, Referrer-Policy, Permissions-Policy, X-Frame-Options, a minimal CSP).
+- [x] Icons: `apple-icon.png`, `icon.png`, `manifest.ts`, `logo.png`; `viewport` and `theme-color`.
+- [x] "Start free" goes to `login?intent=signup`, separate from "Sign in".
+- [x] Redirect uppercase paths to lowercase (`/MCP` → `/mcp`).
 
 ## 3. Structural
-- [ ] Block the autopilot from editing `meta.title` and `meta.description`; protect the new SEO pages.
-- [ ] "Publish code version" in Admin (dry-run diff first, then publish as a normal, rollback-able revision).
-- [ ] Remove duplicate H2s; give each page an answer-first intro; expand thin pages from facts DocStar has already published.
-- [ ] Footer: Product, Solutions, Resources, Company, social links; hidden pages are never linked.
-- [ ] Visible breadcrumbs on pages two or more levels deep; skip link; footer `<nav>` with headings; reduced motion.
-- [ ] Legacy SCSS and Tailwind (43 KB) load only in `/admin`; marketing pages get a scoped reset.
-- [ ] New section types: `table` (comparisons), `changelog`, `tool` (llms.txt checker).
-- [ ] SEO test suite (`npm run seo:check`), Lighthouse CI budgets, and a GitHub workflow for pull requests.
+- [x] Block the autopilot from editing `meta.title` and `meta.description`; protect the new SEO pages.
+- [x] "Load code version" in Admin: loads the code copy into the editor (sections marked edited/new show the difference), then Publish as a normal revision that can be restored.
+- [x] Remove duplicate H2s; give each page an answer-first intro; expand thin pages from facts DocStar has already published.
+- [x] Footer: Product, Solutions, Resources, Company, social links; hidden pages are never linked.
+- [x] Visible breadcrumbs on pages two or more levels deep; skip link; footer `<nav>` with headings; reduced motion.
+- [x] Legacy SCSS and Tailwind (43 KB) load only in `/admin`; marketing pages get a scoped reset.
+- [x] New section types: `table` (comparisons), `changelog`, `tool` (llms.txt checker).
+- [x] SEO test suite (`npm run seo:check`), Lighthouse CI budgets, and a GitHub workflow for pull requests.
 
 ## 4. New pages (built, hidden until approved)
 
 | Path | Status |
 |---|---|
-| `/about` | [ ] template, TODO-COPY |
-| `/customers` | [ ] template |
-| `/customers/msg91` | [ ] template, TODO-COPY (disclose that MSG91 and DocStar are both Walkover products) |
-| `/compare` | [ ] hub |
-| `/compare/mintlify`, `/compare/readme`, `/compare/gitbook`, `/compare/stainless`, `/compare/speakeasy` | [ ] tables seeded from DocStar's own published comparisons; competitor cells TODO-VERIFY |
-| `/for/saas`, `/for/api-first-startups`, `/for/devrel`, `/for/messaging-apis`, `/for/fintech-apis` | [ ] templates, TODO-COPY |
-| `/changelog` | [ ] seeded with October 2026 entries from the published "What's new" post |
-| `/tools/llms-txt-checker` | [ ] working tool (`/api/tools/llms-check`) |
-| `/tools/mcp-readiness` | [ ] page with waitlist CTA |
+| `/about` | [x] template, TODO-COPY |
+| `/customers` | [x] template |
+| `/customers/msg91` | [x] template, TODO-COPY (disclose that MSG91 and DocStar are both Walkover products) |
+| `/compare` | [x] hub |
+| `/compare/mintlify`, `/compare/readme`, `/compare/gitbook`, `/compare/stainless`, `/compare/speakeasy` | [x] tables seeded from DocStar's own published comparisons; competitor cells TODO-VERIFY |
+| `/for/saas`, `/for/api-first-startups`, `/for/devrel`, `/for/messaging-apis`, `/for/fintech-apis` | [x] templates, TODO-COPY |
+| `/changelog` | [x] seeded with October 2026 entries from the published "What's new" post |
+| `/tools/llms-txt-checker` | [x] working tool (`/api/tools/llms-check`) |
+| `/tools/mcp-readiness` | [x] page with a "talk to us" CTA (no waitlist form yet) |
 
 Each launches by moving it from `DRAFT_PAGES` to `PAGES`. That adds it to routing, the sitemap, llms.txt, llms-full.txt, the `.md` twins and the footer at once.
 
