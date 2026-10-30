@@ -45,3 +45,7 @@ next-env.d.ts
 
 .open-next
 .wrangler
+
+# SEO audit artifacts (summaries are in seo/*.md)
+/seo/lighthouse/
+/seo/*.json
