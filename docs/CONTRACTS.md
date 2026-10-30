@@ -13,7 +13,7 @@ verified_on: 2026-10-30
 | Route | Purpose | Auth |
 |---|---|---|
 | `POST /api/e` | Browser analytics beacon. Ignores non-human senders; max 30 events; accepted and dropped when there is no database. | none |
-| `GET /api/tools/llms-check?url=<site>` | llms.txt report as JSON: `{ site, llmsUrl, found, checks: [{ id, label, status: pass\|warn\|fail, detail }], stats: { bytes, sections, links } }`. https and public hosts only; 400 for bad input, 429 above 10 checks a minute per caller; CORS `*`. | none |
+| `GET /api/tools/llms-check?url=<site>` | llms.txt report as JSON: `{ site, llmsUrl, found, checks: [{ id, label, status: pass\|warn\|fail, detail }], stats: { bytes, sections, links } }`. https and public hosts only; 400 for bad input, 429 above 10 checks a minute per caller; CORS `*`. Returns 404 while `/tools/llms-txt-checker` is in `DRAFT_PAGES`. | none |
 | `POST /api/ideas` | Feature requests, ideas and bugs from people or agents. | none (rate-limited) |
 | `GET /api/preview` | Admin draft preview (sets draft mode). | admin session |
 | `/api/admin/*` | Admin API. | admin session |
