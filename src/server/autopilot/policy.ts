@@ -4,7 +4,31 @@ import { LAYOUTS, describeIssues, pageContentSchema } from "../siteSchema";
 
 // Pages the AI never changes (everything else is open).
 // Pricing and the legal pages are never edited or tested by the autopilot, and their text is not sent to the AI.
-export const PROTECTED_PAGES = ["pricing", "privacy-policy", "terms", "data-retention-policy"];
+// The SEO pages (comparisons, customers, company, changelog, tools, solutions) are protected too: people
+// check their claims, and leaving them out keeps the AI's message under MAX_MESSAGE_CHARS (run.ts).
+export const PROTECTED_PAGES = [
+  "pricing",
+  "privacy-policy",
+  "terms",
+  "data-retention-policy",
+  "about",
+  "customers",
+  "customers-msg91",
+  "compare",
+  "compare-mintlify",
+  "compare-readme",
+  "compare-gitbook",
+  "compare-stainless",
+  "compare-speakeasy",
+  "changelog",
+  "tools-llms-txt-checker",
+  "tools-mcp-readiness",
+  "for-saas",
+  "for-api-first-startups",
+  "for-devrel",
+  "for-messaging-apis",
+  "for-fintech-apis",
+];
 
 export const LIMITS = {
   testsRunningAtOnce: 1, // our traffic supports one test at a time
