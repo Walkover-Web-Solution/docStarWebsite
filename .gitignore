@@ -49,3 +49,4 @@ next-env.d.ts
 # SEO audit artifacts (summaries are in seo/*.md)
 /seo/lighthouse/
 /seo/*.json
+/.lighthouseci/
