@@ -1,5 +1,6 @@
 import type { SitePage } from "./types";
 import { APP_SIGNUP, related, startFree } from "./pages/shared";
+import { SITE } from "./site";
 
 export const HOME: SitePage = {
   slug: "home",
@@ -53,7 +54,7 @@ export const HOME: SitePage = {
         {
           title: "Copy the prompt",
           body: "Paste it into Claude Code, Cursor or Codex, opened in your API's repo.",
-          code: "Use the DocStar MCP to document\nthis API in DocStar.",
+          code: SITE.prompt,
         },
         {
           title: "Your agent reads your code",
@@ -99,10 +100,10 @@ export const HOME: SitePage = {
           sample: "npx docstar-cli acme messages send",
         },
         {
-          name: "OpenAPI",
+          name: "OpenAPI export",
           reader: "for tools",
-          body: "A current OpenAPI file for SDK generators, gateways and test tools.",
-          sample: "GET docs.acme.com/openapi.json",
+          body: "Export your docs to OpenAPI 3 for SDK generators, gateways and test tools.",
+          sample: "Export to OpenAPI 3 any time",
         },
       ],
     },
@@ -186,7 +187,7 @@ export const HOME: SitePage = {
       items: [
         {
           q: "What is DocStar?",
-          a: "DocStar is an API documentation platform for people and AI agents. Your coding agent creates the docs from your code. DocStar publishes them as a docs site, llms.txt and markdown, a hosted MCP server, a CLI and an OpenAPI file, and keeps them in sync.",
+          a: "DocStar is an API documentation platform for people and AI agents. Your coding agent creates the docs from your code. DocStar publishes them as a docs site, llms.txt and markdown, a hosted MCP server, a CLI, with OpenAPI 3 export, and keeps them in sync.",
         },
         {
           q: "Do I need an OpenAPI file?",
