@@ -13,7 +13,7 @@ export async function GET() {
   const body = [
     "# DocStar",
     "",
-    `> ${SITE.tagline} Your coding agent writes the API docs from your code. DocStar publishes them as a docs site, llms.txt and markdown, a hosted MCP server, a CLI and an OpenAPI file, and keeps them in sync.`,
+    `> ${SITE.tagline} Your coding agent writes the API docs from your code. DocStar publishes them as a docs site, llms.txt and markdown, a hosted MCP server, a CLI, with OpenAPI 3 export, and keeps them in sync.`,
     "",
     "## Start here",
     "",

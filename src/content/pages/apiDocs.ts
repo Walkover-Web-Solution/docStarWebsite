@@ -22,7 +22,7 @@ export const API_DOCS: SitePage = {
       secondary: { kind: "link", label: "See a live example", href: "https://docs.msg91.com" },
       code: {
         title: "one source, every reader",
-        body: "docs.acme.com            for people\ndocs.acme.com/llms.txt   for models\ndocs.acme.com/x.md       for agents\nmcp.acme.com             for agents\nopenapi.json             for tools\ndocstar-cli acme         for terminals",
+        body: "docs.acme.com            for people\ndocs.acme.com/llms.txt   for models\ndocs.acme.com/x.md       for agents\nmcp.acme.com             for agents\nOpenAPI 3 export         for tools\ndocstar-cli acme         for terminals",
       },
     },
     {
@@ -53,7 +53,7 @@ export const API_DOCS: SitePage = {
         { name: "llms.txt + markdown", reader: "for models", body: "Every page has a .md twin, and the site has llms.txt.", sample: "GET docs.acme.com/llms.txt" },
         { name: "MCP server", reader: "for agents", body: "Hosted, on your domain, with search, contract and call tools.", sample: "claude mcp add acme https://mcp.acme.com" },
         { name: "CLI", reader: "for terminals", body: "Every endpoint becomes a command.", sample: "npx docstar-cli acme messages send" },
-        { name: "OpenAPI", reader: "for tools", body: "A current OpenAPI file for SDK generators and gateways.", sample: "GET docs.acme.com/openapi.json" },
+        { name: "OpenAPI export", reader: "for tools", body: "Export your docs to OpenAPI 3 for SDK generators and gateways.", sample: "Export to OpenAPI 3 any time" },
       ],
     },
     {
