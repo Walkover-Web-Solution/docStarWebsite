@@ -2,6 +2,13 @@
 
 Marketing site for DocStar (docstar.io), an agent-first API documentation product. Next.js 15 App Router on Cloudflare Workers (OpenNext). Pages are typed content sections rendered as HTML and as markdown twins for agents. Live content is the published revision in the site's own Postgres database (edited in `/admin`), with the bundled copy in `src/content` as the fallback.
 
+<!-- middleware:guidance:start -->
+## Guidance for this kind of repository
+
+Kept by the middleware (version c133f420d8b7). Read these before changing anything here:
+- [docs/guidance/website.md](docs/guidance/website.md)
+<!-- middleware:guidance:end -->
+
 ## Commands
 | Task | Command |
 |---|---|
