@@ -4,9 +4,10 @@ import type { SitePage } from "../types";
 export const PRIVACY: SitePage = {
   "slug": "privacy-policy",
   "path": "/privacy-policy",
+  "label": "Privacy policy",
   "meta": {
-    "title": "Privacy Policy | DocStar",
-    "description": "How DocStar collects, uses and protects your personal information.",
+    "title": "Privacy policy: how we collect and protect data | DocStar",
+    "description": "How DocStar collects, uses and protects your personal information, how cookies are used, how long data is kept, your rights under GDPR and CCPA, and who to ask.",
     "keywords": [
       "DocStar privacy policy"
     ]

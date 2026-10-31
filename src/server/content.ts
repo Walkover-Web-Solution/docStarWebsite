@@ -67,7 +67,8 @@ export async function getPageContent(db: Db, slug: string, { draft = false, vari
     if (!revision && page.publishedRevisionId) revision = await findRevision(db, page.publishedRevisionId);
   }
   if (!revision) throw new AdminError(404, `Page "${slug}" has no published content`);
-  return { slug: page.slug, path: page.path, version: revision.data.version as number, status: revision.status as string, ...(revision.data.content as { meta: any; sections: any[] }) };
+  const updatedAt = (revision.data.publishedAt as string | null) ?? null;
+  return { slug: page.slug, path: page.path, version: revision.data.version as number, status: revision.status as string, updatedAt, ...(revision.data.content as { meta: any; sections: any[] }) };
 }
 
 // ---------- reading, for the admin ----------

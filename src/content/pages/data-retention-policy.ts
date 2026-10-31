@@ -4,9 +4,11 @@ import type { SitePage } from "../types";
 export const DATA_RETENTION: SitePage = {
   "slug": "data-retention-policy",
   "path": "/data-retention-policy",
+  "label": "Data retention",
+  "updated": "2025-01-10",
   "meta": {
-    "title": "Data Retention and Deletion Policy | DocStar",
-    "description": "How DocStar retains and deletes your data, and how to request deletion.",
+    "title": "Data retention and deletion policy and timelines | DocStar",
+    "description": "How long DocStar keeps documentation, activity logs and account data, how to request deletion by email, how we verify requests and when backups are purged.",
     "keywords": [
       "DocStar data retention",
       "data deletion"

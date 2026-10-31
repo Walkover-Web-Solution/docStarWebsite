@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 import { requestContext } from "@/lib/events-server";
-import { withDb } from "@/server/db";
+import { hasDb, withDb } from "@/server/db";
 import { eventSchema, ingestEvents, type SiteEvent } from "@/server/events";
 import { handle } from "@/server/http";
 
@@ -51,6 +51,7 @@ export const POST = handle(async (request: NextRequest) => {
     });
     if (parsed.success) events.push(parsed.data);
   }
-  if (events.length) await withDb((db) => ingestEvents(db, events));
+  // Without a database (local runs, previews) beacons are accepted and dropped, not answered with errors.
+  if (events.length && hasDb()) await withDb((db) => ingestEvents(db, events));
   return new Response(null, { status: 204 });
 });

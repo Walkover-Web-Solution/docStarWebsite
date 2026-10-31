@@ -146,8 +146,45 @@ export type CtaSection = {
   secondary?: Cta;
 };
 
+// A comparison or spec table. `columns` are the headers after the row-label column; each row has one
+// cell per column. Cells are plain text. `note` sits under the table (sources, dates, caveats).
+export type TableSection = {
+  type: "table";
+  key: string;
+  kicker?: string;
+  title: string;
+  sub?: string;
+  columns: string[];
+  rows: { label: string; cells: string[] }[];
+  note?: string;
+};
+
+// Dated release notes, newest first. `date` is YYYY-MM-DD.
+export type ChangelogSection = {
+  type: "changelog";
+  key: string;
+  kicker?: string;
+  title: string;
+  sub?: string;
+  entries: { date: string; title: string; body: string; items?: string[]; link?: Cta }[];
+};
+
+// An interactive tool. Its text renders on the server; the widget itself is a client component.
+export const TOOLS = ["llms-txt-checker"] as const;
+export type ToolSection = {
+  type: "tool";
+  key: string;
+  tool: (typeof TOOLS)[number];
+  kicker?: string;
+  title: string;
+  sub?: string;
+};
+
 export type Section =
   | HeroSection
+  | TableSection
+  | ChangelogSection
+  | ToolSection
   | WorksWithSection
   | StepsSection
   | ChannelsSection
@@ -163,6 +200,11 @@ export type Section =
 export type SitePage = {
   slug: string;
   path: string;
+  // Short name for breadcrumbs and links, e.g. "MCP server". Structural, so it lives in code only (not the database).
+  label?: string;
+  // When the page last changed: in code, the date the bundled copy was edited (YYYY-MM-DD); from the
+  // database, when the live version was published. Used for the sitemap's lastmod and dateModified.
+  updated?: string;
   meta: { title: string; description: string; keywords?: string[] };
   sections: Section[];
 };
@@ -174,6 +216,10 @@ export type SiteSettings = {
   nav: NavLink[];
   signIn: NavLink;
   start: NavLink;
+  // Footer links to website pages that aren't live yet (see DRAFT_PAGES) are left out automatically.
   footer: { title: string; links: NavLink[] }[];
   tagline: string;
+  supportEmail: string;
+  // The company's public profiles: footer icons and Organization.sameAs in the JSON-LD.
+  social: NavLink[];
 };

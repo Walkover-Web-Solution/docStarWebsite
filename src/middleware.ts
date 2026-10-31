@@ -16,6 +16,23 @@ function markdownTwin(pathname: string, wantsMd: boolean): string | null {
     return slug && wantsMd ? `/md/${slug}` : null
 }
 
+// /md/<slug> is the internal rewrite target. Requested directly it would be a third copy of the page,
+// so it redirects to the public .md URL.
+const SLUG_TO_PATH: Record<string, string> = Object.fromEntries(Object.entries(PATH_TO_SLUG).map(([p, s]) => [s, p]))
+function publicTwin(pathname: string): string | null {
+    const path = SLUG_TO_PATH[pathname.slice('/md/'.length)]
+    if (path === undefined) return null
+    return path === '/' ? '/index.md' : `${path}.md`
+}
+
+// One URL per page: /MCP and /MCP.md redirect to /mcp and /mcp.md (only for known pages).
+function lowercased(pathname: string): string | null {
+    const lower = pathname.toLowerCase()
+    if (lower === pathname) return null
+    const page = lower.endsWith('.md') ? (lower === '/index.md' ? '/' : lower.slice(0, -3)) : lower
+    return page in PATH_TO_SLUG ? lower : null
+}
+
 const wantsMarkdown = (request: NextRequest) =>
     (request.headers.get('accept') || '').toLowerCase().includes('text/markdown')
 
@@ -37,6 +54,12 @@ async function handle(request: NextRequest, event: NextFetchEvent) {
         const response = NextResponse.next()
         response.headers.set('X-Robots-Tag', 'noindex, nofollow')
         return response
+    }
+    const canonical = pathname.startsWith('/md/') ? publicTwin(pathname) : lowercased(pathname)
+    if (canonical) {
+        const url = request.nextUrl.clone()
+        url.pathname = canonical
+        return NextResponse.redirect(url, 301)
     }
     const twin = markdownTwin(pathname, wantsMarkdown(request))
     const isPage = pathname in PATH_TO_SLUG

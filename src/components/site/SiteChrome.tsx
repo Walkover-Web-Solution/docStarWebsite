@@ -1,6 +1,19 @@
 import Link from "next/link";
+import { PATH_TO_SLUG } from "@/content/pages";
 import { SITE } from "@/content/site";
 import s from "./chrome.module.css";
+
+// A link to a website page that isn't live yet (src/content/pages.ts DRAFT_PAGES) is left out, so the
+// footer never points at a 404. Files (.md, .txt) and other sites are always shown.
+const isLive = (href: string) => !href.startsWith("/") || /\.(md|txt)$/.test(href) || href in PATH_TO_SLUG;
+
+export function SkipLink() {
+  return (
+    <a href="#main" className={s.skip}>
+      Skip to content
+    </a>
+  );
+}
 
 export function Wordmark() {
   return (
@@ -58,19 +71,35 @@ export function SiteFooter() {
           <p>{SITE.tagline}</p>
         </div>
         {SITE.footer.map((col) => (
-          <div key={col.title} className={s.footerCol}>
-            <p className={s.footerTitle}>{col.title}</p>
+          <nav key={col.title} className={s.footerCol} aria-labelledby={`footer-${col.title.toLowerCase()}`}>
+            <h2 id={`footer-${col.title.toLowerCase()}`} className={s.footerTitle}>
+              {col.title}
+            </h2>
             <ul>
-              {col.links.map((l) => (
+              {col.links.filter((l) => isLive(l.href)).map((l) => (
                 <li key={l.href}>
                   <a href={l.href}>{l.label}</a>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
         ))}
       </div>
-      <p className={s.copy}>© {new Date().getFullYear()} DocStar</p>
+      <div className={s.copy}>
+        <p>© {new Date().getFullYear()} DocStar</p>
+        <ul className={s.social} aria-label="DocStar elsewhere">
+          <li>
+            <a href={`mailto:${SITE.supportEmail}`}>{SITE.supportEmail}</a>
+          </li>
+          {SITE.social.map((l) => (
+            <li key={l.href}>
+              <a href={l.href} rel="me noopener">
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </footer>
   );
 }
