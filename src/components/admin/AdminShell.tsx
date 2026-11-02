@@ -6,11 +6,10 @@ import { usePathname } from "next/navigation";
 import { getMe, login, logout, setSignedOutHandler, type Me } from "@/lib/admin/api";
 import { Toaster } from "./toast";
 
-// DocStar admin, on the website: ideas & feedback, new users, website content and website analytics.
+// DocStar admin, on the website: ideas & feedback, website content and website analytics.
 // Team members sign in with the email and password made by `npm run admin:user`.
 const TABS = [
   { href: "/admin", label: "Ideas & feedback", match: (p: string) => p === "/admin" },
-  { href: "/admin/signups", label: "New users", match: (p: string) => p.startsWith("/admin/signups") },
   { href: "/admin/website", label: "Website", match: (p: string) => p.startsWith("/admin/website") },
   { href: "/admin/analytics", label: "Analytics", match: (p: string) => p.startsWith("/admin/analytics") },
 ];

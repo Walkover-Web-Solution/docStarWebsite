@@ -4,9 +4,9 @@ import type { Db } from "./db";
 // Every row of the `admin` table goes through here. The table is generic (type + parent + key + status
 // + title + actor + data JSONB), so this file is where each type's shape is enforced: which statuses it
 // may have, whether it needs a parent or key, and what `data` holds. Keep ADMIN_TYPES in step with the
-// CHECK constraint in db/migrations/ (latest: 003_signups.sql).
+// CHECK constraint in db/migrations/001_init.sql.
 
-export const ADMIN_TYPES = ["user", "page", "page_revision", "idea", "experiment", "ai_proposal", "ai_run", "setting", "signup"] as const;
+export const ADMIN_TYPES = ["user", "page", "page_revision", "idea", "experiment", "ai_proposal", "ai_run", "setting"] as const;
 export type AdminType = (typeof ADMIN_TYPES)[number];
 
 export type ActorType = "human" | "agent" | "system";
@@ -168,21 +168,6 @@ export const SPECS: Record<AdminType, Spec> = {
   },
   // Admin configuration. key = setting name.
   setting: { key: true, data: z.object({ value: z.any() }).strict() },
-  // A new DocStar user, sent by hitman-api after onboarding. key = the app's user id, title = name (or email).
-  signup: {
-    key: true,
-    title: true,
-    data: z
-      .object({
-        email: str(255),
-        orgId: str(64),
-        orgName: nullableStr(255),
-        collectionId: nullableStr(64),
-        slug: nullableStr(100),
-        mcpUrl: nullableStr(500),
-      })
-      .strict(),
-  },
 };
 
 function check(type: AdminType, row: { status: string | null; key: string | null; title: string | null; parentId: number | null; data: any }) {
