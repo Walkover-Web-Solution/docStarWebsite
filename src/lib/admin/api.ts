@@ -64,6 +64,9 @@ export const publishSiteRevision = (id: number) => request(`/revisions/${id}/pub
 export const rollbackSiteRevision = (id: number) => request(`/revisions/${id}/rollback`, { method: "POST" });
 export const getSiteAnalytics = (days: number) => request(`/analytics?days=${days}`);
 
+// ---------- new users ----------
+export const listSignups = (page = 1) => request(`/signups${query({ page })}`);
+
 // ---------- A/B tests ----------
 export const listExperiments = () => request("/experiments");
 export const getExperiment = (id: number) => request(`/experiments/${id}`);
