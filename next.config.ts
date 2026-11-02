@@ -97,7 +97,11 @@ const nextConfig = {
       "/white-labelling": "/white-label",
       "/editor": "/",
     };
-    return Object.entries(retired).map(([source, destination]) => ({ source, destination, permanent: true }));
+    return [
+      ...Object.entries(retired).map(([source, destination]) => ({ source, destination, permanent: true })),
+      // Removed admin tab (new-user signups); temporary, so browsers don't cache it
+      { source: "/admin/signups", destination: "/admin", permanent: false },
+    ];
   },
 };
 
