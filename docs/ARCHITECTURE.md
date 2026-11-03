@@ -46,7 +46,7 @@ graph TD
   - `DRAFT_PAGES` (built, with TODO-COPY placeholders) are routed only with `NEXT_PUBLIC_SHOW_DRAFT_PAGES=1`.
   - `PAGES` is what routing, the sitemap, `llms.txt`, markdown twins, the OG images, the middleware and the footer read.
   - `label` (breadcrumb name) and `updated` (bundled change date) are code-only fields.
-- **Site chrome and the shared agent prompt:** `src/content/site.ts` (`SITE`). The prompt text lives only here. Footer links to pages that aren't live are hidden automatically.
+- **Site chrome and the shared agent prompt:** `src/content/site.ts` (`SITE`). The prompt text lives only here. Footer links to pages that aren't live are hidden automatically. A footer link with `newTab: true` (`FooterLink`) opens in a new tab (`target="_blank"` `rel="noopener"`). Other footer links stay in the same tab.
 - **Rendering:** `src/components/site/SectionRenderer.tsx` switches on `section.type`. A new section type needs five edits:
   - the type in `types.ts`;
   - the zod schema in `siteSchema.ts`;

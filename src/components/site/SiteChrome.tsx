@@ -78,7 +78,9 @@ export function SiteFooter() {
             <ul>
               {col.links.filter((l) => isLive(l.href)).map((l) => (
                 <li key={l.href}>
-                  <a href={l.href}>{l.label}</a>
+                  <a href={l.href} {...(l.newTab ? { target: "_blank", rel: "noopener" } : {})}>
+                    {l.label}
+                  </a>
                 </li>
               ))}
             </ul>

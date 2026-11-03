@@ -60,6 +60,7 @@ Follow https://docstar.io/mcp/quickstart.md, document my app's user-facing APIs 
         { label: "About", href: "/about" },
         { label: "Customers", href: "/customers" },
         { label: "Support", href: "/support" },
+        { label: "Explore more", href: "https://walkover-products.embarko.app/?from=docstar", newTab: true },
         { label: "Terms of service", href: "/terms" },
         { label: "Privacy policy", href: "/privacy-policy" },
         { label: "Data retention", href: "/data-retention-policy" },

@@ -211,13 +211,16 @@ export type SitePage = {
 
 export type NavLink = { label: string; href: string };
 
+export type FooterLink = NavLink & { newTab?: boolean };
+
 export type SiteSettings = {
   prompt: string;
   nav: NavLink[];
   signIn: NavLink;
   start: NavLink;
   // Footer links to website pages that aren't live yet (see DRAFT_PAGES) are left out automatically.
-  footer: { title: string; links: NavLink[] }[];
+  // newTab opens that one link in a new tab; other footer links stay in the same tab.
+  footer: { title: string; links: FooterLink[] }[];
   tagline: string;
   supportEmail: string;
   // The company's public profiles: footer icons and Organization.sameAs in the JSON-LD.
