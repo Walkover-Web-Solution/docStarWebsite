@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteFooter, SiteNav } from "@/components/site/SiteChrome";
 import NotFoundBody from "@/components/site/NotFoundBody";
 import { fontVars } from "@/components/site/fonts";
+import "@/components/site/reset.css";
 import "@/components/site/site.css";
 
 export const metadata: Metadata = {

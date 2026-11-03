@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { toast } from "../toast";
-import { getSitePage, getSiteRevision, publishSiteRevision, rollbackSiteRevision, saveSiteRevision } from "@/lib/admin/api";
+import { getBundledPages, getSitePage, getSiteRevision, publishSiteRevision, rollbackSiteRevision, saveSiteRevision } from "@/lib/admin/api";
 import FieldEditor from "./FieldEditor";
 import RevisionBadge, { timeAgo } from "./RevisionBadge";
 
@@ -88,6 +88,21 @@ export default function PageEditor({ slug }: { slug: string }) {
       return `Restored v${version} as v${rev.version}. It's live.`;
     });
 
+  // The copy in the repo (src/content) only reaches the live site through a published revision. This
+  // loads it into the editor; "edited" and "new" marks show what differs from the live page, then
+  // Publish makes it live like any other change (and it can be restored from the history).
+  const loadCodeVersion = () =>
+    run("code", async () => {
+      if (dirty && !window.confirm("Replace your unsaved changes with the code version?")) return "";
+      const bundled = (await getBundledPages()).find((p: any) => p.slug === slug);
+      if (!bundled) throw new Error("This page isn't in the website code.");
+      const next = { meta: bundled.meta, sections: bundled.sections };
+      if (same(next, base.content)) return "The code version is the same as this version.";
+      setContent(clone(next));
+      setNote("Code version from the repo (src/content)");
+      return "Loaded the code version. Check the sections marked edited or new, then Publish.";
+    });
+
   const setSections = (sections: any[]) => setContent({ ...content, sections });
   const moveSection = (i: number, to: number) => {
     const sections = [...content.sections];
@@ -135,6 +150,9 @@ export default function PageEditor({ slug }: { slug: string }) {
           </button>
           <button type="button" className="btn btn-sm btn-primary" disabled={!!busy || (!dirty && base.status === "published")} onClick={publish}>
             {busy === "publish" ? "Publishing…" : "Publish"}
+          </button>
+          <button type="button" className="btn btn-sm" disabled={!!busy} onClick={loadCodeVersion} title="Load this page's copy from the website code (src/content) to review and publish">
+            {busy === "code" ? "Loading…" : "Load code version"}
           </button>
           {dirty && (
             <button type="button" className="text-sm underline" onClick={() => setContent(clone(base.content))}>

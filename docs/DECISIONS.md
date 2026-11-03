@@ -1,7 +1,7 @@
 ---
-covers: [src/content/source.ts, src/middleware.ts, next.config.ts, src/content/pages.ts, src/lib/mw-experiments.ts]
-verified_at: b8f8ce7
-verified_on: 2026-10-21
+covers: [src/content/source.ts, src/middleware.ts, next.config.ts, src/content/pages.ts, src/lib/seo.ts, src/server/autopilot/policy.ts, src/lib/mw-experiments.ts]
+verified_at: d850eb7
+verified_on: 2026-10-30
 ---
 # Decisions
 
@@ -16,4 +16,14 @@ Rationale below comes from code comments and git history; items marked inferred 
 7. **Hidden pages** `hub` and `drift` kept in the repo but out of `PAGES` until launch.
 8. **Permanent redirects** from retired help-era URLs (`next.config.ts`).
 9. **`legacy-peer-deps`** added for the Cloudflare Pages build (commit `858a8c9`).
-10. **External A/B recording stays in the browser (2026-10-28).** Tests defined in the external middleware are assigned with `mwVariant()` and recorded with `mwSend()` in `src/lib/mw-experiments.ts`. The request is fire-and-forget (`sendBeacon`, then `fetch` with a 3 second abort) so a slow or down middleware cannot block or blank a page. This is separate from revision tests assigned in `src/middleware.ts`. The site does not start a test; the owner does that in the middleware. The append-only key is `NEXT_PUBLIC_MW_EVENTS_KEY` in `.env.example`, not a literal in the module.
+10. **SEO overhaul (2026-10-30, branch `seo/overhaul`; see `seo/AUDIT.md`, `seo/PLAN.md`, `seo/REPORT.md`).**
+    - One metadata and JSON-LD helper (`src/lib/seo.ts`) for every page.
+    - FAQPage markup dropped: FAQs stay as visible content only.
+    - Metadata is never streamed into `<body>` (`htmlLimitedBots`).
+11. **A/B variants carry no `noindex`.** The variant HTML is served at the real URL, so `noindex` there de-indexed the live page for every visitor in a test and for Google's inspection tools. Direct `/xv/` hits are still blocked by `X-Robots-Tag`, robots.txt and the canonical.
+12. **The autopilot never edits `meta`.** Titles and descriptions follow the keyword map and change only by hand. SEO pages (compare, customers, about, changelog, tools, solutions) are protected entirely.
+13. **New pages ship hidden** (`DRAFT_PAGES`) until their TODO-COPY placeholders are replaced, instead of going live as thin pages.
+14. **The blog stays on the DocStar product** (`docstar.io/blog`). This site links to it and lists it in the sitemap.
+15. **Tailwind and `src/scss` load only in `/admin`.** Website pages use a cascade-layered reset; pixel-identical screenshots confirmed no visual change.
+16. **CSP is minimal** (`frame-ancestors`, `object-src`, `base-uri`) until the GTM container's tags are known; HSTS has no `includeSubDomains` until every subdomain is confirmed HTTPS-only. It does not set `connect-src`, so a later experiment can still `sendBeacon` to the external middleware.
+17. **External A/B recording stays in the browser (2026-10-28).** Tests defined in the external middleware are assigned with `mwVariant()` and recorded with `mwSend()` in `src/lib/mw-experiments.ts`. The request is fire-and-forget (`sendBeacon`, then `fetch` with a 3 second abort) so a slow or down middleware cannot block or blank a page. This is separate from revision tests assigned in `src/middleware.ts`. The site does not start a test; the owner does that in the middleware. The append-only key is `NEXT_PUBLIC_MW_EVENTS_KEY` in `.env.example`, not a literal in the module.

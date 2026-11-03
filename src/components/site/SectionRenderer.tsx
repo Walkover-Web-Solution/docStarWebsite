@@ -1,5 +1,5 @@
 import type { Section } from "@/content/types";
-import { AgentReadable, Cards, Channels, Faq, FinalCta, Hero, Hub, Pillars, Pricing, Prose, Steps, WorksWith } from "./sections/Sections";
+import { AgentReadable, Cards, Changelog, Channels, Faq, FinalCta, Hero, Hub, Pillars, Pricing, Prose, Steps, Table, Tool, WorksWith } from "./sections/Sections";
 
 // Maps each content section type to its component. New section types are added here and in content/types.ts.
 export default function SectionRenderer({ sections }: { sections: Section[] }) {
@@ -31,6 +31,12 @@ export default function SectionRenderer({ sections }: { sections: Section[] }) {
             return <Pricing key={section.key} section={section} />;
           case "prose":
             return <Prose key={section.key} section={section} />;
+          case "table":
+            return <Table key={section.key} section={section} />;
+          case "changelog":
+            return <Changelog key={section.key} section={section} />;
+          case "tool":
+            return <Tool key={section.key} section={section} />;
           default:
             return null;
         }
