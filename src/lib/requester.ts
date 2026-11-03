@@ -44,8 +44,13 @@ const KNOWN: [RegExp, ActorType, string][] = [
   [/Go-http-client/i, "http_client", "go"],
   [/okhttp|Java\//i, "http_client", "java"],
   [/PostmanRuntime/i, "http_client", "postman"],
-  // classic search and social bots
+  // classic search and social bots. Google's other crawlers (URL Inspection, GoogleOther, Shopping, Ads,
+  // Lighthouse in PageSpeed Insights…) use browser-like user agents and must never be treated as people:
+  // people can be put into A/B tests, crawlers always get the live page.
   [/Googlebot/i, "bot", "Googlebot"],
+  [/Google-InspectionTool|GoogleOther|Storebot-Google|AdsBot-Google|Mediapartners-Google|APIs-Google|Google-Site-Verification|FeedFetcher-Google|Google-Read-Aloud|Chrome-Lighthouse/i, "bot", "Google"],
+  [/BingPreview|adidxbot|MicrosoftPreview/i, "bot", "Bingbot"],
+  [/Applebot/i, "bot", "Applebot"],
   [/bingbot/i, "bot", "Bingbot"],
   [/DuckDuckBot/i, "bot", "DuckDuckGo"],
   [/YandexBot/i, "bot", "Yandex"],

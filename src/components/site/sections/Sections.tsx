@@ -1,6 +1,9 @@
 import type {
   AgentReadableSection,
   CardsSection,
+  ChangelogSection,
+  TableSection,
+  ToolSection,
   PricingSection,
   ProseSection,
   ChannelsSection,
@@ -17,6 +20,7 @@ import Markdown from "../ui/Markdown";
 import RichText from "../ui/RichText";
 import RunLog from "../ui/RunLog";
 import SectionHead from "../ui/SectionHead";
+import LlmsChecker from "../tools/LlmsChecker";
 import s from "./sections.module.css";
 
 export function Hero({ section: x }: { section: HeroSection }) {
@@ -268,6 +272,82 @@ export function Prose({ section: x }: { section: ProseSection }) {
   return (
     <section className={`${s.wrap} ${s.prose}`} data-section={x.key}>
       <Markdown body={x.body} />
+    </section>
+  );
+}
+
+export function Table({ section: x }: { section: TableSection }) {
+  return (
+    <section id={x.key} className={s.wrap} data-section={x.key}>
+      <SectionHead kicker={x.kicker} title={x.title} sub={x.sub} />
+      {/* Scrolls inside its own box on small screens; the page never scrolls sideways. */}
+      <div className={s.tableScroll} role="region" aria-label={x.title.replace(/==/g, "")} tabIndex={0}>
+        <table className={s.table}>
+          <thead>
+            <tr>
+              <td />
+              {x.columns.map((c) => (
+                <th key={c} scope="col">
+                  {c}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {x.rows.map((row) => (
+              <tr key={row.label}>
+                <th scope="row">{row.label}</th>
+                {row.cells.map((cell, i) => (
+                  <td key={i}>{cell}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {x.note && <p className={s.tableNote}>{x.note}</p>}
+    </section>
+  );
+}
+
+const longDate = (d: string) => new Date(`${d}T00:00:00Z`).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
+
+export function Changelog({ section: x }: { section: ChangelogSection }) {
+  return (
+    <section id={x.key} className={s.wrap} data-section={x.key}>
+      <SectionHead kicker={x.kicker} title={x.title} sub={x.sub} />
+      <ol className={s.changelog}>
+        {x.entries.map((e, i) => (
+          <li key={`${e.date}-${e.title}`} className={s.entry}>
+            <time dateTime={e.date} className={s.reader}>
+              {longDate(e.date)}
+            </time>
+            <h3 className={s.h3}>{e.title}</h3>
+            <p className={s.body}>{e.body}</p>
+            {e.items && (
+              <ul className={s.checks}>
+                {e.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            )}
+            {e.link && (
+              <div className={s.cardCta}>
+                <CtaButton cta={e.link} variant="link" id={`${x.key}-${i + 1}`} placement={x.key} />
+              </div>
+            )}
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
+export function Tool({ section: x }: { section: ToolSection }) {
+  return (
+    <section id={x.key} className={s.wrap} data-section={x.key}>
+      <SectionHead kicker={x.kicker} title={x.title} sub={x.sub} />
+      <div className={s.card}>{x.tool === "llms-txt-checker" && <LlmsChecker />}</div>
     </section>
   );
 }

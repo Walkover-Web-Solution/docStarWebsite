@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import AdminShell from "@/components/admin/AdminShell";
 import { fontVars } from "@/components/site/fonts";
+// The admin is built with Tailwind and the legacy SCSS; the website pages don't load them.
+import "../../scss/_import.scss";
 import "@/components/site/site.css";
 import "@/components/admin/admin.css";
 

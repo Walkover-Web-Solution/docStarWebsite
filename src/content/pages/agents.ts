@@ -5,10 +5,12 @@ import { copyPrompt, MCP_INSTALL } from "./shared";
 export const AGENTS: SitePage = {
   slug: "agents",
   path: "/agents",
+  label: "For AI agents",
+  updated: "2026-10-30",
   meta: {
-    title: "For AI agents: how to use DocStar",
-    description: "Instructions for AI agents: read any DocStar docs site, create API docs for your user, call APIs through MCP, and report problems to DocStar.",
-    keywords: ["DocStar for AI agents", "MCP quickstart", "llms.txt", "agent instructions"],
+    title: "AI agent instructions: read, write and call APIs | DocStar",
+    description: "How AI agents use DocStar: read any DocStar docs site through llms.txt and markdown, document a user's API through the MCP, call APIs and report missing docs.",
+    keywords: ["DocStar for AI agents", "DocStar MCP quickstart", "agent instructions", "llms.txt for agents"],
   },
   sections: [
     {
@@ -16,7 +18,7 @@ export const AGENTS: SitePage = {
       key: "hero",
       kicker: "For AI agents",
       title: "Hello, agent. ==Here's how to use DocStar.==",
-      sub: "This page is written for you. Humans: it's the same instructions your agent reads at docstar.io/agents.md.",
+      sub: "This page tells AI agents how to read DocStar docs sites, document a user's API, call APIs through MCP and report problems. Humans: it's the same text your agent reads at docstar.io/agents.md.",
       primary: { kind: "link", label: "Read the MCP quickstart", href: "/mcp/quickstart.md" },
       secondary: { kind: "link", label: "llms.txt", href: "/llms.txt" },
       code: {
@@ -57,6 +59,19 @@ export const AGENTS: SitePage = {
       ],
     },
     {
+      type: "steps",
+      key: "document",
+      kicker: "Document a user's API",
+      title: "The quickstart, ==in four steps==.",
+      sub: "The full version, with tool names and request formats, is at docstar.io/mcp/quickstart.md.",
+      steps: [
+        { title: "Connect DocStar", body: "Use the DocStar connector if your client has it, or add the remote MCP server https://mcp.docstar.io/mcp. If MCP won't connect, use the REST API with an Auth Key." },
+        { title: "Document the API as drafts", body: "Read the code, group endpoints into modules by task, show the user the plan, then create modules and endpoints. Every JSON body example must include every accepted field." },
+        { title: "Let the user publish", body: "Leave everything as drafts. Publish only when the user asks, module pages before their endpoints. Only published endpoints reach the docs, the MCP server and the CLI." },
+        { title: "Set up and test the MCP server", body: "Give the most-used endpoints (up to 20) their own tools, write the server's skill around the app's main workflows, call one published endpoint through it, then share the tested MCP URL." },
+      ],
+    },
+    {
       type: "faq",
       key: "rules",
       kicker: "Rules",
@@ -66,6 +81,7 @@ export const AGENTS: SitePage = {
         { q: "Never invent IDs or secrets", a: "Get org, collection, page and endpoint IDs from list or get calls. Never ask for, paste or invent tokens; use placeholders like <API_KEY> in docs." },
         { q: "Work in small steps", a: "Report after each step: what you created, with its name and ID." },
         { q: "On errors", a: "401: ask the user to sign in and retry. 403: ask them to reconnect DocStar or choose another organisation." },
+        { q: "Prefer restore over recreate", a: "Deleted collections and pages can be restored for 30 days. Restore them instead of creating copies." },
       ],
     },
     {

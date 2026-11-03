@@ -1,0 +1,68 @@
+/* Base reset for website pages, which don't load Tailwind's preflight (only the admin uses Tailwind).
+   In a cascade layer, so any component style wins over it regardless of specificity. Imported by the
+   website layouts only, never the admin, where this layer would outrank Tailwind's. */
+@layer ds-reset {
+  html {
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  .ds-site *,
+  .ds-site *::before,
+  .ds-site *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 solid;
+  }
+
+  .ds-site :is(h1, h2, h3, h4, h5, h6) {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  .ds-site a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  .ds-site :is(b, strong) {
+    font-weight: bolder;
+  }
+
+  .ds-site :is(ol, ul, menu) {
+    list-style: none;
+  }
+
+  .ds-site :is(img, svg, video, canvas) {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .ds-site :is(button, input, select, textarea) {
+    font: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    background-color: transparent;
+    border-radius: 0;
+  }
+
+  .ds-site :is(code, kbd, pre) {
+    font-size: 1em;
+  }
+
+  .ds-site table {
+    text-indent: 0;
+    border-color: inherit;
+    border-collapse: collapse;
+  }
+
+  .ds-site summary {
+    display: list-item;
+  }
+}

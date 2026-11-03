@@ -1,21 +1,23 @@
 import type { SitePage } from "../types";
-import { finalCta } from "./shared";
+import { finalCta, related } from "./shared";
 
 export const CLI: SitePage = {
   slug: "cli",
   path: "/cli",
+  label: "CLI",
+  updated: "2026-10-30",
   meta: {
-    title: "A CLI for your API, generated from your docs | DocStar",
-    description: "docstar-cli reads any DocStar docs site and installs each published endpoint as a real terminal command, required parameters and all. No SDK to generate, nothing to keep in sync.",
-    keywords: ["API CLI", "CLI from API docs", "docstar-cli", "command line API client"],
+    title: "Generate a CLI from your API docs with docstar-cli | DocStar",
+    description: "docstar-cli turns any DocStar docs site into terminal commands, one per published endpoint, and runs them as a local MCP server. No SDK to generate or maintain.",
+    keywords: ["generate CLI from API docs", "docstar-cli", "API command line tool", "API CLI", "local MCP server"],
   },
   sections: [
     {
       type: "hero",
       key: "hero",
       kicker: "CLI",
-      title: "Every endpoint, ==a terminal command==.",
-      sub: "docstar-cli reads any DocStar docs site and installs each published endpoint as a real command, required parameters and all. No SDK to generate, nothing to keep in sync.",
+      title: "A CLI for your API, ==generated from your docs==.",
+      sub: "docstar-cli turns any DocStar docs site into a command-line tool: each published endpoint becomes a real command, required parameters and all, and the same commands run as a local MCP server. No SDK to generate, nothing to keep in sync.",
       primary: { kind: "copy-text", label: "Copy install command", text: "npm install -g docstar-cli", copiedLabel: "Copied. Run it in your terminal" },
       secondary: { kind: "link", label: "CLI docs", href: "https://docstar.io/help/cli" },
       run: {
@@ -69,11 +71,14 @@ export const CLI: SitePage = {
       kicker: "FAQ",
       title: "CLI questions.",
       items: [
-        { q: "Which APIs can I install?", a: "Any API documented on DocStar. Point init at its docs site." },
+        { q: "Which APIs can I install?", a: "Any API documented on DocStar. Point init at its docs site, a custom domain or sub-path, or the collection's slug." },
+        { q: "How do I keep the commands up to date?", a: "Re-run init. The CLI reads the published docs, so new and changed endpoints arrive with the next install." },
+        { q: "How are API keys handled?", a: "Save a key once per API with config set, or sign in. You can also write a key into your project's env file. Keys are sent only as the headers or parameters the docs describe." },
         { q: "Can my company ship it under our own name?", a: "Yes. With white-label, your users run your CLI name with your branding, generated from the same docs." },
         { q: "Does the CLI send my credentials anywhere?", a: "No. Credentials stay in ~/.docstar on your machine and are only sent to the API you call." },
       ],
     },
-    finalCta(),
+    related("More from ==one source==.", ["mcp", "api-docs", "white-label"]),
+    finalCta("Give your users ==a CLI==, without writing one."),
   ],
 };

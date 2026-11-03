@@ -1,21 +1,23 @@
 import type { SitePage } from "../types";
-import { finalCta, installMcp } from "./shared";
+import { finalCta, installMcp, related } from "./shared";
 
 export const INTEGRATORS: SitePage = {
   slug: "for-integrators",
   path: "/for/integrators",
+  label: "For integrators",
+  updated: "2026-10-30",
   meta: {
-    title: "Give any API to your AI agent | DocStar",
-    description: "Install the DocStar MCP once. Your agent can find, read and call every API documented on DocStar, always at the current version.",
-    keywords: ["API for AI agents", "MCP for APIs", "give API docs to agent", "Claude Code API integration"],
+    title: "Give your AI agent any API with one MCP install | DocStar",
+    description: "Install the DocStar MCP once and your coding agent can find, read and call every API documented on DocStar, always at the current version. No pasting docs.",
+    keywords: ["give AI agent access to API", "MCP for third-party APIs", "connect API to Claude Code", "API docs for coding agents"],
   },
   sections: [
     {
       type: "hero",
       key: "hero",
       kicker: "For developers using APIs",
-      title: "Give ==any API== to your agent.",
-      sub: "Install the DocStar MCP once. Your agent can find, read and call every API documented on DocStar, always at the current version. No copy-pasting docs into chat.",
+      title: "Give your AI agent ==any API==.",
+      sub: "Install the DocStar MCP once, and your coding agent can find, read and call every API documented on DocStar, always at the current version. No copy-pasting docs into chat.",
       primary: installMcp,
       secondary: { kind: "link", label: "See how it works", href: "#how-it-works" },
       works: "Claude Code · Cursor · Codex · VS Code · any MCP client",
@@ -61,8 +63,11 @@ export const INTEGRATORS: SitePage = {
         { q: "Which APIs are available?", a: "Every API documented on DocStar. Your agent searches them through the DocStar MCP, or you can point it at any DocStar docs site." },
         { q: "Is the documentation current?", a: "Yes. Agents read the API owner's published docs directly, not a scraped copy." },
         { q: "Do I need an account?", a: "Reading public docs doesn't. Signing in with DocStar lets your agent call APIs and save your work." },
+        { q: "Which agents does it work with?", a: "Any client that supports MCP, including Claude Code, Cursor, Codex, VS Code, Windsurf and ChatGPT." },
+        { q: "Can I try it on a real API?", a: "Yes. MSG91's API docs at docs.msg91.com run on DocStar, with llms.txt and module.json for agents." },
       ],
     },
+    related("Publishing an API ==of your own==?", ["mcp", "api-docs", "pricing"]),
     finalCta("Your agent, with ==every API== at hand."),
   ],
 };

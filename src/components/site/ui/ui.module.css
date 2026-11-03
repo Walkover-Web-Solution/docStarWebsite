@@ -197,6 +197,18 @@
     opacity: 1;
     transform: none;
   }
+
+  .primary,
+  .ink {
+    transition: none;
+  }
+
+  .primary:hover,
+  .ink:hover,
+  .primary:active,
+  .ink:active {
+    transform: none;
+  }
 }
 
 /* Markdown (prose sections) */
@@ -256,4 +268,34 @@
   border-radius: 4px;
   background: var(--lime-soft);
   font-size: 0.9em;
+}
+
+/* Breadcrumbs (pages below a section) */
+.crumbs {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 20px var(--gutter) 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.crumbs li + li::before {
+  content: "/";
+  margin-right: 6px;
+  color: var(--muted);
+}
+
+.crumbs a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }

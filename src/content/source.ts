@@ -21,7 +21,11 @@ async function isPreview() {
   }
 }
 
-const asPage = (data: any): SitePage => ({ slug: data.slug, path: data.path, meta: data.meta, sections: data.sections });
+// label and the bundled date are structural, so they come from code; `updated` is the publish date when known.
+const asPage = (data: any): SitePage => {
+  const bundled = local(data.slug);
+  return { slug: data.slug, path: data.path, label: bundled?.label, updated: data.updatedAt ?? bundled?.updated, meta: data.meta, sections: data.sections };
+};
 
 async function cached<T>(key: string, load: () => Promise<T>): Promise<T> {
   const hit = pageCache.get(key);

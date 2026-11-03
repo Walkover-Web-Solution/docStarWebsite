@@ -1,28 +1,45 @@
 ---
-covers: [package.json, .npmrc, .env.example, next.config.ts]
-verified_at: b8f8ce7
-verified_on: 2026-10-21
+covers: [package.json, .npmrc, .env.example, next.config.ts, .github/workflows/*.yml, lighthouserc.json, scripts/*.mjs]
+verified_at: d850eb7
+verified_on: 2026-10-30
 ---
 # Development
 
 ## Commands (from `package.json`)
 | Task | Command |
 |---|---|
-| Install | `npm install` (`.npmrc` sets `legacy-peer-deps=true`, needed for the Cloudflare Pages build) |
+| Install | `npm install` (`.npmrc` sets `legacy-peer-deps=true`) |
 | Dev server | `npm run dev` (Next with Turbopack, http://localhost:3000) |
 | Production build | `npm run build` |
 | Start built app | `npm run start` |
+| Type check | `npm run typecheck` |
+| Content test | `npm run check:content`: every page, live and draft, against the database schema and the SEO rules (title 50–60 chars ending in "\| DocStar", description 140–160, one H1, label, unique title, description and primary keyword) |
+| SEO crawl | `npm run seo:check` against a running build (`SEO_BASE_URL`, default `http://localhost:3000`) |
+| Lighthouse budgets | `npm run lhci` against a running build on port 3000 (`lighthouserc.json`) |
+| Cloudflare build / deploy | `npm run cf:build` / `npm run cf:deploy` |
+| Database migrations | `npm run migrate` |
 
-There is no lint, test or typecheck script. Type check manually with `npx tsc --noEmit`.
+Dependency versions are pinned exactly; keep them pinned when adding packages (`npm install --save-exact`).
 
-## Running without a backend
-Leave `DOCSTAR_API_URL` unset: pages render from `src/content`. Copy `.env.example` to `.env.local` to point at hitman-api; secrets are shared with hitman-api and not stored here.
+## Running without a database
+- Run with `DATABASE_URL` empty and pages render from `src/content`.
+- `next` loads `.env.local`, so set it explicitly: `DATABASE_URL= npm run start`.
+- To review the hidden pages, build and start with `NEXT_PUBLIC_SHOW_DRAFT_PAGES=1`.
 
-## Verifying a content change
-1. `npm run dev`, open the page, check the `/<path>.md` twin and `/llms.txt`.
-2. Confirm a new page appears in `PAGES` (`src/content/pages.ts`) and in `/sitemap.xml`.
-3. For analytics changes, watch `POST /api/e` in the browser network tab (204 expected).
+## Verifying a change
+1. `npm run typecheck && npm run check:content`.
+2. `DATABASE_URL= npm run build && DATABASE_URL= npm run start`, then in another terminal `npm run seo:check` and `npm run lhci`.
+3. Open the page, its `/<path>.md` twin and `/llms.txt`; a new page must appear in `/sitemap.xml`.
+4. For analytics changes, watch `POST /api/e` in the browser network tab (204 expected).
+5. Changed copy of an existing page reaches production only after deploy and Admin > page > **Load code version** > **Publish** (except `/pricing`, which is code-only).
+
+## CI
+- `.github/workflows/seo.yml`, on every pull request and on pushes to `main` and `prod`:
+  - typecheck, content test, build, SEO crawl and Lighthouse budgets;
+  - the SEO crawl again with draft pages on.
+  - It needs no secrets or database.
+- `autopilot.yml` runs the daily autopilot.
+- `migrate.yml` applies migrations on push to `main`.
 
 ## PR and deployment flow
-- Branch from `prod`; open the PR against `prod`. Production hosting is Cloudflare Pages (edge runtime comments in routes, `.npmrc` note).
-- **Not confirmed by a human.** No CI workflows exist in this repo at this commit. See [OPEN_QUESTIONS.md](OPEN_QUESTIONS.md).
+Production is Cloudflare Workers via OpenNext (`npm run cf:deploy`, run by hand). See [OPEN_QUESTIONS.md](OPEN_QUESTIONS.md) for the unconfirmed release flow.

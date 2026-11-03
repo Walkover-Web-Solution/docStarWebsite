@@ -51,3 +51,8 @@ body:has(.ds-site) {
     --gutter: 24px;
   }
 }
+
+/* The skip link focuses <main>; no outline around the whole page. */
+.ds-site main:focus {
+  outline: none;
+}
