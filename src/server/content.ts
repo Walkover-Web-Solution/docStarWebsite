@@ -11,6 +11,18 @@ export type { Actor };
 
 export const STATUS = { DRAFT: "draft", PUBLISHED: "published", SUPERSEDED: "superseded", REJECTED: "rejected" } as const;
 
+// The search snippet. A/B arms are rewritten onto the real URL, so both must use the live page's
+// title and meta description. Section copy can still differ. Keywords are not part of that snippet.
+export function sameSearchSnippet(a: { title?: unknown; description?: unknown } | null | undefined, b: { title?: unknown; description?: unknown } | null | undefined) {
+  return !!a && !!b && typeof a.title === "string" && typeof a.description === "string" && a.title === b.title && a.description === b.description;
+}
+
+export function withLiveSearchSnippet<T extends { title?: unknown; description?: unknown }>(meta: T, live: { title?: unknown; description?: unknown }): T {
+  if (typeof live.title !== "string" || typeof live.description !== "string") return meta;
+  if (meta.title === live.title && meta.description === live.description) return meta;
+  return { ...meta, title: live.title, description: live.description };
+}
+
 const LATEST_VERSION = "(data->>'version')::int DESC";
 
 const pageView = (p: AdminRow) => ({ id: p.id, slug: p.key as string, path: p.data.path as string, publishedRevisionId: (p.data.publishedRevisionId ?? null) as number | null });
@@ -51,6 +63,8 @@ const latestRevision = async (db: Db, pageId: number, onlyDrafts = false) => {
 /**
  * A page's content: the published version; with `draft` the newest draft (admin preview); with
  * `variant` a version that is part of a running A/B test on this page (anything else is not found).
+ * A variant keeps its own sections, but its title and meta description are the published page's,
+ * so both arms of a test emit the same `<title>` and meta description.
  */
 export async function getPageContent(db: Db, slug: string, { draft = false, variant }: { draft?: boolean; variant?: number } = {}) {
   const page = pageView(await findPage(db, slug));
@@ -67,8 +81,14 @@ export async function getPageContent(db: Db, slug: string, { draft = false, vari
     if (!revision && page.publishedRevisionId) revision = await findRevision(db, page.publishedRevisionId);
   }
   if (!revision) throw new AdminError(404, `Page "${slug}" has no published content`);
+  let content = revision.data.content as { meta: { title: string; description: string; keywords?: string[] }; sections: unknown[] };
+  if (variant && page.publishedRevisionId && page.publishedRevisionId !== revision.id) {
+    const live = await findRevision(db, page.publishedRevisionId);
+    const liveMeta = live?.data.content?.meta;
+    if (liveMeta && content.meta) content = { ...content, meta: withLiveSearchSnippet(content.meta, liveMeta) };
+  }
   const updatedAt = (revision.data.publishedAt as string | null) ?? null;
-  return { slug: page.slug, path: page.path, version: revision.data.version as number, status: revision.status as string, updatedAt, ...(revision.data.content as { meta: any; sections: any[] }) };
+  return { slug: page.slug, path: page.path, version: revision.data.version as number, status: revision.status as string, updatedAt, ...content };
 }
 
 // ---------- reading, for the admin ----------

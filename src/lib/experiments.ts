@@ -1,7 +1,8 @@
 // A/B tests on the website (middleware). The site's own /api/internal/experiments lists the running tests; each visitor gets a
 // variant from their anonymous id, kept in the `ds_x` cookie so their events carry it, and the page is
 // served from /xv/<revision><path> (cached per version) while the address bar stays the same.
-// Agents, crawlers and the .md twins always get the live page.
+// Agents, crawlers and the .md twins always get the live page. Every arm uses that page's
+// <title> and meta description; only the sections change.
 
 import { INTERNAL_HEADER, internalKey } from "./internal";
 

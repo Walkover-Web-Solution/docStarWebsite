@@ -1,7 +1,7 @@
 ---
 covers: [src/app/**, src/content/*.ts, src/components/site/**, src/middleware.ts, src/lib/*.ts, src/server/content.ts]
 verified_at: d850eb7
-verified_on: 2026-10-30
+verified_on: 2026-11-04
 ---
 # Architecture
 
@@ -56,6 +56,7 @@ graph TD
 
 ## Content sourcing
 - `getSitePage` (`src/content/source.ts`) reads the published revision from the database, cached for 60 s per server instance (`REVALIDATE_SECONDS`). Publishing clears that instance's cache. In draft mode (admin preview) it reads the newest draft, uncached.
+- A running A/B variant (`getVariantPage`) reads that revision's sections, with the published page's title and meta description copied on. Both arms therefore emit the same `<title>` and meta description. The stored revision is not rewritten.
 - With no database, a 404 or an error, it returns the bundled page, so the site never renders empty.
 - **Once a page is in the database, code edits to it don't reach the site** until someone uses Admin > page > **Load code version** and publishes. `/pricing` is never synced, so it always comes from code.
 
