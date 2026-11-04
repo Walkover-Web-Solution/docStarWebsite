@@ -1,7 +1,7 @@
 ---
-covers: [src/middleware.ts, src/app/api/**, src/components/site/ui/CtaButton.tsx, src/components/site/SiteAnalytics.tsx]
+covers: [src/middleware.ts, src/app/api/**, src/components/site/ui/CtaButton.tsx, src/components/site/SiteAnalytics.tsx, src/server/content.ts, src/app/(site)/xv/[rev]/[[...slug]]/page.tsx]
 verified_at: b8f8ce7
-verified_on: 2026-10-21
+verified_on: 2026-11-04
 ---
 # Flows
 
@@ -9,6 +9,7 @@ verified_on: 2026-10-21
 1. Middleware matches the path (static assets, `_next` and `api` are excluded), sets `Vary: Accept` on page paths, and sets the `ds_aid` cookie for browsers that accept HTML.
 2. If the cookie `isLogin=true` is present on `/` for a human, middleware redirects to `https://app.docstar.io/login`.
 3. The page renders from `getSitePage`; `SiteAnalytics` sends `page.viewed`, `section.viewed`, `scroll.depth`, `cta.clicked` through `/api/e`.
+4. If a test is running on that path, middleware rewrites the person to `/xv/<revision>` for their arm. The address bar stays the real path. The sections come from that revision; the `<title>` and meta description stay the live page's. Agents and crawlers are not rewritten.
 
 ## 2. Visitor copies the prompt (core conversion)
 1. `CtaButton` with `kind: "copy-prompt"` copies `SITE.prompt`, adding `?ref=<id>` to the quickstart URL (`makeRef`).
