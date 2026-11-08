@@ -24,7 +24,20 @@ Kept by the middleware (version c133f420d8b7). Read these before changing anythi
 No lint script exists. CI: `.github/workflows/seo.yml`.
 
 ## Reading order
-1. [docs/VISION.md](docs/VISION.md) 2. [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) 3. [docs/FLOWS.md](docs/FLOWS.md) 4. [docs/DESIGN.md](docs/DESIGN.md) 5. [docs/CONTRACTS.md](docs/CONTRACTS.md) 6. [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) 7. [docs/DECISIONS.md](docs/DECISIONS.md) 8. [docs/OPEN_QUESTIONS.md](docs/OPEN_QUESTIONS.md)
+1. [docs/VISION.md](docs/VISION.md) 2. [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) 3. [docs/FLOWS.md](docs/FLOWS.md) 4. [docs/DESIGN.md](docs/DESIGN.md) 5. [docs/CONTRACTS.md](docs/CONTRACTS.md) 6. [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) 7. [docs/DECISIONS.md](docs/DECISIONS.md) 8. [docs/OPEN_QUESTIONS.md](docs/OPEN_QUESTIONS.md). Docs maintenance state: [docs/MAINTENANCE.md](docs/MAINTENANCE.md).
+
+## Task → where to look
+| Task | Read |
+|---|---|
+| Change copy or add a page | Rules 1, 2, 14, 15; docs/ARCHITECTURE.md "Content model" |
+| New section type or UI | Rule 3; docs/DESIGN.md |
+| SEO, metadata, redirects, sitemap | `src/lib/seo.ts`, `seo/PLAN.md`; docs/ARCHITECTURE.md "Search and agent outputs" |
+| Analytics events, A/B tests, autopilot | docs/CONTRACTS.md "Browser events"; docs/FLOWS.md flows 2, 7, 8 |
+| Admin, database, migrations | docs/ARCHITECTURE.md "Server modules"; docs/DEVELOPMENT.md |
+| Public APIs (ideas, llms check, `.md`, `llms.txt`) | docs/CONTRACTS.md |
+| Env vars and secrets | docs/CONTRACTS.md "Environment variables", `.env.example` |
+| Unknowns and pending decisions | docs/OPEN_QUESTIONS.md |
+| Docs coverage map, last reviewed revision | docs/MAINTENANCE.md |
 
 ## Rules
 1. Edit copy in `src/content`, not JSX. Pages are data (`src/content/types.ts`).
@@ -33,7 +46,7 @@ No lint script exists. CI: `.github/workflows/seo.yml`.
 4. Every page must stay readable as markdown; agents are first-class readers.
 5. The agent prompt lives only in `SITE.prompt` (`src/content/site.ts`).
 6. Keep `data-section`, `data-cta` and `data-placement` attributes; analytics reads them.
-7. Browser event names live in both `src/lib/analytics.ts` and `src/app/api/e/route.ts`; change both, and hitman-api.
+7. Event names live in `src/lib/analytics.ts`, `src/app/api/e/route.ts` and `SITE_EVENTS` in `src/server/events.ts`; change all three, and confirm with the team whether hitman-api still reads them (docs/OPEN_QUESTIONS.md 14).
 8. Code runs on Cloudflare Workers (`nodejs_compat`); check `npm run cf:build` when adding server code or dependencies.
 9. Never remove a route or path without adding a redirect in `next.config.ts`.
 10. Keep the bundled content fallback working; the site must render with `DATABASE_URL` unset.
@@ -44,7 +57,7 @@ No lint script exists. CI: `.github/workflows/seo.yml`.
 15. Never state a product fact, customer, number or competitor claim that DocStar hasn't published; mark it TODO-COPY or TODO-VERIFY and keep the page in `DRAFT_PAGES`.
 
 ## Where things are
-- `src/app/(site)/`: pages. `src/app/admin/`, `src/app/api/admin/`: the admin. `src/app/api/`: `e`, `ideas`, `preview`, `tools/llms-check`, `internal`, `cron`. `src/app/md`, `src/app/llms.txt`, `src/app/llms-full.txt`, `src/app/sitemap.xml`, `src/app/robots.ts`, `src/app/og`: agent and crawler outputs.
+- `src/app/(site)/`: pages. `src/app/admin/`, `src/app/api/admin/`: the admin. `src/app/api/`: `e`, `ideas`, `preview`, `tools/llms-check`, `internal`, `cron`. `db/migrations/`: SQL migrations. `src/app/md`, `src/app/llms.txt`, `src/app/llms-full.txt`, `src/app/sitemap.xml`, `src/app/robots.ts`, `src/app/og`: agent and crawler outputs.
 - `src/content/`: content model, pages, site chrome.
 - `src/components/site/`: renderer, sections, UI atoms, CSS.
 - `src/lib/`: SEO metadata and JSON-LD (`seo.ts`), analytics and requester classification. `src/server/`: database content, revisions, experiments, autopilot. `src/middleware.ts`: markdown twins, canonical redirects, A/B rewrites and agent analytics.
