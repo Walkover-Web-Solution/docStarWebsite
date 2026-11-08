@@ -1,7 +1,7 @@
 ---
-covers: [src/app/**, src/content/*.ts, src/components/site/**, src/middleware.ts, src/lib/*.ts, src/server/content.ts]
-verified_at: d850eb7
-verified_on: 2026-10-30
+covers: [src/app/**, src/content/*.ts, src/components/site/**, src/middleware.ts, src/lib/*.ts, src/server/*.ts, db/migrations/*.sql]
+verified_at: 00fd0e7
+verified_on: 2026-11-08
 ---
 # Architecture
 
@@ -71,6 +71,18 @@ graph TD
 - `/llms.txt`, `/llms-full.txt`, `/content.json`, and `/mcp/quickstart.md` (static file in `public/mcp`).
 - `/api/tools/llms-check`: the llms.txt checker behind `/tools/llms-txt-checker` (`src/server/llmsCheck.ts`).
 - **Help docs and the blog** (`docstar.io/help`, `docstar.io/blog`) are served by the DocStar product, not this app.
+
+## Server modules (`src/server/`)
+One Postgres database, two tables (`db/migrations/001_init.sql`): `admin` holds typed rows (`user`, `page`, `page_revision`, `idea`, `experiment`, `ai_proposal`, `ai_run`, `setting`) validated by `adminTypes.ts`; `admin_events` holds analytics.
+- `db.ts`: connections (Hyperdrive or `DATABASE_URL`), `withDb`, `withTx`.
+- `auth.ts`: admin sign-in (`ds_admin` JWT cookie, 12 h), same-origin check on writes, failed-login limit.
+- `content.ts`: pages and revisions, publish and rollback, the per-instance page cache.
+- `events.ts`: event whitelist, ingest and the admin's analytics overview.
+- `experiments.ts`, `autopilot/`: A/B tests and the daily autopilot ([FLOWS.md](FLOWS.md) flows 7 and 8).
+- `ideas.ts`: public idea intake and triage (flow 9). `llmsCheck.ts`: the llms.txt checker.
+- `siteSchema.ts`: zod schema for page content, mirroring `src/content/types.ts`.
+
+`/xv/[rev]/[[...slug]]` in `src/app/(site)/` renders an A/B variant revision; only middleware rewrites reach it.
 
 ## State ownership
 No client state library. Only local component state (copy-button feedback in `CtaButton`, the llms.txt checker form) and the analytics queue in `src/lib/analytics.ts`.
