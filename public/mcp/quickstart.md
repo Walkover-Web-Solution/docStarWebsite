@@ -62,6 +62,7 @@ Use this when DocStar is missing something you or the user needed, something in 
 - **Confirm before any change.** For any call that creates, updates, publishes or deletes data, say exactly what will change. For bulk work, confirm once with a clear list.
 - **Never invent IDs.** Get `orgId`, `collectionId`, `pageId` and `endpointId` from list or get calls.
 - **No secrets in docs.** Use placeholders such as `<API_KEY>`, never real tokens or credentials from the repo.
+- **Use real endpoint URLs.** Write the full real base URL (for example `https://api.example.com/orgs/:orgId/collections`), taken from the repo's config or the user. Mark path parameters as `:param`, not `{param}`. Never write `{{API_URL}}` or any other `{{VAR}}` unless that variable is also published in the collection's environment.
 - **Prefer restore over recreate.** Deleted collections and pages can be restored for 30 days.
 - **On errors:** for 401, ask the user to sign in and retry. For 403 `Invalid API token`, ask them to reconnect DocStar in their client. For 403 `Unauthorized` or `Invalid organization`, ask them to choose another organisation or collection.
 - **Work in small steps** and report after each: what you created, with its name and ID.
