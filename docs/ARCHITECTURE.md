@@ -1,7 +1,7 @@
 ---
 covers: [src/app/**, src/content/*.ts, src/components/site/**, src/middleware.ts, src/lib/*.ts, src/server/content.ts]
-verified_at: d850eb7
-verified_on: 2026-10-30
+verified_at: pending
+verified_on: 2026-11-10
 ---
 # Architecture
 
