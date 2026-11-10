@@ -1,6 +1,6 @@
 ---
 covers: [src/app/**, src/content/*.ts, src/components/site/**, src/middleware.ts, src/lib/*.ts, src/server/content.ts]
-verified_at: pending
+verified_at: 8ee0f16
 verified_on: 2026-11-10
 ---
 # Architecture

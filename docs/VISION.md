@@ -1,6 +1,6 @@
 ---
 covers: [src/content/site.ts, src/content/home.ts, src/content/pages.ts, src/app/llms.txt/route.ts]
-verified_at: pending
+verified_at: 8ee0f16
 verified_on: 2026-11-10
 ---
 # Vision
