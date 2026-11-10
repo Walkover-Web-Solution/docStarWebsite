@@ -3,32 +3,39 @@ import { absolute } from "@/lib/seo";
 
 // sitemap.xml: every live website page (src/content/pages.ts) plus the help docs and blog, which the
 // DocStar product serves on docstar.io/help and docstar.io/blog. Markdown twins are alternates, not
-// listed. lastmod is the page's real change date; the help and blog feeds have none, so theirs is left out.
+// listed. lastmod is the page's real change date. Help and blog dates come from the feeds
+// (?lastmod=true); a string entry or a null lastmod is left out.
 // Rendered per request (cached by the CDN for 5 minutes), never baked in at build time.
 export const dynamic = "force-dynamic";
 
 const FEEDS = {
-  help: "https://api.docstar.io/p/published-urls/fLMgydvRdvN7",
-  blog: "https://api.docstar.io/p/published-urls/wAkjF0zqiO2E",
+  help: "https://api.docstar.io/p/published-urls/fLMgydvRdvN7?lastmod=true",
+  blog: "https://api.docstar.io/p/published-urls/wAkjF0zqiO2E?lastmod=true",
 };
 const ORIGIN = "https://docstar.io";
 
-// The feeds return URLs as strings or objects ({ url | link | href }), possibly wrapped ({ urls | records | data | items | results | rows }).
-function urlsFrom(payload: unknown): string[] {
+type FeedUrl = { url: string; lastmod: string | null };
+
+// The feeds return URLs as strings or objects ({ url | link | href, lastmod? }), possibly wrapped
+// ({ urls | records | data | items | results | rows }). With ?lastmod=true each entry is
+// { url, lastmod: "YYYY-MM-DD" | null }. A plain string has no date.
+function urlsFrom(payload: unknown): FeedUrl[] {
   const list = Array.isArray(payload)
     ? payload
     : payload && typeof payload === "object"
       ? (["urls", "records", "data", "items", "results", "rows"].map((k) => (payload as Record<string, unknown>)[k]).find(Array.isArray) as unknown[]) || []
       : [];
-  return list
-    .map((e) => (typeof e === "string" ? e : e && typeof e === "object" ? ((e as any).url ?? (e as any).link ?? (e as any).href) : null))
-    .filter((u): u is string => typeof u === "string" && !!u.trim())
-    .map((u) => {
-      const url = new URL(u.trim(), ORIGIN);
-      if (url.hostname === "www.docstar.io") url.hostname = "docstar.io";
-      url.protocol = "https:";
-      return url.toString().replace(/\/$/, "");
-    });
+  const out: FeedUrl[] = [];
+  for (const e of list) {
+    const raw = typeof e === "string" ? e : e && typeof e === "object" ? ((e as any).url ?? (e as any).link ?? (e as any).href) : null;
+    if (typeof raw !== "string" || !raw.trim()) continue;
+    const url = new URL(raw.trim(), ORIGIN);
+    if (url.hostname === "www.docstar.io") url.hostname = "docstar.io";
+    url.protocol = "https:";
+    const lastmod = typeof e === "string" || typeof (e as any).lastmod !== "string" ? null : (e as any).lastmod;
+    out.push({ url: url.toString().replace(/\/$/, ""), lastmod });
+  }
+  return out;
 }
 
 async function feed(name: keyof typeof FEEDS) {
@@ -53,7 +60,7 @@ export async function GET() {
   const [pages, help, blog] = await Promise.all([getSitePages(), feed("help"), feed("blog")]);
   const entries = new Map<string, string | null>();
   for (const page of pages) entries.set(absolute(page.path), iso(page.updated));
-  for (const url of [...help, ...blog]) if (!entries.has(url)) entries.set(url, null);
+  for (const { url, lastmod } of [...help, ...blog]) if (!entries.has(url)) entries.set(url, iso(lastmod ?? undefined));
 
   const body = [...entries]
     .map(([loc, lastmod]) => `  <url>\n    <loc>${escapeXml(loc)}</loc>${lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : ""}\n  </url>`)
