@@ -6,7 +6,7 @@ export const HOME: SitePage = {
   slug: "home",
   path: "/",
   label: "Home",
-  updated: "2026-10-30",
+  updated: "2026-11-10",
   meta: {
     title: "API documentation for people and AI agents | DocStar",
     description: "DocStar turns your code into API docs, llms.txt, a hosted MCP server and a CLI. Paste one prompt into your coding agent; DocStar keeps every channel in sync.",
@@ -108,6 +108,27 @@ export const HOME: SitePage = {
       ],
     },
     {
+      type: "cards",
+      key: "who-for",
+      kicker: "Audience",
+      title: "Who DocStar ==is for==.",
+      columns: 3,
+      items: [
+        {
+          title: "API companies and product teams",
+          body: "Want customers' AI assistants (Claude, ChatGPT, Cursor) to use their API without mistakes.",
+        },
+        {
+          title: "Developer experience and docs teams",
+          body: "Want one place to write and publish API docs, an MCP server and a CLI.",
+        },
+        {
+          title: "Internal platform teams",
+          body: "Want their own engineers' agents to use internal APIs safely.",
+        },
+      ],
+    },
+    {
       type: "pillars",
       key: "stays-true",
       kicker: "After launch",
@@ -177,6 +198,41 @@ export const HOME: SitePage = {
       commands: [
         { cmd: 'curl https://docstar.io -H "Accept: text/markdown"', output: "# Your agent writes the docs. Every agent can use them.\n\nPaste one prompt into your coding agent…" },
         { cmd: "curl https://docs.msg91.com/llms.txt", output: "# Msg91\n\n## How to use this API (for AI agents)\n\n- Module index (discover modules): https://docs.msg91.com/module.json\n\n## Modules\n\n- [Email](https://docs.msg91.com/email/module.json)\n- [OTP](https://docs.msg91.com/otp/module.json)…" },
+      ],
+    },
+    {
+      type: "cards",
+      key: "how-compares",
+      kicker: "Compare",
+      title: "How DocStar ==compares==.",
+      sub: "See how DocStar stacks up against other API documentation tools.",
+      columns: 3,
+      items: [
+        {
+          title: "DocStar vs ReadMe",
+          body: "Published comparison on the DocStar blog.",
+          cta: { kind: "link", label: "DocStar vs ReadMe", href: "/blog/docstar-vs-readme-1" },
+        },
+        {
+          title: "DocStar vs Mintlify",
+          body: "Published comparison on the DocStar blog.",
+          cta: { kind: "link", label: "DocStar vs Mintlify", href: "/blog/docstar-vs-mintlify" },
+        },
+        {
+          title: "DocStar vs GitBook",
+          body: "Published comparison on the DocStar blog.",
+          cta: { kind: "link", label: "DocStar vs GitBook", href: "/blog/docstar-vs-gitbook" },
+        },
+        {
+          title: "DocStar vs Fern",
+          body: "Published comparison on the DocStar blog.",
+          cta: { kind: "link", label: "DocStar vs Fern", href: "/blog/docstar-vs-fern" },
+        },
+        {
+          title: "DocStar vs Document360",
+          body: "Published comparison on the DocStar blog.",
+          cta: { kind: "link", label: "DocStar vs Document360", href: "/blog/sleek-api-docs--smarter-faqs--simpler-than-document360" },
+        },
       ],
     },
     {

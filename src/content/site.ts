@@ -48,7 +48,7 @@ Follow https://docstar.io/mcp/quickstart.md, document my app's user-facing APIs 
         { label: "Blog", href: "https://docstar.io/blog" },
         { label: "Help docs", href: "https://docstar.io/help" },
         { label: "Changelog", href: "/changelog" },
-        { label: "Compare", href: "/compare" },
+        { label: "Compare DocStar", href: "https://docstar.io/blog/best-api-documentation-tools" },
         { label: "llms.txt checker", href: "/tools/llms-txt-checker" },
         { label: "MCP quickstart", href: "/mcp/quickstart.md" },
         { label: "llms.txt", href: "/llms.txt" },
