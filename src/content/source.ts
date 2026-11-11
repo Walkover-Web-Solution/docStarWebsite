@@ -1,6 +1,7 @@
 import { draftMode } from "next/headers";
 import type { SitePage } from "./types";
 import { PAGES } from "./pages";
+import { withPinned } from "./pinned";
 import { hasDb, withDb } from "@/server/db";
 import { getPageContent, pageCache } from "@/server/content";
 
@@ -22,9 +23,11 @@ async function isPreview() {
 }
 
 // label and the bundled date are structural, so they come from code; `updated` is the publish date when known.
-const asPage = (data: any): SitePage => {
+// `pinned` content (site-wide sections and links) is code-owned, so every stored version carries it; a
+// variant passes the live page so its pinned sections match what the whole site shows.
+const asPage = (data: any, live?: SitePage): SitePage => {
   const bundled = local(data.slug);
-  return { slug: data.slug, path: data.path, label: bundled?.label, updated: data.updatedAt ?? bundled?.updated, meta: data.meta, sections: data.sections };
+  return withPinned({ slug: data.slug, path: data.path, label: bundled?.label, updated: data.updatedAt ?? bundled?.updated, meta: data.meta, sections: data.sections }, bundled, live);
 };
 
 async function cached<T>(key: string, load: () => Promise<T>): Promise<T> {
@@ -60,7 +63,9 @@ export async function getSitePage(slug: string): Promise<SitePage> {
 export async function getVariantPage(slug: string, revisionId: number): Promise<SitePage | null> {
   if (!hasDb()) return null;
   try {
-    return await cached(`variant:${revisionId}`, () => withDb((db) => getPageContent(db, slug, { variant: revisionId }).then(asPage)));
+    // Pinned sections come from what the live page shows, so an arm can't fall behind the site.
+    const live = await getSitePage(slug);
+    return await cached(`variant:${revisionId}`, () => withDb((db) => getPageContent(db, slug, { variant: revisionId }).then((data) => asPage(data, live))));
   } catch {
     return null;
   }

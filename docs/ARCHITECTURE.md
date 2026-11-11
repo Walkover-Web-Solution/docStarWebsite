@@ -53,10 +53,12 @@ graph TD
   - a component in `Sections.tsx`;
   - a renderer case;
   - a branch in `markdown.ts`.
+- **Content every version shows:** a page's `pinned` field names the bundled content that every version of the page must show: `sections` (keys from the bundled copy), `heroNote` (the bundled hero's small note link) and `faqLink` (the bundled link at the end of one answer, by question). The text lives only in the bundled copy; `src/content/pinned.ts` adds whatever a version read from the database is missing, so a running A/B arm or a published revision older than the change shows it without being re-edited. A version's own section, note or answer link always wins, and nothing is added twice. Render-time only: the stored revision and the admin editor are unchanged.
 
 ## Content sourcing
 - `getSitePage` (`src/content/source.ts`) reads the published revision from the database, cached for 60 s per server instance (`REVALIDATE_SECONDS`). Publishing clears that instance's cache. In draft mode (admin preview) it reads the newest draft, uncached.
 - A running A/B variant (`getVariantPage`) reads that revision's sections, with the published page's title and meta description copied on. Both arms therefore emit the same `<title>` and meta description. The stored revision is not rewritten.
+- Code-owned content (`SitePage.pinned` → `src/content/pinned.ts`) is added to every version read from the database, variants included, wherever that version is missing it; a version's own section, hero note or FAQ link is never replaced.
 - With no database, a 404 or an error, it returns the bundled page, so the site never renders empty.
 - **Once a page is in the database, code edits to it don't reach the site** until someone uses Admin > page > **Load code version** and publishes. `/pricing` is never synced, so it always comes from code.
 

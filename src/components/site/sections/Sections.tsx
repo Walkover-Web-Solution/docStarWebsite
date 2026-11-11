@@ -36,6 +36,11 @@ export function Hero({ section: x }: { section: HeroSection }) {
           <CtaButton cta={x.primary} id="hero-primary" placement={x.key} />
           {x.secondary && <CtaButton cta={x.secondary} variant="link" id="hero-secondary" placement={x.key} />}
         </div>
+        {x.note && (
+          <p className={s.heroNote}>
+            <CtaButton cta={x.note} variant="note" id="hero-note" placement={x.key} />
+          </p>
+        )}
         {x.works && <p className={s.works}>{x.works}</p>}
       </div>
       {x.run && <RunLog {...x.run} />}
@@ -169,10 +174,18 @@ export function Faq({ section: x }: { section: FaqSection }) {
     <section id={x.key} className={`${s.wrap} ${s.faqWrap}`} data-section={x.key}>
       <SectionHead kicker={x.kicker} title={x.title} />
       <div className={s.faq}>
-        {x.items.map((item) => (
+        {x.items.map((item, i) => (
           <details key={item.q} className={s.qa}>
             <summary>{item.q}</summary>
-            <p>{item.a}</p>
+            <p>
+              {item.a}
+              {item.link && (
+                <>
+                  {" "}
+                  <CtaButton cta={item.link} variant="note" id={`${x.key}-${i + 1}-link`} placement={x.key} />
+                </>
+              )}
+            </p>
           </details>
         ))}
       </div>

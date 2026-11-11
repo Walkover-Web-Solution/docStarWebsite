@@ -6,7 +6,14 @@ export const HOME: SitePage = {
   slug: "home",
   path: "/",
   label: "Home",
-  updated: "2026-11-10",
+  updated: "2026-11-11",
+  // Text lives in the bundled copy below; this says which of it every version shows, A/B arms
+  // included. See src/content/pinned.ts.
+  pinned: {
+    sections: ["who-for", "how-compares"],
+    heroNote: true,
+    faqLink: "What is DocStar?",
+  },
   meta: {
     title: "API documentation for people and AI agents | DocStar",
     description: "DocStar turns your code into API docs, llms.txt, a hosted MCP server and a CLI. Paste one prompt into your coding agent; DocStar keeps every channel in sync.",
@@ -21,6 +28,7 @@ export const HOME: SitePage = {
       sub: "DocStar is API documentation for people and AI agents. Paste one prompt into your coding agent: it documents your API from your code, and DocStar publishes the docs, llms.txt, an MCP server and a CLI, and keeps them in sync.",
       primary: { kind: "copy-prompt", label: "Copy prompt" },
       secondary: { kind: "link", label: "See how it works", href: "#how-it-works" },
+      note: { kind: "link", label: "New to DocStar? Read what it is and how it works", href: "/blog/what-is-docstar-how-it-works" },
       works: "Claude Code · Cursor · Codex · VS Code · any MCP client",
       run: {
         title: "agent run",
@@ -244,6 +252,7 @@ export const HOME: SitePage = {
         {
           q: "What is DocStar?",
           a: "DocStar is an API documentation platform for people and AI agents. Your coding agent creates the docs from your code. DocStar publishes them as a docs site, llms.txt and markdown, a hosted MCP server, a CLI, with OpenAPI 3 export, and keeps them in sync.",
+          link: { kind: "link", label: "Read the full guide", href: "/blog/what-is-docstar-how-it-works" },
         },
         {
           q: "Do I need an OpenAPI file?",
