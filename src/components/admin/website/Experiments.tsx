@@ -156,7 +156,7 @@ export default function Experiments() {
     <div className="grid max-w-5xl gap-4">
       <div>
         <h1 className="text-2xl font-bold">Website</h1>
-        <p className="text-sm text-[var(--a-muted)]">A/B tests the AI runs: part of the visitors see a different version of a page, and the one that gets more people to copy the prompt is kept. Agents and crawlers always see the live page.</p>
+        <p className="text-sm text-[var(--a-muted)]">A/B tests the AI runs: part of the visitors see a different version of a page, and the one that gets more people to copy the prompt is kept. Agents and crawlers always see the live page. Both versions use the live page's search title and description.</p>
         <div className="mt-3">
           <WebsiteNav />
         </div>
