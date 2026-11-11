@@ -80,11 +80,15 @@ const PLACEMENT: { section: Section; after: string; before: string }[] = [
   { section: COMPARE_SECTION, after: "agent-readable", before: "faq" },
 ];
 
-/** The sections of a version, with the shared ones in place where they belong. */
+/**
+ * The sections of a version with the shared ones in place where they belong. The template owns these
+ * sections, so its copy replaces whatever a stored version has for the same key: a revision saved
+ * before a wording change (or with the old highlighted heading) still renders the current text.
+ */
 function withSharedSections(sections: Section[]): Section[] {
-  const out = [...sections];
+  const shared = new Map(PLACEMENT.map((p) => [p.section.key, p.section]));
+  const out = sections.filter((s) => !shared.has(s.key));
   for (const { section, after, before } of PLACEMENT) {
-    if (out.some((s) => s.key === section.key)) continue;
     const at = out.findIndex((s) => s.key === after);
     if (at >= 0) out.splice(at + 1, 0, section);
     else {
