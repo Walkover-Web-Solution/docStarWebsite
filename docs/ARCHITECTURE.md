@@ -53,12 +53,12 @@ graph TD
   - a component in `Sections.tsx`;
   - a renderer case;
   - a branch in `markdown.ts`.
-- **Content every version shows:** a page's `pinned` field names the bundled content that every version of the page must show: `sections` (keys from the bundled copy), `heroNote` (the bundled hero's small note link) and `faqLink` (the bundled link at the end of one answer, by question). The text lives only in the bundled copy; `src/content/pinned.ts` adds whatever a version read from the database is missing, so a running A/B arm or a published revision older than the change shows it without being re-edited. A version's own section, note or answer link always wins, and nothing is added twice. Render-time only: the stored revision and the admin editor are unchanged.
+- **The home page's shared template:** `src/content/homeTemplate.ts` owns the parts of the home page that are the same in every version — the "Who DocStar is for" and "How DocStar compares" sections and the two "what is DocStar" guide links (under the hero buttons and at the end of the "What is DocStar?" answer). `home.ts` composes them, and `applyHomeTemplate` (`src/content/source.ts`) composes them into whatever version is read from the database, live page and A/B arms alike, so all of it is in the server-rendered HTML. A version that already has its own section, note or answer link keeps it, so nothing is duplicated and the admin's copy still wins.
 
 ## Content sourcing
 - `getSitePage` (`src/content/source.ts`) reads the published revision from the database, cached for 60 s per server instance (`REVALIDATE_SECONDS`). Publishing clears that instance's cache. In draft mode (admin preview) it reads the newest draft, uncached.
 - A running A/B variant (`getVariantPage`) reads that revision's sections, with the published page's title and meta description copied on. Both arms therefore emit the same `<title>` and meta description. The stored revision is not rewritten.
-- Code-owned content (`SitePage.pinned` → `src/content/pinned.ts`) is added to every version read from the database, variants included, wherever that version is missing it; a version's own section, hero note or FAQ link is never replaced.
+- Every home page version is composed through the shared template (`applyHomeTemplate` in `src/content/homeTemplate.ts`), so the site-wide sections and guide links are in the server output of the live page and of each A/B arm; a version's own section, hero note or FAQ link is never replaced.
 - With no database, a 404 or an error, it returns the bundled page, so the site never renders empty.
 - **Once a page is in the database, code edits to it don't reach the site** until someone uses Admin > page > **Load code version** and publishes. `/pricing` is never synced, so it always comes from code.
 

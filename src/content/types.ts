@@ -208,18 +208,6 @@ export type SitePage = {
   // When the page last changed: in code, the date the bundled copy was edited (YYYY-MM-DD); from the
   // database, when the live version was published. Used for the sitemap's lastmod and dateModified.
   updated?: string;
-  // Code-only, like `label`: what every version of the page shows, because it is for everyone rather
-  // than something a test may change. `src/content/pinned.ts` adds whatever a version read from the
-  // database is missing (a running A/B arm, or a published revision older than this change). The
-  // bundled copy holds the text, so nothing is written twice and a version's own content always wins.
-  pinned?: {
-    // Section keys every version shows, placed where the bundled copy puts them.
-    sections?: string[];
-    // The bundled hero's small note link applies to every version.
-    heroNote?: boolean;
-    // The bundled link at the end of this question's answer applies to every version.
-    faqLink?: string;
-  };
   meta: { title: string; description: string; keywords?: string[] };
   sections: Section[];
 };
