@@ -35,6 +35,7 @@ const sectionSchemas = [
     sub: text(400),
     primary: cta,
     secondary: cta.optional(),
+    note: cta.optional(),
     works: text(200).optional(),
     run: z.object({ title: text(40), time: text(20).optional(), lines: z.array(runLine).min(1).max(12), summary: text(120).optional() }).strict().optional(),
     code: z.object({ title: text(60), body: text(1500) }).strict().optional(),
@@ -92,7 +93,7 @@ const sectionSchemas = [
     type: z.literal("faq"),
     kicker: text(80).optional(),
     title: text(160),
-    items: z.array(z.object({ q: text(200), a: text(1200) }).strict()).min(1).max(20),
+    items: z.array(z.object({ q: text(200), a: text(1200), link: cta.optional() }).strict()).min(1).max(20),
   }).strict(),
   z.object({ ...base, type: z.literal("cta"), title: text(160), sub: text(400).optional(), primary: cta, secondary: cta.optional() }).strict(),
   z.object({

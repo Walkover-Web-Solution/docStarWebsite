@@ -62,6 +62,20 @@
   border-bottom-color: var(--ink);
 }
 
+/* A small muted text link under a set of buttons (not a button). */
+.note {
+  font-size: 14px;
+  color: var(--note-color, var(--muted));
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--rule);
+}
+
+.note:hover {
+  color: var(--note-hover, var(--ink));
+  text-decoration-color: currentColor;
+}
+
 /* Section head */
 .head {
   max-width: 760px;

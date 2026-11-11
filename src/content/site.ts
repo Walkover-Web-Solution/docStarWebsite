@@ -45,6 +45,7 @@ Follow https://docstar.io/mcp/quickstart.md, document my app's user-facing APIs 
     {
       title: "Resources",
       links: [
+        { label: "What is DocStar", href: "https://docstar.io/blog/what-is-docstar-how-it-works" },
         { label: "Blog", href: "https://docstar.io/blog" },
         { label: "Help docs", href: "https://docstar.io/help" },
         { label: "Changelog", href: "/changelog" },

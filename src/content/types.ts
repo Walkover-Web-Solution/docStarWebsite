@@ -29,6 +29,8 @@ export type HeroSection = {
   sub: string;
   primary: Cta;
   secondary?: Cta;
+  // A small text link under the buttons (not a button), e.g. a guide for first-time visitors.
+  note?: Cta;
   works?: string;
   // the visual beside the copy: an agent run log, a code panel, or neither
   run?: { title: string; time?: string; lines: RunLine[]; summary?: string };
@@ -134,7 +136,8 @@ export type FaqSection = {
   key: string;
   kicker?: string;
   title: string;
-  items: { q: string; a: string }[];
+  // `link` continues the answer with one small link, e.g. to the full guide.
+  items: { q: string; a: string; link?: Cta }[];
 };
 
 export type CtaSection = {
