@@ -43,7 +43,7 @@ How changes reach production:
 
 | Path | Status |
 |---|---|
-| `/about` | [x] template, TODO-COPY |
+| `/about` | [x] live |
 | `/customers` | [x] template |
 | `/customers/msg91` | [x] template, TODO-COPY (disclose that MSG91 and DocStar are both Walkover products) |
 | `/compare` | [x] hub |
@@ -153,7 +153,7 @@ Volumes are **to verify**: no Ahrefs or Semrush key is configured. Each primary 
 |---|---|---|
 | 1 | Free and Pro feature lists on `/pricing`. The current list is the old editor product. Which of MCP server, CLI, custom MCP domain, analytics and white-label are on which plan? | Feature bullets drafted only from statements DocStar has already published (blog comparisons, product pages). Confirm before deploy. |
 | 2 | Social profile URLs (LinkedIn, X, GitHub, YouTube) for the footer and `sameAs`. | Only the npm `docstar-cli` package is listed. |
-| 3 | `/about`: team, story, location, legal entity. The blog footer says "A product by Walkover". | Hidden page with TODO-COPY. |
+| 3 | `/about`: team, story, location, legal entity. The blog footer says "A product by Walkover". | Live page with published Walkover copy. |
 | 4 | MSG91 case study: facts, metrics, quote, permission. MSG91 is also a Walkover product, so the page must say so. | Hidden page with TODO-COPY and the disclosure. |
 | 5 | Compare pages vs existing blog comparisons (cannibalization flag 1). | Pages hidden; recommend launching them and 301-ing the blog `docstar-vs-*` posts. |
 | 6 | Launch `/drift` and `/hub`? | Stay hidden. |
