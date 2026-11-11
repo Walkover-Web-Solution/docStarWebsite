@@ -1,7 +1,7 @@
 ---
-covers: [src/content/source.ts, src/middleware.ts, next.config.ts, src/content/pages.ts, src/lib/seo.ts, src/server/autopilot/policy.ts]
+covers: [src/content/source.ts, src/middleware.ts, next.config.ts, src/content/pages.ts, src/lib/seo.ts, src/server/autopilot/policy.ts, src/server/content.ts, src/server/experiments.ts]
 verified_at: d850eb7
-verified_on: 2026-10-30
+verified_on: 2026-11-04
 ---
 # Decisions
 
@@ -27,3 +27,4 @@ Rationale below comes from code comments and git history; items marked inferred 
 15. **Tailwind and `src/scss` load only in `/admin`.** Website pages use a cascade-layered reset; pixel-identical screenshots confirmed no visual change.
 16. **CSP is minimal** (`frame-ancestors`, `object-src`, `base-uri`) until the GTM container's tags are known; HSTS has no `includeSubDomains` until every subdomain is confirmed HTTPS-only.
 17. **New-user signups intake removed (2026-11-02, commit `61ee06b`)**, one merge after it was added (`6aaa8a7`). It had stored hitman-api onboarding posts as `signup` rows. The reason is not recorded; the migration stayed ([OPEN_QUESTIONS.md](OPEN_QUESTIONS.md) 11).
+18. **A/B variants share the live page's title and meta description.** Both arms are rewritten onto the real URL, so a different `<title>` or meta description would give one URL two snippets. `getPageContent` serves the published title and description on every variant; creating or starting a test rejects a version whose title or description differs; concluding a winner keeps the live title and description. Section copy can still differ. Open Graph, Twitter and JSON-LD name and description use those same two strings.

@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { AdminError, createRow, getRow, mapRow, updateRow, type Actor, type AdminRow } from "./adminTypes";
 import { withTx, type Db } from "./db";
-import { publishRevision } from "./content";
+import { findRevision, publishRevision, sameSearchSnippet, saveRevision, withLiveSearchSnippet } from "./content";
 
 // A/B tests on docstar.io pages, stored as `experiment` rows of the `admin` table (parent = the page).
 // Each variant is a page version. The website's middleware assigns visitors to a variant and tags their
@@ -9,6 +9,7 @@ import { publishRevision } from "./content";
 // crawlers always get the live page and are never counted.
 //
 // Goal: visitors who copied the prompt. Guardrails: their agent arrived, they clicked sign up.
+// The search title and meta description are not a lever: both arms show the live page's.
 
 export const GOAL = "prompt.copied";
 export const GUARDRAILS = ["agent.arrived", "signup.clicked"];
@@ -27,6 +28,24 @@ export const createSchema = z.object({
 export type CreateExperiment = z.infer<typeof createSchema>;
 
 const keyOf = (slug: string) => `${slug}-${new Date().toISOString().slice(0, 10)}-${Math.random().toString(36).slice(2, 6)}`;
+
+const SNIPPET_MISMATCH = "A test can't change the page title or meta description. Both versions must use the live page's title and description.";
+
+// Variant sections may differ. The title and meta description must match the published page.
+async function assertVariantsMatchLiveSnippet(db: Db, page: AdminRow, revisionIds: number[]) {
+  const liveId = page.data.publishedRevisionId as number | null;
+  if (!liveId) throw new AdminError(409, "Publish the page before testing it: variant A is the live version");
+  const liveRev = await findRevision(db, liveId);
+  const liveMeta = liveRev?.data.content?.meta;
+  if (!sameSearchSnippet(liveMeta, liveMeta)) throw new AdminError(409, "The live version has no title or description");
+  const others = [...new Set(revisionIds)].filter((id) => id !== liveId);
+  if (!others.length) return;
+  const revisions = (await db.query("SELECT * FROM admin WHERE type = 'page_revision' AND parent_id = $1 AND id = ANY($2::int[])", [page.id, others])).map(mapRow);
+  for (const id of others) {
+    const rev = revisions.find((r) => r.id === id);
+    if (!rev || !sameSearchSnippet(rev.data.content?.meta, liveMeta)) throw new AdminError(400, SNIPPET_MISMATCH);
+  }
+}
 
 async function findPage(db: Db, slug: string) {
   const row = await db.one("SELECT * FROM admin WHERE type = 'page' AND key = $1", [slug]);
@@ -74,6 +93,7 @@ export async function create(db: Db, input: CreateExperiment, actor: Actor) {
   const revisions = (await db.query("SELECT * FROM admin WHERE type = 'page_revision' AND parent_id = $1 AND id = ANY($2::int[])", [page.id, ids])).map(mapRow);
   if (revisions.length !== ids.length) throw new AdminError(400, "Every variant must be a version of this page");
   if (revisions.some((r) => r.status === "rejected")) throw new AdminError(400, "A rejected version can't be tested");
+  await assertVariantsMatchLiveSnippet(db, page, [live, ...ids]);
 
   // Even split unless weights are given; they must add up to 100.
   const even = Math.floor(100 / (ids.length + 1));
@@ -112,6 +132,9 @@ export async function start(db: Db, id: number) {
     await db.query("SELECT 1 FROM admin WHERE id = $1 FOR UPDATE", [row.parentId]); // one start per page at a time
     const running = await db.one("SELECT 1 AS ok FROM admin WHERE type = 'experiment' AND parent_id = $1 AND status = 'running'", [row.parentId]);
     if (running) throw new AdminError(409, "This page already has a test running. Stop it first.");
+    const page = await getRow(db, row.parentId as number, "page");
+    if (!page) throw new AdminError(404, "Page not found");
+    await assertVariantsMatchLiveSnippet(db, page, (row.data.variants as { revisionId: number }[]).map((v) => v.revisionId));
     await updateRow(db, row, { status: "running", data: { startedAt: new Date() } });
   });
   return get(db, id);
@@ -144,7 +167,28 @@ export async function conclude(db: Db, id: number, winner: string, actor: Actor)
   // Winner A publishes nothing, so a version someone published during the test stays live.
   if (winner !== "A") {
     const page = (await getRow(db, row.parentId as number)) as AdminRow;
-    if (page.data.publishedRevisionId !== variant.revisionId) await publishRevision(db, variant.revisionId, actor);
+    if (page.data.publishedRevisionId !== variant.revisionId) {
+      let revisionId = variant.revisionId;
+      const published = page.data.publishedRevisionId ? await findRevision(db, page.data.publishedRevisionId as number) : null;
+      const winnerRev = await findRevision(db, variant.revisionId);
+      const liveMeta = published?.data.content?.meta;
+      const winnerMeta = winnerRev?.data.content?.meta;
+      // The test never showed a different snippet. Publishing the winner must not change it either.
+      if (winnerRev && liveMeta && winnerMeta && !sameSearchSnippet(winnerMeta, liveMeta)) {
+        const copy = await saveRevision(
+          db,
+          page.key as string,
+          {
+            content: { ...winnerRev.data.content, meta: withLiveSearchSnippet(winnerMeta, liveMeta) },
+            note: `Same title and description as the live page (variant ${winner})`,
+            basedOnRevisionId: winnerRev.id,
+          },
+          actor
+        );
+        revisionId = copy.id;
+      }
+      await publishRevision(db, revisionId, actor);
+    }
   }
   await updateRow(db, row, { status: "concluded", data: { winner, endedAt: row.data.endedAt || new Date() } });
   await dropUnused(db, row, winner);

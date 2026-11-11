@@ -24,9 +24,10 @@ async function load({ params }: Params) {
 export async function generateMetadata(props: Params): Promise<Metadata> {
   const page = await load(props);
   if (!page) return {};
-  // Same tags as the live page, canonical included. No robots noindex here: this HTML is served at the
-  // real URL, so noindex would de-index the live page if a crawler were ever bucketed. Direct /xv/ hits
-  // get X-Robots-Tag from the middleware and are disallowed in robots.txt.
+  // Same tags as the live page, including its <title> and meta description (getPageContent pins those
+  // onto the variant). This HTML is served at the real URL, so the two arms must not disagree, and
+  // noindex here would de-index the live page if a crawler were ever bucketed. Direct /xv/ hits get
+  // X-Robots-Tag from the middleware and are disallowed in robots.txt.
   return pageMetadata(page);
 }
 

@@ -1,5 +1,5 @@
 ---
-covers: [src/middleware.ts, src/app/api/**, src/components/site/ui/CtaButton.tsx, src/components/site/SiteAnalytics.tsx, src/lib/experiments.ts, src/server/experiments.ts, src/server/autopilot/*.ts, src/server/ideas.ts]
+covers: [src/middleware.ts, src/app/api/**, src/components/site/ui/CtaButton.tsx, src/components/site/SiteAnalytics.tsx, src/lib/experiments.ts, src/server/experiments.ts, src/server/content.ts, src/server/autopilot/*.ts, src/server/ideas.ts, src/app/(site)/xv/[rev]/[[...slug]]/page.tsx]
 verified_at: 00fd0e7
 verified_on: 2026-11-08
 ---
@@ -9,6 +9,7 @@ verified_on: 2026-11-08
 1. Middleware matches the path (static assets, `_next` and `api` are excluded), sets `Vary: Accept` on page paths, and sets the `ds_aid` cookie for browsers that accept HTML.
 2. If the cookie `isLogin=true` is present on `/` for a human, middleware redirects to `https://app.docstar.io/login`.
 3. The page renders from `getSitePage`; `SiteAnalytics` sends `page.viewed`, `section.viewed`, `cta.clicked` and `signup.clicked` (any link to `app.docstar.io/login`) through `/api/e`.
+4. If a test is running on that path, middleware rewrites the person to `/xv/<revision>` for their arm. The address bar stays the real path. The sections come from that revision; the `<title>` and meta description stay the live page's. Agents and crawlers are not rewritten. Detail is in flow 7.
 
 ## 2. Visitor copies the prompt (core conversion)
 1. `CtaButton` with `kind: "copy-prompt"` copies `SITE.prompt`, adding `?ref=<id>` to the quickstart URL (`makeRef`).
@@ -32,7 +33,7 @@ A signed-in admin (`ds_admin` cookie) opens `/api/preview?path=/mcp` (`src/app/a
 ## 7. A/B test
 1. An admin (or the autopilot) creates an `experiment` row: variant A is always the live revision, plus one or two challenger revisions (`createSchema` in `src/server/experiments.ts`). The page must be published first.
 2. Middleware fetches running tests from `/api/internal/experiments` (cached 30 s per instance). With `JWT_SECRET` unset, or if the call fails, no test runs and everyone gets the live page.
-3. For people only (never agents, crawlers or `.md` twins), the variant is a stable hash of `ds_aid` and the test key, kept in the `ds_x` cookie. The variant is served by rewriting to `/xv/<revision><path>` with `Cache-Control: private, no-store`; the address bar is unchanged.
+3. For people only (never agents, crawlers or `.md` twins), the variant is a stable hash of `ds_aid` and the test key, kept in the `ds_x` cookie. The variant is served by rewriting to `/xv/<revision><path>` with `Cache-Control: private, no-store`; the address bar is unchanged. Sections come from that revision; `<title>` and meta description stay the published page's (`withLiveSearchSnippet` in `getPageContent`). Creating or starting a test rejects a revision whose title or description differs. Concluding a winner keeps the live title and description.
 4. Exposure is the first `page.viewed` carrying the variant. Goal: `prompt.copied`. Guardrails: agent arrived (flow 2) and `signup.clicked`.
 5. Decision rules (`DECISION`): at least 14 days, 300 visitors per variant, 95% win probability, and guardrail harm below 0.9. The autopilot publishes a winner or stops a loser; a test with no difference after 42 days ends keeping A.
 

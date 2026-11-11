@@ -35,4 +35,4 @@ No brand-voice or design-philosophy document beyond this exists in the repo; `do
 `src/scss/*` and Tailwind (`tailwind.config.js`) predate the rebuild and are imported only by `src/app/admin/layout.tsx` ([DECISIONS.md](DECISIONS.md) 15). Website pages never load them. The `.windsurf/workflows/*` files describe the old framer-motion Tailwind pages and are stale. See [OPEN_QUESTIONS.md](OPEN_QUESTIONS.md).
 
 ## SEO
-Head tags, JSON-LD and share images are described in [ARCHITECTURE.md](ARCHITECTURE.md) "Search and agent outputs" (`src/lib/seo.ts`, `/og/<slug>.png`). FAQs are visible content only, with no FAQPage markup ([DECISIONS.md](DECISIONS.md) 10).
+Head tags, JSON-LD and share images are described in [ARCHITECTURE.md](ARCHITECTURE.md) "Search and agent outputs" (`src/lib/seo.ts`, `/og/<slug>.png`). FAQs are visible content only, with no FAQPage markup ([DECISIONS.md](DECISIONS.md) 10). An A/B variant uses the live page's title and meta description; its sections can differ ([DECISIONS.md](DECISIONS.md) 18).
