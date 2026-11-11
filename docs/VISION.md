@@ -12,6 +12,8 @@ The conversion goal is a **copied prompt** (`copy-prompt` CTA) that the visitor 
 
 Audience signals in the content: developers and API owners (`/mcp`, `/cli`, `/api-docs`), integrators giving a third-party API to an agent (`/for/integrators`), and AI agents themselves (`/agents`, markdown twins, `llms.txt`). The home page names three buyer groups (API/product teams, DX/docs teams, internal platform teams) and links to published DocStar-vs-* blog comparisons before the FAQ.
 
+Visitors who don't know the product yet are offered one quiet way in: a muted text link under the hero CTAs and at the end of the first FAQ answer point to the published "What is DocStar" post, the same post is the first Resources link in the footer, and `llms.txt` lists it under "Start here". The link is deliberately smaller and quieter than a button, so the copied prompt stays the hero's only conversion action.
+
 ## Approved direction (inferred from commits, not confirmed by a human)
 - Agent-first: every page must be equally readable by agents as markdown. Commit `2bf125c` rebuilt the site on that premise.
 - Content is data (typed sections), so it can be edited from the DocStar admin without a deploy.

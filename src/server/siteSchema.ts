@@ -15,6 +15,9 @@ const cta = z.discriminatedUnion("kind", [
 
 const runLine = z.object({ who: z.enum(["you", "agent"]), text: text(200), done: z.boolean().optional() }).strict();
 
+// A plain text link; the arrow, if wanted, is part of the label.
+const noteLink = z.object({ label: text(120), href: z.string().max(500).regex(/^(https?:\/\/|\/|#|mailto:)/, "must start with https://, /, # or mailto:") }).strict();
+
 // Built-in looks per section (mirrors LAYOUTS in src/content/types.ts); the first is the default.
 export const LAYOUTS: Record<string, string[]> = {
   hero: ["split", "centered", "ink"],
@@ -36,6 +39,7 @@ const sectionSchemas = [
     primary: cta,
     secondary: cta.optional(),
     works: text(200).optional(),
+    note: noteLink.optional(),
     run: z.object({ title: text(40), time: text(20).optional(), lines: z.array(runLine).min(1).max(12), summary: text(120).optional() }).strict().optional(),
     code: z.object({ title: text(60), body: text(1500) }).strict().optional(),
   }).strict(),
@@ -92,7 +96,7 @@ const sectionSchemas = [
     type: z.literal("faq"),
     kicker: text(80).optional(),
     title: text(160),
-    items: z.array(z.object({ q: text(200), a: text(1200) }).strict()).min(1).max(20),
+    items: z.array(z.object({ q: text(200), a: text(1200), link: noteLink.optional() }).strict()).min(1).max(20),
   }).strict(),
   z.object({ ...base, type: z.literal("cta"), title: text(160), sub: text(400).optional(), primary: cta, secondary: cta.optional() }).strict(),
   z.object({

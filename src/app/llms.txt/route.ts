@@ -17,6 +17,7 @@ export async function GET() {
     "",
     "## Start here",
     "",
+    `- [What is DocStar, and how it works](${SITE_ORIGIN}/blog/what-is-docstar-how-it-works): a one-page introduction for people new to DocStar: what it does, how a coding agent writes the docs, and who it's for`,
     `- [MCP quickstart for agents](${SITE_ORIGIN}/mcp/quickstart.md): how an agent connects to the DocStar MCP and documents an API`,
     `- [Full site as markdown](${SITE_ORIGIN}/llms-full.txt)`,
     `- Missing a DocStar feature or hit a bug? File it with the DocStar MCP tool send_feedback_to_docstar, or POST https://docstar.io/api/ideas (no sign-in needed). See the quickstart's Feedback section.`,
