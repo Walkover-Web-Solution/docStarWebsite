@@ -7,7 +7,7 @@ verified_on: 2026-11-08
 
 ## Consumed
 - **Postgres** (`HYPERDRIVE` binding on Cloudflare, `DATABASE_URL` elsewhere): pages, revisions, ideas, experiments and events in the `admin` and `admin_events` tables (`db/migrations`).
-- **`https://api.docstar.io/p/published-urls/<id>`** (two ids in `src/app/sitemap.xml/route.ts`): help and blog URLs for the sitemap. Plain URL lists without dates.
+- **`https://api.docstar.io/p/published-urls/<id>?lastmod=true`** (two ids in `src/app/sitemap.xml/route.ts`): help and blog URLs for the sitemap. Returns `[{ url, lastmod: "YYYY-MM-DD" | null }]`. A plain URL string is still accepted and has no date; a missing or unparseable `lastmod` is omitted from that sitemap entry.
 
 ## Exposed by this site
 | Route | Purpose | Auth |

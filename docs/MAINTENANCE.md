@@ -6,6 +6,7 @@ State for the weekly docs refresh. The next run starts from the reviewed revisio
 - Reviewed revision: `00fd0e7` (`main`, 2026-11-08). First run of the weekly refresh.
 - Checks run: `npm ci`, `npm run typecheck`, `npm run check:content`, `DATABASE_URL= npm run build`, `npm run seo:check`; curl checks of `/mcp`, `/mcp.md` (canonical `Link`, `Vary: Accept`), `/llms.txt`, `/api/preview` (401 signed out), `/xv/…` (`X-Robots-Tag`), `/api/tools/llms-check` (404 while hidden). All matched the docs.
 - Not run: `npm run lhci`, `npm run cf:build`, `npm run migrate`, anything needing a database or the admin.
+- Later merge of `main` at `65d86db` (2026-11-11): kept this branch's corrections and `main`'s own doc edits (homepage buyer groups in VISION, sitemap `lastmod` and llms.txt compare links in ARCHITECTURE and CONTRACTS). The only conflict was the ARCHITECTURE header; `covers` stays the wider list, and `verified_at` stays `main`'s later stamp (`8ee0f16`). Homepage sections reuse existing section types. Not re-audited beyond that merge.
 
 ## Coverage map
 Status: verified = checked against code at the reviewed revision; partial = exists but incomplete or partly unverified; missing = no guidance; n/a = not relevant here.
