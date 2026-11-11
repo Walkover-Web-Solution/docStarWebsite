@@ -6,7 +6,7 @@ import { SITE } from "@/content/site";
 import { makeRef, track } from "@/lib/analytics";
 import s from "./ui.module.css";
 
-type Variant = "primary" | "ink" | "link";
+type Variant = "primary" | "ink" | "link" | "note";
 
 const copy = async (text: string) => {
   try {
@@ -30,7 +30,7 @@ export default function CtaButton({ cta, variant = "primary", id, placement }: {
     return (
       <a href={cta.href} className={className} {...data} {...(external ? { rel: "noopener" } : {})}>
         {cta.label}
-        {variant === "link" && <span aria-hidden> →</span>}
+        {(variant === "link" || variant === "note") && <span aria-hidden> →</span>}
       </a>
     );
   }

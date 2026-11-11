@@ -139,6 +139,9 @@ export default function PageEditor({ slug }: { slug: string }) {
           {dirty && <span className="rounded-full bg-[var(--a-accent-soft)] px-2 py-0.5 text-xs font-medium">unsaved changes</span>}
         </p>
         {base.note && <p className="mt-1 text-sm italic text-[var(--a-muted)]">“{base.note}”</p>}
+        <p className="mt-1 text-xs text-[var(--a-muted)]">
+          Site-wide content from the website code (like the home audience and comparison sections and the guide link under the hero) is added to every version, A/B arms included, and isn't edited here. Load the code version to see it as sections.
+        </p>
 
         <div className="a-card sticky top-[57px] z-10 mt-4 flex flex-wrap items-center gap-2 p-3">
           <input className="box-border min-w-[200px] flex-1 rounded-lg border border-[var(--a-border)] px-3 py-1.5 text-sm" placeholder="What changed? (shown in history)" value={note} onChange={(e) => setNote(e.target.value)} />

@@ -74,6 +74,11 @@
   color: var(--muted);
 }
 
+/* First-time-visitor link under the hero buttons: same column, smaller and muted. */
+.heroNote {
+  margin-top: 16px;
+}
+
 .works {
   margin-top: 18px;
   font-family: var(--font-mono), monospace;
@@ -605,6 +610,10 @@
   justify-content: center;
 }
 
+.hero[data-layout="centered"] .heroNote {
+  text-align: center;
+}
+
 .hero[data-layout="centered"] > :not(.heroCopy) {
   width: 100%;
   max-width: 760px;
@@ -625,6 +634,12 @@
 .hero[data-layout="ink"] .heroSub,
 .hero[data-layout="ink"] .works {
   color: rgba(247, 247, 242, 0.72);
+}
+
+/* the note link (in ui.module.css) inherits this for its muted colour */
+.hero[data-layout="ink"] {
+  --note-color: rgba(247, 247, 242, 0.72);
+  --note-hover: var(--bg);
 }
 
 .hero[data-layout="ink"] .ctas > :nth-child(2) {

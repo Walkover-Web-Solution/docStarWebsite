@@ -1,5 +1,5 @@
 ---
-covers: [src/content/site.ts, src/content/home.ts, src/content/pages.ts, src/app/llms.txt/route.ts]
+covers: [src/content/site.ts, src/content/home.ts, src/content/homeTemplate.ts, src/content/pages.ts, src/app/llms.txt/route.ts]
 verified_at: 8ee0f16
 verified_on: 2026-11-10
 ---
@@ -10,7 +10,7 @@ docstar.io is the marketing site for DocStar, positioned as "API documentation f
 
 The conversion goal is a **copied prompt** (`copy-prompt` CTA) that the visitor pastes into an agent, plus sign-ups at the app login URL. Both are tracked as analytics events (see [CONTRACTS.md](CONTRACTS.md)).
 
-Audience signals in the content: developers and API owners (`/mcp`, `/cli`, `/api-docs`), integrators giving a third-party API to an agent (`/for/integrators`), company and mission visitors (`/about`), and AI agents themselves (`/agents`, markdown twins, `llms.txt`). The home page names three buyer groups (API/product teams, DX/docs teams, internal platform teams) and links to published DocStar-vs-* blog comparisons before the FAQ.
+Audience signals in the content: developers and API owners (`/mcp`, `/cli`, `/api-docs`), integrators giving a third-party API to an agent (`/for/integrators`), company and mission visitors (`/about`), and AI agents themselves (`/agents`, markdown twins, `llms.txt`). The home page names three buyer groups (API/product teams, DX/docs teams, internal platform teams) and links to published DocStar-vs-* blog comparisons before the FAQ. First-time visitors get a short path into the product story: a muted "New to DocStar? Read what it is and how it works" link under the hero buttons, the same guide linked from the "What is DocStar?" FAQ answer, "What is DocStar" first in the footer's Resources, and an entry near the top of `llms.txt`. Those four links and the two sections come from the shared home template (`src/content/homeTemplate.ts`), which every version of the page renders from, so an A/B arm can't hide them and they are in the server-rendered HTML.
 
 ## Approved direction (inferred from commits, not confirmed by a human)
 - Agent-first: every page must be equally readable by agents as markdown. Commit `2bf125c` rebuilt the site on that premise.

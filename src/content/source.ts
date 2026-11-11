@@ -1,6 +1,7 @@
 import { draftMode } from "next/headers";
 import type { SitePage } from "./types";
 import { PAGES } from "./pages";
+import { applyHomeTemplate } from "./homeTemplate";
 import { hasDb, withDb } from "@/server/db";
 import { getPageContent, pageCache } from "@/server/content";
 
@@ -22,9 +23,11 @@ async function isPreview() {
 }
 
 // label and the bundled date are structural, so they come from code; `updated` is the publish date when known.
+// Every version is composed through the shared home template, so the home page's site-wide sections and
+// guide links are in the server-rendered HTML of the live page and of each A/B arm alike.
 const asPage = (data: any): SitePage => {
   const bundled = local(data.slug);
-  return { slug: data.slug, path: data.path, label: bundled?.label, updated: data.updatedAt ?? bundled?.updated, meta: data.meta, sections: data.sections };
+  return applyHomeTemplate({ slug: data.slug, path: data.path, label: bundled?.label, updated: data.updatedAt ?? bundled?.updated, meta: data.meta, sections: data.sections });
 };
 
 async function cached<T>(key: string, load: () => Promise<T>): Promise<T> {
@@ -39,7 +42,7 @@ export async function getSitePage(slug: string): Promise<SitePage> {
   const fallback = local(slug);
   if (!hasDb()) {
     if (!fallback) throw new Error(`No content for page "${slug}"`);
-    return fallback;
+    return applyHomeTemplate(fallback);
   }
 
   const preview = await isPreview();
@@ -50,7 +53,7 @@ export async function getSitePage(slug: string): Promise<SitePage> {
     // 404: the page hasn't been added to the database yet; the bundled copy is the source.
     if (fallback) {
       if (error?.status !== 404) console.error(`[content] using bundled copy of "${slug}":`, error?.message);
-      return fallback;
+      return applyHomeTemplate(fallback);
     }
     throw error;
   }
