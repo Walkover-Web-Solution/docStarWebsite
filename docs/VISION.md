@@ -10,7 +10,7 @@ docstar.io is the marketing site for DocStar, positioned as "API documentation f
 
 The conversion goal is a **copied prompt** (`copy-prompt` CTA) that the visitor pastes into an agent, plus sign-ups at the app login URL. Both are tracked as analytics events (see [CONTRACTS.md](CONTRACTS.md)).
 
-Audience signals in the content: developers and API owners (`/mcp`, `/cli`, `/api-docs`), integrators giving a third-party API to an agent (`/for/integrators`), and AI agents themselves (`/agents`, markdown twins, `llms.txt`). The home page names three buyer groups (API/product teams, DX/docs teams, internal platform teams) and links to published DocStar-vs-* blog comparisons before the FAQ.
+Audience signals in the content: developers and API owners (`/mcp`, `/cli`, `/api-docs`), integrators giving a third-party API to an agent (`/for/integrators`), company and mission visitors (`/about`), and AI agents themselves (`/agents`, markdown twins, `llms.txt`). The home page names three buyer groups (API/product teams, DX/docs teams, internal platform teams) and links to published DocStar-vs-* blog comparisons before the FAQ.
 
 ## Approved direction (inferred from commits, not confirmed by a human)
 - Agent-first: every page must be equally readable by agents as markdown. Commit `2bf125c` rebuilt the site on that premise.

@@ -97,6 +97,7 @@ export function pageJsonLd(page: SitePage) {
       inLanguage: "en",
       isPartOf: { "@id": WEBSITE_ID },
       publisher: { "@id": ORG_ID },
+      ...(PAGE_TYPES[page.slug] === "AboutPage" ? { about: { "@id": ORG_ID } } : {}),
       ...(modified ? { dateModified: modified } : {}),
       ...(crumbs.length ? { breadcrumb: { "@id": `${url}#breadcrumb` } } : {}),
     },

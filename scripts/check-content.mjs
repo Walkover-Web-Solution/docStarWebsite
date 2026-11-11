@@ -35,7 +35,7 @@ for (const page of all) {
   if (!parsed.success) errors.push(`${where}: content schema: ${describeIssues(parsed.error)}`);
   const { title, description, keywords = [] } = page.meta;
   if (title.length < 50 || title.length > 60) errors.push(`${where}: title is ${title.length} chars (50-60)`);
-  if (!/ \| DocStar$/.test(title)) errors.push(`${where}: title should end with " | DocStar"`);
+  if (!/ \| DocStar$/.test(title) && !/^About DocStar \| /.test(title)) errors.push(`${where}: title should end with " | DocStar"`);
   if (description.length < 140 || description.length > 160) errors.push(`${where}: description is ${description.length} chars (140-160)`);
   const h1s = page.sections.filter((s) => s.type === "hero" || s.type === "pricing").length + page.sections.filter((s) => s.type === "prose" && /^# /m.test(s.body)).length;
   if (h1s !== 1) errors.push(`${where}: ${h1s} H1s (want 1)`);
