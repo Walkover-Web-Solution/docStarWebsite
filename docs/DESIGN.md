@@ -12,7 +12,8 @@ Rich text: `==word==` in content renders the lime highlight (`RichText`; strippe
 
 ## Components
 - `Sections.tsx` exports one component per section type (Hero, WorksWith, Steps, Channels, Pillars, Hub, AgentReadable, Cards, Pricing, Prose, Faq, FinalCta).
-- UI atoms in `src/components/site/ui/`: `CtaButton`, `RichText`, `RunLog`, `SectionHead`, `Markdown`.
+- UI atoms in `src/components/site/ui/`: `CtaButton`, `NoteLink`, `RichText`, `RunLog`, `SectionHead`, `Markdown`.
+- `NoteLink` is the quiet link: a plain `<a href>` (no `rel`), muted, 14.5px, underlined, under the hero CTAs (`hero.note`) and at the end of a FAQ answer (`faq.items[].link`). It is never a button, and inherits the section's alignment; the ink hero lightens it to its light-on-dark colour.
 - Styles are CSS modules: `sections.module.css`, `ui.module.css`, `chrome.module.css`.
 - Each section root carries `data-section={key}`; analytics relies on it.
 

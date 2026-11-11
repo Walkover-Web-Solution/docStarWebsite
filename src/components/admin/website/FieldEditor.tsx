@@ -8,7 +8,7 @@ const LOCKED = new Set(["type", "kind"]);
 const INPUT = "box-border w-full rounded-lg font-[inherit] border border-[var(--a-border)] px-3 py-1.5 text-sm";
 
 // Stored content is JSONB, which reorders keys; show fields in reading order instead.
-const ORDER = ["type", "kind", "kicker", "label", "title", "name", "reader", "q", "sub", "description", "body", "a", "text", "price", "priceNote", "features", "items", "steps", "points", "code", "sample", "cmd", "output", "primary", "secondary", "cta", "link", "href", "works", "run", "lines", "summary", "time", "keywords"];
+const ORDER = ["type", "kind", "kicker", "label", "title", "name", "reader", "q", "sub", "description", "body", "a", "note", "text", "price", "priceNote", "features", "items", "steps", "points", "code", "sample", "cmd", "output", "primary", "secondary", "cta", "link", "href", "works", "run", "lines", "summary", "time", "keywords"];
 const rank = (k: string) => {
   const i = ORDER.indexOf(k);
   return i === -1 ? ORDER.length : i;

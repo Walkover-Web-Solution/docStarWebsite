@@ -151,7 +151,7 @@ export async function saveRevision(db: Db, slug: string, input: { content: unkno
 const shared = globalThis as unknown as { __dsPageCache?: Map<string, { at: number; value: unknown }> };
 export const pageCache = (shared.__dsPageCache ??= new Map());
 
-export async function publishRevision(db: Db, id: number, actor: Actor) {
+export async function publishRevision(db: Db, id: number, actor: Actor, opts: { whileTesting?: boolean } = {}) {
   await withTx(db, async () => {
     const revision = await findRevision(db, id, true);
     if (!revision) throw new AdminError(404, "Revision not found");
@@ -159,6 +159,13 @@ export async function publishRevision(db: Db, id: number, actor: Actor) {
     if (revision.status === STATUS.REJECTED) throw new AdminError(409, "This revision was rejected");
     const page = (await getRow(db, revision.parentId as number)) as AdminRow;
     await db.query("SELECT 1 FROM admin WHERE id = $1 FOR UPDATE", [page.id]);
+    // A running test serves each arm from the revision it was created with, so publishing here would
+    // leave everyone in the test on the old copy at the real URL: index.md and the page would disagree.
+    // Ending the test is the only publish that belongs in a running test (conclude passes whileTesting).
+    if (!opts.whileTesting) {
+      const testing = await db.one("SELECT 1 AS ok FROM admin WHERE type = 'experiment' AND parent_id = $1 AND status = 'running'", [page.id]);
+      if (testing) throw new AdminError(409, "A test is running on this page: its arms would keep the old copy. End the test under Admin > Website > Experiments, then publish.");
+    }
     const previous = page.data.publishedRevisionId ? await findRevision(db, page.data.publishedRevisionId, true) : null;
     if (previous) await updateRow(db, previous, { status: STATUS.SUPERSEDED });
     await updateRow(db, revision, { status: STATUS.PUBLISHED, data: { publishedAt: new Date(), publishedBy: actor.name.slice(0, 64) } });

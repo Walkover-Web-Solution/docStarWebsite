@@ -11,6 +11,10 @@ export type Cta =
 
 export type RunLine = { who: "you" | "agent"; text: string; done?: boolean };
 
+// A plain text link beside copy (the arrow, if any, is part of `label`). Never a button, so it stays
+// quieter than the section's CTAs: the hero's "New to DocStar?" line, the FAQ's closing link.
+export type NoteLink = { label: string; href: string };
+
 export type CodePanel = { title: string; body: string };
 
 // Built-in looks a section can switch between (A/B testable; the first is the default).
@@ -30,6 +34,8 @@ export type HeroSection = {
   primary: Cta;
   secondary?: Cta;
   works?: string;
+  // A small muted text link under the CTAs, for readers who need the basics first.
+  note?: NoteLink;
   // the visual beside the copy: an agent run log, a code panel, or neither
   run?: { title: string; time?: string; lines: RunLine[]; summary?: string };
   code?: CodePanel;
@@ -134,7 +140,8 @@ export type FaqSection = {
   key: string;
   kicker?: string;
   title: string;
-  items: { q: string; a: string }[];
+  // `link` is a plain text link closing that answer.
+  items: { q: string; a: string; link?: NoteLink }[];
 };
 
 export type CtaSection = {

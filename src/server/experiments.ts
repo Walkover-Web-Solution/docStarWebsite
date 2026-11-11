@@ -187,7 +187,7 @@ export async function conclude(db: Db, id: number, winner: string, actor: Actor)
         );
         revisionId = copy.id;
       }
-      await publishRevision(db, revisionId, actor);
+      await publishRevision(db, revisionId, actor, { whileTesting: true });
     }
   }
   await updateRow(db, row, { status: "concluded", data: { winner, endedAt: row.data.endedAt || new Date() } });

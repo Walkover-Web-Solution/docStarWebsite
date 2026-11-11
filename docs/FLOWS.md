@@ -27,5 +27,7 @@ hitman-api issues `/api/preview?token=<payload>.<HMAC>` valid 10 minutes, signed
 ## 5. Publish from the admin
 hitman-api calls `POST /api/revalidate` with `x-revalidate-secret` and `tags` starting `site:`. Caches also expire after 60 s, because tag revalidation does not reach every edge host.
 
+Publishing is refused while an A/B test is running on that page: each arm keeps the revision it was created with, so the live page would lag behind `/index.md` and `llms.txt`. End the test first. The autopilot's `conclude` step publishes the winner, which is the only publish that belongs inside a test.
+
 ## 6. Retired URL
 `next.config.ts` `redirects()` maps old help-era paths to the closest new page with permanent redirects.

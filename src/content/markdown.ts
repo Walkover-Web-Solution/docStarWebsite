@@ -16,6 +16,8 @@ function cta(c: Cta, path: string): string {
   return `${c.label}:\n\n\`\`\`bash\n${c.text}\n\`\`\``;
 }
 
+const note = (n: { label: string; href: string }, path: string) => `[${n.label}](${abs(n.href, path)})`;
+
 function head(kicker: string | undefined, title: string, sub?: string, level = 2) {
   const out = [`${"#".repeat(level)} ${plain(title)}`];
   if (kicker) out.push(`_${kicker}_`);
@@ -30,6 +32,7 @@ function section(x: Section, path: string): string {
         head(x.kicker, x.title, x.sub, 1),
         cta(x.primary, path),
         x.secondary ? cta(x.secondary, path) : "",
+        x.note ? note(x.note, path) : "",
         x.works ? `Works with: ${x.works.split(" · ").join(", ")}` : "",
         x.run ? "What the agent does:\n\n" + x.run.lines.map((l) => `- ${l.who}: ${l.text}`).join("\n") : "",
         x.code ? `${x.code.title}:\n\n\`\`\`text\n${x.code.body}\n\`\`\`` : "",
@@ -49,7 +52,7 @@ function section(x: Section, path: string): string {
     case "agent-readable":
       return [head(x.kicker, x.title, x.sub), x.commands.map((c) => `\`\`\`bash\n${c.cmd}\n\`\`\``).join("\n\n")].join("\n\n");
     case "faq":
-      return [head(x.kicker, x.title), x.items.map((i) => `### ${i.q}\n\n${i.a}`).join("\n\n")].join("\n\n");
+      return [head(x.kicker, x.title), x.items.map((i) => `### ${i.q}\n\n${i.a}${i.link ? `\n\n${note(i.link, path)}` : ""}`).join("\n\n")].join("\n\n");
     case "cta":
       return [head(undefined, x.title, x.sub), cta(x.primary, path), x.secondary ? cta(x.secondary, path) : ""].filter(Boolean).join("\n\n");
     case "cards":

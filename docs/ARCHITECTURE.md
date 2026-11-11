@@ -59,6 +59,7 @@ graph TD
 - A running A/B variant (`getVariantPage`) reads that revision's sections, with the published page's title and meta description copied on. Both arms therefore emit the same `<title>` and meta description. The stored revision is not rewritten.
 - With no database, a 404 or an error, it returns the bundled page, so the site never renders empty.
 - **Once a page is in the database, code edits to it don't reach the site** until someone uses Admin > page > **Load code version** and publishes. `/pricing` is never synced, so it always comes from code.
+- **A running A/B test freezes what visitors see.** Each arm is served from the revision the test was created with (`getVariantPage`), so publishing a newer revision would leave everyone in the test on the old copy at the real URL while `/index.md`, `llms.txt` and the sitemap moved ahead. `publishRevision` therefore refuses to publish a page whose test is running (`AdminError` 409); the one publish that belongs inside a test is `conclude`, which passes `whileTesting`. End the test, then publish. New copy for both arms means a new test built from the new revision, not an edit to a running one.
 
 ## Search and agent outputs
 - **`src/lib/seo.ts`:** one place for every page's head tags and JSON-LD.
@@ -69,7 +70,7 @@ graph TD
 - `/<page>.md`, `/index.md`, and `Accept: text/markdown`: `src/app/md/[slug]/route.ts`. Sends `Link: rel="canonical"` to the HTML page and `Vary: Accept`.
 - `/robots.txt` (`src/app/robots.ts`): served by the Worker so the test-host override applies.
 - `/sitemap.xml`: live pages with their real change date, plus help and blog URLs from api.docstar.io (`?lastmod=true`; a missing date is omitted).
-- `/llms.txt` (pages plus a Compare DocStar section of published blog comparisons), `/llms-full.txt`, `/content.json`, and `/mcp/quickstart.md` (static file in `public/mcp`).
+- `/llms.txt` (pages, a "Start here" list led by the published "What is DocStar" post, plus a Compare DocStar section of published blog comparisons), `/llms-full.txt`, `/content.json`, and `/mcp/quickstart.md` (static file in `public/mcp`).
 - `/api/tools/llms-check`: the llms.txt checker behind `/tools/llms-txt-checker` (`src/server/llmsCheck.ts`).
 - **Help docs and the blog** (`docstar.io/help`, `docstar.io/blog`) are served by the DocStar product, not this app.
 

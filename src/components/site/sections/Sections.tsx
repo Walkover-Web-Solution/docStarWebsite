@@ -16,6 +16,7 @@ import type {
   WorksWithSection,
 } from "@/content/types";
 import CtaButton from "../ui/CtaButton";
+import NoteLink from "../ui/NoteLink";
 import Markdown from "../ui/Markdown";
 import RichText from "../ui/RichText";
 import RunLog from "../ui/RunLog";
@@ -36,6 +37,7 @@ export function Hero({ section: x }: { section: HeroSection }) {
           <CtaButton cta={x.primary} id="hero-primary" placement={x.key} />
           {x.secondary && <CtaButton cta={x.secondary} variant="link" id="hero-secondary" placement={x.key} />}
         </div>
+        {x.note && <NoteLink link={x.note} id="hero-note" placement={x.key} />}
         {x.works && <p className={s.works}>{x.works}</p>}
       </div>
       {x.run && <RunLog {...x.run} />}
@@ -169,10 +171,11 @@ export function Faq({ section: x }: { section: FaqSection }) {
     <section id={x.key} className={`${s.wrap} ${s.faqWrap}`} data-section={x.key}>
       <SectionHead kicker={x.kicker} title={x.title} />
       <div className={s.faq}>
-        {x.items.map((item) => (
+        {x.items.map((item, i) => (
           <details key={item.q} className={s.qa}>
             <summary>{item.q}</summary>
             <p>{item.a}</p>
+            {item.link && <NoteLink link={item.link} id={`${x.key}-${i + 1}`} placement={x.key} />}
           </details>
         ))}
       </div>

@@ -62,6 +62,35 @@
   border-bottom-color: var(--ink);
 }
 
+/* A quiet text link under copy: the hero's "New to DocStar?" line, a FAQ answer's closing link.
+   Inherits the section's alignment, never looks like a button. */
+.note {
+  margin-top: 14px;
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+
+.note a {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.note a:hover {
+  color: var(--ink);
+  text-decoration-color: var(--lime);
+}
+
+/* The dark hero keeps its own colours: light text on ink. */
+[data-layout="ink"] .note a {
+  color: rgba(247, 247, 242, 0.72);
+}
+
+[data-layout="ink"] .note a:hover {
+  color: var(--bg);
+}
+
 /* Section head */
 .head {
   max-width: 760px;
