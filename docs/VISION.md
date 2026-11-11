@@ -17,7 +17,8 @@ Audience signals in the content: developers and API owners (`/mcp`, `/cli`, `/ap
 - Content is data (typed sections), so it can be edited from the DocStar admin without a deploy.
 
 ## Proposals and hidden work
-- `src/content/pages/hub.ts` and `src/content/pages/drift.ts` exist but are deliberately not in `PAGES` ("hidden until launch").
+- `src/content/pages/hub.ts` and `src/content/pages/drift.ts` exist but are deliberately in neither `LIVE_PAGES` nor `DRAFT_PAGES` ("hidden until launch").
+- `DRAFT_PAGES` in `src/content/pages.ts` (about, customers, compare, solutions, changelog, tools) are built but unrouted in production until their TODO-COPY placeholders are replaced ([DECISIONS.md](DECISIONS.md) 13).
 
 ## Non-goals (inferred)
 - Not the product app (that is `https://app.docstar.io`) and not the help docs (`https://docstar.io/help`, served elsewhere).
@@ -25,7 +26,7 @@ Audience signals in the content: developers and API owners (`/mcp`, `/cli`, `/ap
 
 ## Request evaluation protocol
 1. Unclear request: restate the visitor problem and propose a solution using existing section types before coding.
-2. Conflicts with agent-first (for example content that exists only as HTML, or a page missing from `PAGES`): explain and recommend against.
+2. Conflicts with agent-first (for example content that exists only as HTML, or a page missing from `LIVE_PAGES`): explain and recommend against.
 3. A deliberate direction change: record it here and in [DECISIONS.md](DECISIONS.md).
 4. Needs a backend capability that is missing: write the contract in [CONTRACTS.md](CONTRACTS.md). Never fake an endpoint.
 
