@@ -1,18 +1,16 @@
 import type { SitePage } from "../types";
 import { APP_SIGNUP, DEMO_LINK, copyPrompt, related } from "./shared";
 
-// Prices and seat counts are unchanged from the previous pricing page. TODO-COPY (seo/PLAN.md decision 1):
-// confirm which plans include the hosted MCP server, docstar-cli, custom MCP domains, agent analytics and
-// white-label. Until then the plan lists name only features DocStar has already published for the Free plan.
 // This page is never synced to the database (admin HIDDEN), so it goes live on deploy.
 export const PRICING: SitePage = {
   slug: "pricing",
   path: "/pricing",
   label: "Pricing",
-  updated: "2026-10-30",
+  updated: "2026-11-12",
   meta: {
     title: "Pricing for API docs, MCP servers and CLIs | DocStar",
-    description: "Start free with DocStar, then move to Pro at $25 a month with 10 members included, or talk to us about Enterprise governance, security and onboarding support.",
+    description:
+      "Every DocStar feature is free, including the MCP server and CLI. Pro is $25/month with 10 members, then $5 per extra member. Enterprise for unlimited members.",
     keywords: ["DocStar pricing", "API documentation pricing", "free API docs tool", "MCP server pricing"],
   },
   sections: [
@@ -20,33 +18,38 @@ export const PRICING: SitePage = {
       type: "pricing",
       key: "plans",
       title: "DocStar pricing: ==start free==, grow with your team",
-      sub: "Publish API docs that people and their AI agents can read, for free. Move to Pro when more of your team writes the docs.",
+      sub: "Every feature is included on every plan. You only pay for team members.",
       free: {
-        title: "Everything you need in the Free plan",
-        sub: "Unlimited pages and the full API docs workspace at no cost, under our fair-usage policy.",
+        title: "Included on every plan",
+        sub: "The full DocStar workspace—docs site, MCP server, CLI and agent tooling—for every plan.",
         features: [
-          "Unlimited pages",
-          "API reference with a try-it playground",
-          "Import OpenAPI, Swagger or Postman",
-          "Export to OpenAPI",
-          "Real-time collaborative editing",
-          "Custom domain",
-          "Site customization controls",
-          "Redirect management",
-          "Published version history",
-          "Full-text search",
+          "Unlimited pages and collections",
+          "API docs site on your custom domain, with a try-it playground and full-text search",
+          "Hosted MCP server, so AI agents can search your docs and call your API",
+          "DocStar CLI: every endpoint becomes a command",
+          "llms.txt and a markdown copy of every page",
+          "Import OpenAPI, Swagger or Postman; export to OpenAPI",
+          "Agent analytics",
+          "Drift detection with the GitHub app",
+          "White-label: your domain on the docs and MCP server, your name on the CLI",
+          "Real-time collaborative editing, published version history and redirects",
           "Built-in AI assistant",
-          "1 member included",
         ],
-        link: { kind: "link", label: "See all features in the help docs", href: "https://docstar.io/help" },
       },
       plans: [
+        {
+          title: "Free",
+          price: "$0",
+          description: "1 member.",
+          features: [],
+          cta: { kind: "link", label: "Start free", href: APP_SIGNUP },
+        },
         {
           title: "Pro",
           price: "$25",
           priceNote: "per month",
-          description: "For growing teams that need more seats and advanced customization.",
-          features: ["Everything in the Free plan", "10 members included", "Add teammates for $5/user"],
+          description: "For growing teams that need more seats.",
+          features: ["10 members included", "$5 per extra member per month"],
           cta: { kind: "link", label: "Get started with Pro", href: APP_SIGNUP },
           highlight: true,
         },
@@ -54,25 +57,60 @@ export const PRICING: SitePage = {
           title: "Enterprise",
           price: "Let’s talk",
           priceNote: "Custom pricing",
-          description: "Advanced governance, security and onboarding, tailored to your organization.",
-          features: ["Everything in Pro", "Unlimited members & collections", "Dedicated success manager", "Priority support"],
+          description: "Governance, security and onboarding tailored to your organization.",
+          features: ["Unlimited members", "Dedicated success manager", "Priority support"],
           cta: { kind: "link", label: "Talk to us", href: DEMO_LINK },
         },
       ],
     },
+    {
+      type: "prose",
+      key: "fair-usage",
+      body: `## Fair usage
+
+There are no hard limits on pages, collections, MCP calls or agent traffic. Fair usage means normal documentation use. If an account’s usage is unusually high, for example automated scraping or load testing through the MCP server, we’ll email you first and work it out together. We never take your docs offline without contacting you.`,
+    },
+    related("Before you ==choose a plan==.", ["api-docs", "mcp", "white-label"]),
     {
       type: "faq",
       key: "faq",
       kicker: "FAQ",
       title: "DocStar pricing ==questions==",
       items: [
-        { q: "Is the Free plan really free?", a: "Yes. The Free plan includes unlimited pages and the full API docs workspace at no cost, under our fair-usage policy." },
-        { q: "How many members are included?", a: "The Free plan includes 1 member. Pro includes 10 members, and you can add teammates for $5/user." },
-        { q: "What does Enterprise add?", a: "Everything in Pro, plus unlimited members & collections, a dedicated success manager and priority support." },
-        { q: "Can I use my own domain on the Free plan?", a: "Yes. Publish your docs on a custom domain from the Free plan." },
+        {
+          q: "Is the Free plan really free?",
+          a: "Yes. Every feature is included. You only pay for team members, under our [fair-usage policy](#fair-usage).",
+        },
+        {
+          q: "How many members are included?",
+          a: "Free includes 1 member. Pro includes 10 members, then $5 per extra member per month. Enterprise includes unlimited members.",
+        },
+        {
+          q: "What does Enterprise add?",
+          a: "Unlimited members, a dedicated success manager and priority support.",
+        },
+        {
+          q: "Can I use my own domain on the Free plan?",
+          a: "Yes. Custom domains and white-label are included on every plan.",
+        },
+        {
+          q: "Which features are on the Free plan?",
+          a: "All of them. Plans differ only in members and support.",
+        },
+        {
+          q: "Do you charge for MCP calls or agent traffic?",
+          a: "No. See [Fair usage](#fair-usage).",
+        },
+        {
+          q: "Who counts as a member?",
+          a: "Anyone who can edit in your workspace. Readers and AI agents using your docs are free and unlimited.",
+        },
+        {
+          q: "What happens when I add an 11th member on Pro?",
+          a: "It’s $5 per month for each extra member.",
+        },
       ],
     },
-    related("Before you ==choose a plan==.", ["api-docs", "mcp", "white-label"]),
     {
       type: "cta",
       key: "final-cta",

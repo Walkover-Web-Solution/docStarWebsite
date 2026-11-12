@@ -50,7 +50,15 @@ function section(x: Section, path: string): string {
     case "agent-readable":
       return [head(x.kicker, x.title, x.sub), x.commands.map((c) => `\`\`\`bash\n${c.cmd}\n\`\`\``).join("\n\n")].join("\n\n");
     case "faq":
-      return [head(x.kicker, x.title), x.items.map((i) => `### ${i.q}\n\n${i.a}${i.link ? ` ${cta(i.link, path)}` : ""}`).join("\n\n")].join("\n\n");
+      return [
+        head(x.kicker, x.title),
+        x.items
+          .map((i) => {
+            const answer = i.a.replace(/\]\((#[^)]+)\)/g, (_, hash) => `](${abs(hash, path)})`);
+            return `### ${i.q}\n\n${answer}${i.link ? ` ${cta(i.link, path)}` : ""}`;
+          })
+          .join("\n\n"),
+      ].join("\n\n");
     case "cta":
       return [head(undefined, x.title, x.sub), cta(x.primary, path), x.secondary ? cta(x.secondary, path) : ""].filter(Boolean).join("\n\n");
     case "cards":
@@ -64,7 +72,10 @@ function section(x: Section, path: string): string {
       return [
         head(undefined, x.title, x.sub, 1),
         `## ${x.free.title}\n\n${x.free.sub}\n\n${x.free.features.map((f) => `- ${f}`).join("\n")}`,
-        ...x.plans.map((p) => `## ${p.title}: ${p.price}${p.priceNote ? ` (${p.priceNote})` : ""}\n\n${p.description}\n\n${p.features.map((f) => `- ${f}`).join("\n")}\n\n${cta(p.cta, path)}`),
+        ...x.plans.map((p) => {
+          const feats = p.features.length ? `\n\n${p.features.map((f) => `- ${f}`).join("\n")}` : "";
+          return `## ${p.title}: ${p.price}${p.priceNote ? ` (${p.priceNote})` : ""}\n\n${p.description}${feats}\n\n${cta(p.cta, path)}`;
+        }),
       ].join("\n\n");
     case "table": {
       const cell = (t: string) => t.replace(/\|/g, "\\|").replace(/\n/g, " ");

@@ -177,15 +177,15 @@ export function Faq({ section: x }: { section: FaqSection }) {
         {x.items.map((item, i) => (
           <details key={item.q} className={s.qa}>
             <summary>{item.q}</summary>
-            <p>
-              {item.a}
+            <div className={s.body}>
+              <Markdown body={item.a} />
               {item.link && (
                 <>
                   {" "}
                   <CtaButton cta={item.link} variant="note" id={`${x.key}-${i + 1}-link`} placement={x.key} />
                 </>
               )}
-            </p>
+            </div>
           </details>
         ))}
       </div>
@@ -266,11 +266,13 @@ export function Pricing({ section: x }: { section: PricingSection }) {
               {plan.price} {plan.priceNote && <span>{plan.priceNote}</span>}
             </p>
             <p className={s.body}>{plan.description}</p>
-            <ul className={s.checks}>
-              {plan.features.map((f) => (
-                <li key={f}>{f}</li>
-              ))}
-            </ul>
+            {plan.features.length > 0 && (
+              <ul className={s.checks}>
+                {plan.features.map((f) => (
+                  <li key={f}>{f}</li>
+                ))}
+              </ul>
+            )}
             <div className={s.cardCta}>
               <CtaButton cta={plan.cta} variant={plan.highlight ? "primary" : "ink"} id={`pricing-${plan.title.toLowerCase()}`} placement={x.key} />
             </div>
@@ -283,7 +285,7 @@ export function Pricing({ section: x }: { section: PricingSection }) {
 
 export function Prose({ section: x }: { section: ProseSection }) {
   return (
-    <section className={`${s.wrap} ${s.prose}`} data-section={x.key}>
+    <section id={x.key} className={`${s.wrap} ${s.prose}`} data-section={x.key}>
       <Markdown body={x.body} />
     </section>
   );

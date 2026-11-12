@@ -124,6 +124,20 @@ export function pageJsonLd(page: SitePage) {
       offers: offers(),
     });
   }
+  const faqItems = page.sections.flatMap((s) => (s.type === "faq" ? s.items : []));
+  if (faqItems.length) {
+    const faqPlain = (text: string) => text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      isPartOf: { "@id": `${url}#webpage` },
+      mainEntity: faqItems.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: faqPlain(item.a) + (item.link ? ` ${item.link.label}` : "") },
+      })),
+    });
+  }
   return { "@context": "https://schema.org", "@graph": graph };
 }
 
