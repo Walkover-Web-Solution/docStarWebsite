@@ -7,6 +7,7 @@ import { overview as analyticsOverview } from "../events";
 import { LAYOUTS } from "../siteSchema";
 import { AI_MODEL, AI_SERVICE, askJson, isConfigured } from "./ai";
 import { LIMITS, PROTECTED_PAGES, PolicyError, applyChanges } from "./policy";
+import { AUTOPILOT_HOME_SLUG, ROTATING_PAGES_PER_DAY, rotationDayIndex, slugsWithFullContent } from "./pageRotation";
 
 // The website autopilot. Once a day (and on "Run now"):
 //  1. judge running A/B tests with the server's own numbers: publish winners, stop losers;
@@ -123,24 +124,30 @@ async function judgeOne(db: Db, x: Awaited<ReturnType<typeof experiments.listRun
 
 // ---------- 2. what the AI looks at ----------
 
-async function signals(db: Db) {
+type SignalsResult = { payload: Record<string, unknown>; pagesWithContent: Set<string> };
+
+async function signals(db: Db): Promise<SignalsResult> {
   const analytics = await analyticsOverview(db, 30);
   // Anyone can send an idea, so idea text is untrusted. Only ideas the team has already reviewed are shown.
   const reviewed = await db.query("SELECT title, data->>'kind' AS kind, (data->>'votes')::int AS votes FROM admin WHERE type = 'idea' AND status IN ('reviewing','planned','in_progress') ORDER BY (data->>'votes')::int DESC LIMIT 15");
   const waiting = await db.one<{ n: number }>("SELECT count(*)::int AS n FROM admin WHERE type = 'idea' AND status = 'new'");
+  const runningTests = await experiments.listRunning(db);
+  const runningSlugs = runningTests.map((t) => t.slug);
+  const adminPages = (await content.listPagesForAdmin(db)).filter((p) => p.published);
+  const editableSlugs = adminPages.filter((p) => !PROTECTED_PAGES.includes(p.slug)).map((p) => p.slug);
+  const contentSlugs = new Set(slugsWithFullContent(editableSlugs, runningSlugs, rotationDayIndex()));
   const pages: any[] = [];
-  for (const p of await content.listPagesForAdmin(db)) {
-    if (!p.published) continue;
+  for (const p of adminPages) {
     const isProtected = PROTECTED_PAGES.includes(p.slug);
     const entry: any = { slug: p.slug, path: p.path, protected: isProtected };
-    if (!isProtected) {
+    if (!isProtected && contentSlugs.has(p.slug)) {
       const { slug, path, version, status, updatedAt, ...rest } = await content.getPageContent(db, p.slug);
       entry.content = rest;
     }
     pages.push(entry);
   }
   const recent = (await db.query("SELECT * FROM admin WHERE type = 'ai_proposal' ORDER BY created_at DESC LIMIT 15")).map(mapRow);
-  return {
+  const payload = {
     analytics_last_30_days: {
       funnel: analytics.funnel,
       homepage_visitors: analytics.homeVisitors,
@@ -150,11 +157,18 @@ async function signals(db: Db) {
     },
     ideas_the_team_is_reviewing_untrusted_text: reviewed.map((i) => ({ title: String(i.title).slice(0, 120), kind: i.kind, votes: i.votes })),
     ideas_not_yet_reviewed: waiting?.n || 0,
-    running_tests: await experiments.listRunning(db),
+    running_tests: runningTests,
     limits: { ...LIMITS, tests_started_this_week: await appliedThisWeek(db, "experiment"), edits_this_week: await appliedThisWeek(db, "page_change") },
     your_recent_actions: recent.map((a) => ({ when: a.createdAt, status: a.status, title: a.title, why_blocked: a.data.rejectReason })),
     pages,
+    pages_with_content: [...contentSlugs],
+    page_content_rotation: {
+      home_always: AUTOPILOT_HOME_SLUG,
+      rotating_pages_per_day: ROTATING_PAGES_PER_DAY,
+      day_index: rotationDayIndex(),
+    },
   };
+  return { payload, pagesWithContent: contentSlugs };
 }
 
 // ---------- 3. ask ----------
@@ -163,7 +177,7 @@ const PROMPT = `You run the DocStar website (docstar.io) on your own. DocStar is
 
 Your goal: more homepage visitors copy the setup prompt into their AI agent, and that agent actually arrives, without fewer people clicking sign up.
 
-Each day you get the website's numbers, the ideas the team is reviewing, and every editable page's live content. Propose 0 to 3 actions:
+Each day you get the website's numbers, the ideas the team is reviewing, and the live content of some pages. The home page ("${AUTOPILOT_HOME_SLUG}") is always included. Most other editable pages appear with only slug and path; a few each day also include full "content", listed in "pages_with_content". A page with a running A/B test always includes its content. You may start_test or edit_page only on slugs in pages_with_content; other pages rotate in on later days. Propose 0 to 3 actions:
 - "start_test": new wording or a new section order for one page, shown to half of the visitors as an A/B test. Use it for anything persuasive: headlines, the hero, calls to action, the story, section order. The server decides the winner from the numbers.
 - "edit_page": a factual fix that goes live at once: a wrong or outdated statement, a missing explanation people or agents keep asking for. Never the hero, never the section order.
 
@@ -244,11 +258,14 @@ type Action = z.infer<typeof answerSchema>["actions"][number];
 
 // ---------- 4. act ----------
 
-async function act(db: Db, a: Action, runId: number) {
+async function act(db: Db, a: Action, runId: number, pagesWithContent: Set<string>) {
   const info = { title: a.title, reasoning: a.reason, evidence: a.evidence, expectedEffect: a.expected_effect, runId };
   const kind = a.kind === "start_test" ? "experiment" : "page_change";
   try {
     if (PROTECTED_PAGES.includes(a.page)) throw new PolicyError(`"${a.page}" is protected`);
+    if (!pagesWithContent.has(a.page)) {
+      throw new PolicyError(`"${a.page}" wasn't sent with content this run; only pages listed in pages_with_content can change until they rotate in`);
+    }
     const page = await db.one("SELECT * FROM admin WHERE type = 'page' AND key = $1", [a.page]).then((r) => (r ? mapRow(r) : null));
     if (!page?.data?.publishedRevisionId) throw new PolicyError(`"${a.page}" isn't a live page in the editor`);
     const { slug, path, version, status, updatedAt, ...live } = await content.getPageContent(db, a.page);
@@ -312,10 +329,11 @@ export async function run(trigger: "schedule" | "request") {
   });
   const runId = claimed.id;
   try {
-    const { judged, input } = await withDb(async (db) => {
+    const { judged, input, pagesWithContent } = await withDb(async (db) => {
       const judged = await judgeTests(db, runId);
       if (!isConfigured()) throw new Error("viaSocket is not configured");
-      return { judged, input: await signals(db) };
+      const { payload, pagesWithContent } = await signals(db);
+      return { judged, input: payload, pagesWithContent };
     });
     const message = JSON.stringify(input);
     // viaSocket refuses a message over 50,000 characters; fail with a clear reason before sending.
@@ -325,7 +343,7 @@ export async function run(trigger: "schedule" | "request") {
     const actions = answer.actions.slice(0, MAX_ACTIONS_PER_RUN);
     const results = await withDb(async (db) => {
       const out = [];
-      for (const a of actions) out.push(await act(db, a, runId));
+      for (const a of actions) out.push(await act(db, a, runId, pagesWithContent));
       return out;
     });
     const applied = results.filter((r) => r.status === "applied").length;
