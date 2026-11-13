@@ -5,7 +5,7 @@ import { LAYOUTS, describeIssues, pageContentSchema } from "../siteSchema";
 // Pages the AI never changes (everything else is open).
 // Pricing and the legal pages are never edited or tested by the autopilot, and their text is not sent to the AI.
 // The SEO pages (comparisons, customers, company, changelog, tools, solutions) are protected too: people
-// check their claims, and leaving them out keeps the AI's message under MAX_MESSAGE_CHARS (run.ts).
+// check their claims. Non-protected pages rotate in and out of the AI message (pageRotation.ts); MAX_MESSAGE_CHARS (run.ts) is a backstop.
 export const PROTECTED_PAGES = [
   "pricing",
   "privacy-policy",
