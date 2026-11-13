@@ -179,6 +179,7 @@ Rules (the server enforces them and blocks anything else):
 - Pages with "protected": true can't be changed.
 - Only ${LIMITS.testsRunningAtOnce} test at a time on the whole site, ${LIMITS.newTestsPerWeek} new tests and ${LIMITS.editsPerWeek} edits per week, at most ${LIMITS.changesPerAction} text changes per action.
 - Never claim a feature, number or customer that isn't already on the site. No over-promising ("guaranteed", "#1", "best in the world", "unlimited").
+- DocStar works with any coding agent or MCP client, not one vendor's. Say "your coding agent"; when you name tools, keep the site's full list (Claude Code, Cursor, Codex, VS Code, any MCP client) and never narrow it. For the setup step write "Claude Code", never just "Claude" or "ChatGPT".
 - At most one action per page per run. A page that has a test running (see running_tests), or that you start a test on now, gets no edits until the test ends.
 - Don't repeat an action that was blocked, or a test that lost.
 - Few visitors means tests take weeks: test one big, clear difference rather than small tweaks. If nothing is worth doing, return no actions.
