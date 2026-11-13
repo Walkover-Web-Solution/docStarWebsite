@@ -80,6 +80,56 @@ function checkText(value: string) {
   }
 }
 
+// Named coding agents on the site (longer phrases first when scanning).
+const NAMED_AGENTS = ["Claude Code", "Claude Desktop", "any MCP client", "VS Code", "ChatGPT", "Cursor", "Codex", "Windsurf"] as const;
+
+function agentsInText(text: string): Set<string> {
+  const found = new Set<string>();
+  for (const name of NAMED_AGENTS) {
+    const re = new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i");
+    if (re.test(text)) found.add(name);
+  }
+  return found;
+}
+
+function hasBareClaude(text: string): boolean {
+  const masked = text.replace(/Claude Code/gi, "").replace(/Claude Desktop/gi, "");
+  return /\bClaude\b/i.test(masked);
+}
+
+function checkAgentCopy(oldText: string, newText: string) {
+  const oldAgents = agentsInText(oldText);
+  const newAgents = agentsInText(newText);
+  if (oldAgents.size === 0 && newAgents.size === 0) return;
+
+  const genericAgent = /\byour coding agent\b/i.test(newText);
+  if (newAgents.size === 0 && genericAgent) return;
+
+  if (newAgents.size > 0) {
+    for (const a of oldAgents) {
+      if (!newAgents.has(a)) throw new PolicyError(`Agent list narrowed: dropped "${a}"`);
+    }
+  }
+
+  if (hasBareClaude(newText) && !hasBareClaude(oldText)) {
+    throw new PolicyError('Use "Claude Code" for setup, not bare "Claude"');
+  }
+}
+
+function getText(section: any, field: string): string {
+  const parts = field.split(".").filter(Boolean);
+  let node = section;
+  for (const p of parts.slice(0, -1)) {
+    node = node?.[/^\d+$/.test(p) ? Number(p) : p];
+    if (node == null || typeof node !== "object") throw new PolicyError(`"${field}" doesn't exist in section "${section.key}"`);
+  }
+  const last = parts[parts.length - 1];
+  const key = /^\d+$/.test(last) ? Number(last) : last;
+  const old = node[key];
+  if (typeof old !== "string") throw new PolicyError(`"${field}" in section "${section.key}" is not text`);
+  return old;
+}
+
 /** Applies the AI's changes to a copy of the live content and checks the result. Returns the new content. */
 export function applyChanges(live: any, changes: TextChange[], order: string[], opts: { storyAllowed: boolean }) {
   if (changes.length === 0 && order.length === 0) throw new PolicyError("No changes");
@@ -104,6 +154,8 @@ export function applyChanges(live: any, changes: TextChange[], order: string[], 
     if (!opts.storyAllowed && (STORY_SECTIONS.includes(section.type) || STORY_SECTIONS.includes(section.key))) {
       throw new PolicyError("The hero can only change through an A/B test");
     }
+    const oldText = getText(section, c.field);
+    checkAgentCopy(oldText, c.value);
     setText(section, c.field, c.value);
   }
 

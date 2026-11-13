@@ -21,7 +21,7 @@ Rationale below comes from code comments and git history; items marked inferred 
     - FAQPage markup dropped: FAQs stay as visible content only.
     - Metadata is never streamed into `<body>` (`htmlLimitedBots`).
 11. **A/B variants carry no `noindex`.** The variant HTML is served at the real URL, so `noindex` there de-indexed the live page for every visitor in a test and for Google's inspection tools. Direct `/xv/` hits are still blocked by `X-Robots-Tag`, robots.txt and the canonical.
-12. **The autopilot never edits `meta`.** Titles and descriptions follow the keyword map and change only by hand. SEO pages (compare, customers, about, changelog, tools, solutions) are protected entirely.
+12. **The autopilot never edits `meta`.** Titles and descriptions follow the keyword map and change only by hand. SEO pages (compare, customers, about, changelog, tools, solutions) are protected entirely. Policy also blocks copy that drops a named agent from a list or introduces bare "Claude" where the live text had none.
 13. **New pages ship hidden** (`DRAFT_PAGES`) until their TODO-COPY placeholders are replaced, instead of going live as thin pages.
 14. **The blog stays on the DocStar product** (`docstar.io/blog`). This site links to it and lists it in the sitemap.
 15. **Tailwind and `src/scss` load only in `/admin`.** Website pages use a cascade-layered reset; pixel-identical screenshots confirmed no visual change.
