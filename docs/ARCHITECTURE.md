@@ -69,7 +69,7 @@ graph TD
   - `htmlLimitedBots: /.*/` in `next.config.ts` keeps metadata in `<head>` for every client.
 - `/og/<slug>.png`: share images, prerendered at build (`src/app/og/[image]/route.tsx`).
 - `/<page>.md`, `/index.md`, and `Accept: text/markdown`: `src/app/md/[slug]/route.ts`. Sends `Link: rel="canonical"` to the HTML page and `Vary: Accept`.
-- `/robots.txt` (`src/app/robots.ts`): served by the Worker so the test-host override applies.
+- `/robots.txt` (`src/app/robots.txt/route.ts`): served by the Worker so the test-host override applies; includes `Content-Signal` for search and AI use preferences.
 - `/sitemap.xml`: live pages with their real change date, plus help and blog URLs from api.docstar.io (`?lastmod=true`; a missing date is omitted).
 - `/llms.txt` (pages plus a Compare DocStar section of published blog comparisons), `/llms-full.txt`, `/content.json`, and `/mcp/quickstart.md` (static file in `public/mcp`).
 - `/api/tools/llms-check`: the llms.txt checker behind `/tools/llms-txt-checker` (`src/server/llmsCheck.ts`).
