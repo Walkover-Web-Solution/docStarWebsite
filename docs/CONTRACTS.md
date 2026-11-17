@@ -21,6 +21,8 @@ verified_on: 2026-10-30
 | `POST /api/cron/autopilot` | Daily autopilot run. | `Bearer CRON_SECRET` |
 | `GET /content.json` | Bundled pages for the admin ("Copied from code", "Load code version"). | none |
 | `GET /llms.txt`, `/llms-full.txt`, `/<page>.md`, `/index.md` | Agent-readable content; `.md` responses send `Link: <html>; rel="canonical"` and `Vary: Accept`. | none |
+| `GET /.well-known/ai-catalog.json` | AI Catalog (`application/ai-catalog+json`) listing MCP server card, OpenAPI, agent docs, llms.txt and the DocStar skill. Homepage sends `<link rel="ai-catalog">` and a `Link: rel="ai-catalog"` header. | none |
+| `GET /mcp/server-card.json`, `/openapi.json`, `/skills/docstar/SKILL.md` | Artifacts linked from the AI Catalog. | none |
 | `GET /og/<slug>.png` | Share image per page (static). | none |
 | `GET /robots.txt`, `/sitemap.xml`, `/manifest.webmanifest` | Crawling and install metadata. | none |
 

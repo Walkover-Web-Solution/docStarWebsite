@@ -18,7 +18,25 @@ const nextConfig = {
   // Crawlers and agents that don't run JavaScript would otherwise miss or ignore them.
   htmlLimitedBots: /.*/,
   async headers() {
-    return [{ source: "/:path*", headers: SECURITY_HEADERS }];
+    return [
+      { source: "/:path*", headers: SECURITY_HEADERS },
+      {
+        source: "/.well-known/ai-catalog.json",
+        headers: [{ key: "Content-Type", value: "application/ai-catalog+json; charset=utf-8" }],
+      },
+      {
+        source: "/mcp/server-card.json",
+        headers: [{ key: "Content-Type", value: "application/mcp-server-card+json; charset=utf-8" }],
+      },
+      {
+        source: "/openapi.json",
+        headers: [{ key: "Content-Type", value: "application/vnd.oai.openapi+json; charset=utf-8" }],
+      },
+      {
+        source: "/",
+        headers: [{ key: "Link", value: "</.well-known/ai-catalog.json>; rel=\"ai-catalog\"" }],
+      },
+    ];
   },
   images: {
     remotePatterns: [

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { AI_CATALOG_PATH } from "@/lib/aiCatalog";
 import { SITE_URL } from "@/lib/site";
 
 const GTM_ID = "GTM-MGFDQP68";
@@ -33,6 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="ai-catalog" href={AI_CATALOG_PATH} />
         <Script
           id="gtm-script"
           strategy="afterInteractive"

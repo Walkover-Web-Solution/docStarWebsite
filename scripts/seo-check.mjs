@@ -140,6 +140,29 @@ else {
   for (const p of ["/llms.txt", "/mcp.md"]) if (new RegExp(`^disallow:\\s*${p.replace(".", "\\.")}`, "im").test(star)) error("/robots.txt", `blocks ${p}`);
 }
 
+// ---------- AI Catalog (homepage discovery) ----------
+{
+  const home = byPath.get("/");
+  if (!home?.aiCatalogLink) error("/", 'no <link rel="ai-catalog">');
+  else if (home.aiCatalogLink !== `${base}/.well-known/ai-catalog.json` && home.aiCatalogLink !== "/.well-known/ai-catalog.json")
+    error("/", `ai-catalog link points elsewhere: ${home.aiCatalogLink}`);
+  const cat = await site.get("/.well-known/ai-catalog.json");
+  if (cat.status !== 200) error("/.well-known/ai-catalog.json", `status ${cat.status}`);
+  else if (!String(cat.headers["content-type"] || "").includes("application/ai-catalog+json")) {
+    error("/.well-known/ai-catalog.json", `content-type is ${cat.headers["content-type"]}`);
+  } else {
+    try {
+      const doc = JSON.parse(cat.body);
+      if (doc.specVersion !== "1.0" || !Array.isArray(doc.entries) || !doc.entries.length) error("/.well-known/ai-catalog.json", "invalid catalog shape");
+    } catch {
+      error("/.well-known/ai-catalog.json", "body is not JSON");
+    }
+  }
+  const homeHeaders = await site.get("/");
+  const link = homeHeaders.headers["link"] || "";
+  if (!/rel="?ai-catalog"?/i.test(link)) error("/", 'homepage missing Link rel="ai-catalog" header');
+}
+
 // ---------- markdown twins and llms.txt ----------
 for (const path of indexable) {
   const md = path === "/" ? "/index.md" : `${path}.md`;

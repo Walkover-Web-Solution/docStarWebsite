@@ -1,0 +1,79 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "DocStar website public API",
+    "version": "1.0.0",
+    "description": "Public HTTP endpoints served by docstar.io (marketing site). Product APIs live on other hosts."
+  },
+  "servers": [{ "url": "https://docstar.io" }],
+  "paths": {
+    "/api/ideas": {
+      "options": {
+        "summary": "CORS preflight",
+        "responses": {
+          "204": {
+            "description": "No content"
+          }
+        }
+      },
+      "post": {
+        "summary": "Submit feedback, ideas, bugs or feature requests",
+        "description": "No sign-in. Rate limited per caller. Returns a private followUpUrl for status.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["title"],
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": ["feature", "idea", "bug", "feedback"],
+                    "default": "idea"
+                  },
+                  "title": { "type": "string", "minLength": 3, "maxLength": 200 },
+                  "body": { "type": "string", "maxLength": 10000 },
+                  "source": { "type": "string", "enum": ["api", "mcp", "cli"] },
+                  "agent": {
+                    "type": "object",
+                    "properties": {
+                      "name": { "type": "string", "maxLength": 64 },
+                      "model": { "type": "string", "maxLength": 64 }
+                    },
+                    "required": ["name"]
+                  },
+                  "context": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "maxProperties": 20
+                  },
+                  "contactEmail": { "type": "string", "format": "email", "maxLength": 255 }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "followUpUrl": { "type": "string", "format": "uri" }
+                  }
+                }
+              }
+            }
+          },
+          "400": { "description": "Invalid JSON or body" },
+          "413": { "description": "Request too large" },
+          "429": { "description": "Rate limit exceeded" }
+        }
+      }
+    }
+  }
+}
