@@ -23,6 +23,8 @@ verified_on: 2026-10-30
 | `GET /llms.txt`, `/llms-full.txt`, `/<page>.md`, `/index.md` | Agent-readable content; `.md` responses send `Link: <html>; rel="canonical"` and `Vary: Accept`. | none |
 | `GET /og/<slug>.png` | Share image per page (static). | none |
 | `GET /robots.txt`, `/sitemap.xml`, `/manifest.webmanifest` | Crawling and install metadata. | none |
+| `GET /.well-known/api-catalog` | RFC 9727 API catalog (`application/linkset+json`) for public endpoints on this host; points to `/openapi.json`, `/llms.txt` and `/agents.md`. | none |
+| `GET /openapi.json` | OpenAPI 3.1 description of the public `/api/*` routes on docstar.io (static file). | none |
 
 ## Browser events
 `page.viewed`, `section.viewed`, `cta.clicked`, `prompt.copied`, `signup.clicked`. The list is duplicated in `src/lib/analytics.ts` and `src/app/api/e/route.ts` (`BROWSER_EVENTS`); change both. `signup.clicked` fires for any link containing `app.docstar.io/login`, including `?intent=signup`.

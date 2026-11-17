@@ -72,6 +72,7 @@ graph TD
 - `/robots.txt` (`src/app/robots.ts`): served by the Worker so the test-host override applies.
 - `/sitemap.xml`: live pages with their real change date, plus help and blog URLs from api.docstar.io (`?lastmod=true`; a missing date is omitted).
 - `/llms.txt` (pages plus a Compare DocStar section of published blog comparisons), `/llms-full.txt`, `/content.json`, and `/mcp/quickstart.md` (static file in `public/mcp`).
+- `/.well-known/api-catalog` (RFC 9727 Linkset) and `/openapi.json`: machine discovery of the marketing site's public HTTP API for agents.
 - `/api/tools/llms-check`: the llms.txt checker behind `/tools/llms-txt-checker` (`src/server/llmsCheck.ts`).
 - **Help docs and the blog** (`docstar.io/help`, `docstar.io/blog`) are served by the DocStar product, not this app.
 
