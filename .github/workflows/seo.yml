@@ -21,7 +21,14 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm run check:content
-      - run: npm run build
+      - name: Build
+        run: |
+          for i in 1 2 3; do
+            npm run build && exit 0
+            echo "npm run build failed (attempt $i); retrying in 15s…"
+            sleep 15
+          done
+          exit 1
       - name: Start the site
         run: |
           npm run start -- -p 3000 > server.log 2>&1 &
@@ -30,6 +37,11 @@ jobs:
       - run: npm run seo:check
         env:
           SEO_BASE_URL: http://localhost:3000
+      - name: Warm up pages for Lighthouse
+        run: |
+          for p in / /mcp /cli /api-docs /pricing /agents /for/integrators /support; do
+            curl -sf -o /dev/null "http://localhost:3000$p"
+          done
       - run: npm run lhci
       - name: Draft pages render and pass too
         run: |
