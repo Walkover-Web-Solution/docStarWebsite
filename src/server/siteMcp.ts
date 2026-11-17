@@ -1,10 +1,9 @@
-import { readFile } from "node:fs/promises";
-import path from "node:path";
 import { renderPageMarkdown } from "@/content/markdown";
 import { pageBySlug } from "@/content/pages";
 import { getSitePage } from "@/content/source";
 import { withDb } from "./db";
 import { normalizeSubmission, submit, submitSchema } from "./ideas";
+import { buildLlmsTxt } from "./llmsTxt";
 
 /** Read-only MCP over the docstar.io marketing site (not the product API at mcp.docstar.io). */
 
@@ -81,16 +80,16 @@ export const SITE_MCP_TOOLS = [
   },
 ] as const;
 
-async function llmsTxtBody(origin: string): Promise<string> {
-  const res = await fetch(`${origin}/llms.txt`, { headers: { Accept: "text/plain" } });
-  if (!res.ok) throw new Error(`llms.txt returned ${res.status}`);
+async function staticMarkdown(origin: string, pathname: string): Promise<string> {
+  const res = await fetch(`${origin}${pathname}`, { headers: { Accept: "text/markdown, text/plain" } });
+  if (!res.ok) throw new Error(`${pathname} returned ${res.status}`);
   return res.text();
 }
 
 async function callTool(name: string, args: Record<string, unknown> | undefined, origin: string) {
   switch (name) {
     case "get_llms_txt": {
-      const content = await llmsTxtBody(origin);
+      const content = await buildLlmsTxt();
       return { content, contentType: "text/plain; charset=utf-8" };
     }
     case "get_page_markdown": {
@@ -100,8 +99,7 @@ async function callTool(name: string, args: Record<string, unknown> | undefined,
       return { content: renderPageMarkdown(page), contentType: "text/markdown; charset=utf-8" };
     }
     case "get_mcp_quickstart": {
-      const file = path.join(process.cwd(), "public/mcp/quickstart.md");
-      const content = await readFile(file, "utf8");
+      const content = await staticMarkdown(origin, "/mcp/quickstart.md");
       return { content, contentType: "text/markdown; charset=utf-8" };
     }
     case "submit_website_feedback": {
