@@ -140,6 +140,16 @@ else {
   for (const p of ["/llms.txt", "/mcp.md"]) if (new RegExp(`^disallow:\\s*${p.replace(".", "\\.")}`, "im").test(star)) error("/robots.txt", `blocks ${p}`);
 }
 
+// ---------- homepage agent Link header ----------
+{
+  const home = await site.get("/");
+  const link = home.headers.link || "";
+  const hasAgentLink =
+    /rel="?(?:api-catalog|service-desc|service-doc|describedby|sitemap|ai-catalog)"?/i.test(link) ||
+    (/rel="?alternate"?/i.test(link) && /type="text\/markdown"/i.test(link));
+  if (!hasAgentLink) error("/", "homepage Link header has no agent resource relation (want describedby, alternate markdown, sitemap, etc.)");
+}
+
 // ---------- markdown twins and llms.txt ----------
 for (const path of indexable) {
   const md = path === "/" ? "/index.md" : `${path}.md`;
