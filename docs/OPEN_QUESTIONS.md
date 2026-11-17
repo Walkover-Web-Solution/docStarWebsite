@@ -17,3 +17,4 @@ verified_on: 2026-10-21
 | 8 | No lint script. (Typecheck, content, SEO and Lighthouse checks now exist and run in CI.) | `package.json` | Human |
 | 9 | SEO decisions listed in `seo/PLAN.md` ("Decisions needed"): pricing plan features, social profiles, About and MSG91 facts, compare pages vs blog posts, `/drift` and `/hub` launch. | `seo/PLAN.md` | Human |
 | 10 | Should production deploy from `main` or `prod`? `migrate.yml` runs on `main`, the README says `prod`. | `.github/workflows/migrate.yml` | Human |
+| 11 | Axien `act.mcp-tool-depth` on docstar.io still probes `https://mcp.docstar.io/mcp` (0/14 tools had `outputSchema` on 2026-11-17). Which service builds that server's `tools/list`? | Live `tools/list` probe; not in this repo | Product / MCP backend |

@@ -14,6 +14,7 @@ Audience signals in the content: developers and API owners (`/mcp`, `/cli`, `/ap
 
 ## Approved direction (inferred from commits, not confirmed by a human)
 - Agent-first: every page must be equally readable by agents as markdown. Commit `2bf125c` rebuilt the site on that premise.
+- The marketing host exposes its own read-only MCP at `/api/mcp` (llms.txt, markdown twins, feedback) in addition to linking the product MCP at `mcp.docstar.io`.
 - Content is data (typed sections), so it can be edited from the DocStar admin without a deploy.
 
 ## Proposals and hidden work
