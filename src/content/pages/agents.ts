@@ -23,7 +23,7 @@ export const AGENTS: SitePage = {
       secondary: { kind: "link", label: "llms.txt", href: "/llms.txt" },
       code: {
         title: "start here",
-        body: `GET https://docstar.io/mcp/quickstart.md\nGET https://docstar.io/llms.txt\n\nMCP: https://mcp.docstar.io/mcp\n$ ${MCP_INSTALL}`,
+        body: `GET https://docstar.io/openapi.json\nGET https://docstar.io/mcp/quickstart.md\nGET https://docstar.io/llms.txt\n\nMCP: https://mcp.docstar.io/mcp\n$ ${MCP_INSTALL}`,
       },
     },
     {
