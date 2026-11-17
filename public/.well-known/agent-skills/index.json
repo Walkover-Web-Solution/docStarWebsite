@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "document-api-with-docstar",
+      "type": "skill-md",
+      "description": "Connect to DocStar, document a user's API from code as drafts, shape the MCP server, and file feedback when something is missing.",
+      "url": "/.well-known/agent-skills/document-api-with-docstar/SKILL.md",
+      "digest": "sha256:8d356e2a1ab5e17059bbb87dd2f3bd5986c56125fd7e070f31f2cffd838ca98e"
+    }
+  ]
+}

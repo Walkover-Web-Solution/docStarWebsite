@@ -46,6 +46,7 @@ Severity: **critical** (removes pages from search or misleads crawlers now), **h
 | `/llms.txt`, `/llms-full.txt` | route handlers | Agent index and full text | yes (text) |
 | `/mcp/quickstart.md` | `public/` | Agent quickstart | yes (text) |
 | `/sync/quickstart.md` | `public/` | GitHub docs sync quickstart for agents | yes (text) |
+| `/.well-known/agent-skills/index.json` | `public/.well-known/agent-skills/` | Agent Skills discovery (v0.2) | yes (JSON + markdown) |
 | `/sitemap.xml` | route handler | Site pages, plus help and blog URLs fetched from api.docstar.io | n/a |
 | `/robots.txt` | `public/robots.txt` | Static file; served before the Worker | n/a |
 | `/content.json` | route handler | Bundled content for the admin | should be disallowed |

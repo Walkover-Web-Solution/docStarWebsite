@@ -4,6 +4,7 @@
 //   npm run seo:check                                  (SEO_BASE_URL defaults to http://localhost:3000)
 //   node scripts/seo-check.mjs --report seo/crawl.json  also writes the raw crawl
 // Exits 1 if any error is found; warnings are printed but don't fail.
+import { createHash } from "node:crypto";
 import { writeFileSync } from "node:fs";
 import { crawl, ldNodes } from "./seo/crawl.mjs";
 
@@ -157,6 +158,39 @@ for (const path of indexable) {
   if (!/\baccept\b/i.test(html.headers["vary"] || "")) error(path, "HTML response lacks Vary: Accept");
 }
 if (site.llmsFull.status !== 200) error("/llms-full.txt", `status ${site.llmsFull.status}`);
+
+// ---------- agent skills discovery (/.well-known/agent-skills) ----------
+const skillsIndex = await site.get("/.well-known/agent-skills/index.json");
+if (skillsIndex.status !== 200) error("/.well-known/agent-skills/index.json", `status ${skillsIndex.status}`);
+else {
+  let index;
+  try {
+    index = JSON.parse(skillsIndex.body);
+  } catch {
+    error("/.well-known/agent-skills/index.json", "invalid JSON");
+    index = null;
+  }
+  if (index) {
+    if (index.$schema !== "https://schemas.agentskills.io/discovery/0.2.0/schema.json") {
+      error("/.well-known/agent-skills/index.json", `unexpected $schema: ${index.$schema}`);
+    }
+    for (const skill of index.skills || []) {
+      const r = await site.get(skill.url);
+      if (r.status !== 200) error(skill.url, `skill ${skill.name}: status ${r.status}`);
+      else {
+        const hash = createHash("sha256").update(r.body).digest("hex");
+        const want = String(skill.digest || "").replace(/^sha256:/, "");
+        if (want && hash !== want) error(skill.url, `skill ${skill.name}: digest mismatch (computed sha256:${hash})`);
+        const fm = r.body.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+        if (!fm) error(skill.url, `skill ${skill.name}: missing YAML frontmatter`);
+        else {
+          if (!/^name:\s*.+/m.test(fm[1])) error(skill.url, `skill ${skill.name}: frontmatter missing name`);
+          if (!/^description:\s*.+/m.test(fm[1])) error(skill.url, `skill ${skill.name}: frontmatter missing description`);
+        }
+      }
+    }
+  }
+}
 
 // ---------- status codes ----------
 const missing = await site.get("/this-page-does-not-exist-seo-check");

@@ -23,6 +23,7 @@ verified_on: 2026-10-30
 | `GET /llms.txt`, `/llms-full.txt`, `/<page>.md`, `/index.md` | Agent-readable content; `.md` responses send `Link: <html>; rel="canonical"` and `Vary: Accept`. | none |
 | `GET /og/<slug>.png` | Share image per page (static). | none |
 | `GET /robots.txt`, `/sitemap.xml`, `/manifest.webmanifest` | Crawling and install metadata. | none |
+| `GET /.well-known/agent-skills/index.json` and listed `SKILL.md` files | Agent Skills discovery v0.2 (`public/.well-known/agent-skills/`); `digest` in the index is SHA-256 of each skill file (`npm run seo:check` verifies). | none |
 
 ## Browser events
 `page.viewed`, `section.viewed`, `cta.clicked`, `prompt.copied`, `signup.clicked`. The list is duplicated in `src/lib/analytics.ts` and `src/app/api/e/route.ts` (`BROWSER_EVENTS`); change both. `signup.clicked` fires for any link containing `app.docstar.io/login`, including `?intent=signup`.

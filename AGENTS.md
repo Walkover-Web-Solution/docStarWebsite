@@ -51,6 +51,7 @@ No lint script exists. CI: `.github/workflows/seo.yml`.
 - `seo/`: the SEO audit, plan (keyword map) and report. `scripts/`: content test, SEO crawl, migrations.
 - `public/mcp/quickstart.md`: the quickstart agents fetch.
 - `public/sync/quickstart.md`: GitHub Sync quickstart for agents (`/sync/quickstart.md`; bundles `docstar.io/help/integrations/github-sync.md` and `api.docstar.io/docstar.md`).
+- `public/.well-known/agent-skills/`: Agent Skills discovery index and installable `SKILL.md` files; update each skill's `digest` in `index.json` when the file changes (`npm run seo:check` verifies).
 
 ## PR and deployment flow
 Production is Cloudflare Workers via OpenNext (`npm run cf:deploy`, by hand). CI (`.github/workflows/seo.yml`) runs on every PR. Whether PRs target `main` or `prod` is unconfirmed (see docs/OPEN_QUESTIONS.md).
