@@ -27,7 +27,7 @@ graph TD
 
 ## Entry points
 - `src/app/layout.tsx`: root layout: default metadata, viewport, Google Tag Manager. No global CSS.
-- `src/app/(site)/layout.tsx`: wraps website pages in the skip link, `SiteNav`, `<main id="main">`, `SiteFooter`, `SiteAnalytics` and the `.ds-site` scope. It loads `reset.css` and `site.css`.
+- `src/app/(site)/layout.tsx`: wraps website pages in the skip link, `SiteNav`, `<main id="main">`, `SiteFooter`, `SiteAnalytics`, `SiteWebMcp` (WebMCP `registerTool` when available) and the `.ds-site` scope. It loads `reset.css` and `site.css`.
 - `src/app/(site)/page.tsx`: home (slug `home`). `src/app/(site)/[...slug]/page.tsx`: every other page, resolved through `PATH_TO_SLUG`, with visible breadcrumbs on paths two or more levels deep.
 - `src/app/admin/*`: the internal admin (client-rendered). It alone loads Tailwind and `src/scss`.
 - `src/middleware.ts`:

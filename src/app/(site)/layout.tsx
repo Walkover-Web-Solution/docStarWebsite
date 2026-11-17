@@ -1,5 +1,6 @@
 import { SiteFooter, SiteNav, SkipLink } from "@/components/site/SiteChrome";
 import SiteAnalytics from "@/components/site/SiteAnalytics";
+import SiteWebMcp from "@/components/site/SiteWebMcp";
 import { fontVars } from "@/components/site/fonts";
 import "@/components/site/reset.css";
 import "@/components/site/site.css";
@@ -15,6 +16,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       </main>
       <SiteFooter />
       <SiteAnalytics />
+      <SiteWebMcp />
     </div>
   );
 }
