@@ -29,6 +29,8 @@ jobs:
             sleep 15
           done
           exit 1
+      # OpenNext bundle: required when adding routes or server code (AGENTS.md).
+      - run: npm run cf:build
       - name: Start the site
         run: |
           npm run start -- -p 3000 > server.log 2>&1 &
