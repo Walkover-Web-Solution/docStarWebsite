@@ -16,8 +16,11 @@ Follow https://docstar.io/mcp/quickstart.md, document my app's user-facing APIs 
   start: { label: "Start free", href: APP_SIGNUP },
   tagline: "API documentation for people and agents.",
   supportEmail: "support@docstar.io",
-  // TODO-COPY: add the company's LinkedIn, X, GitHub and YouTube profile URLs here once confirmed.
-  social: [{ label: "npm: docstar-cli", href: "https://www.npmjs.com/package/docstar-cli" }],
+  // TODO-COPY: add LinkedIn, X, GitHub org and YouTube profile URLs once confirmed (keep 2+ entries for Organization.sameAs).
+  social: [
+    { label: "npm: docstar-cli", href: "https://www.npmjs.com/package/docstar-cli" },
+    { label: "DocStar app", href: "https://app.docstar.io" },
+  ],
   footer: [
     {
       title: "Product",

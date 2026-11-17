@@ -87,7 +87,7 @@ Branch `seo/overhaul`, 12 commits on `main` (`f960ff7`), 2026-10-30. See also [A
 
 | Item | Status | Where |
 |---|---|---|
-| Organization (logo, `sameAs`, `contactPoint`) | **Done**. `sameAs` lists only npm until social URLs are provided. | `seo.ts`, `SITE.social` |
+| Organization (logo, `sameAs`, `contactPoint`) | **Done**. `sameAs` lists npm and app.docstar.io until social URLs are provided; CI requires 2+ `sameAs`. | `seo.ts`, `SITE.social`, `seo-check.mjs` |
 | WebSite (home), SoftwareApplication (product pages and pricing, real offers, no ratings) | **Done** | `seo.ts` |
 | BreadcrumbList and visible breadcrumbs | **Done** | `seo.ts`, `ui/Breadcrumbs.tsx` |
 | TechArticle, BlogPosting, VideoObject | **Not applicable here** | Help and blog are served by the DocStar product; blog posts already have BlogPosting with a Person author. No videos exist. |

@@ -76,7 +76,10 @@ for (const path of indexable) {
     for (const prop of props) if (node[prop] == null || node[prop] === "") error(path, `JSON-LD ${type}.${prop} missing`);
     return node;
   };
-  need("Organization", ["name", "url", "logo"]);
+  const org = need("Organization", ["name", "url", "logo"]);
+  const sameAs = [org?.sameAs].flat().filter(Boolean);
+  if (sameAs.length < 2) error(path, `JSON-LD Organization.sameAs needs 2+ URLs (${sameAs.length})`);
+  if (!org?.contactPoint && !org?.email && !org?.telephone) error(path, "JSON-LD Organization missing contactPoint or email/telephone");
   if (path === "/") need("WebSite", ["name", "url"]);
   else {
     const crumbs = need("BreadcrumbList", ["itemListElement"]);
