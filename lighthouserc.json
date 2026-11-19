@@ -11,7 +11,7 @@
         "http://localhost:3000/for/integrators",
         "http://localhost:3000/support"
       ],
-      "numberOfRuns": 1,
+      "numberOfRuns": 3,
       "settings": { "chromeFlags": "--headless=new --no-sandbox" }
     },
     "assert": {

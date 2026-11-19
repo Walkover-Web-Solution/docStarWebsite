@@ -36,6 +36,9 @@ function lowercased(pathname: string): string | null {
 const wantsMarkdown = (request: NextRequest) =>
     (request.headers.get('accept') || '').toLowerCase().includes('text/markdown')
 
+// Agent discovery without parsing HTML (Axien find.link-headers). Appended so Next.js preload hints stay.
+const HOME_AGENT_LINK = '</llms.txt>; rel="describedby"; type="text/plain"'
+
 // Server-side analytics: agents and crawlers never run our JavaScript, so their reads are
 // logged here. People are counted by the browser tracker (page.viewed) instead.
 function serverEvent(pathname: string, isHuman: boolean, servedMarkdown: boolean): string | null {
@@ -118,6 +121,7 @@ async function handle(request: NextRequest, event: NextFetchEvent) {
         response = NextResponse.next()
     }
     if (isPage) response.headers.set('Vary', 'Accept')
+    if (pathname === '/' && !twin) response.headers.append('Link', HOME_AGENT_LINK)
 
     const cookie = { maxAge: 60 * 60 * 24 * 365, sameSite: 'lax' as const, path: '/', secure: request.nextUrl.protocol === 'https:' }
     if (browserPage && !ctx.anonId && anonId) response.cookies.set(ANON_COOKIE, anonId, cookie)

@@ -21,6 +21,7 @@ verified_on: 2026-10-30
 | `POST /api/cron/autopilot` | Daily autopilot run. | `Bearer CRON_SECRET` |
 | `GET /content.json` | Bundled pages for the admin ("Copied from code", "Load code version"). | none |
 | `GET /llms.txt`, `/llms-full.txt`, `/<page>.md`, `/index.md` | Agent-readable content; `.md` responses send `Link: <html>; rel="canonical"` and `Vary: Accept`. | none |
+| `GET /` (HTML) | Middleware appends `Link: </llms.txt>; rel="describedby"; type="text/plain"` so agents find the site index from response headers. | none |
 | `GET /og/<slug>.png` | Share image per page (static). | none |
 | `GET /robots.txt`, `/sitemap.xml`, `/manifest.webmanifest` | Crawling and install metadata. | none |
 
