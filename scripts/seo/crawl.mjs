@@ -52,6 +52,7 @@ export function parsePage(html) {
     themeColor: meta("theme-color"),
     canonical: links.find((l) => l.rel === "canonical")?.href,
     markdownAlternate: links.find((l) => l.rel === "alternate" && l.type === "text/markdown")?.href,
+    aiCatalogLink: links.find((l) => l.rel === "ai-catalog")?.href,
     manifest: links.find((l) => l.rel === "manifest")?.href,
     appleIcon: links.find((l) => l.rel === "apple-touch-icon")?.href,
     og: Object.fromEntries(metas.filter((m) => m.property?.startsWith("og:")).map((m) => [m.property, m.content])),

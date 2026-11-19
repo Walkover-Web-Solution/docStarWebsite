@@ -1,0 +1,14 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json",
+  "name": "io.docstar/mcp",
+  "version": "1.0.0",
+  "title": "DocStar MCP",
+  "description": "Document a user's API from code, manage DocStar collections, and call published endpoints through MCP.",
+  "websiteUrl": "https://docstar.io/mcp",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.docstar.io/mcp"
+    }
+  ]
+}

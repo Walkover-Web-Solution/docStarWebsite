@@ -72,6 +72,7 @@ graph TD
 - `/robots.txt` (`src/app/robots.ts`): served by the Worker so the test-host override applies.
 - `/sitemap.xml`: live pages with their real change date, plus help and blog URLs from api.docstar.io (`?lastmod=true`; a missing date is omitted).
 - `/llms.txt` (pages plus a Compare DocStar section of published blog comparisons), `/llms-full.txt`, `/content.json`, `/mcp/quickstart.md` (static file in `public/mcp`), and `/sync/quickstart.md` (static file in `public/sync`; agent quickstart combining the GitHub Sync help article and `api.docstar.io/docstar.md`).
+- `/.well-known/ai-catalog.json` (`src/lib/aiCatalog.ts`, `src/app/.well-known/ai-catalog.json/route.ts`): agent discovery index; the root layout links it with `rel="ai-catalog"` and the homepage response adds `Link: rel="ai-catalog"`.
 - `/api/tools/llms-check`: the llms.txt checker behind `/tools/llms-txt-checker` (`src/server/llmsCheck.ts`).
 - **Help docs and the blog** (`docstar.io/help`, `docstar.io/blog`) are served by the DocStar product, not this app.
 
