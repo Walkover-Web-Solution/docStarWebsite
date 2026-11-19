@@ -71,7 +71,7 @@ graph TD
 - `/<page>.md`, `/index.md`, and `Accept: text/markdown`: `src/app/md/[slug]/route.ts`. Sends `Link: rel="canonical"` to the HTML page and `Vary: Accept`.
 - `/robots.txt` (`src/app/robots.ts`): served by the Worker so the test-host override applies.
 - `/sitemap.xml`: live pages with their real change date, plus help and blog URLs from api.docstar.io (`?lastmod=true`; a missing date is omitted).
-- `/llms.txt` (pages plus a Compare DocStar section of published blog comparisons), `/llms-full.txt`, `/content.json`, and `/mcp/quickstart.md` (static file in `public/mcp`).
+- `/llms.txt` (pages plus a Compare DocStar section of published blog comparisons), `/llms-full.txt`, `/content.json`, `/mcp/quickstart.md` (static file in `public/mcp`), and `/sync/quickstart.md` (static file in `public/sync`; agent quickstart combining the GitHub Sync help article and `api.docstar.io/docstar.md`).
 - `/api/tools/llms-check`: the llms.txt checker behind `/tools/llms-txt-checker` (`src/server/llmsCheck.ts`).
 - **Help docs and the blog** (`docstar.io/help`, `docstar.io/blog`) are served by the DocStar product, not this app.
 
