@@ -1,0 +1,64 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "docstar.io public API",
+    "version": "2025-11-17",
+    "description": "Agent- and visitor-facing HTTP endpoints on the DocStar marketing site (docstar.io). Product APIs live at api.docstar.io and are not listed here."
+  },
+  "servers": [{ "url": "https://docstar.io" }],
+  "paths": {
+    "/api/ideas": {
+      "post": {
+        "summary": "Submit a feature request, idea, bug or feedback",
+        "description": "No sign-in. Rate limited per caller. Returns a followUpUrl for status.",
+        "operationId": "submitIdea",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["title"],
+                "properties": {
+                  "kind": { "type": "string", "enum": ["feature", "idea", "bug", "feedback"] },
+                  "title": { "type": "string", "minLength": 3, "maxLength": 200 },
+                  "body": { "type": "string", "maxLength": 10000 },
+                  "source": { "type": "string", "enum": ["api", "mcp", "cli"] },
+                  "contactEmail": { "type": "string", "format": "email" },
+                  "context": { "type": "object", "additionalProperties": true }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Idea created" },
+          "400": { "description": "Invalid JSON or body" },
+          "413": { "description": "Body too large" },
+          "429": { "description": "Rate limited" }
+        }
+      }
+    },
+    "/api/tools/llms-check": {
+      "get": {
+        "summary": "llms.txt readiness report for a public website",
+        "operationId": "checkLlmsTxt",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Site to check, for example docs.acme.com"
+          }
+        ],
+        "responses": {
+          "200": { "description": "JSON report with checks and stats" },
+          "400": { "description": "Missing or invalid url" },
+          "404": { "description": "Tool disabled while its page is draft" },
+          "429": { "description": "Rate limited" }
+        }
+      }
+    }
+  }
+}
