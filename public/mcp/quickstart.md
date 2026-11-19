@@ -4,7 +4,21 @@ Document the user's app API in a DocStar collection and publish it. That one col
 
 ## 1. Connect DocStar
 
-If DocStar isn't connected yet, suggest that the user connect the DocStar connector if it is available in the Claude directory. Otherwise, ask them to add the remote MCP server `https://mcp.docstar.io/mcp`. See [Connect your AI assistant](https://docstar.io/help/mcp/connect-ai-assistant.md). If the MCP won't connect, use the REST API with an Auth Key instead: [Run the DocStar API with an Auth Key](https://docstar.io/help/mcp/run-api-with-auth-key.md).
+Install the DocStar MCP (Claude Code example):
+
+```bash
+claude mcp add --transport http docstar https://mcp.docstar.io/mcp
+```
+
+When the client asks, sign the user in with DocStar. After sign-in, the MCP uses their session; you do not paste API keys into the chat. For REST without MCP, create an Auth Key in DocStar and send it as `Authorization: Bearer <AUTH_KEY>` — see [Run the DocStar API with an Auth Key](https://docstar.io/help/mcp/run-api-with-auth-key.md).
+
+Fetch this quickstart (or verify MCP connectivity with a harmless read):
+
+```bash
+curl -sS https://docstar.io/mcp/quickstart.md
+```
+
+If DocStar isn't connected yet, suggest that the user connect the DocStar connector if it is available in the Claude directory. Otherwise, use the install command above or add the remote MCP server `https://mcp.docstar.io/mcp`. See [Connect your AI assistant](https://docstar.io/help/mcp/connect-ai-assistant.md).
 
 ## 2. Document the API as drafts
 
