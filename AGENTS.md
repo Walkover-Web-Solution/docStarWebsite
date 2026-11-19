@@ -44,7 +44,7 @@ No lint script exists. CI: `.github/workflows/seo.yml`.
 15. Never state a product fact, customer, number or competitor claim that DocStar hasn't published; mark it TODO-COPY or TODO-VERIFY and keep the page in `DRAFT_PAGES`.
 
 ## Where things are
-- `src/app/(site)/`: pages. `src/app/admin/`, `src/app/api/admin/`: the admin. `src/app/api/`: `e`, `ideas`, `preview`, `tools/llms-check`, `internal`, `cron`. `src/app/md`, `src/app/llms.txt`, `src/app/llms-full.txt`, `src/app/sitemap.xml`, `src/app/robots.ts`, `src/app/og`: agent and crawler outputs.
+- `src/app/(site)/`: pages. `src/app/admin/`, `src/app/api/admin/`: the admin. `src/app/api/`: `e`, `ideas`, `preview`, `tools/llms-check`, `internal`, `cron`. `src/app/md`, `src/app/llms.txt`, `src/app/llms-full.txt`, `src/app/sitemap.xml`, `src/app/robots.txt`, `src/app/og`: agent and crawler outputs.
 - `src/content/`: content model, pages, site chrome.
 - `src/components/site/`: renderer, sections, UI atoms, CSS.
 - `src/lib/`: SEO metadata and JSON-LD (`seo.ts`), analytics and requester classification. `src/server/`: database content, revisions, experiments, autopilot. `src/middleware.ts`: markdown twins, canonical redirects, A/B rewrites and agent analytics.

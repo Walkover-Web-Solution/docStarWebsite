@@ -138,6 +138,8 @@ else {
   const star = body.split(/\n\s*\n/).find((g) => /^user-agent:\s*\*\s*$/im.test(g)) || "";
   if (/^disallow:\s*\/\s*$/im.test(star)) error("/robots.txt", "Disallow: / for all crawlers");
   for (const p of ["/llms.txt", "/mcp.md"]) if (new RegExp(`^disallow:\\s*${p.replace(".", "\\.")}`, "im").test(star)) error("/robots.txt", `blocks ${p}`);
+  if (!/^content-signal:\s*.+\bsearch=(yes|no)\b.+\bai-input=(yes|no)\b.+\bai-train=(yes|no)\b/im.test(star))
+    error("/robots.txt", "User-agent: * group missing Content-Signal search/ai-input/ai-train");
 }
 
 // ---------- markdown twins and llms.txt ----------

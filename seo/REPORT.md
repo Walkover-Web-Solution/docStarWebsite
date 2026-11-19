@@ -44,7 +44,7 @@ Branch `seo/overhaul`, 12 commits on `main` (`f960ff7`), 2026-10-30. See also [A
 
 | Item | Status | Where |
 |---|---|---|
-| robots: allow public pages, disallow internal paths, AI crawlers allowed, absolute sitemap | **Done** | `src/app/robots.ts` (replaces `public/robots.txt`) |
+| robots: allow public pages, disallow internal paths, AI crawlers allowed, absolute sitemap, Content-Signal | **Done** | `src/app/robots.txt/route.ts` (replaces `public/robots.txt`) |
 | sitemap: canonical HTML URLs only, real `lastmod`, no `.md` | **Done** | `src/app/sitemap.xml/route.ts`; dates from the publish date or `updated` |
 | 200 for pages, 301 for old URLs, real 404 | **Done** (already true; now tested) | `scripts/seo-check.mjs` |
 | no accidental `noindex`; previews noindexed | **Done** | variant `noindex` removed; `test.*` override now reachable |
@@ -171,7 +171,7 @@ Lighthouse 13.5.0, the same machine and settings for both runs.
 |---|---|
 | SEO helper, metadata, JSON-LD | `src/lib/seo.ts`, `src/app/(site)/page.tsx`, `[...slug]/page.tsx`, `xv/…/page.tsx`, `src/app/layout.tsx` |
 | Share images, icons | `src/app/og/[image]/route.tsx`, `src/app/icon.png`, `apple-icon.png`, `manifest.ts`, `public/logo.png` |
-| Crawling | `src/app/robots.ts`, `src/app/sitemap.xml/route.ts`, `src/app/md/[slug]/route.ts`, `src/middleware.ts`, `src/lib/requester.ts`, `next.config.ts`, `public/_headers` |
+| Crawling | `src/app/robots.txt/route.ts`, `src/app/sitemap.xml/route.ts`, `src/app/md/[slug]/route.ts`, `src/middleware.ts`, `src/lib/requester.ts`, `next.config.ts`, `public/_headers` |
 | Content | `src/content/home.ts`, `src/content/pages/*.ts` (all pages and 5 new files), `site.ts`, `pages.ts`, `types.ts`, `markdown.ts`, `source.ts` |
 | Components | `SiteChrome.tsx`, `sections/Sections.tsx`, `SectionRenderer.tsx`, `ui/Breadcrumbs.tsx`, `tools/LlmsChecker.tsx`, `reset.css`, CSS modules |
 | Server | `src/server/siteSchema.ts`, `content.ts`, `llmsCheck.ts`, `autopilot/policy.ts`, `autopilot/run.ts`, `src/app/api/tools/llms-check`, `src/app/api/e` |
