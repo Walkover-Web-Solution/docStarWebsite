@@ -17,6 +17,7 @@ export async function GET() {
     "",
     "## Start here",
     "",
+    `- [OpenAPI contract](${SITE_ORIGIN}/openapi.json): machine-readable API for this site (ideas API and agent content)`,
     `- [What is DocStar?](${SITE_ORIGIN}/blog/what-is-docstar-how-it-works): the guide to what DocStar is and how it works`,
     `- [MCP quickstart for agents](${SITE_ORIGIN}/mcp/quickstart.md): how an agent connects to the DocStar MCP and documents an API`,
     `- [Full site as markdown](${SITE_ORIGIN}/llms-full.txt)`,

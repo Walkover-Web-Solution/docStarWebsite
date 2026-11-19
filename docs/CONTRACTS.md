@@ -20,6 +20,7 @@ verified_on: 2026-10-30
 | `/api/internal/*` | Middleware → server: events, running experiments. | `x-internal-key` |
 | `POST /api/cron/autopilot` | Daily autopilot run. | `Bearer CRON_SECRET` |
 | `GET /content.json` | Bundled pages for the admin ("Copied from code", "Load code version"). | none |
+| `GET /openapi.json` | OpenAPI 3.1 contract for public routes on docstar.io (`public/openapi.json`); linked from `/llms.txt` and `/agents`. | none |
 | `GET /llms.txt`, `/llms-full.txt`, `/<page>.md`, `/index.md` | Agent-readable content; `.md` responses send `Link: <html>; rel="canonical"` and `Vary: Accept`. | none |
 | `GET /og/<slug>.png` | Share image per page (static). | none |
 | `GET /robots.txt`, `/sitemap.xml`, `/manifest.webmanifest` | Crawling and install metadata. | none |

@@ -1,0 +1,266 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "DocStar marketing site API",
+    "version": "2026-11-17",
+    "summary": "Public HTTP API on docstar.io for agents and integrators.",
+    "description": "Callable routes on the DocStar marketing site (docstar.io). Product APIs live at https://api.docstar.io; MCP at https://mcp.docstar.io/mcp. Agent-readable content also includes /llms.txt and markdown page twins (/<path>.md)."
+  },
+  "servers": [{ "url": "https://docstar.io" }],
+  "paths": {
+    "/api/ideas": {
+      "post": {
+        "operationId": "submitIdea",
+        "summary": "File a feature request, idea, bug or feedback",
+        "description": "Public endpoint for people and AI agents. Rate-limited per caller. Returns a followUpUrl to check status without signing in. The DocStar MCP send_feedback_to_docstar tool posts here.",
+        "tags": ["ideas"],
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/IdeaSubmission" },
+              "examples": {
+                "agentBug": {
+                  "summary": "Agent reports a bug",
+                  "value": {
+                    "kind": "bug",
+                    "title": "MCP tool list missing auth scope",
+                    "body": "When listing tools, the auth section is empty for collection 42.",
+                    "source": "mcp",
+                    "agent": { "name": "Cursor", "model": "claude-sonnet" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Idea accepted",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/IdeaCreated" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid JSON or validation failed",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" },
+                "examples": {
+                  "validation": { "value": { "message": "title: String must contain at least 3 character(s)" } }
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" },
+                "example": { "message": "Request too large" }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" },
+                "example": { "message": "Too many ideas from this address. Try again later." }
+              }
+            }
+          },
+          "503": {
+            "description": "Database unavailable",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ServiceError" },
+                "example": { "message": "The database isn't set up on this server: DATABASE_URL is missing.", "code": "db_not_configured" }
+              }
+            }
+          }
+        }
+      },
+      "options": {
+        "operationId": "ideasCorsPreflight",
+        "summary": "CORS preflight for submitIdea",
+        "tags": ["ideas"],
+        "security": [],
+        "responses": {
+          "204": { "description": "Allowed origins and methods" }
+        }
+      }
+    },
+    "/api/ideas/public/{followUpSecret}": {
+      "get": {
+        "operationId": "getIdeaStatus",
+        "summary": "Read an idea's status and team note by follow-up secret",
+        "description": "The secret is returned only to the submitter in the create response (followUpUrl path segment).",
+        "tags": ["ideas"],
+        "security": [],
+        "parameters": [
+          {
+            "name": "followUpSecret",
+            "in": "path",
+            "required": true,
+            "description": "Opaque token from submitIdea followUpUrl",
+            "schema": { "type": "string", "minLength": 20 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current idea view",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/IdeaPublic" }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown or expired secret",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" },
+                "example": { "message": "Not found" }
+              }
+            }
+          },
+          "503": {
+            "description": "Database unavailable",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ServiceError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/llms.txt": {
+      "get": {
+        "operationId": "getLlmsTxt",
+        "summary": "Site index for LLMs (llms.txt)",
+        "description": "Plain-text map of DocStar marketing pages and agent entry points. Prefer this over scraping HTML.",
+        "tags": ["content"],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "llms.txt document",
+            "content": {
+              "text/plain": {
+                "schema": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/llms-full.txt": {
+      "get": {
+        "operationId": "getLlmsFullTxt",
+        "summary": "Full marketing site as plain text",
+        "description": "Concatenated markdown for every live page.",
+        "tags": ["content"],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Full text export",
+            "content": {
+              "text/plain": {
+                "schema": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {},
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "required": ["message"],
+        "properties": {
+          "message": { "type": "string" }
+        }
+      },
+      "ServiceError": {
+        "type": "object",
+        "required": ["message"],
+        "properties": {
+          "message": { "type": "string" },
+          "code": { "type": "string", "enum": ["db_not_configured", "db_unavailable", "db_not_migrated"] }
+        }
+      },
+      "IdeaSubmission": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "kind": { "type": "string", "enum": ["feature", "idea", "bug", "feedback"], "default": "idea" },
+          "title": { "type": "string", "minLength": 3, "maxLength": 200 },
+          "body": { "type": "string", "maxLength": 10000 },
+          "source": { "type": "string", "enum": ["api", "mcp", "cli"] },
+          "agent": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string", "minLength": 1, "maxLength": 64 },
+              "model": { "type": "string", "maxLength": 64 }
+            },
+            "required": ["name"]
+          },
+          "context": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Optional key/value context (max 20 keys, 4 KB JSON)."
+          },
+          "contactEmail": { "type": "string", "format": "email", "maxLength": 255 }
+        }
+      },
+      "IdeaPublic": {
+        "type": "object",
+        "required": ["id", "kind", "title", "status", "source", "submitterType", "createdAt", "updatedAt"],
+        "properties": {
+          "id": { "type": "integer" },
+          "kind": { "type": "string", "enum": ["feature", "idea", "bug", "feedback"] },
+          "title": { "type": "string" },
+          "body": { "type": "string", "nullable": true },
+          "status": {
+            "type": "string",
+            "enum": ["new", "reviewing", "planned", "in_progress", "shipped", "declined", "duplicate"]
+          },
+          "source": { "type": "string" },
+          "submitterType": { "type": "string", "enum": ["agent", "human"] },
+          "agentName": { "type": "string", "nullable": true },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" },
+          "duplicateOfId": { "type": "integer", "nullable": true },
+          "note": { "type": "string", "nullable": true, "description": "Team reply visible to the submitter" }
+        }
+      },
+      "IdeaCreated": {
+        "allOf": [
+          { "$ref": "#/components/schemas/IdeaPublic" },
+          {
+            "type": "object",
+            "required": ["followUpUrl"],
+            "properties": {
+              "followUpUrl": { "type": "string", "format": "uri", "description": "URL to poll with getIdeaStatus" }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "tags": [
+    { "name": "ideas", "description": "Feedback and feature requests without sign-in" },
+    { "name": "content", "description": "Agent-readable site content" }
+  ],
+  "externalDocs": {
+    "description": "Agent instructions and MCP quickstart",
+    "url": "https://docstar.io/agents.md"
+  }
+}
