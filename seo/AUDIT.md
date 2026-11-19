@@ -45,6 +45,7 @@ Severity: **critical** (removes pages from search or misleads crawlers now), **h
 | `/md/<slug>` | `md/[slug]` | Internal rewrite target, reachable directly | **duplicate** |
 | `/llms.txt`, `/llms-full.txt` | route handlers | Agent index and full text | yes (text) |
 | `/mcp/quickstart.md` | `public/` | Agent quickstart | yes (text) |
+| `/sync/quickstart.md` | `public/` | GitHub docs sync quickstart for agents | yes (text) |
 | `/sitemap.xml` | route handler | Site pages, plus help and blog URLs fetched from api.docstar.io | n/a |
 | `/robots.txt` | `public/robots.txt` | Static file; served before the Worker | n/a |
 | `/content.json` | route handler | Bundled content for the admin | should be disallowed |
