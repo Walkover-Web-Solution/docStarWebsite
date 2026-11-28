@@ -17,7 +17,7 @@ export const PRIVACY: SitePage = {
       key: "policy",
       body: `# Privacy Policy
 
-At DocStar, your privacy is important to us. This Privacy Policy describes how we collect, use, share and protect personal information when you use DocStar, including our marketing website at docstar.io, the DocStar application at app.docstar.io, the DocStar API at api.docstar.io, the DocStar MCP server, the docstar-cli, and related services (together, the "platform"). DocStar is built by Walkover. We are committed to handling your data securely and responsibly.
+At DocStar, your privacy is important to us. This Privacy Policy describes how we collect, use, share and protect personal information when you use DocStar, including our marketing website at docstar.io, the DocStar application at app.docstar.io, the DocStar API at api.docstar.io, the DocStar MCP server, the docstar-cli, and related services (together, the "platform"). We are committed to handling your data securely and responsibly.
 
 Last updated: November 28, 2026
 
@@ -27,13 +27,13 @@ We collect personal information in these categories, depending on how you use th
 
 **Account and identity.** When you sign up or log in, we may collect your name, email address, workspace or organisation name, and authentication data when you sign in through a third-party provider (for example Google or Apple).
 
-**Documentation and API content.** When you use DocStar to publish or manage API documentation, we collect the content you provide (for example OpenAPI sources, endpoint descriptions, and configuration for your docs site, llms.txt, module.json, and MCP tools).
+**Documentation and API content.** When you use DocStar to publish or manage API documentation, we collect the content you provide (for example your API documentation, OpenAPI files and docs site settings).
 
 **DocStar MCP server.** When an assistant connects to your hosted MCP server, we may collect tool names, search queries, parameters you or your agent send to a tool, OAuth tokens or API keys used to authenticate to DocStar or to your API (we store secrets to operate the integration; we do not use them for unrelated purposes), connection metadata, and error information.
 
 **DocStar API (api.docstar.io).** When you or your agent calls the API, we may collect API keys or OAuth tokens used to authenticate, request paths and methods, request metadata, and rate-limit and audit information.
 
-**docstar-cli.** When you use the CLI, we may collect module and endpoint selections, authentication configuration you store locally or with DocStar, and diagnostic logs if you report a problem.
+**docstar-cli.** When you use the CLI, we may collect module and endpoint selections, authentication configuration you store with DocStar, and diagnostic logs if you report a problem.
 
 **Marketing site (docstar.io).** We collect pages visited, actions taken (for example button clicks or copied prompts), device and browser information, and first-party cookies such as an anonymous id and A/B test assignment.
 
@@ -75,13 +75,9 @@ Yes. We share personal information only in the situations below. Service provide
 
 **Sign-in providers.** If you choose to sign in with Google or Apple, that provider processes authentication data to verify you. Their use of your information is governed by their own privacy policies.
 
-**Tag management on docstar.io.** Our marketing site loads Google Tag Manager, which may load additional tags (for example analytics or advertising tags). Those tags may collect information according to their providers' policies. Separately, docstar.io sends first-party analytics events to our own infrastructure and stores them in our database; we do not sell that usage data.
-
-**Website operations (AI-assisted editing on docstar.io only).** Selected marketing page content from docstar.io may be sent through viaSocket to an AI provider to suggest wording changes. Legal pages, pricing, and other protected pages are not sent. This does not include the API documentation you publish for your own APIs.
+**Tag management on docstar.io.** Our marketing site loads Google Tag Manager, which may load additional tags (for example analytics or advertising tags). Those tags may collect information according to their providers' policies.
 
 **Integrations you enable.** DocStar lets you connect third-party services (for example GitHub for repository sync, or your own API through a hosted MCP server). When you turn on an integration, we share or receive data only as needed to run it on your instructions—for example syncing files with a repository you select, or calling your API with an end user's OAuth token. Those third parties process data under their own terms and privacy policies.
-
-**Ideas and feedback.** If you or an agent submits feature ideas or feedback through our public submission form, we store what you send (including optional contact email) in our database so we can review and respond.
 
 **Email and SMS delivery providers.** We use providers to deliver account emails, login codes and service notifications; they receive the contact details and message content needed to send those messages on our behalf.
 
@@ -145,9 +141,9 @@ We comply with applicable data protection laws, including the GDPR (European Uni
 
 ## Use of AI and Your Content
 
-We process API documentation and related content you publish to operate DocStar—for example to host your docs site, serve markdown twins, run MCP tools, and execute CLI commands. That processing is to provide the services you configure, not to sell your documentation.
+We process API documentation and related content you publish to operate DocStar—for example to host your docs site, run MCP tools, and execute CLI commands. That processing is to provide the services you configure, not to sell your documentation.
 
-On docstar.io only, an automated assistant may send selected marketing page content to an AI provider (through viaSocket) to propose edits. Pricing, legal pages, and other protected pages are excluded. We do not use your content to train AI models.
+We do not use your content to train AI models.
 
 ## International Data Transfers
 
