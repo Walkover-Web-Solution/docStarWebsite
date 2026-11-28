@@ -4,7 +4,7 @@ export const PRIVACY: SitePage = {
   slug: "privacy-policy",
   path: "/privacy-policy",
   label: "Privacy policy",
-  updated: "2026-11-27",
+  updated: "2026-11-28",
   meta: {
     title: "Privacy policy: how we collect and protect data | DocStar",
     description:
@@ -19,7 +19,7 @@ export const PRIVACY: SitePage = {
 
 At DocStar, your privacy is important to us. This Privacy Policy describes how we collect, use, share and protect personal information when you use DocStar, including our marketing website at docstar.io, the DocStar application at app.docstar.io, the DocStar API at api.docstar.io, the DocStar MCP server, the docstar-cli, and related services (together, the "platform"). DocStar is built by Walkover. We are committed to handling your data securely and responsibly.
 
-Last updated: November 27, 2026
+Last updated: November 28, 2026
 
 ## Information We Collect
 
@@ -31,9 +31,9 @@ We collect personal information in these categories, depending on how you use th
 
 **DocStar MCP server.** When an assistant connects to your hosted MCP server, we may collect tool names, search queries, parameters you or your agent send to a tool, OAuth tokens or API keys used to authenticate to DocStar or to your API (we store secrets to operate the integration; we do not use them for unrelated purposes), connection metadata, and error information.
 
-**DocStar API (api.docstar.io).** When you or your agent calls the API, we may collect API keys or OAuth tokens used to authenticate, request paths and methods, request metadata, rate-limit and audit information, and responses needed for security and support.
+**DocStar API (api.docstar.io).** When you or your agent calls the API, we may collect API keys or OAuth tokens used to authenticate, request paths and methods, request metadata, and rate-limit and audit information.
 
-**docstar-cli.** When you use the CLI, we may collect commands you run, module and endpoint selections, authentication configuration you store locally or with DocStar, and diagnostic logs if you report a problem.
+**docstar-cli.** When you use the CLI, we may collect module and endpoint selections, authentication configuration you store locally or with DocStar, and diagnostic logs if you report a problem.
 
 **Marketing site (docstar.io).** We collect pages visited, actions taken (for example button clicks or copied prompts), device and browser information, and first-party cookies such as an anonymous id and A/B test assignment.
 
@@ -83,6 +83,12 @@ Yes. We share personal information only in the situations below. Service provide
 
 **Ideas and feedback.** If you or an agent submits feature ideas or feedback through our public submission form, we store what you send (including optional contact email) in our database so we can review and respond.
 
+**Email and SMS delivery providers.** We use providers to deliver account emails, login codes and service notifications; they receive the contact details and message content needed to send those messages on our behalf.
+
+**Payment processors.** When you subscribe to a paid plan, payment processors receive billing and payment information needed to charge you and manage your subscription.
+
+**Companies in the Walkover group.** DocStar is built by Walkover. Other companies in the Walkover group may process personal information to help operate DocStar—for example shared infrastructure, finance, or customer support.
+
 **Legal and business events.** We may disclose personal information if required by law, to protect rights and safety, or in connection with a merger, acquisition, financing or sale of assets (with notice where the law requires it).
 
 ### Third-party links
@@ -99,7 +105,7 @@ We retain personal information only as long as needed for the purposes in this p
 
 - **Product activity logs** (for example document names, modification times, and user actions in the app): **30 days**, then archived.
 
-- **API, MCP, and CLI request logs** (metadata such as tool names, endpoints, timestamps, and errors): **30 days** for security and troubleshooting, unless a longer period is required by law or an active investigation.
+- **API, MCP, and CLI request logs** (metadata such as tool names, endpoints, timestamps, and errors): **15 days** for security and troubleshooting, unless a longer period is required by law or an active investigation.
 
 - **Verified deletion requests:** we delete specified data within **30 days** after verification; backup systems are purged within **90 days** of the request.
 
@@ -141,7 +147,7 @@ We comply with applicable data protection laws, including the GDPR (European Uni
 
 We process API documentation and related content you publish to operate DocStar—for example to host your docs site, serve markdown twins, run MCP tools, and execute CLI commands. That processing is to provide the services you configure, not to sell your documentation.
 
-On docstar.io only, an automated assistant may send selected marketing page content to an AI provider (through viaSocket) to propose edits. Pricing, legal pages, and other protected pages are excluded. For questions about whether your workspace content is used for any other automated or model-training purpose, contact [support@docstar.io](mailto:support@docstar.io).
+On docstar.io only, an automated assistant may send selected marketing page content to an AI provider (through viaSocket) to propose edits. Pricing, legal pages, and other protected pages are excluded. We do not use your content to train AI models.
 
 ## International Data Transfers
 
@@ -149,7 +155,7 @@ We and our service providers (for example hosting, database, sign-in and tag-man
 
 ## Children's Privacy
 
-The platform is intended for businesses and developers. It is not directed to children under 13, and we do not knowingly collect personal information from children under 13. If you believe we have collected information from a child, contact [support@docstar.io](mailto:support@docstar.io).
+The platform is intended for businesses and developers. It is not directed to children under 16, and we do not knowingly collect personal information from children under 16. If you believe we have collected information from a child, contact [support@docstar.io](mailto:support@docstar.io).
 
 ## Changes to this Privacy Policy
 
